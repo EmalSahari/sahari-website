@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Youtube, Twitter, Github } from 'lucide-react'
+import { Youtube, Github } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -16,25 +16,16 @@ export default function Footer() {
 
         <div className="flex items-center gap-4">
           <a
-            href="https://youtube.com/@sahari"
+            href="https://youtube.com/@SahariYT"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-500 hover:text-white transition-colors"
+            className="text-zinc-500 hover:text-red-400 transition-colors"
             aria-label="YouTube"
           >
             <Youtube size={18} />
           </a>
           <a
-            href="https://twitter.com/sahari"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-zinc-500 hover:text-white transition-colors"
-            aria-label="Twitter"
-          >
-            <Twitter size={18} />
-          </a>
-          <a
-            href="https://github.com/sahari"
+            href="https://github.com/EmalSahari"
             target="_blank"
             rel="noopener noreferrer"
             className="text-zinc-500 hover:text-white transition-colors"

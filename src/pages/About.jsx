@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Youtube, Code2, Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { Youtube, Code2, Dumbbell, Trophy, ArrowRight, CheckCircle2 } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -13,24 +13,34 @@ const fadeUp = {
 
 const skills = [
   'React', 'Tailwind CSS', 'Vite', 'JavaScript', 'Framer Motion',
-  'shadcn/ui', 'HTML & CSS', 'AI-assisted dev', 'Figma basics',
+  'shadcn/ui', 'HTML & CSS', 'Web Apps', 'Responsive Design',
 ]
 
 const timeline = [
   {
     icon: <Youtube size={16} />,
-    title: 'Started the YouTube channel',
-    desc: 'Began creating content around web development and building in public.',
+    title: 'Started creating on YouTube',
+    desc: 'Launched multiple channels across different niches — @SahariYT, @UnclassifiedYTT, and @SupernovaYTT.',
   },
   {
     icon: <Code2 size={16} />,
-    title: 'Got into vibe coding',
-    desc: 'Started using AI tools to build faster and ship more — and teaching others to do the same.',
+    title: 'Got serious about web development',
+    desc: 'Taught myself React, Tailwind, and modern web tools. Started shipping real projects.',
   },
   {
-    icon: <Sparkles size={16} />,
-    title: 'Launching Sahari services',
-    desc: 'Now offering website development to help businesses and creators establish their presence online.',
+    icon: <Dumbbell size={16} />,
+    title: 'Built a fitness tracker app',
+    desc: 'A full web app for logging workouts and tracking progress — built from scratch.',
+  },
+  {
+    icon: <Trophy size={16} />,
+    title: 'Built an online chess app',
+    desc: 'A fully playable chess game for the web. Clean interface, smooth gameplay.',
+  },
+  {
+    icon: <Code2 size={16} />,
+    title: 'Launching Sahari web services',
+    desc: 'Now helping businesses and creators get websites that actually do them justice.',
   },
 ]
 
@@ -38,7 +48,6 @@ export default function About() {
   return (
     <div className="pt-28 pb-20">
       <div className="max-w-4xl mx-auto px-6">
-        {/* Header */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -52,9 +61,8 @@ export default function About() {
             <span className="gradient-text">Emal</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto">
-            I'm a content creator and self-taught web developer based online.
-            I run the Sahari YouTube channel and I'm building out web services
-            for people who want great-looking, functional websites.
+            Self-taught web developer, YouTuber with three channels, and the person
+            behind Sahari. I build websites and web apps — and now I'm doing it for other people too.
           </p>
         </motion.div>
 
@@ -69,20 +77,18 @@ export default function About() {
           <h2 className="text-white font-semibold text-xl mb-4">The story so far</h2>
           <div className="space-y-4 text-zinc-400 leading-relaxed">
             <p>
-              I started Sahari as a YouTube channel — a place to document what I was learning,
-              share my process, and connect with other builders. Over time I got really into
-              web development, especially the new wave of AI-assisted "vibe coding" where you
-              can ship things fast without fighting your tools.
+              I started on YouTube — that's where I first put myself out there and started building
+              an audience across different niches. While doing that, I got into web development
+              and discovered I was actually pretty good at it.
             </p>
             <p>
-              The more I built, the more people asked me to help them build too.
-              So that's what I'm doing now — expanding Sahari into a proper service
-              where I help businesses and creators get a real web presence that actually
-              looks as good as their work deserves.
+              I didn't just follow tutorials. I built real things — a fitness tracker app, an
+              online chess game, and this website you're looking at right now. Each project taught
+              me more than any course could.
             </p>
             <p>
-              I love clean design, dark UIs, and components that just feel right.
-              If you've found this site, you probably do too.
+              Now I'm expanding Sahari into web services. If your business or brand deserves a
+              better website than it has right now, that's exactly what I do.
             </p>
           </div>
         </motion.div>
@@ -138,15 +144,48 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* CTA */}
+        {/* YouTube channels */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
           custom={4}
+          className="mb-14"
+        >
+          <h2 className="text-white font-semibold text-xl mb-5">My YouTube channels</h2>
+          <div className="flex flex-col gap-3">
+            {[
+              { handle: '@SahariYT', desc: 'The main brand channel', href: 'https://youtube.com/@SahariYT' },
+              { handle: '@UnclassifiedYTT', desc: 'Monetized · most active', href: 'https://youtube.com/@UnclassifiedYTT' },
+              { handle: '@SupernovaYTT', desc: 'Extra content', href: 'https://youtube.com/@SupernovaYTT' },
+            ].map((c) => (
+              <a
+                key={c.handle}
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-red-500/30 hover:bg-white/8 transition-all group"
+              >
+                <Youtube size={16} className="text-red-400 flex-shrink-0" />
+                <div>
+                  <p className="text-white text-sm font-medium">{c.handle}</p>
+                  <p className="text-zinc-500 text-xs">{c.desc}</p>
+                </div>
+                <ArrowRight size={14} className="text-zinc-600 ml-auto group-hover:text-zinc-400 transition-colors" />
+              </a>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          custom={5}
           className="text-center"
         >
-          <p className="text-zinc-400 mb-5">Sounds like something you're into?</p>
+          <p className="text-zinc-400 mb-5">Want to work together?</p>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
