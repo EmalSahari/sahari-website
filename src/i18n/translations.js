@@ -144,6 +144,7 @@ export const translations = {
     'workWithUs.heading.start': 'Open',
     'workWithUs.heading.highlight': 'roles',
     'workWithUs.subtitle': "Looking for talent to join Sahari's content team. Pick the open role below — or pitch your own.",
+    'workWithUs.hiring': 'Now Hiring',
 
     // Voice Actor role
     'workWithUs.voice.tag': 'Open role · Freelance',
@@ -325,6 +326,7 @@ export const translations = {
     'workWithUs.heading.start': 'Ledige',
     'workWithUs.heading.highlight': 'stillinger',
     'workWithUs.subtitle': 'Søger talent til at blive en del af Saharis content-team. Vælg den ledige stilling herunder — eller foreslå din egen rolle.',
+    'workWithUs.hiring': 'Ansætter nu',
 
     // Voice Actor role
     'workWithUs.voice.tag': 'Ledig stilling · Freelance',
