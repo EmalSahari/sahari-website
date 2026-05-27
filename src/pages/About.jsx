@@ -20,17 +20,17 @@ const timeline = [
   {
     icon: <Youtube size={16} />,
     title: 'Started creating on YouTube',
-    desc: 'Launched multiple channels across different niches — @SahariYT, @UnclassifiedYTT, and @SupernovaYTT.',
+    desc: 'Launched multiple channels across different niches: @SahariYT, @UnclassifiedYTT, and @SupernovaYTT.',
   },
   {
     icon: <Code2 size={16} />,
     title: 'Got serious about software development',
-    desc: 'Taught myself to build real software — frontend, backend, and everything in between. Started shipping projects.',
+    desc: 'Taught myself to build real software: frontend, backend, and everything in between. Started shipping projects.',
   },
   {
     icon: <Dumbbell size={16} />,
     title: 'Built a fitness tracker app',
-    desc: 'A full web app for logging workouts and tracking progress — built from scratch.',
+    desc: 'A full web app for logging workouts and tracking progress, built from scratch.',
   },
   {
     icon: <Trophy size={16} />,
@@ -40,12 +40,12 @@ const timeline = [
   {
     icon: <Shield size={16} />,
     title: 'Studying cybersecurity',
-    desc: 'Currently diving into the offensive and defensive side of security — applying it to how I build, too.',
+    desc: 'Currently diving into the offensive and defensive side of security, applying it to how I build, too.',
   },
   {
     icon: <Code2 size={16} />,
     title: 'Launching Sahari',
-    desc: 'Now helping businesses and creators get the software they actually need — websites, apps, custom tools.',
+    desc: 'Now helping businesses and creators get the software they actually need: websites, apps, custom tools.',
   },
 ]
 
@@ -66,8 +66,8 @@ export default function About() {
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto">
             Self-taught developer, YouTuber with three channels, currently studying
-            cybersecurity, and the person behind Sahari. I build software — websites,
-            apps, backends, custom tools — and now I'm doing it for other people too.
+            cybersecurity, and the person behind Sahari. I build software (websites,
+            apps, backends, custom tools) and now I'm doing it for other people too.
           </p>
         </motion.div>
 
@@ -82,18 +82,18 @@ export default function About() {
           <h2 className="text-white font-semibold text-xl mb-4">The story so far</h2>
           <div className="space-y-4 text-zinc-400 leading-relaxed">
             <p>
-              I started on YouTube — that's where I first put myself out there and started building
+              I started on YouTube. That's where I first put myself out there and started building
               an audience across different niches. While doing that, I got into software development
               and discovered I was actually pretty good at it.
             </p>
             <p>
-              I didn't just follow tutorials. I built real things — a fitness tracker app, an
+              I didn't just follow tutorials. I built real things: a fitness tracker app, an
               online chess game, and this website you're looking at right now. Each project taught
               me more than any course could.
             </p>
             <p>
               Now I'm expanding Sahari into a full service. If your business or brand deserves
-              better software than what it has right now — websites, apps, custom tools — that's
+              better software than what it has right now (websites, apps, custom tools), that's
               exactly what I do.
             </p>
           </div>
