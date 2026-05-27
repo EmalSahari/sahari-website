@@ -32,6 +32,27 @@ body {
     background-clip: text;
   }
 
+  .gradient-text-animated {
+    background: linear-gradient(
+      120deg,
+      #ffffff 0%,
+      #c4b5fd 25%,
+      #a78bfa 50%,
+      #818cf8 75%,
+      #ffffff 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-sweep 6s ease-in-out infinite;
+  }
+
+  @keyframes gradient-sweep {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
   .gradient-border {
     position: relative;
     border-radius: 12px;

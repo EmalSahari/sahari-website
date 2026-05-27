@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock } from 'lucide-react'
@@ -9,6 +10,44 @@ const fadeUp = {
     y: 0,
     transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
   }),
+}
+
+function ServiceCard({ service, i }) {
+  const ref = useRef(null)
+  const [pos, setPos] = useState({ x: -200, y: -200 })
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return
+    const rect = ref.current.getBoundingClientRect()
+    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: i * 0.1 }}
+      className="gradient-border group relative p-6 bg-[#0f0f0f] rounded-xl hover:bg-[#131313] transition-colors duration-200 overflow-hidden"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(450px circle at ${pos.x}px ${pos.y}px, rgba(167, 139, 250, 0.14), transparent 40%)`,
+        }}
+      />
+      <div className="relative">
+        <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center mb-5 group-hover:bg-violet-500/25 transition-colors">
+          {service.icon}
+        </div>
+        <h3 className="text-white font-semibold mb-2 leading-snug">{service.title}</h3>
+        <p className="text-zinc-500 text-sm leading-relaxed">{service.desc}</p>
+      </div>
+    </motion.div>
+  )
 }
 
 const services = [
@@ -39,13 +78,15 @@ const projects = [
     icon: <Dumbbell size={20} />,
     title: 'FitTrack: Fitness Tracker',
     desc: 'A full workout and nutrition tracking web app. Log meals, track calories, monitor progress, and stay consistent with an AI coach.',
-    tag: 'Web App',
+    tag: 'Featured · Web App',
     href: 'https://fitness-mocha-five.vercel.app/',
     image: '/fitness-progress.png',
     color: 'from-emerald-900/40 to-[#0f0f0f]',
     border: 'border-emerald-500/20',
     hoverBorder: 'hover:border-emerald-400/50',
     iconBg: 'bg-emerald-500/15 text-emerald-400',
+    colSpan: 'md:col-span-2',
+    imageAspect: 'aspect-[16/9]',
   },
   {
     icon: <Trophy size={20} />,
@@ -58,6 +99,8 @@ const projects = [
     border: 'border-amber-500/20',
     hoverBorder: 'hover:border-amber-400/50',
     iconBg: 'bg-amber-500/15 text-amber-400',
+    colSpan: 'md:col-span-1',
+    imageAspect: 'aspect-[4/3]',
   },
 ]
 
@@ -96,7 +139,7 @@ export default function Home() {
           className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl"
         >
           Websites that look{' '}
-          <span className="gradient-text">as good</span>{' '}
+          <span className="gradient-text-animated">as good</span>{' '}
           as your work.
         </motion.h1>
 
@@ -169,20 +212,7 @@ export default function Home() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="gradient-border group relative p-6 bg-[#0f0f0f] rounded-xl hover:bg-[#131313] transition-colors duration-200"
-            >
-              <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center mb-5 group-hover:bg-violet-500/25 transition-colors">
-                {s.icon}
-              </div>
-              <h3 className="text-white font-semibold mb-2 leading-snug">{s.title}</h3>
-              <p className="text-zinc-500 text-sm leading-relaxed">{s.desc}</p>
-            </motion.div>
+            <ServiceCard key={s.title} service={s} i={i} />
           ))}
         </div>
       </section>
@@ -202,7 +232,7 @@ export default function Home() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
           {projects.map((p, i) => (
             <motion.a
               key={p.title}
@@ -213,9 +243,9 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`group relative block overflow-hidden rounded-2xl border ${p.border} ${p.hoverBorder} bg-gradient-to-br ${p.color} transition-all duration-200 hover:-translate-y-0.5`}
+              className={`group relative block overflow-hidden rounded-2xl border ${p.border} ${p.hoverBorder} ${p.colSpan} bg-gradient-to-br ${p.color} transition-all duration-200 hover:-translate-y-0.5 flex flex-col`}
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-black/40 border-b border-white/5">
+              <div className={`relative ${p.imageAspect} overflow-hidden bg-black/40 border-b border-white/5`}>
                 <img
                   src={p.image}
                   alt={p.title}
@@ -224,13 +254,13 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
               </div>
-              <div className="p-8">
+              <div className="p-8 flex flex-col flex-1">
                 <div className={`w-10 h-10 rounded-lg ${p.iconBg} flex items-center justify-center mb-5`}>
                   {p.icon}
                 </div>
                 <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
                 <h3 className="text-white font-semibold text-xl mt-1 mb-2">{p.title}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed mb-4">{p.desc}</p>
+                <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
                 <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
                   View live
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
