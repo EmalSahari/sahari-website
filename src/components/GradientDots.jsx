@@ -14,9 +14,9 @@ export default function GradientDots({ className = '' }) {
     const ctx = canvas.getContext('2d')
 
     const SPACING = 22       // px between dot centres
-    const RADIUS  = 1.4      // dot radius
-    const SPEED   = 0.0004   // how fast the wave travels
-    const WAVE_SCALE = 0.012 // spatial frequency of the wave
+    const RADIUS  = 1.6      // dot radius
+    const SPEED   = 0.0014   // how fast the wave travels
+    const WAVE_SCALE = 0.020 // spatial frequency of the wave
 
     let width = 0, height = 0, cols = 0, rows = 0
     let dots = []
@@ -55,10 +55,10 @@ export default function GradientDots({ className = '' }) {
         const phase = (d.x + d.y) * WAVE_SCALE + t
 
         // Hue oscillates through violet / indigo / blue-violet range
-        const hue = 250 + Math.sin(phase) * 35              // 215–285
+        const hue = 250 + Math.sin(phase) * 45              // 205–295
         const sat = 80  + Math.sin(phase * 1.3 + 1) * 15   // 65–95 %
-        const lit = 60  + Math.sin(phase * 0.9 + 2) * 12   // 48–72 %
-        const alpha = 0.18 + Math.sin(phase * 0.7) * 0.14  // 0.04–0.32
+        const lit = 62  + Math.sin(phase * 0.9 + 2) * 14   // 48–76 %
+        const alpha = 0.28 + Math.sin(phase * 0.7) * 0.24  // 0.04–0.52
 
         ctx.beginPath()
         ctx.arc(d.x, d.y, RADIUS, 0, Math.PI * 2)
