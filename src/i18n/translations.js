@@ -4,6 +4,7 @@ export const translations = {
     'nav.home': 'Home',
     'nav.about': 'About',
     'nav.contact': 'Contact',
+    'nav.workWithUs': 'Work with us',
     'nav.workWithMe': 'Work with me',
     'nav.toggleMenu': 'Toggle menu',
 
@@ -125,6 +126,46 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'All rights reserved.',
+
+    // Work With Us
+    'workWithUs.eyebrow': 'Work with us',
+    'workWithUs.heading.start': 'Open',
+    'workWithUs.heading.highlight': 'roles',
+    'workWithUs.subtitle': "Looking for talent to join Sahari's content team. Pick the open role below — or pitch your own.",
+
+    // Voice Actor role
+    'workWithUs.voice.tag': 'Open role · Freelance',
+    'workWithUs.voice.title': 'English Voice Actor',
+    'workWithUs.voice.about': 'We need a native or near-native English voice actor to narrate explainer-style videos across our channels (architecture, military, space).',
+    'workWithUs.voice.need.heading': 'What we need',
+    'workWithUs.voice.need.1': 'Native or near-native English fluency',
+    'workWithUs.voice.need.2': 'Clean home recording setup (good mic, no echo)',
+    'workWithUs.voice.need.3': 'Explainer-style delivery: clear, engaging, easy to follow',
+    'workWithUs.voice.need.4': 'Reliable turnaround on scripts',
+    'workWithUs.voice.offer.heading': 'What we offer',
+    'workWithUs.voice.offer.1': 'Paid per script / video',
+    'workWithUs.voice.offer.2': 'Long-term collaboration potential',
+    'workWithUs.voice.offer.3': 'Credit on the channel if you want it',
+    'workWithUs.voice.apply.heading': 'How to apply',
+    'workWithUs.voice.apply.body': 'Send a voice sample (mp3 or YouTube link) to Contact@sahari.io with a short intro and your typical rate.',
+    'workWithUs.voice.apply.cta': 'Apply via email',
+
+    // Open application
+    'workWithUs.open.tag': 'Open application · Any skill',
+    'workWithUs.open.title': 'Pitch your own role',
+    'workWithUs.open.about': "Not seeing what you do? We also hire for editing, animation, thumbnails, scriptwriting, and more. Tell us what you'd bring.",
+    'workWithUs.open.examples.heading': "Roles we'd consider",
+    'workWithUs.open.examples.1': 'Video editing',
+    'workWithUs.open.examples.2': 'Animation / motion graphics',
+    'workWithUs.open.examples.3': 'Thumbnails & design',
+    'workWithUs.open.examples.4': 'Scriptwriting & research',
+    'workWithUs.open.send.heading': 'What to send',
+    'workWithUs.open.send.1': 'What you do',
+    'workWithUs.open.send.2': 'A short portfolio or work samples',
+    'workWithUs.open.send.3': 'Your rate or how you bill',
+    'workWithUs.open.apply.heading': 'How to pitch',
+    'workWithUs.open.apply.body': 'Email Contact@sahari.io with the details above. We read everything that comes in.',
+    'workWithUs.open.apply.cta': 'Pitch via email',
   },
 
   da: {
@@ -132,6 +173,7 @@ export const translations = {
     'nav.home': 'Hjem',
     'nav.about': 'Om',
     'nav.contact': 'Kontakt',
+    'nav.workWithUs': 'Samarbejd med os',
     'nav.workWithMe': 'Samarbejd med mig',
     'nav.toggleMenu': 'Skift menu',
 
@@ -253,5 +295,45 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'Alle rettigheder forbeholdes.',
+
+    // Work With Us
+    'workWithUs.eyebrow': 'Samarbejd med os',
+    'workWithUs.heading.start': 'Ledige',
+    'workWithUs.heading.highlight': 'stillinger',
+    'workWithUs.subtitle': 'Søger talent til at blive en del af Saharis content-team. Vælg den ledige stilling herunder — eller foreslå din egen rolle.',
+
+    // Voice Actor role
+    'workWithUs.voice.tag': 'Ledig stilling · Freelance',
+    'workWithUs.voice.title': 'Engelsk Voice Actor',
+    'workWithUs.voice.about': 'Vi søger en native eller næsten-native engelsk voice actor til at fortælle explainer-videoer på tværs af vores kanaler (arkitektur, militær, rumfart).',
+    'workWithUs.voice.need.heading': 'Hvad vi søger',
+    'workWithUs.voice.need.1': 'Native eller næsten-native engelskkundskaber',
+    'workWithUs.voice.need.2': 'Rent hjemme-optagelsessetup (god mikrofon, ingen ekko)',
+    'workWithUs.voice.need.3': 'Explainer-stil levering: klar, engagerende, let at følge',
+    'workWithUs.voice.need.4': 'Pålidelig leveringstid på scripts',
+    'workWithUs.voice.offer.heading': 'Hvad vi tilbyder',
+    'workWithUs.voice.offer.1': 'Betalt per script / video',
+    'workWithUs.voice.offer.2': 'Potentiale for langsigtet samarbejde',
+    'workWithUs.voice.offer.3': 'Kredit på kanalen, hvis du ønsker det',
+    'workWithUs.voice.apply.heading': 'Sådan ansøger du',
+    'workWithUs.voice.apply.body': 'Send et voice-sample (mp3 eller YouTube-link) til Contact@sahari.io med en kort intro og din typiske pris.',
+    'workWithUs.voice.apply.cta': 'Ansøg via email',
+
+    // Open application
+    'workWithUs.open.tag': 'Åben ansøgning · Enhver evne',
+    'workWithUs.open.title': 'Foreslå din egen rolle',
+    'workWithUs.open.about': 'Ser du ikke det, du laver? Vi hyrer også til redigering, animation, thumbnails, manuskriptskrivning og mere. Fortæl os, hvad du vil bringe.',
+    'workWithUs.open.examples.heading': 'Roller vi vil overveje',
+    'workWithUs.open.examples.1': 'Videoredigering',
+    'workWithUs.open.examples.2': 'Animation / motion graphics',
+    'workWithUs.open.examples.3': 'Thumbnails & design',
+    'workWithUs.open.examples.4': 'Manuskriptskrivning & research',
+    'workWithUs.open.send.heading': 'Hvad du skal sende',
+    'workWithUs.open.send.1': 'Hvad du laver',
+    'workWithUs.open.send.2': 'En kort portfolio eller arbejdsprøver',
+    'workWithUs.open.send.3': 'Din pris eller hvordan du fakturerer',
+    'workWithUs.open.apply.heading': 'Sådan foreslår du',
+    'workWithUs.open.apply.body': 'Skriv til Contact@sahari.io med detaljerne ovenfor. Vi læser alt, der kommer ind.',
+    'workWithUs.open.apply.cta': 'Foreslå via email',
   },
 }
