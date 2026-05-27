@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Youtube, Code2, Dumbbell, Trophy, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { Youtube, Code2, Dumbbell, Trophy, ArrowRight, CheckCircle2, Shield } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -13,7 +13,7 @@ const fadeUp = {
 
 const skills = [
   'Web Apps', 'Mobile Apps', 'Backend & APIs', 'AI Integrations',
-  'Automation', 'Custom Software', 'Full-Stack', 'Responsive Design',
+  'Automation', 'Custom Software', 'Cybersecurity', 'Full-Stack', 'Responsive Design',
 ]
 
 const timeline = [
@@ -38,6 +38,11 @@ const timeline = [
     desc: 'A fully playable chess game for the web. Clean interface, smooth gameplay.',
   },
   {
+    icon: <Shield size={16} />,
+    title: 'Studying cybersecurity',
+    desc: 'Currently diving into the offensive and defensive side of security — applying it to how I build, too.',
+  },
+  {
     icon: <Code2 size={16} />,
     title: 'Launching Sahari',
     desc: 'Now helping businesses and creators get the software they actually need — websites, apps, custom tools.',
@@ -60,9 +65,9 @@ export default function About() {
             About <span className="gradient-text">me</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto">
-            Self-taught developer, YouTuber with three channels, and the person
-            behind Sahari. I build software — websites, apps, backends, custom tools —
-            and now I'm doing it for other people too.
+            Self-taught developer, YouTuber with three channels, currently studying
+            cybersecurity, and the person behind Sahari. I build software — websites,
+            apps, backends, custom tools — and now I'm doing it for other people too.
           </p>
         </motion.div>
 

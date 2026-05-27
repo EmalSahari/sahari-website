@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -254,6 +254,22 @@ export default function Home() {
                 </a>
               ))}
             </div>
+          </div>
+
+          <div className="grid grid-cols-3 gap-4 md:gap-8 mt-10 pt-8 border-t border-white/10">
+            {[
+              { icon: <Users size={16} />, value: '84K+', label: 'Subscribers' },
+              { icon: <Eye size={16} />, value: '11M+', label: 'Total views' },
+              { icon: <Clock size={16} />, value: '700K+', label: 'Watch hours' },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-red-500/15 text-red-400 mb-2">
+                  {stat.icon}
+                </div>
+                <p className="text-2xl md:text-3xl font-bold text-white tracking-tight">{stat.value}</p>
+                <p className="text-zinc-500 text-xs md:text-sm mt-1">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </motion.div>
       </section>
