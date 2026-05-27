@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -41,6 +41,13 @@ export default function Home() {
     { icon: <Smartphone size={20} />, title: t('services.mobile.title'), desc: t('services.mobile.desc') },
     { icon: <Server size={20} />, title: t('services.backend.title'), desc: t('services.backend.desc') },
     { icon: <Zap size={20} />, title: t('services.automation.title'), desc: t('services.automation.desc') },
+  ]
+
+  const process = [
+    { icon: <Lightbulb size={20} />, title: t('process.idea.title'), desc: t('process.idea.desc') },
+    { icon: <Code2 size={20} />, title: t('process.build.title'), desc: t('process.build.desc') },
+    { icon: <Rocket size={20} />, title: t('process.launch.title'), desc: t('process.launch.desc') },
+    { icon: <RefreshCw size={20} />, title: t('process.support.title'), desc: t('process.support.desc') },
   ]
 
   const projects = [
@@ -185,6 +192,51 @@ export default function Home() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((s, i) => (
             <ServiceCard key={s.title} service={s} i={i} />
+          ))}
+        </div>
+      </section>
+
+      {/* Process — how I work */}
+      <section className="max-w-6xl mx-auto px-6 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14 max-w-2xl mx-auto"
+        >
+          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            {t('process.heading')}
+          </h2>
+          <p className="text-zinc-400 leading-relaxed">
+            {t('process.subtitle')}
+          </p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {process.map((p, i) => (
+            <motion.div
+              key={p.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="relative"
+            >
+              <SpotlightCard className="border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center flex-shrink-0">
+                    {p.icon}
+                  </div>
+                  <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="text-white font-semibold mb-2 leading-snug">{p.title}</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">{p.desc}</p>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </div>
       </section>

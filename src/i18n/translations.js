@@ -31,6 +31,19 @@ export const translations = {
     'services.automation.title': 'Automation & Custom Software',
     'services.automation.desc': 'Scripts, bots, integrations, internal tools. If you can describe what you need, I can build it.',
 
+    // Process — how I work
+    'process.eyebrow': 'How I work',
+    'process.heading': 'From idea to live, and beyond',
+    'process.subtitle': "I take projects all the way: from the first conversation about your idea, to the live site, to the small tweaks and updates after.",
+    'process.idea.title': 'Idea & plan',
+    'process.idea.desc': "We talk through what you actually need. No big pitch decks, just figuring out the right scope and approach.",
+    'process.build.title': 'Design & build',
+    'process.build.desc': "I design and build the site or app. You stay in the loop and see progress as it comes together.",
+    'process.launch.title': 'Launch & setup',
+    'process.launch.desc': "I handle hosting, domain, custom email, deployment, and everything else needed to get you live.",
+    'process.support.title': 'Tweaks & support',
+    'process.support.desc': "After launch I'm still around for updates, fixes, and new features as your needs change.",
+
     // Projects
     'projects.eyebrow': 'Portfolio',
     'projects.heading': "Things I've built",
@@ -212,6 +225,19 @@ export const translations = {
     'services.backend.desc': 'Skræddersyede servere, APIs, databaser og AI-funktioner. Arbejdet bag scenen, der får produkter til at føles ubesværet.',
     'services.automation.title': 'Automatisering & Skræddersyet Software',
     'services.automation.desc': 'Scripts, bots, integrationer, interne værktøjer. Hvis du kan beskrive, hvad du har brug for, kan jeg bygge det.',
+
+    // Process
+    'process.eyebrow': 'Sådan arbejder jeg',
+    'process.heading': 'Fra idé til live, og videre',
+    'process.subtitle': 'Jeg tager projekter hele vejen: fra første snak om din idé, til siden er live, til de små tweaks og opdateringer bagefter.',
+    'process.idea.title': 'Idé & plan',
+    'process.idea.desc': 'Vi snakker om, hvad du faktisk har brug for. Ingen store pitch decks, bare at finde det rigtige scope og tilgang.',
+    'process.build.title': 'Design & udvikling',
+    'process.build.desc': 'Jeg designer og bygger siden eller appen. Du følger med og ser fremskridtet undervejs.',
+    'process.launch.title': 'Launch & opsætning',
+    'process.launch.desc': 'Jeg klarer hosting, domæne, egen email, deployment og alt det andet, der skal til, for at du er online.',
+    'process.support.title': 'Tweaks & support',
+    'process.support.desc': 'Efter launch er jeg stadig her til opdateringer, fixes og nye funktioner, når dine behov ændrer sig.',
 
     // Projects
     'projects.eyebrow': 'Portfolio',
