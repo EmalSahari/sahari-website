@@ -32,7 +32,7 @@ export default function Contact() {
   }
 
   const socials = [
-    { icon: <Mail size={18} />, label: t('contact.socials.email'), value: 'Contact@sahari.io', href: 'mailto:Contact@sahari.io' },
+    { icon: <Mail size={18} />, label: t('contact.socials.email'), value: 'contact@sahari.io', href: 'mailto:contact@sahari.io' },
     { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@SahariYT', href: 'https://youtube.com/@SahariYT' },
     { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@UnclassifiedYTT', href: 'https://youtube.com/@UnclassifiedYTT' },
     { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@SupernovaYTT', href: 'https://youtube.com/@SupernovaYTT' },

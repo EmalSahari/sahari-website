@@ -11,7 +11,7 @@ const fadeUp = {
   }),
 }
 
-const EMAIL = 'Contact@sahari.io'
+const EMAIL = 'contact@sahari.io'
 
 function Section({ title, items, accent }) {
   return (
