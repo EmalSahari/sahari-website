@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock, ExternalLink } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -40,8 +40,10 @@ const projects = [
     title: 'Fitness Tracker App',
     desc: 'A full workout and fitness tracking web app. Log exercises, track progress, and stay consistent.',
     tag: 'Web App',
+    href: 'https://fitness-mocha-five.vercel.app/',
     color: 'from-emerald-900/40 to-[#0f0f0f]',
     border: 'border-emerald-500/20',
+    hoverBorder: 'hover:border-emerald-400/50',
     iconBg: 'bg-emerald-500/15 text-emerald-400',
   },
   {
@@ -49,8 +51,10 @@ const projects = [
     title: 'Online Chess App',
     desc: 'A fully playable chess app built for the web. Clean interface, smooth moves, real gameplay.',
     tag: 'Web App',
+    href: 'https://skak.onrender.com/',
     color: 'from-amber-900/40 to-[#0f0f0f]',
     border: 'border-amber-500/20',
+    hoverBorder: 'hover:border-amber-400/50',
     iconBg: 'bg-amber-500/15 text-amber-400',
   },
 ]
@@ -198,21 +202,32 @@ export default function Home() {
 
         <div className="grid md:grid-cols-2 gap-5">
           {projects.map((p, i) => (
-            <motion.div
+            <motion.a
               key={p.title}
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative overflow-hidden rounded-2xl border ${p.border} bg-gradient-to-br ${p.color} p-8`}
+              className={`group relative block overflow-hidden rounded-2xl border ${p.border} ${p.hoverBorder} bg-gradient-to-br ${p.color} p-8 transition-all duration-200 hover:-translate-y-0.5`}
             >
+              <ExternalLink
+                size={16}
+                className="absolute top-5 right-5 text-zinc-600 group-hover:text-white transition-colors"
+              />
               <div className={`w-10 h-10 rounded-lg ${p.iconBg} flex items-center justify-center mb-5`}>
                 {p.icon}
               </div>
               <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
               <h3 className="text-white font-semibold text-xl mt-1 mb-2">{p.title}</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">{p.desc}</p>
-            </motion.div>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-4">{p.desc}</p>
+              <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
+                View live
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </motion.a>
           ))}
         </div>
       </section>
