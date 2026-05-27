@@ -12,8 +12,7 @@ function getInitialLang() {
   } catch {
     // ignore — localStorage may be unavailable
   }
-  const browser = (navigator.language || 'en').toLowerCase()
-  return browser.startsWith('da') ? 'da' : 'en'
+  return 'en'
 }
 
 export function LanguageProvider({ children }) {
