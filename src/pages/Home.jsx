@@ -4,7 +4,6 @@ import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, D
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
-import SparklesText from '../components/SparklesText'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -116,9 +115,7 @@ export default function Home() {
           className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl"
         >
           {t('hero.headline.start')}{' '}
-          <SparklesText>
-            <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>
-          </SparklesText>{' '}
+          <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>{' '}
           {t('hero.headline.end')}
         </motion.h1>
 
