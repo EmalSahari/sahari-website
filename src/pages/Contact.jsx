@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Youtube, Send, CheckCircle2 } from 'lucide-react'
+import { useT } from '../i18n/LanguageContext'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -11,34 +12,8 @@ const fadeUp = {
   }),
 }
 
-const socials = [
-  {
-    icon: <Mail size={18} />,
-    label: 'Email',
-    value: 'Contact@sahari.io',
-    href: 'mailto:Contact@sahari.io',
-  },
-  {
-    icon: <Youtube size={18} />,
-    label: 'YouTube',
-    value: '@SahariYT',
-    href: 'https://youtube.com/@SahariYT',
-  },
-  {
-    icon: <Youtube size={18} />,
-    label: 'YouTube',
-    value: '@UnclassifiedYTT',
-    href: 'https://youtube.com/@UnclassifiedYTT',
-  },
-  {
-    icon: <Youtube size={18} />,
-    label: 'YouTube',
-    value: '@SupernovaYTT',
-    href: 'https://youtube.com/@SupernovaYTT',
-  },
-]
-
 export default function Contact() {
+  const t = useT()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -56,6 +31,13 @@ export default function Contact() {
     setSubmitted(true)
   }
 
+  const socials = [
+    { icon: <Mail size={18} />, label: t('contact.socials.email'), value: 'Contact@sahari.io', href: 'mailto:Contact@sahari.io' },
+    { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@SahariYT', href: 'https://youtube.com/@SahariYT' },
+    { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@UnclassifiedYTT', href: 'https://youtube.com/@UnclassifiedYTT' },
+    { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@SupernovaYTT', href: 'https://youtube.com/@SupernovaYTT' },
+  ]
+
   return (
     <div className="pt-28 pb-20">
       <div className="max-w-4xl mx-auto px-6">
@@ -67,13 +49,12 @@ export default function Contact() {
           custom={0}
           className="text-center mb-14"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">Contact</p>
+          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('contact.eyebrow')}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
-            Let's build something
+            {t('contact.heading')}
           </h1>
           <p className="text-zinc-400 text-lg max-w-lg mx-auto">
-            Have a project in mind? Want to work together? Or just want to say hey?
-            My inbox is open.
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -89,15 +70,15 @@ export default function Contact() {
             {submitted ? (
               <div className="gradient-border bg-[#0f0f0f] rounded-2xl p-10 text-center h-full flex flex-col items-center justify-center gap-4">
                 <CheckCircle2 size={48} className="text-violet-400" />
-                <h3 className="text-white font-semibold text-xl">Message sent!</h3>
+                <h3 className="text-white font-semibold text-xl">{t('contact.form.success.title')}</h3>
                 <p className="text-zinc-400 text-sm">
-                  Thanks for reaching out. I'll get back to you soon.
+                  {t('contact.form.success.subtitle')}
                 </p>
                 <button
                   onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '' }) }}
                   className="mt-2 text-violet-400 hover:text-violet-300 text-sm transition-colors"
                 >
-                  Send another message
+                  {t('contact.form.success.again')}
                 </button>
               </div>
             ) : (
@@ -107,7 +88,7 @@ export default function Contact() {
               >
                 <div>
                   <label className="block text-zinc-400 text-sm mb-2" htmlFor="name">
-                    Your name
+                    {t('contact.form.name')}
                   </label>
                   <input
                     id="name"
@@ -116,13 +97,13 @@ export default function Contact() {
                     required
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="Jane Smith"
+                    placeholder={t('contact.form.namePlaceholder')}
                     className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/30 transition-all"
                   />
                 </div>
                 <div>
                   <label className="block text-zinc-400 text-sm mb-2" htmlFor="email">
-                    Email address
+                    {t('contact.form.email')}
                   </label>
                   <input
                     id="email"
@@ -131,13 +112,13 @@ export default function Contact() {
                     required
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="jane@example.com"
+                    placeholder={t('contact.form.emailPlaceholder')}
                     className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/30 transition-all"
                   />
                 </div>
                 <div>
                   <label className="block text-zinc-400 text-sm mb-2" htmlFor="message">
-                    What's on your mind?
+                    {t('contact.form.message')}
                   </label>
                   <textarea
                     id="message"
@@ -146,7 +127,7 @@ export default function Contact() {
                     rows={5}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Tell me about your project, idea, or just say hi..."
+                    placeholder={t('contact.form.messagePlaceholder')}
                     className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/30 transition-all resize-none"
                   />
                 </div>
@@ -161,12 +142,12 @@ export default function Contact() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
                       </svg>
-                      Sending...
+                      {t('contact.form.sending')}
                     </span>
                   ) : (
                     <>
                       <Send size={15} />
-                      Send message
+                      {t('contact.form.submit')}
                     </>
                   )}
                 </button>
@@ -182,10 +163,10 @@ export default function Contact() {
             custom={2}
             className="md:col-span-2 space-y-4"
           >
-            <p className="text-zinc-500 text-sm mb-5">Or find me here:</p>
+            <p className="text-zinc-500 text-sm mb-5">{t('contact.socials.heading')}</p>
             {socials.map((s) => (
               <a
-                key={s.label}
+                key={s.value}
                 href={s.href}
                 target={s.href.startsWith('mailto') ? undefined : '_blank'}
                 rel="noopener noreferrer"
@@ -202,9 +183,9 @@ export default function Contact() {
             ))}
 
             <div className="mt-6 p-5 rounded-xl border border-violet-500/20 bg-violet-500/5">
-              <p className="text-violet-300 text-sm font-medium mb-1">⚡ Quick response</p>
+              <p className="text-violet-300 text-sm font-medium mb-1">{t('contact.quick.heading')}</p>
               <p className="text-zinc-500 text-sm">
-                I typically reply within 24–48 hours. For urgent projects, DM me on Instagram.
+                {t('contact.quick.subtitle')}
               </p>
             </div>
           </motion.div>

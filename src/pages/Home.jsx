@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock } from 'lucide-react'
+import { useT } from '../i18n/LanguageContext'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -50,67 +51,59 @@ function ServiceCard({ service, i }) {
   )
 }
 
-const services = [
-  {
-    icon: <Globe size={20} />,
-    title: 'Websites & Web Apps',
-    desc: 'Fast, responsive sites and web apps designed to make your brand look serious and convert visitors into customers.',
-  },
-  {
-    icon: <Smartphone size={20} />,
-    title: 'Mobile Apps',
-    desc: 'Apps for iOS and Android, built around your idea and shipped to the people who need them.',
-  },
-  {
-    icon: <Server size={20} />,
-    title: 'Backend, APIs & AI',
-    desc: 'Custom servers, APIs, databases, and AI features. The behind-the-scenes work that makes products feel effortless.',
-  },
-  {
-    icon: <Zap size={20} />,
-    title: 'Automation & Custom Software',
-    desc: 'Scripts, bots, integrations, internal tools. If you can describe what you need, I can build it.',
-  },
-]
-
-const projects = [
-  {
-    icon: <Dumbbell size={20} />,
-    title: 'FitTrack: Fitness Tracker',
-    desc: 'A full workout and nutrition tracking web app. Log meals, track calories, monitor progress, and stay consistent with an AI coach.',
-    tag: 'Featured · Web App',
-    href: 'https://fitness-mocha-five.vercel.app/',
-    image: '/fitness-progress.png',
-    color: 'from-emerald-900/40 to-[#0f0f0f]',
-    border: 'border-emerald-500/20',
-    hoverBorder: 'hover:border-emerald-400/50',
-    iconBg: 'bg-emerald-500/15 text-emerald-400',
-    colSpan: 'md:col-span-2',
-    imageAspect: 'aspect-[16/9]',
-  },
-  {
-    icon: <Trophy size={20} />,
-    title: 'Online Chess App',
-    desc: 'A fully playable chess app built for the web. Clean interface, smooth moves, real gameplay.',
-    tag: 'Web App',
-    href: 'https://skak.onrender.com/',
-    image: '/chess-board.png',
-    color: 'from-amber-900/40 to-[#0f0f0f]',
-    border: 'border-amber-500/20',
-    hoverBorder: 'hover:border-amber-400/50',
-    iconBg: 'bg-amber-500/15 text-amber-400',
-    colSpan: 'md:col-span-1',
-    imageAspect: 'aspect-[4/3]',
-  },
-]
-
-const channels = [
-  { handle: '@SahariYT', desc: 'Main channel', href: 'https://youtube.com/@SahariYT' },
-  { handle: '@UnclassifiedYTT', desc: 'Monetized · latest uploads', href: 'https://youtube.com/@UnclassifiedYTT' },
-  { handle: '@SupernovaYTT', desc: 'Extra content', href: 'https://youtube.com/@SupernovaYTT' },
-]
-
 export default function Home() {
+  const t = useT()
+
+  const services = [
+    { icon: <Globe size={20} />, title: t('services.web.title'), desc: t('services.web.desc') },
+    { icon: <Smartphone size={20} />, title: t('services.mobile.title'), desc: t('services.mobile.desc') },
+    { icon: <Server size={20} />, title: t('services.backend.title'), desc: t('services.backend.desc') },
+    { icon: <Zap size={20} />, title: t('services.automation.title'), desc: t('services.automation.desc') },
+  ]
+
+  const projects = [
+    {
+      icon: <Dumbbell size={20} />,
+      title: t('projects.fitness.title'),
+      desc: t('projects.fitness.desc'),
+      tag: t('projects.fitness.tag'),
+      href: 'https://fitness-mocha-five.vercel.app/',
+      image: '/fitness-progress.png',
+      color: 'from-emerald-900/40 to-[#0f0f0f]',
+      border: 'border-emerald-500/20',
+      hoverBorder: 'hover:border-emerald-400/50',
+      iconBg: 'bg-emerald-500/15 text-emerald-400',
+      colSpan: 'md:col-span-2',
+      imageAspect: 'aspect-[16/9]',
+    },
+    {
+      icon: <Trophy size={20} />,
+      title: t('projects.chess.title'),
+      desc: t('projects.chess.desc'),
+      tag: t('projects.chess.tag'),
+      href: 'https://skak.onrender.com/',
+      image: '/chess-board.png',
+      color: 'from-amber-900/40 to-[#0f0f0f]',
+      border: 'border-amber-500/20',
+      hoverBorder: 'hover:border-amber-400/50',
+      iconBg: 'bg-amber-500/15 text-amber-400',
+      colSpan: 'md:col-span-1',
+      imageAspect: 'aspect-[4/3]',
+    },
+  ]
+
+  const channels = [
+    { handle: '@SahariYT', desc: t('youtube.channel1.desc'), href: 'https://youtube.com/@SahariYT' },
+    { handle: '@UnclassifiedYTT', desc: t('youtube.channel2.desc'), href: 'https://youtube.com/@UnclassifiedYTT' },
+    { handle: '@SupernovaYTT', desc: t('youtube.channel3.desc'), href: 'https://youtube.com/@SupernovaYTT' },
+  ]
+
+  const stats = [
+    { icon: <Users size={16} />, value: '84K+', label: t('youtube.stats.subs') },
+    { icon: <Eye size={16} />, value: '11M+', label: t('youtube.stats.views') },
+    { icon: <Clock size={16} />, value: '700K+', label: t('youtube.stats.hours') },
+  ]
+
   return (
     <div className="pt-16">
       {/* Hero */}
@@ -128,7 +121,7 @@ export default function Home() {
           className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-sm"
         >
           <Sparkles size={14} />
-          <span>Software developer & content creator</span>
+          <span>{t('hero.badge')}</span>
         </motion.div>
 
         <motion.h1
@@ -138,9 +131,9 @@ export default function Home() {
           custom={1}
           className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl"
         >
-          Websites that look{' '}
-          <span className="gradient-text-animated">as good</span>{' '}
-          as your work.
+          {t('hero.headline.start')}{' '}
+          <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>{' '}
+          {t('hero.headline.end')}
         </motion.h1>
 
         <motion.p
@@ -150,9 +143,7 @@ export default function Home() {
           custom={2}
           className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
         >
-          I build software (websites, mobile apps, backends, custom tools)
-          for businesses and creators who want a real online presence. Also a
-          YouTuber with three channels.
+          {t('hero.subtitle')}
         </motion.p>
 
         <motion.div
@@ -166,7 +157,7 @@ export default function Home() {
             to="/contact"
             className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
           >
-            Work with me
+            {t('hero.cta.work')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <a
@@ -176,7 +167,7 @@ export default function Home() {
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
           >
             <Youtube size={16} className="text-red-400" />
-            Watch my content
+            {t('hero.cta.watch')}
           </a>
         </motion.div>
 
@@ -188,7 +179,7 @@ export default function Home() {
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-600 text-xs"
         >
           <div className="w-px h-10 bg-gradient-to-b from-transparent to-zinc-600" />
-          scroll
+          {t('hero.scroll')}
         </motion.div>
       </section>
 
@@ -201,12 +192,12 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">Services</p>
+          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            What I build
+            {t('services.heading')}
           </h2>
           <p className="mt-4 text-zinc-400 max-w-lg mx-auto">
-            From web and mobile to backend and beyond. If you can describe it, I'll build it.
+            {t('services.subtitle')}
           </p>
         </motion.div>
 
@@ -226,9 +217,9 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">Portfolio</p>
+          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Things I've built
+            {t('projects.heading')}
           </h2>
         </motion.div>
 
@@ -262,7 +253,7 @@ export default function Home() {
                 <h3 className="text-white font-semibold text-xl mt-1 mb-2">{p.title}</h3>
                 <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
                 <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
-                  View live
+                  {t('projects.viewLive')}
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
@@ -284,10 +275,10 @@ export default function Home() {
             <div className="flex-1">
               <Youtube size={36} className="text-red-400 mb-5" />
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                Also a YouTuber
+                {t('youtube.heading')}
               </h2>
               <p className="text-zinc-400 leading-relaxed max-w-md">
-                I run three YouTube channels across different niches. Come check out the content.
+                {t('youtube.subtitle')}
               </p>
             </div>
             <div className="flex flex-col gap-3 min-w-[220px]">
@@ -311,11 +302,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-3 gap-4 md:gap-8 mt-10 pt-8 border-t border-white/10">
-            {[
-              { icon: <Users size={16} />, value: '84K+', label: 'Subscribers' },
-              { icon: <Eye size={16} />, value: '11M+', label: 'Total views' },
-              { icon: <Clock size={16} />, value: '700K+', label: 'Watch hours' },
-            ].map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-red-500/15 text-red-400 mb-2">
                   {stat.icon}
@@ -340,17 +327,16 @@ export default function Home() {
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-violet-600/20 rounded-full blur-3xl" />
           <Code2 size={32} className="text-violet-400 mx-auto mb-5" />
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Ready to build something?
+            {t('cta.heading')}
           </h2>
           <p className="text-zinc-400 max-w-md mx-auto mb-8">
-            Whether you need a website, an app, or just want to talk through an idea,
-            I'm open to new projects.
+            {t('cta.subtitle')}
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
           >
-            Let's talk
+            {t('cta.button')}
             <ArrowRight size={16} />
           </Link>
         </motion.div>
