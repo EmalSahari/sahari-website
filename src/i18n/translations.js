@@ -60,7 +60,7 @@ export const translations = {
     // About page
     'about.eyebrow': 'About',
     'about.heading.start': 'About',
-    'about.heading.highlight': 'me',
+    'about.heading.highlight': 'Emal Sahari',
     'about.subtitle': "Self-taught developer, content creator, and currently studying cybersecurity. I build software (websites, apps, backends, custom tools) and now I'm doing it for other people too.",
     'about.story.heading': 'The story so far',
     'about.story.p1': "I started on YouTube years ago. Tried different niches, learned what worked and what didn't. Took a while before anything actually took off.",
@@ -242,7 +242,7 @@ export const translations = {
     // About page
     'about.eyebrow': 'Om',
     'about.heading.start': 'Om',
-    'about.heading.highlight': 'mig',
+    'about.heading.highlight': 'Emal Sahari',
     'about.subtitle': 'Selvlært udvikler, content creator og læser cybersikkerhed. Jeg bygger software (hjemmesider, apps, backends, skræddersyede værktøjer), og nu gør jeg det også for andre.',
     'about.story.heading': 'Historien indtil videre',
     'about.story.p1': 'Jeg startede på YouTube for år tilbage. Prøvede forskellige nicher, lærte hvad der virkede, og hvad der ikke gjorde. Det tog noget tid, før noget rigtig slog an.',

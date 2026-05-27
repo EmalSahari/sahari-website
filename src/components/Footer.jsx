@@ -12,7 +12,7 @@ export default function Footer() {
             S
           </div>
           <span className="text-zinc-400 text-sm">
-            © {new Date().getFullYear()} Sahari. {t('footer.copyright')}
+            © {new Date().getFullYear()} Emal Sahari / Sahari. {t('footer.copyright')}
           </span>
         </div>
 
