@@ -5,18 +5,22 @@ import Footer from './components/Footer'
 import AnimatedRoutes from './components/AnimatedRoutes'
 import CookieNotice from './components/CookieNotice'
 import ScrollToTop from './components/ScrollToTop'
+import GradientDots from './components/GradientDots'
 
 function App() {
   return (
     <LanguageProvider>
       <Router>
         <ScrollToTop />
-        <div className="flex flex-col min-h-screen bg-[#080808]">
-          <Navbar />
-          <main className="flex-1">
-            <AnimatedRoutes />
-          </main>
-          <Footer />
+        <div className="relative flex flex-col min-h-screen bg-[#080808]">
+          <GradientDots className="z-0" />
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-1">
+              <AnimatedRoutes />
+            </main>
+            <Footer />
+          </div>
           <CookieNotice />
         </div>
       </Router>
