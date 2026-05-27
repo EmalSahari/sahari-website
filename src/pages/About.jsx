@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Youtube, Code2, ArrowRight, CheckCircle2, Shield, Rocket, Briefcase } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
+import SpotlightCard from '../components/SpotlightCard'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -64,19 +65,15 @@ export default function About() {
         </motion.div>
 
         {/* Story */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={1}
-          className="gradient-border bg-[#0f0f0f] rounded-2xl p-8 mb-10"
-        >
-          <h2 className="text-white font-semibold text-xl mb-4">{t('about.story.heading')}</h2>
-          <div className="space-y-4 text-zinc-400 leading-relaxed">
-            <p>{t('about.story.p1')}</p>
-            <p>{t('about.story.p2')}</p>
-            <p>{t('about.story.p3')}</p>
-          </div>
+        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={1} className="mb-10">
+          <SpotlightCard className="bg-[#0f0f0f] p-8">
+            <h2 className="text-white font-semibold text-xl mb-4">{t('about.story.heading')}</h2>
+            <div className="space-y-4 text-zinc-400 leading-relaxed">
+              <p>{t('about.story.p1')}</p>
+              <p>{t('about.story.p2')}</p>
+              <p>{t('about.story.p3')}</p>
+            </div>
+          </SpotlightCard>
         </motion.div>
 
         {/* Quick facts */}
@@ -92,11 +89,11 @@ export default function About() {
             { label: t('about.facts.cvr.label'), value: t('about.facts.cvr.value'), emoji: '🏢' },
             { label: t('about.facts.interests.label'), value: t('about.facts.interests.value'), emoji: '💡' },
           ].map((fact) => (
-            <div key={fact.label} className="gradient-border bg-[#0f0f0f] rounded-xl p-4">
+            <SpotlightCard key={fact.label} className="bg-[#0f0f0f] p-4">
               <p className="text-lg mb-1">{fact.emoji}</p>
               <p className="text-zinc-500 text-xs uppercase tracking-widest mb-1">{fact.label}</p>
               <p className="text-white text-sm font-medium leading-snug">{fact.value}</p>
-            </div>
+            </SpotlightCard>
           ))}
         </motion.div>
 

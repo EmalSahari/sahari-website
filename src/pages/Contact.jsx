@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Mail, Instagram, Send, CheckCircle2 } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
+import SpotlightCard from '../components/SpotlightCard'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -188,21 +189,22 @@ export default function Contact() {
           >
             <p className="text-zinc-500 text-sm mb-5">{t('contact.socials.heading')}</p>
             {socials.map((s) => (
-              <a
-                key={s.value}
-                href={s.href}
-                target={s.href.startsWith('mailto') ? undefined : '_blank'}
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-white/20 transition-all duration-200 group"
-              >
-                <div className="w-9 h-9 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center group-hover:bg-violet-500/25 transition-colors flex-shrink-0">
-                  {s.icon}
-                </div>
-                <div>
-                  <p className="text-zinc-500 text-xs">{s.label}</p>
-                  <p className="text-white text-sm font-medium">{s.value}</p>
-                </div>
-              </a>
+              <SpotlightCard key={s.value} className="bg-white/5">
+                <a
+                  href={s.href}
+                  target={s.href.startsWith('mailto') ? undefined : '_blank'}
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-4 group"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center group-hover:bg-violet-500/25 transition-colors flex-shrink-0">
+                    {s.icon}
+                  </div>
+                  <div>
+                    <p className="text-zinc-500 text-xs">{s.label}</p>
+                    <p className="text-white text-sm font-medium">{s.value}</p>
+                  </div>
+                </a>
+              </SpotlightCard>
             ))}
 
             <div className="mt-6 p-5 rounded-xl border border-violet-500/20 bg-violet-500/5">

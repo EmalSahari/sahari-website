@@ -211,17 +211,20 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
           {projects.map((p, i) => (
-            <motion.a
+            <motion.div
               key={p.title}
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`group relative block overflow-hidden rounded-2xl border ${p.border} ${p.hoverBorder} ${p.colSpan} bg-gradient-to-br ${p.color} transition-all duration-200 hover:-translate-y-0.5 flex flex-col`}
-              style={{ position: 'relative' }}
+              className={`${p.colSpan}`}
+            >
+            <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
+            <a
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
             >
               <div className={`relative ${p.imageAspect} overflow-hidden bg-black/40 border-b border-white/5`}>
                 <img
@@ -244,7 +247,9 @@ export default function Home() {
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
-            </motion.a>
+            </a>
+            </SpotlightCard>
+            </motion.div>
           ))}
         </div>
       </section>
