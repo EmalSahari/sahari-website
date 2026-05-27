@@ -162,7 +162,7 @@ export const translations = {
     // Voice Actor role
     'workWithUs.voice.tag': 'Open role · Freelance',
     'workWithUs.voice.title': 'English Voice Actor',
-    'workWithUs.voice.about': 'We need a native or near-native English voice actor to narrate explainer-style videos across our channels (architecture, military, space).',
+    'workWithUs.voice.about': 'We need native or near-native English voice actors to narrate explainer-style videos. You\'d be matched with one of our channels (architecture, military, or space) based on your style and fit.',
     'workWithUs.voice.need.heading': 'What we need',
     'workWithUs.voice.need.1': 'Native or near-native English fluency',
     'workWithUs.voice.need.2': 'Clean home recording setup (good mic, no echo)',
@@ -357,7 +357,7 @@ export const translations = {
     // Voice Actor role
     'workWithUs.voice.tag': 'Ledig stilling · Freelance',
     'workWithUs.voice.title': 'Engelsk Voice Actor',
-    'workWithUs.voice.about': 'Vi søger en native eller næsten-native engelsk voice actor til at fortælle explainer-videoer på tværs af vores kanaler (arkitektur, militær, rumfart).',
+    'workWithUs.voice.about': 'Vi søger native eller næsten-native engelske voice actors til at fortælle explainer-videoer. Du bliver matchet med én af vores kanaler (arkitektur, militær eller rumfart) baseret på din stil og hvad der passer bedst.',
     'workWithUs.voice.need.heading': 'Hvad vi søger',
     'workWithUs.voice.need.1': 'Native eller næsten-native engelskkundskaber',
     'workWithUs.voice.need.2': 'Rent hjemme-optagelsessetup (god mikrofon, ingen ekko)',
