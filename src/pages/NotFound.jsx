@@ -2,11 +2,13 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
+import Seo from '../components/Seo'
 
 export default function NotFound() {
   const t = useT()
   return (
     <div className="pt-28 pb-20 min-h-[80vh] flex items-center">
+      <Seo title="404" description="The page you're looking for doesn't exist or has moved." />
       <div className="max-w-2xl mx-auto px-6 text-center relative">
         {/* Big background 404 */}
         <div

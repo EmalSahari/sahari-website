@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
+import Seo from '../components/Seo'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -106,6 +107,7 @@ export default function Home() {
 
   return (
     <div className="pt-16">
+      <Seo description="Software studio building websites, mobile apps, backends, and custom tools. Also a YouTuber with three channels." />
       {/* Hero */}
       <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

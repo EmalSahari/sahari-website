@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Mic, Sparkles, ArrowRight, CheckCircle2, Mail } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
+import Seo from '../components/Seo'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -93,6 +94,7 @@ export default function WorkWithUs() {
 
   return (
     <div className="pt-28 pb-20">
+      <Seo title="Work with us" description="Open roles at Sahari: voice actors and open applications for editors, animators, designers, and writers." />
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div

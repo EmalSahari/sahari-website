@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Youtube, Code2, ArrowRight, CheckCircle2, Shield, Rocket, Briefcase } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
+import Seo from '../components/Seo'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -44,6 +45,7 @@ export default function About() {
 
   return (
     <div className="pt-28 pb-20">
+      <Seo title="About" description="Self-taught developer, YouTuber with three channels, currently studying cybersecurity, and the person behind Sahari." />
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           variants={fadeUp}

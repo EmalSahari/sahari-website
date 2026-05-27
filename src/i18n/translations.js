@@ -127,6 +127,11 @@ export const translations = {
     // Footer
     'footer.copyright': 'All rights reserved.',
 
+    // Cookie notice
+    'cookie.heading': 'We use cookies',
+    'cookie.body': 'This site uses minimal cookies for language preference and basic analytics. No tracking, no ads.',
+    'cookie.accept': 'Got it',
+
     // Work With Us
     'workWithUs.eyebrow': 'Work with us',
     'workWithUs.heading.start': 'Open',
@@ -295,6 +300,11 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'Alle rettigheder forbeholdes.',
+
+    // Cookie notice
+    'cookie.heading': 'Vi bruger cookies',
+    'cookie.body': 'Denne side bruger minimale cookies til sprogvalg og grundlæggende analyse. Ingen tracking, ingen annoncer.',
+    'cookie.accept': 'Forstået',
 
     // Work With Us
     'workWithUs.eyebrow': 'Samarbejd med os',

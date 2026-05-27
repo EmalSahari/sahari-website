@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Instagram, Send, CheckCircle2 } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
+import Seo from '../components/Seo'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -14,7 +15,7 @@ const fadeUp = {
 
 export default function Contact() {
   const t = useT()
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', message: '', _gotcha: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -29,7 +30,7 @@ export default function Contact() {
       const res = await fetch('https://formspree.io/f/xlgvokpj', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+        body: JSON.stringify(form),
       })
       if (res.ok) {
         setSubmitted(true)
@@ -50,6 +51,7 @@ export default function Contact() {
 
   return (
     <div className="pt-28 pb-20">
+      <Seo title="Contact" description="Have a project in mind? Get in touch. I typically reply within 24 hours." />
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -96,6 +98,17 @@ export default function Contact() {
                 onSubmit={handleSubmit}
                 className="gradient-border bg-[#0f0f0f] rounded-2xl p-8 space-y-5"
               >
+                {/* Honeypot — hidden from real users, bots fill it and get rejected */}
+                <input
+                  type="text"
+                  name="_gotcha"
+                  value={form._gotcha}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                />
                 <div>
                   <label className="block text-zinc-400 text-sm mb-2" htmlFor="name">
                     {t('contact.form.name')}
