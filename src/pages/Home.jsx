@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Layout, Dumbbell, Trophy } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -14,18 +14,23 @@ const fadeUp = {
 const services = [
   {
     icon: <Globe size={20} />,
-    title: 'Website Design & Development',
-    desc: 'Clean, modern websites built with React and Tailwind. Fast, responsive, and built to make your business look serious.',
+    title: 'Websites & Web Apps',
+    desc: 'Fast, responsive sites and web apps designed to make your brand look serious and convert visitors into customers.',
   },
   {
-    icon: <Layout size={20} />,
-    title: 'Landing Pages',
-    desc: 'High-converting single-page sites for your product, offer, or brand. Designed to impress and built to perform.',
+    icon: <Smartphone size={20} />,
+    title: 'Mobile Apps',
+    desc: 'Apps for iOS and Android — built around your idea and shipped to the people who need them.',
   },
   {
-    icon: <Code2 size={20} />,
-    title: 'Custom Web Apps',
-    desc: 'From fitness trackers to interactive tools — if you can imagine it, it can be built. Let\'s scope it out.',
+    icon: <Server size={20} />,
+    title: 'Backend, APIs & AI',
+    desc: 'Custom servers, APIs, databases, and AI features. The behind-the-scenes work that makes products feel effortless.',
+  },
+  {
+    icon: <Zap size={20} />,
+    title: 'Automation & Custom Software',
+    desc: 'Scripts, bots, integrations, internal tools. If you can describe what you need, I can build it.',
   },
 ]
 
@@ -74,7 +79,7 @@ export default function Home() {
           className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-sm"
         >
           <Sparkles size={14} />
-          <span>Web developer & content creator</span>
+          <span>Software developer & content creator</span>
         </motion.div>
 
         <motion.h1
@@ -96,8 +101,9 @@ export default function Home() {
           custom={2}
           className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
         >
-          I build websites and web apps for businesses and creators who want
-          a real online presence. Also a YouTuber with three channels.
+          I build software — websites, mobile apps, backends, custom tools —
+          for businesses and creators who want a real online presence. Also a
+          YouTuber with three channels.
         </motion.p>
 
         <motion.div
@@ -151,11 +157,11 @@ export default function Home() {
             What I build
           </h2>
           <p className="mt-4 text-zinc-400 max-w-lg mx-auto">
-            From simple landing pages to full custom apps — I handle the whole thing.
+            From web and mobile to backend and beyond — if you can describe it, I'll build it.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((s, i) => (
             <motion.div
               key={s.title}
@@ -267,7 +273,7 @@ export default function Home() {
             Ready to build something?
           </h2>
           <p className="text-zinc-400 max-w-md mx-auto mb-8">
-            Whether you need a full website or just want to talk through an idea —
+            Whether you need a website, an app, or just want to talk through an idea —
             I'm open to new projects.
           </p>
           <Link

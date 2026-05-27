@@ -12,8 +12,8 @@ const fadeUp = {
 }
 
 const skills = [
-  'React', 'Tailwind CSS', 'Vite', 'JavaScript', 'Framer Motion',
-  'shadcn/ui', 'HTML & CSS', 'Web Apps', 'Responsive Design',
+  'Web Apps', 'Mobile Apps', 'Backend & APIs', 'AI Integrations',
+  'Automation', 'Custom Software', 'Full-Stack', 'Responsive Design',
 ]
 
 const timeline = [
@@ -24,8 +24,8 @@ const timeline = [
   },
   {
     icon: <Code2 size={16} />,
-    title: 'Got serious about web development',
-    desc: 'Taught myself React, Tailwind, and modern web tools. Started shipping real projects.',
+    title: 'Got serious about software development',
+    desc: 'Taught myself to build real software — frontend, backend, and everything in between. Started shipping projects.',
   },
   {
     icon: <Dumbbell size={16} />,
@@ -39,8 +39,8 @@ const timeline = [
   },
   {
     icon: <Code2 size={16} />,
-    title: 'Launching Sahari web services',
-    desc: 'Now helping businesses and creators get websites that actually do them justice.',
+    title: 'Launching Sahari',
+    desc: 'Now helping businesses and creators get the software they actually need — websites, apps, custom tools.',
   },
 ]
 
@@ -60,8 +60,9 @@ export default function About() {
             About <span className="gradient-text">me</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto">
-            Self-taught web developer, YouTuber with three channels, and the person
-            behind Sahari. I build websites and web apps — and now I'm doing it for other people too.
+            Self-taught developer, YouTuber with three channels, and the person
+            behind Sahari. I build software — websites, apps, backends, custom tools —
+            and now I'm doing it for other people too.
           </p>
         </motion.div>
 
@@ -77,7 +78,7 @@ export default function About() {
           <div className="space-y-4 text-zinc-400 leading-relaxed">
             <p>
               I started on YouTube — that's where I first put myself out there and started building
-              an audience across different niches. While doing that, I got into web development
+              an audience across different niches. While doing that, I got into software development
               and discovered I was actually pretty good at it.
             </p>
             <p>
@@ -86,8 +87,9 @@ export default function About() {
               me more than any course could.
             </p>
             <p>
-              Now I'm expanding Sahari into web services. If your business or brand deserves a
-              better website than it has right now, that's exactly what I do.
+              Now I'm expanding Sahari into a full service. If your business or brand deserves
+              better software than what it has right now — websites, apps, custom tools — that's
+              exactly what I do.
             </p>
           </div>
         </motion.div>
@@ -129,7 +131,7 @@ export default function About() {
           custom={3}
           className="mb-14"
         >
-          <h2 className="text-white font-semibold text-xl mb-5">Tools & skills</h2>
+          <h2 className="text-white font-semibold text-xl mb-5">Capabilities</h2>
           <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
               <span
