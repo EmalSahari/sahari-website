@@ -144,9 +144,7 @@ export default function Home() {
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <a
-            href="https://youtube.com/@SahariYT"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#youtube"
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
           >
             <Youtube size={16} className="text-red-400" />
@@ -252,7 +250,7 @@ export default function Home() {
       </section>
 
       {/* YouTube */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
+      <section id="youtube" className="max-w-6xl mx-auto px-6 py-12 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
