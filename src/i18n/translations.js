@@ -65,7 +65,7 @@ export const translations = {
     'about.story.heading': 'The story so far',
     'about.story.p1': "I started on YouTube years ago. Tried different niches, learned what worked and what didn't. Took a while before anything actually took off.",
     'about.story.p2': "Once the channels started earning, I registered Sahari as a business in March 2025. Some of the main ones cover architecture, military, and space.",
-    'about.story.p3': "At some point I started building software too — small apps and websites, first for myself, then for friends. Now I'm doing it as a service. If you need a website, an app, or something custom built, that's what Sahari does.",
+    'about.story.p3': "At some point I started building software too: small apps and websites, first for myself, then for friends. Now I'm doing it as a service. If you need a website, an app, or something custom built, that's what Sahari does.",
     'about.timeline.heading': 'How we got here',
     'about.timeline.youtube.title': 'Started on YouTube',
     'about.timeline.youtube.desc': 'Tried out different niches. Years of trial and error before anything really clicked.',
