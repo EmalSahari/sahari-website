@@ -113,9 +113,9 @@ export const translations = {
     'contact.form.success.again': 'Send another message',
     'contact.socials.heading': 'Or find me here:',
     'contact.socials.email': 'Email',
-    'contact.socials.youtube': 'YouTube',
+    'contact.socials.instagram': 'Instagram',
     'contact.quick.heading': '⚡ Quick response',
-    'contact.quick.subtitle': 'I typically reply within 24–48 hours. For urgent projects, DM me on Instagram.',
+    'contact.quick.subtitle': 'I typically reply within 24 hours.',
 
     // 404
     'notFound.eyebrow': '404',
@@ -147,7 +147,7 @@ export const translations = {
     'workWithUs.voice.offer.2': 'Long-term collaboration potential',
     'workWithUs.voice.offer.3': 'Credit on the channel if you want it',
     'workWithUs.voice.apply.heading': 'How to apply',
-    'workWithUs.voice.apply.body': 'Send a voice sample (mp3 or YouTube link) to Contact@sahari.io with a short intro and your typical rate.',
+    'workWithUs.voice.apply.body': 'Send a voice sample (mp3 or YouTube link) to contact@sahari.io with a short intro and your typical rate.',
     'workWithUs.voice.apply.cta': 'Apply via email',
 
     // Open application
@@ -164,7 +164,7 @@ export const translations = {
     'workWithUs.open.send.2': 'A short portfolio or work samples',
     'workWithUs.open.send.3': 'Your rate or how you bill',
     'workWithUs.open.apply.heading': 'How to pitch',
-    'workWithUs.open.apply.body': 'Email Contact@sahari.io with the details above. We read everything that comes in.',
+    'workWithUs.open.apply.body': 'Email contact@sahari.io with the details above. We read everything that comes in.',
     'workWithUs.open.apply.cta': 'Pitch via email',
   },
 
@@ -282,9 +282,9 @@ export const translations = {
     'contact.form.success.again': 'Send en ny besked',
     'contact.socials.heading': 'Eller find mig her:',
     'contact.socials.email': 'Email',
-    'contact.socials.youtube': 'YouTube',
+    'contact.socials.instagram': 'Instagram',
     'contact.quick.heading': '⚡ Hurtigt svar',
-    'contact.quick.subtitle': 'Jeg svarer typisk inden for 24–48 timer. Til akutte projekter, DM mig på Instagram.',
+    'contact.quick.subtitle': 'Jeg svarer typisk inden for 24 timer.',
 
     // 404
     'notFound.eyebrow': '404',
@@ -316,7 +316,7 @@ export const translations = {
     'workWithUs.voice.offer.2': 'Potentiale for langsigtet samarbejde',
     'workWithUs.voice.offer.3': 'Kredit på kanalen, hvis du ønsker det',
     'workWithUs.voice.apply.heading': 'Sådan ansøger du',
-    'workWithUs.voice.apply.body': 'Send et voice-sample (mp3 eller YouTube-link) til Contact@sahari.io med en kort intro og din typiske pris.',
+    'workWithUs.voice.apply.body': 'Send et voice-sample (mp3 eller YouTube-link) til contact@sahari.io med en kort intro og din typiske pris.',
     'workWithUs.voice.apply.cta': 'Ansøg via email',
 
     // Open application
@@ -333,7 +333,7 @@ export const translations = {
     'workWithUs.open.send.2': 'En kort portfolio eller arbejdsprøver',
     'workWithUs.open.send.3': 'Din pris eller hvordan du fakturerer',
     'workWithUs.open.apply.heading': 'Sådan foreslår du',
-    'workWithUs.open.apply.body': 'Skriv til Contact@sahari.io med detaljerne ovenfor. Vi læser alt, der kommer ind.',
+    'workWithUs.open.apply.body': 'Skriv til contact@sahari.io med detaljerne ovenfor. Vi læser alt, der kommer ind.',
     'workWithUs.open.apply.cta': 'Foreslå via email',
   },
 }

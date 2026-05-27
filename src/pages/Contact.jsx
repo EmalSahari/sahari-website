@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Youtube, Send, CheckCircle2 } from 'lucide-react'
+import { Mail, Instagram, Send, CheckCircle2 } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 
 const fadeUp = {
@@ -32,10 +32,8 @@ export default function Contact() {
   }
 
   const socials = [
-    { icon: <Mail size={18} />, label: t('contact.socials.email'), value: 'Contact@sahari.io', href: 'mailto:Contact@sahari.io' },
-    { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@SahariYT', href: 'https://youtube.com/@SahariYT' },
-    { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@UnclassifiedYTT', href: 'https://youtube.com/@UnclassifiedYTT' },
-    { icon: <Youtube size={18} />, label: t('contact.socials.youtube'), value: '@SupernovaYTT', href: 'https://youtube.com/@SupernovaYTT' },
+    { icon: <Mail size={18} />, label: t('contact.socials.email'), value: 'contact@sahari.io', href: 'mailto:contact@sahari.io' },
+    { icon: <Instagram size={18} />, label: t('contact.socials.instagram'), value: '@emal.sahari', href: 'https://instagram.com/emal.sahari' },
   ]
 
   return (
