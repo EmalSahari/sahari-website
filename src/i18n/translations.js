@@ -113,9 +113,9 @@ export const translations = {
     'contact.form.success.again': 'Send another message',
     'contact.socials.heading': 'Or find me here:',
     'contact.socials.email': 'Email',
-    'contact.socials.youtube': 'YouTube',
+    'contact.socials.instagram': 'Instagram',
     'contact.quick.heading': '⚡ Quick response',
-    'contact.quick.subtitle': 'I typically reply within 24–48 hours. For urgent projects, DM me on Instagram.',
+    'contact.quick.subtitle': 'I typically reply within 24 hours.',
 
     // 404
     'notFound.eyebrow': '404',
@@ -282,9 +282,9 @@ export const translations = {
     'contact.form.success.again': 'Send en ny besked',
     'contact.socials.heading': 'Eller find mig her:',
     'contact.socials.email': 'Email',
-    'contact.socials.youtube': 'YouTube',
+    'contact.socials.instagram': 'Instagram',
     'contact.quick.heading': '⚡ Hurtigt svar',
-    'contact.quick.subtitle': 'Jeg svarer typisk inden for 24–48 timer. Til akutte projekter, DM mig på Instagram.',
+    'contact.quick.subtitle': 'Jeg svarer typisk inden for 24 timer.',
 
     // 404
     'notFound.eyebrow': '404',
