@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Mic, Sparkles, ArrowRight, CheckCircle2, Mail } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
+import SpotlightCard from '../components/SpotlightCard'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -50,41 +51,37 @@ function RoleCard({
 }) {
   const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(applySubject)}`
   return (
-    <motion.div
-      variants={fadeUp}
-      initial="hidden"
-      animate="show"
-      custom={delay}
-      className={`relative overflow-hidden rounded-2xl border ${borderColor} bg-[#0f0f0f] p-8 md:p-10 flex flex-col`}
-    >
-      <div className="flex items-center gap-3 mb-5">
-        <div className={`w-10 h-10 rounded-lg ${iconBg} ${iconColor} flex items-center justify-center`}>
-          {icon}
+    <motion.div variants={fadeUp} initial="hidden" animate="show" custom={delay} className="h-full">
+      <SpotlightCard className={`border ${borderColor} rounded-2xl bg-[#0f0f0f] p-8 md:p-10 flex flex-col h-full`}>
+        <div className="flex items-center gap-3 mb-5">
+          <div className={`w-10 h-10 rounded-lg ${iconBg} ${iconColor} flex items-center justify-center`}>
+            {icon}
+          </div>
+          <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{tag}</span>
         </div>
-        <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{tag}</span>
-      </div>
 
-      <h3 className="text-white font-semibold text-2xl mb-3 tracking-tight">{title}</h3>
-      <p className="text-zinc-400 text-sm leading-relaxed mb-7">{about}</p>
+        <h3 className="text-white font-semibold text-2xl mb-3 tracking-tight">{title}</h3>
+        <p className="text-zinc-400 text-sm leading-relaxed mb-7">{about}</p>
 
-      <div className="space-y-6 mb-8 flex-1">
-        {sections.map((s) => (
-          <Section key={s.title} title={s.title} items={s.items} accent={accentColor} />
-        ))}
-      </div>
+        <div className="space-y-6 mb-8 flex-1">
+          {sections.map((s) => (
+            <Section key={s.title} title={s.title} items={s.items} accent={accentColor} />
+          ))}
+        </div>
 
-      <div className="border-t border-white/5 pt-6 mt-auto">
-        <h4 className={`text-xs font-medium uppercase tracking-widest mb-2 ${accentColor}`}>{applyHeading}</h4>
-        <p className="text-zinc-400 text-sm leading-relaxed mb-5">{applyBody}</p>
-        <a
-          href={mailto}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 ${buttonGradient} text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg ${buttonShadow}`}
-        >
-          <Mail size={14} />
-          {applyCta}
-          <ArrowRight size={14} />
-        </a>
-      </div>
+        <div className="border-t border-white/5 pt-6 mt-auto">
+          <h4 className={`text-xs font-medium uppercase tracking-widest mb-2 ${accentColor}`}>{applyHeading}</h4>
+          <p className="text-zinc-400 text-sm leading-relaxed mb-5">{applyBody}</p>
+          <a
+            href={mailto}
+            className={`inline-flex items-center gap-2 px-5 py-2.5 ${buttonGradient} text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg ${buttonShadow}`}
+          >
+            <Mail size={14} />
+            {applyCta}
+            <ArrowRight size={14} />
+          </a>
+        </div>
+      </SpotlightCard>
     </motion.div>
   )
 }

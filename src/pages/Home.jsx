@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
+import SpotlightCard from '../components/SpotlightCard'
+import SparklesText from '../components/SparklesText'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -15,39 +16,20 @@ const fadeUp = {
 }
 
 function ServiceCard({ service, i }) {
-  const ref = useRef(null)
-  const [pos, setPos] = useState({ x: -200, y: -200 })
-
-  const handleMouseMove = (e) => {
-    if (!ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
-  }
-
   return (
     <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: i * 0.1 }}
-      className="gradient-border group relative p-6 bg-[#0f0f0f] rounded-xl hover:bg-[#131313] transition-colors duration-200 overflow-hidden"
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(450px circle at ${pos.x}px ${pos.y}px, rgba(167, 139, 250, 0.14), transparent 40%)`,
-        }}
-      />
-      <div className="relative">
+      <SpotlightCard className="group border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
         <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center mb-5 group-hover:bg-violet-500/25 transition-colors">
           {service.icon}
         </div>
         <h3 className="text-white font-semibold mb-2 leading-snug">{service.title}</h3>
         <p className="text-zinc-500 text-sm leading-relaxed">{service.desc}</p>
-      </div>
+      </SpotlightCard>
     </motion.div>
   )
 }
@@ -134,7 +116,9 @@ export default function Home() {
           className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl"
         >
           {t('hero.headline.start')}{' '}
-          <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>{' '}
+          <SparklesText>
+            <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>
+          </SparklesText>{' '}
           {t('hero.headline.end')}
         </motion.h1>
 
@@ -237,6 +221,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className={`group relative block overflow-hidden rounded-2xl border ${p.border} ${p.hoverBorder} ${p.colSpan} bg-gradient-to-br ${p.color} transition-all duration-200 hover:-translate-y-0.5 flex flex-col`}
+              style={{ position: 'relative' }}
             >
               <div className={`relative ${p.imageAspect} overflow-hidden bg-black/40 border-b border-white/5`}>
                 <img
