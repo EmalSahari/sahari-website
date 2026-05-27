@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Youtube, Twitter, Send, CheckCircle2 } from 'lucide-react'
+import { Mail, Youtube, Instagram, Send, CheckCircle2 } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -15,20 +15,32 @@ const socials = [
   {
     icon: <Mail size={18} />,
     label: 'Email',
-    value: 'hello@sahari.io',
-    href: 'mailto:hello@sahari.io',
+    value: 'Contact@sahari.io',
+    href: 'mailto:Contact@sahari.io',
+  },
+  {
+    icon: <Instagram size={18} />,
+    label: 'Instagram',
+    value: '@Emal.sahari',
+    href: 'https://instagram.com/emal.sahari',
   },
   {
     icon: <Youtube size={18} />,
     label: 'YouTube',
-    value: '@sahari',
-    href: 'https://youtube.com/@sahari',
+    value: '@SahariYT',
+    href: 'https://youtube.com/@SahariYT',
   },
   {
-    icon: <Twitter size={18} />,
-    label: 'Twitter / X',
-    value: '@sahari',
-    href: 'https://twitter.com/sahari',
+    icon: <Youtube size={18} />,
+    label: 'YouTube',
+    value: '@UnclassifiedYTT',
+    href: 'https://youtube.com/@UnclassifiedYTT',
+  },
+  {
+    icon: <Youtube size={18} />,
+    label: 'YouTube',
+    value: '@SupernovaYTT',
+    href: 'https://youtube.com/@SupernovaYTT',
   },
 ]
 
@@ -198,7 +210,7 @@ export default function Contact() {
             <div className="mt-6 p-5 rounded-xl border border-violet-500/20 bg-violet-500/5">
               <p className="text-violet-300 text-sm font-medium mb-1">⚡ Quick response</p>
               <p className="text-zinc-500 text-sm">
-                I typically reply within 24–48 hours. For urgent projects, DM me on Twitter.
+                I typically reply within 24–48 hours. For urgent projects, DM me on Instagram.
               </p>
             </div>
           </motion.div>
