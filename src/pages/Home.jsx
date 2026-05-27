@@ -96,8 +96,8 @@ export default function Home() {
           custom={2}
           className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
         >
-          I'm Emal — I build websites and web apps for businesses and creators
-          who want a real online presence. Also a YouTuber with three channels.
+          I build websites and web apps for businesses and creators who want
+          a real online presence. Also a YouTuber with three channels.
         </motion.p>
 
         <motion.div

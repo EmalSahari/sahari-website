@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Youtube, Github } from 'lucide-react'
+import { Youtube, Github, Instagram } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -15,6 +15,15 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-4">
+          <a
+            href="https://instagram.com/emal.sahari"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-500 hover:text-pink-400 transition-colors"
+            aria-label="Instagram"
+          >
+            <Instagram size={18} />
+          </a>
           <a
             href="https://youtube.com/@SahariYT"
             target="_blank"

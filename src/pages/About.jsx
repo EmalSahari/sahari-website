@@ -57,8 +57,7 @@ export default function About() {
         >
           <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">About</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
-            Hey, I'm{' '}
-            <span className="gradient-text">Emal</span>
+            About <span className="gradient-text">me</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto">
             Self-taught web developer, YouTuber with three channels, and the person
