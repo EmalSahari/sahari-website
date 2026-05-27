@@ -79,12 +79,33 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* Timeline */}
+        {/* Quick facts */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
           custom={2}
+          className="grid grid-cols-3 gap-4 mb-10"
+        >
+          {[
+            { label: t('about.facts.location.label'), value: t('about.facts.location.value'), emoji: '📍' },
+            { label: t('about.facts.cvr.label'), value: t('about.facts.cvr.value'), emoji: '🏢' },
+            { label: t('about.facts.interests.label'), value: t('about.facts.interests.value'), emoji: '💡' },
+          ].map((fact) => (
+            <div key={fact.label} className="gradient-border bg-[#0f0f0f] rounded-xl p-4">
+              <p className="text-lg mb-1">{fact.emoji}</p>
+              <p className="text-zinc-500 text-xs uppercase tracking-widest mb-1">{fact.label}</p>
+              <p className="text-white text-sm font-medium leading-snug">{fact.value}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Timeline */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          custom={3}
           className="mb-12"
         >
           <h2 className="text-white font-semibold text-xl mb-6">{t('about.timeline.heading')}</h2>
@@ -113,7 +134,7 @@ export default function About() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          custom={3}
+          custom={4}
           className="mb-14"
         >
           <h2 className="text-white font-semibold text-xl mb-5">{t('about.capabilities.heading')}</h2>
@@ -135,7 +156,7 @@ export default function About() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          custom={4}
+          custom={5}
           className="mb-14"
         >
           <h2 className="text-white font-semibold text-xl mb-5">{t('about.channels.heading')}</h2>
@@ -164,7 +185,7 @@ export default function About() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          custom={5}
+          custom={6}
           className="text-center"
         >
           <p className="text-zinc-400 mb-5">{t('about.workTogether')}</p>

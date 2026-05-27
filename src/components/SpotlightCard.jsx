@@ -1,18 +1,18 @@
 import { useRef, useState } from 'react'
 
 /**
- * Spotlight Card — cursor-tracking radial glow on the inner surface
- * plus a matching border-glow that brightens nearest to the cursor.
- *
- * Usage:
- *   <SpotlightCard className="rounded-2xl border border-violet-500/20 bg-[#0f0f0f] p-8">
- *     …content…
- *   </SpotlightCard>
+ * SpotlightCard — matches the easemize Spotlight Card style.
+ * A bright neon beam tracks the cursor along the card border,
+ * with a soft inner radial glow following the mouse.
  */
-export default function SpotlightCard({ children, className = '', glowColor = '139,92,246' }) {
+export default function SpotlightCard({
+  children,
+  className = '',
+  glowColor = '167,139,250',  // violet-400 in rgb
+}) {
   const cardRef = useRef(null)
-  const [pos, setPos] = useState({ x: -999, y: -999 })
-  const [isHovered, setIsHovered] = useState(false)
+  const [pos, setPos] = useState({ x: 0, y: 0 })
+  const [hovered, setHovered] = useState(false)
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return
@@ -24,32 +24,48 @@ export default function SpotlightCard({ children, className = '', glowColor = '1
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => { setIsHovered(false); setPos({ x: -999, y: -999 }) }}
-      className={`relative overflow-hidden ${className}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`relative rounded-2xl ${className}`}
+      style={{ isolation: 'isolate' }}
     >
-      {/* Border glow layer — sits on top of everything, paints only the border area */}
+      {/* ── Border beam ─────────────────────────────────────────── */}
+      {/* Outer glow ring — very bright at cursor, fades away */}
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-[inherit] transition-opacity duration-500"
+        aria-hidden
+        className="absolute inset-0 rounded-[inherit] pointer-events-none transition-opacity duration-500"
         style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(300px circle at ${pos.x}px ${pos.y}px, rgba(${glowColor},0.25), transparent 70%)`,
+          opacity: hovered ? 1 : 0,
+          padding: '1px',
+          background: `radial-gradient(200px circle at ${pos.x}px ${pos.y}px, rgba(${glowColor}, 0.9), rgba(${glowColor}, 0.15) 40%, transparent 65%)`,
           WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
           WebkitMaskComposite: 'xor',
           maskComposite: 'exclude',
-          padding: '1px',
         }}
       />
-      {/* Inner surface glow */}
+      {/* Subtle always-visible base border */}
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+        aria-hidden
+        className="absolute inset-0 rounded-[inherit] pointer-events-none"
         style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(400px circle at ${pos.x}px ${pos.y}px, rgba(${glowColor},0.10), transparent 60%)`,
+          padding: '1px',
+          background: `rgba(${glowColor}, 0.12)`,
+          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'xor',
+          maskComposite: 'exclude',
         }}
       />
+
+      {/* ── Inner surface glow ───────────────────────────────────── */}
+      <div
+        aria-hidden
+        className="absolute inset-0 rounded-[inherit] pointer-events-none transition-opacity duration-500"
+        style={{
+          opacity: hovered ? 1 : 0,
+          background: `radial-gradient(350px circle at ${pos.x}px ${pos.y}px, rgba(${glowColor}, 0.12), transparent 65%)`,
+        }}
+      />
+
       {/* Content */}
       <div className="relative z-10">{children}</div>
     </div>
