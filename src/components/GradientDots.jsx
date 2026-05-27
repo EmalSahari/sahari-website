@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Animated gradient-dot grid background.
- * A canvas grid of dots lit by two slowly drifting radial gradients (violet + indigo),
- * matching the site's colour palette.
+ * Recreates the efferd "Gradient Dots" style:
+ * dense grid of dots, each independently cycling through the site's
+ * violet → indigo → purple palette in a travelling wave pattern.
  */
 export default function GradientDots({ className = '' }) {
   const canvasRef = useRef(null)
@@ -13,87 +13,63 @@ export default function GradientDots({ className = '' }) {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
 
-    const DOT_SPACING = 28
-    const DOT_RADIUS = 1.2
-    const BASE_ALPHA = 0.09
-    const GLOW_ALPHA = 0.55
-    const GLOW_RADIUS = 320
+    const SPACING = 22       // px between dot centres
+    const RADIUS  = 1.4      // dot radius
+    const SPEED   = 0.0004   // how fast the wave travels
+    const WAVE_SCALE = 0.012 // spatial frequency of the wave
 
-    let width = 0
-    let height = 0
-    let cols = 0
-    let rows = 0
+    let width = 0, height = 0, cols = 0, rows = 0
     let dots = []
     let raf = null
 
-    // Two orbs drifting around the canvas
-    const orbs = [
-      { x: 0.3, y: 0.3, vx: 0.00018, vy: 0.00013, r: [139, 92, 246] },   // violet
-      { x: 0.7, y: 0.65, vx: -0.00014, vy: 0.00017, r: [79, 70, 229] },  // indigo
-    ]
-
     function resize() {
       const dpr = window.devicePixelRatio || 1
-      width = canvas.offsetWidth
+      width  = canvas.offsetWidth
       height = canvas.offsetHeight
-      canvas.width = width * dpr
+      canvas.width  = width  * dpr
       canvas.height = height * dpr
       ctx.scale(dpr, dpr)
 
-      cols = Math.ceil(width / DOT_SPACING) + 1
-      rows = Math.ceil(height / DOT_SPACING) + 1
+      const offX = (width  % SPACING) / 2
+      const offY = (height % SPACING) / 2
+      cols = Math.ceil(width  / SPACING) + 1
+      rows = Math.ceil(height / SPACING) + 1
+
       dots = []
-      const offsetX = (width % DOT_SPACING) / 2
-      const offsetY = (height % DOT_SPACING) / 2
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          dots.push({ x: offsetX + c * DOT_SPACING, y: offsetY + r * DOT_SPACING })
+          dots.push({
+            x: offX + c * SPACING,
+            y: offY + r * SPACING,
+          })
         }
       }
     }
 
-    function lerp(a, b, t) {
-      return a + (b - a) * t
-    }
-
     function draw(ts) {
+      const t = ts * SPEED
       ctx.clearRect(0, 0, width, height)
 
-      // Move orbs
-      orbs.forEach(o => {
-        o.x += o.vx
-        o.y += o.vy
-        if (o.x < 0 || o.x > 1) o.vx *= -1
-        if (o.y < 0 || o.y > 1) o.vy *= -1
-      })
-
-      // For each dot, compute the colour influence from both orbs
       dots.forEach(d => {
-        let brightness = 0
-        let rgb = [255, 255, 255]
+        // Travelling diagonal wave — phase depends on position + time
+        const phase = (d.x + d.y) * WAVE_SCALE + t
 
-        orbs.forEach(o => {
-          const ox = o.x * width
-          const oy = o.y * height
-          const dist = Math.sqrt((d.x - ox) ** 2 + (d.y - oy) ** 2)
-          const influence = Math.max(0, 1 - dist / GLOW_RADIUS)
-          if (influence > brightness) {
-            brightness = influence
-            rgb = o.r
-          }
-        })
+        // Hue oscillates through violet / indigo / blue-violet range
+        const hue = 250 + Math.sin(phase) * 35              // 215–285
+        const sat = 80  + Math.sin(phase * 1.3 + 1) * 15   // 65–95 %
+        const lit = 60  + Math.sin(phase * 0.9 + 2) * 12   // 48–72 %
+        const alpha = 0.18 + Math.sin(phase * 0.7) * 0.14  // 0.04–0.32
 
-        const alpha = lerp(BASE_ALPHA, GLOW_ALPHA, brightness * brightness)
         ctx.beginPath()
-        ctx.arc(d.x, d.y, DOT_RADIUS, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${alpha.toFixed(3)})`
+        ctx.arc(d.x, d.y, RADIUS, 0, Math.PI * 2)
+        ctx.fillStyle = `hsla(${hue.toFixed(1)},${sat.toFixed(1)}%,${lit.toFixed(1)}%,${alpha.toFixed(3)})`
         ctx.fill()
       })
 
       raf = requestAnimationFrame(draw)
     }
 
-    const ro = new ResizeObserver(() => { resize(); })
+    const ro = new ResizeObserver(resize)
     ro.observe(canvas)
     resize()
     raf = requestAnimationFrame(draw)
