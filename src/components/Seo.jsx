@@ -16,7 +16,7 @@ function setMeta(selector, attr, value) {
 
 export default function Seo({ title, description = DEFAULT_DESC }) {
   useEffect(() => {
-    const fullTitle = title ? `${title} — Sahari` : 'Sahari — Websites, apps & custom software'
+    const fullTitle = title ? `${title} · Sahari` : 'Sahari: Websites, apps & custom software'
     document.title = fullTitle
     setMeta('meta[name="description"]', 'content', description)
     setMeta('meta[property="og:title"]', 'content', fullTitle)

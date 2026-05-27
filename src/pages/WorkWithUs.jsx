@@ -38,7 +38,7 @@ export default function WorkWithUs() {
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="Work with us" description="Open roles at Sahari — currently hiring voice actors. Open applications also welcome." />
+      <Seo title="Work with us" description="Open roles at Sahari. Currently hiring voice actors. Open applications also welcome." />
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Header */}
