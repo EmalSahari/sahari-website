@@ -49,6 +49,7 @@ export default function Footer() {
         <nav className="flex items-center gap-5 text-sm text-zinc-500">
           <Link to="/" className="hover:text-white transition-colors">{t('nav.home')}</Link>
           <Link to="/about" className="hover:text-white transition-colors">{t('nav.about')}</Link>
+          <Link to="/work-with-us" className="hover:text-white transition-colors">{t('nav.workWithUs')}</Link>
           <Link to="/contact" className="hover:text-white transition-colors">{t('nav.contact')}</Link>
         </nav>
       </div>
