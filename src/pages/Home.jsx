@@ -20,7 +20,7 @@ const services = [
   {
     icon: <Smartphone size={20} />,
     title: 'Mobile Apps',
-    desc: 'Apps for iOS and Android — built around your idea and shipped to the people who need them.',
+    desc: 'Apps for iOS and Android, built around your idea and shipped to the people who need them.',
   },
   {
     icon: <Server size={20} />,
@@ -37,7 +37,7 @@ const services = [
 const projects = [
   {
     icon: <Dumbbell size={20} />,
-    title: 'FitTrack — Fitness Tracker',
+    title: 'FitTrack: Fitness Tracker',
     desc: 'A full workout and nutrition tracking web app. Log meals, track calories, monitor progress, and stay consistent with an AI coach.',
     tag: 'Web App',
     href: 'https://fitness-mocha-five.vercel.app/',
@@ -107,7 +107,7 @@ export default function Home() {
           custom={2}
           className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
         >
-          I build software — websites, mobile apps, backends, custom tools —
+          I build software (websites, mobile apps, backends, custom tools)
           for businesses and creators who want a real online presence. Also a
           YouTuber with three channels.
         </motion.p>
@@ -163,7 +163,7 @@ export default function Home() {
             What I build
           </h2>
           <p className="mt-4 text-zinc-400 max-w-lg mx-auto">
-            From web and mobile to backend and beyond — if you can describe it, I'll build it.
+            From web and mobile to backend and beyond. If you can describe it, I'll build it.
           </p>
         </motion.div>
 
@@ -313,7 +313,7 @@ export default function Home() {
             Ready to build something?
           </h2>
           <p className="text-zinc-400 max-w-md mx-auto mb-8">
-            Whether you need a website, an app, or just want to talk through an idea —
+            Whether you need a website, an app, or just want to talk through an idea,
             I'm open to new projects.
           </p>
           <Link

@@ -50,7 +50,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    // Simulate submission — replace with your real endpoint or Formspree
+    // Simulate submission. Replace with your real endpoint or Formspree.
     await new Promise((r) => setTimeout(r, 1200))
     setLoading(false)
     setSubmitted(true)
@@ -91,7 +91,7 @@ export default function Contact() {
                 <CheckCircle2 size={48} className="text-violet-400" />
                 <h3 className="text-white font-semibold text-xl">Message sent!</h3>
                 <p className="text-zinc-400 text-sm">
-                  Thanks for reaching out — I'll get back to you soon.
+                  Thanks for reaching out. I'll get back to you soon.
                 </p>
                 <button
                   onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '' }) }}
