@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Youtube, Instagram, Send, CheckCircle2 } from 'lucide-react'
+import { Mail, Youtube, Send, CheckCircle2 } from 'lucide-react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -17,12 +17,6 @@ const socials = [
     label: 'Email',
     value: 'Contact@sahari.io',
     href: 'mailto:Contact@sahari.io',
-  },
-  {
-    icon: <Instagram size={18} />,
-    label: 'Instagram',
-    value: '@Emal.sahari',
-    href: 'https://instagram.com/emal.sahari',
   },
   {
     icon: <Youtube size={18} />,
