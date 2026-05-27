@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Youtube, Code2, Dumbbell, Trophy, ArrowRight, CheckCircle2, Shield } from 'lucide-react'
+import { useT } from '../i18n/LanguageContext'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -11,45 +12,36 @@ const fadeUp = {
   }),
 }
 
-const skills = [
-  'Web Apps', 'Mobile Apps', 'Backend & APIs', 'AI Integrations',
-  'Automation', 'Custom Software', 'Cybersecurity', 'Full-Stack', 'Responsive Design',
-]
-
-const timeline = [
-  {
-    icon: <Youtube size={16} />,
-    title: 'Started creating on YouTube',
-    desc: 'Launched multiple channels across different niches: @SahariYT, @UnclassifiedYTT, and @SupernovaYTT.',
-  },
-  {
-    icon: <Code2 size={16} />,
-    title: 'Got serious about software development',
-    desc: 'Taught myself to build real software: frontend, backend, and everything in between. Started shipping projects.',
-  },
-  {
-    icon: <Dumbbell size={16} />,
-    title: 'Built a fitness tracker app',
-    desc: 'A full web app for logging workouts and tracking progress, built from scratch.',
-  },
-  {
-    icon: <Trophy size={16} />,
-    title: 'Built an online chess app',
-    desc: 'A fully playable chess game for the web. Clean interface, smooth gameplay.',
-  },
-  {
-    icon: <Shield size={16} />,
-    title: 'Studying cybersecurity',
-    desc: 'Currently diving into the offensive and defensive side of security, applying it to how I build, too.',
-  },
-  {
-    icon: <Code2 size={16} />,
-    title: 'Launching Sahari',
-    desc: 'Now helping businesses and creators get the software they actually need: websites, apps, custom tools.',
-  },
-]
-
 export default function About() {
+  const t = useT()
+
+  const skills = [
+    t('about.capabilities.webApps'),
+    t('about.capabilities.mobileApps'),
+    t('about.capabilities.backend'),
+    t('about.capabilities.ai'),
+    t('about.capabilities.automation'),
+    t('about.capabilities.custom'),
+    t('about.capabilities.cyber'),
+    t('about.capabilities.fullstack'),
+    t('about.capabilities.responsive'),
+  ]
+
+  const timeline = [
+    { icon: <Youtube size={16} />, title: t('about.timeline.youtube.title'), desc: t('about.timeline.youtube.desc') },
+    { icon: <Code2 size={16} />, title: t('about.timeline.dev.title'), desc: t('about.timeline.dev.desc') },
+    { icon: <Dumbbell size={16} />, title: t('about.timeline.fitness.title'), desc: t('about.timeline.fitness.desc') },
+    { icon: <Trophy size={16} />, title: t('about.timeline.chess.title'), desc: t('about.timeline.chess.desc') },
+    { icon: <Shield size={16} />, title: t('about.timeline.cyber.title'), desc: t('about.timeline.cyber.desc') },
+    { icon: <Code2 size={16} />, title: t('about.timeline.sahari.title'), desc: t('about.timeline.sahari.desc') },
+  ]
+
+  const channels = [
+    { handle: '@SahariYT', desc: t('about.channels.channel1.desc'), href: 'https://youtube.com/@SahariYT' },
+    { handle: '@UnclassifiedYTT', desc: t('about.channels.channel2.desc'), href: 'https://youtube.com/@UnclassifiedYTT' },
+    { handle: '@SupernovaYTT', desc: t('about.channels.channel3.desc'), href: 'https://youtube.com/@SupernovaYTT' },
+  ]
+
   return (
     <div className="pt-28 pb-20">
       <div className="max-w-4xl mx-auto px-6">
@@ -60,14 +52,12 @@ export default function About() {
           custom={0}
           className="text-center mb-16"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">About</p>
+          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
-            About <span className="gradient-text">me</span>
+            {t('about.heading.start')} <span className="gradient-text">{t('about.heading.highlight')}</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto">
-            Self-taught developer, YouTuber with three channels, currently studying
-            cybersecurity, and the person behind Sahari. I build software (websites,
-            apps, backends, custom tools) and now I'm doing it for other people too.
+            {t('about.subtitle')}
           </p>
         </motion.div>
 
@@ -79,23 +69,11 @@ export default function About() {
           custom={1}
           className="gradient-border bg-[#0f0f0f] rounded-2xl p-8 mb-10"
         >
-          <h2 className="text-white font-semibold text-xl mb-4">The story so far</h2>
+          <h2 className="text-white font-semibold text-xl mb-4">{t('about.story.heading')}</h2>
           <div className="space-y-4 text-zinc-400 leading-relaxed">
-            <p>
-              I started on YouTube. That's where I first put myself out there and started building
-              an audience across different niches. While doing that, I got into software development
-              and discovered I was actually pretty good at it.
-            </p>
-            <p>
-              I didn't just follow tutorials. I built real things: a fitness tracker app, an
-              online chess game, and this website you're looking at right now. Each project taught
-              me more than any course could.
-            </p>
-            <p>
-              Now I'm expanding Sahari into a full service. If your business or brand deserves
-              better software than what it has right now (websites, apps, custom tools), that's
-              exactly what I do.
-            </p>
+            <p>{t('about.story.p1')}</p>
+            <p>{t('about.story.p2')}</p>
+            <p>{t('about.story.p3')}</p>
           </div>
         </motion.div>
 
@@ -107,7 +85,7 @@ export default function About() {
           custom={2}
           className="mb-12"
         >
-          <h2 className="text-white font-semibold text-xl mb-6">How we got here</h2>
+          <h2 className="text-white font-semibold text-xl mb-6">{t('about.timeline.heading')}</h2>
           <div className="relative space-y-6 pl-6 border-l border-white/10">
             {timeline.map((item, i) => (
               <motion.div
@@ -136,7 +114,7 @@ export default function About() {
           custom={3}
           className="mb-14"
         >
-          <h2 className="text-white font-semibold text-xl mb-5">Capabilities</h2>
+          <h2 className="text-white font-semibold text-xl mb-5">{t('about.capabilities.heading')}</h2>
           <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
               <span
@@ -158,13 +136,9 @@ export default function About() {
           custom={4}
           className="mb-14"
         >
-          <h2 className="text-white font-semibold text-xl mb-5">My YouTube channels</h2>
+          <h2 className="text-white font-semibold text-xl mb-5">{t('about.channels.heading')}</h2>
           <div className="flex flex-col gap-3">
-            {[
-              { handle: '@SahariYT', desc: 'The main brand channel', href: 'https://youtube.com/@SahariYT' },
-              { handle: '@UnclassifiedYTT', desc: 'Monetized · most active', href: 'https://youtube.com/@UnclassifiedYTT' },
-              { handle: '@SupernovaYTT', desc: 'Extra content', href: 'https://youtube.com/@SupernovaYTT' },
-            ].map((c) => (
+            {channels.map((c) => (
               <a
                 key={c.handle}
                 href={c.href}
@@ -191,12 +165,12 @@ export default function About() {
           custom={5}
           className="text-center"
         >
-          <p className="text-zinc-400 mb-5">Want to work together?</p>
+          <p className="text-zinc-400 mb-5">{t('about.workTogether')}</p>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
           >
-            Get in touch
+            {t('about.cta')}
             <ArrowRight size={16} />
           </Link>
         </motion.div>

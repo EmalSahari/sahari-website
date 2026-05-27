@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Youtube, Github, Instagram } from 'lucide-react'
+import { useT } from '../i18n/LanguageContext'
 
 export default function Footer() {
+  const t = useT()
   return (
     <footer className="border-t border-white/5 py-10 mt-20">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -10,7 +12,7 @@ export default function Footer() {
             S
           </div>
           <span className="text-zinc-400 text-sm">
-            © {new Date().getFullYear()} Sahari. All rights reserved.
+            © {new Date().getFullYear()} Sahari. {t('footer.copyright')}
           </span>
         </div>
 
@@ -45,9 +47,9 @@ export default function Footer() {
         </div>
 
         <nav className="flex items-center gap-5 text-sm text-zinc-500">
-          <Link to="/" className="hover:text-white transition-colors">Home</Link>
-          <Link to="/about" className="hover:text-white transition-colors">About</Link>
-          <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+          <Link to="/" className="hover:text-white transition-colors">{t('nav.home')}</Link>
+          <Link to="/about" className="hover:text-white transition-colors">{t('nav.about')}</Link>
+          <Link to="/contact" className="hover:text-white transition-colors">{t('nav.contact')}</Link>
         </nav>
       </div>
     </footer>
