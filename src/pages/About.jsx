@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Youtube, Code2, Dumbbell, Trophy, ArrowRight, CheckCircle2, Shield } from 'lucide-react'
+import { Youtube, Code2, ArrowRight, CheckCircle2, Shield, Rocket, Briefcase } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 
 const fadeUp = {
@@ -29,11 +29,11 @@ export default function About() {
 
   const timeline = [
     { icon: <Youtube size={16} />, title: t('about.timeline.youtube.title'), desc: t('about.timeline.youtube.desc') },
+    { icon: <Briefcase size={16} />, title: t('about.timeline.sahari.title'), desc: t('about.timeline.sahari.desc') },
+    { icon: <Rocket size={16} />, title: t('about.timeline.channels.title'), desc: t('about.timeline.channels.desc') },
     { icon: <Code2 size={16} />, title: t('about.timeline.dev.title'), desc: t('about.timeline.dev.desc') },
-    { icon: <Dumbbell size={16} />, title: t('about.timeline.fitness.title'), desc: t('about.timeline.fitness.desc') },
-    { icon: <Trophy size={16} />, title: t('about.timeline.chess.title'), desc: t('about.timeline.chess.desc') },
     { icon: <Shield size={16} />, title: t('about.timeline.cyber.title'), desc: t('about.timeline.cyber.desc') },
-    { icon: <Code2 size={16} />, title: t('about.timeline.sahari.title'), desc: t('about.timeline.sahari.desc') },
+    { icon: <Code2 size={16} />, title: t('about.timeline.services.title'), desc: t('about.timeline.services.desc') },
   ]
 
   const channels = [
