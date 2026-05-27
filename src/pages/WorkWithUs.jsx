@@ -31,161 +31,115 @@ function Section({ title, items, accent }) {
   )
 }
 
-function RoleCard({
-  delay,
-  tag,
-  icon,
-  title,
-  about,
-  sections,
-  applyHeading,
-  applyBody,
-  applyCta,
-  applySubject,
-  borderColor,
-  iconColor,
-  iconBg,
-  accentColor,
-  buttonGradient,
-  buttonShadow,
-}) {
-  const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(applySubject)}`
-  return (
-    <motion.div variants={fadeUp} initial="hidden" animate="show" custom={delay} className="h-full">
-      <SpotlightCard className={`border ${borderColor} rounded-2xl bg-[#0f0f0f] p-8 md:p-10 flex flex-col h-full`}>
-        <div className="flex items-center gap-3 mb-5">
-          <div className={`w-10 h-10 rounded-lg ${iconBg} ${iconColor} flex items-center justify-center`}>
-            {icon}
-          </div>
-          <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{tag}</span>
-        </div>
-
-        <h3 className="text-white font-semibold text-2xl mb-3 tracking-tight">{title}</h3>
-        <p className="text-zinc-400 text-sm leading-relaxed mb-7">{about}</p>
-
-        <div className="space-y-6 mb-8 flex-1">
-          {sections.map((s) => (
-            <Section key={s.title} title={s.title} items={s.items} accent={accentColor} />
-          ))}
-        </div>
-
-        <div className="border-t border-white/5 pt-6 mt-auto">
-          <h4 className={`text-xs font-medium uppercase tracking-widest mb-2 ${accentColor}`}>{applyHeading}</h4>
-          <p className="text-zinc-400 text-sm leading-relaxed mb-5">{applyBody}</p>
-          <a
-            href={mailto}
-            className={`inline-flex items-center gap-2 px-5 py-2.5 ${buttonGradient} text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg ${buttonShadow}`}
-          >
-            <Mail size={14} />
-            {applyCta}
-            <ArrowRight size={14} />
-          </a>
-        </div>
-      </SpotlightCard>
-    </motion.div>
-  )
-}
-
 export default function WorkWithUs() {
   const t = useT()
+  const voiceMailto = `mailto:${EMAIL}?subject=${encodeURIComponent('Voice Actor Application')}`
+  const openMailto  = `mailto:${EMAIL}?subject=${encodeURIComponent('Open Application')}`
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="Work with us" description="Open roles at Sahari: voice actors and open applications for editors, animators, designers, and writers." />
-      <div className="max-w-6xl mx-auto px-6">
+      <Seo title="Work with us" description="Open roles at Sahari — currently hiring voice actors. Open applications also welcome." />
+      <div className="max-w-5xl mx-auto px-6">
+
         {/* Header */}
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0}
+          variants={fadeUp} initial="hidden" animate="show" custom={0}
           className="text-center mb-14 max-w-2xl mx-auto"
         >
           <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('workWithUs.eyebrow')}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
             {t('workWithUs.heading.start')} <span className="gradient-text">{t('workWithUs.heading.highlight')}</span>
           </h1>
-          <p className="text-zinc-400 text-lg leading-relaxed">
-            {t('workWithUs.subtitle')}
-          </p>
+          <p className="text-zinc-400 text-lg leading-relaxed">{t('workWithUs.subtitle')}</p>
         </motion.div>
 
-        {/* Role cards */}
-        <div className="grid md:grid-cols-2 gap-6 items-stretch">
-          <RoleCard
-            delay={1}
-            tag={t('workWithUs.voice.tag')}
-            icon={<Mic size={20} />}
-            title={t('workWithUs.voice.title')}
-            about={t('workWithUs.voice.about')}
-            sections={[
-              {
-                title: t('workWithUs.voice.need.heading'),
-                items: [
+        {/* ── Featured: Voice Actor ──────────────────────────────── */}
+        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={1} className="mb-6">
+          <SpotlightCard className="border border-violet-500/25 bg-[#0f0f0f] p-8 md:p-10">
+            {/* Header row */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <div className="w-11 h-11 rounded-xl bg-violet-500/15 text-violet-400 flex items-center justify-center flex-shrink-0">
+                <Mic size={22} />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs font-semibold text-violet-400 uppercase tracking-wider">{t('workWithUs.voice.tag')}</span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-violet-500/20 border border-violet-500/30 text-violet-300 text-[11px] font-semibold uppercase tracking-wide">
+                    {t('workWithUs.hiring')}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <h2 className="text-white font-bold text-3xl mb-3 tracking-tight">{t('workWithUs.voice.title')}</h2>
+            <p className="text-zinc-400 leading-relaxed mb-8 max-w-2xl">{t('workWithUs.voice.about')}</p>
+
+            {/* Two-column details */}
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <Section
+                title={t('workWithUs.voice.need.heading')}
+                accent="text-violet-400"
+                items={[
                   t('workWithUs.voice.need.1'),
                   t('workWithUs.voice.need.2'),
                   t('workWithUs.voice.need.3'),
                   t('workWithUs.voice.need.4'),
-                ],
-              },
-              {
-                title: t('workWithUs.voice.offer.heading'),
-                items: [
+                ]}
+              />
+              <Section
+                title={t('workWithUs.voice.offer.heading')}
+                accent="text-violet-400"
+                items={[
                   t('workWithUs.voice.offer.1'),
                   t('workWithUs.voice.offer.2'),
                   t('workWithUs.voice.offer.3'),
-                ],
-              },
-            ]}
-            applyHeading={t('workWithUs.voice.apply.heading')}
-            applyBody={t('workWithUs.voice.apply.body')}
-            applyCta={t('workWithUs.voice.apply.cta')}
-            applySubject="Voice Actor Application"
-            borderColor="border-violet-500/20"
-            iconBg="bg-violet-500/15"
-            iconColor="text-violet-400"
-            accentColor="text-violet-400"
-            buttonGradient="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500"
-            buttonShadow="shadow-violet-900/40"
-          />
+                ]}
+              />
+            </div>
 
-          <RoleCard
-            delay={2}
-            tag={t('workWithUs.open.tag')}
-            icon={<Sparkles size={20} />}
-            title={t('workWithUs.open.title')}
-            about={t('workWithUs.open.about')}
-            sections={[
-              {
-                title: t('workWithUs.open.examples.heading'),
-                items: [
-                  t('workWithUs.open.examples.1'),
-                  t('workWithUs.open.examples.2'),
-                  t('workWithUs.open.examples.3'),
-                  t('workWithUs.open.examples.4'),
-                ],
-              },
-              {
-                title: t('workWithUs.open.send.heading'),
-                items: [
-                  t('workWithUs.open.send.1'),
-                  t('workWithUs.open.send.2'),
-                  t('workWithUs.open.send.3'),
-                ],
-              },
-            ]}
-            applyHeading={t('workWithUs.open.apply.heading')}
-            applyBody={t('workWithUs.open.apply.body')}
-            applyCta={t('workWithUs.open.apply.cta')}
-            applySubject="Open Application"
-            borderColor="border-emerald-500/20"
-            iconBg="bg-emerald-500/15"
-            iconColor="text-emerald-400"
-            accentColor="text-emerald-400"
-            buttonGradient="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500"
-            buttonShadow="shadow-emerald-900/40"
-          />
-        </div>
+            {/* Apply */}
+            <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex-1">
+                <p className="text-zinc-500 text-sm">{t('workWithUs.voice.apply.body')}</p>
+              </div>
+              <a
+                href={voiceMailto}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg shadow-violet-900/40 flex-shrink-0"
+              >
+                <Mail size={14} />
+                {t('workWithUs.voice.apply.cta')}
+                <ArrowRight size={14} />
+              </a>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+
+        {/* ── Secondary: Open application ───────────────────────── */}
+        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={2}>
+          <SpotlightCard className="border border-white/8 bg-[#0c0c0c] p-6" glowColor="134,239,172">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+              <div className="w-10 h-10 rounded-lg bg-emerald-500/12 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                <Sparkles size={18} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs font-medium text-emerald-400 uppercase tracking-wider">{t('workWithUs.open.tag')}</span>
+                </div>
+                <h3 className="text-white font-semibold text-lg mb-1">{t('workWithUs.open.title')}</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">{t('workWithUs.open.about')}</p>
+              </div>
+              <a
+                href={openMailto}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium rounded-xl text-sm transition-all duration-200 flex-shrink-0"
+              >
+                <Mail size={14} />
+                {t('workWithUs.open.apply.cta')}
+                <ArrowRight size={14} />
+              </a>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+
       </div>
     </div>
   )
