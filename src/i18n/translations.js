@@ -282,7 +282,7 @@ export const translations = {
     'about.story.p3': 'Et sted undervejs fangede jeg også softwarebugten. Begyndte at bygge små apps og hjemmesider, mest til mig selv, så til folk jeg kendte. Det endte med at blive en ordentlig service. Nu bygger jeg hjemmesider, apps og skræddersyet software til kunder.',
     'about.timeline.heading': 'Hvordan vi kom hertil',
     'about.timeline.youtube.title': 'Begyndte på YouTube',
-    'about.timeline.youtube.desc': 'Prøvede forskellige nicher. Mange forsøg og fejltrin, før noget rigtigt slog an.',
+    'about.timeline.youtube.desc': 'Prøvede forskellige nicher. Fejlede i de fleste, og fandt langsomt ud af hvad der virkede.',
     'about.timeline.sahari.title': 'Grundlagde Sahari',
     'about.timeline.sahari.desc': 'Da kanalerne begyndte at tjene, registrerede jeg Sahari som virksomhed i marts 2025.',
     'about.timeline.channels.title': 'Udvidede kanalerne',
