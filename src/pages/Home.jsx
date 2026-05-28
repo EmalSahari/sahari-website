@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Music, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -78,6 +78,20 @@ export default function Home() {
       iconBg: 'bg-amber-500/15 text-amber-400',
       colSpan: 'md:col-span-1',
       imageAspect: 'aspect-[4/3]',
+    },
+    {
+      icon: <Music size={20} />,
+      title: t('projects.somuchfun.title'),
+      desc: t('projects.somuchfun.desc'),
+      tag: t('projects.somuchfun.tag'),
+      href: 'https://somuchfun.vercel.app/',
+      image: '/somuchfun-preview.png',
+      color: 'from-lime-900/40 to-[#0f0f0f]',
+      border: 'border-lime-500/20',
+      hoverBorder: 'hover:border-lime-400/50',
+      iconBg: 'bg-lime-500/15 text-lime-400',
+      colSpan: 'md:col-span-3',
+      imageAspect: 'aspect-[21/9]',
     },
   ]
 
