@@ -85,7 +85,7 @@ export default function Home() {
       desc: t('projects.somuchfun.desc'),
       tag: t('projects.somuchfun.tag'),
       href: 'https://somuchfun.vercel.app/',
-      image: '/somuchfun-preview.png',
+      image: '/somuchfun.png',
       color: 'from-lime-900/40 to-[#0f0f0f]',
       border: 'border-lime-500/20',
       hoverBorder: 'hover:border-lime-400/50',
