@@ -54,7 +54,7 @@ export const translations = {
     'projects.chess.desc': 'A real-time multiplayer chess app for the web. Play against other players online, with a clean interface and smooth moves.',
     'projects.chess.tag': 'Web App',
     'projects.somuchfun.title': 'So Much Fun: Album Landing',
-    'projects.somuchfun.desc': 'A concept landing page for Young Thug\'s "So Much Fun" album. Bold display typography, layered animations, and a maximalist visual identity. Built to show range outside the usual minimal dark aesthetic.',
+    'projects.somuchfun.desc': 'A concept landing page for Young Thug\'s "So Much Fun" album. Bold display typography, slime green palette, layered animations, and a maximalist visual identity that channels the album\'s energy.',
     'projects.somuchfun.tag': 'Concept · Design Demo',
     'projects.viewLive': 'View live',
 
@@ -252,7 +252,7 @@ export const translations = {
     'projects.chess.desc': 'En realtids multiplayer skak-app til web. Spil mod andre spillere online, med et rent interface og glatte træk.',
     'projects.chess.tag': 'Webapp',
     'projects.somuchfun.title': 'So Much Fun: Album-landing',
-    'projects.somuchfun.desc': 'En koncept-landingside for Young Thugs album "So Much Fun". Markant typografi, lag på lag af animationer og en maksimalistisk visuel identitet. Bygget for at vise bredde uden for det sædvanlige minimalistiske mørke udtryk.',
+    'projects.somuchfun.desc': 'En koncept-landingside for Young Thugs album "So Much Fun". Markant typografi, slime-grøn palette, lag på lag af animationer og en maksimalistisk visuel identitet, der fanger albummets energi.',
     'projects.somuchfun.tag': 'Koncept · Designdemo',
     'projects.viewLive': 'Se live',
 
