@@ -4,24 +4,21 @@ import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, D
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
+import Reveal from '../components/Reveal'
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    filter: 'blur(0px)',
+    transition: { duration: 0.7, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] },
   }),
 }
 
 function ServiceCard({ service, i }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: i * 0.1 }}
-    >
+    <Reveal i={i}>
       <SpotlightCard className="group border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
         <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center mb-5 group-hover:bg-violet-500/25 transition-colors">
           {service.icon}
@@ -29,7 +26,7 @@ function ServiceCard({ service, i }) {
         <h3 className="text-white font-semibold mb-2 leading-snug">{service.title}</h3>
         <p className="text-zinc-500 text-sm leading-relaxed">{service.desc}</p>
       </SpotlightCard>
-    </motion.div>
+    </Reveal>
   )
 }
 
@@ -230,14 +227,7 @@ export default function Home() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {process.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative"
-            >
+            <Reveal key={p.title} i={i} className="relative">
               <SpotlightCard className="border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center flex-shrink-0">
@@ -250,7 +240,7 @@ export default function Home() {
                 <h3 className="text-white font-semibold mb-2 leading-snug">{p.title}</h3>
                 <p className="text-zinc-500 text-sm leading-relaxed">{p.desc}</p>
               </SpotlightCard>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -272,45 +262,38 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
           {projects.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`${p.colSpan}`}
-            >
-            <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
-            <a
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
-            >
-              <div className={`relative ${p.imageAspect} overflow-hidden bg-black/40 border-b border-white/5`}>
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <div className={`w-10 h-10 rounded-lg ${p.iconBg} flex items-center justify-center mb-5`}>
-                  {p.icon}
-                </div>
-                <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
-                <h3 className="text-white font-semibold text-xl mt-1 mb-2">{p.title}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
-                  {t('projects.viewLive')}
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </div>
-            </a>
-            </SpotlightCard>
-            </motion.div>
+            <Reveal key={p.title} i={i} className={p.colSpan}>
+              <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
+                >
+                  <div className={`relative ${p.imageAspect} overflow-hidden bg-black/40 border-b border-white/5`}>
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                  <div className="p-8 flex flex-col flex-1">
+                    <div className={`w-10 h-10 rounded-lg ${p.iconBg} flex items-center justify-center mb-5`}>
+                      {p.icon}
+                    </div>
+                    <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
+                    <h3 className="text-white font-semibold text-xl mt-1 mb-2">{p.title}</h3>
+                    <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
+                      {t('projects.viewLive')}
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </a>
+              </SpotlightCard>
+            </Reveal>
           ))}
         </div>
       </section>
