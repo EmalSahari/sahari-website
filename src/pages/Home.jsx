@@ -16,6 +16,16 @@ const fadeUp = {
   }),
 }
 
+const heroFadeUp = {
+  hidden: { opacity: 0, y: 40, filter: 'blur(18px)' },
+  show: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 1.4, delay: 0.15 + i * 0.22, ease: [0.16, 1, 0.3, 1] },
+  }),
+}
+
 function ServiceCard({ service, i }) {
   return (
     <Reveal i={i}>
@@ -115,7 +125,7 @@ export default function Home() {
         </div>
 
         <motion.div
-          variants={fadeUp}
+          variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={0}
@@ -126,7 +136,7 @@ export default function Home() {
         </motion.div>
 
         <motion.h1
-          variants={fadeUp}
+          variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={1}
@@ -138,7 +148,7 @@ export default function Home() {
         </motion.h1>
 
         <motion.p
-          variants={fadeUp}
+          variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={2}
@@ -148,7 +158,7 @@ export default function Home() {
         </motion.p>
 
         <motion.div
-          variants={fadeUp}
+          variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={3}
