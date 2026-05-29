@@ -5,26 +5,27 @@ import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
 import Reveal from '../components/Reveal'
+import useIsMobile from '../hooks/useIsMobile'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
+const makeFadeUp = (isMobile) => ({
+  hidden: { opacity: 0, y: isMobile ? 16 : 28, filter: `blur(${isMobile ? 3 : 8}px)` },
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: { duration: 0.7, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] },
+    transition: { duration: isMobile ? 0.5 : 0.7, delay: i * (isMobile ? 0.05 : 0.08), ease: [0.21, 0.47, 0.32, 0.98] },
   }),
-}
+})
 
-const heroFadeUp = {
-  hidden: { opacity: 0, y: 40, filter: 'blur(18px)' },
+const makeHeroFadeUp = (isMobile) => ({
+  hidden: { opacity: 0, y: isMobile ? 24 : 40, filter: `blur(${isMobile ? 6 : 18}px)` },
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-    transition: { duration: 1.4, delay: 0.15 + i * 0.22, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: isMobile ? 0.9 : 1.4, delay: 0.15 + i * (isMobile ? 0.14 : 0.22), ease: [0.16, 1, 0.3, 1] },
   }),
-}
+})
 
 function ServiceCard({ service, i }) {
   return (
@@ -42,6 +43,9 @@ function ServiceCard({ service, i }) {
 
 export default function Home() {
   const t = useT()
+  const isMobile = useIsMobile()
+  const fadeUp = makeFadeUp(isMobile)
+  const heroFadeUp = makeHeroFadeUp(isMobile)
 
   const services = [
     { icon: <Globe size={20} />, title: t('services.web.title'), desc: t('services.web.desc') },

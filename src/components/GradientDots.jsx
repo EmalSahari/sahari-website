@@ -13,10 +13,13 @@ export default function GradientDots({ className = '' }) {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
 
-    const SPACING = 22       // px between dot centres
-    const RADIUS  = 1.4      // dot radius
-    const SPEED   = 0.0014   // how fast the wave travels
-    const WAVE_SCALE = 0.020 // spatial frequency of the wave
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    const SPACING = isMobile ? 36 : 22     // px between dot centres (fewer dots on mobile)
+    const RADIUS  = 1.4                    // dot radius
+    const SPEED   = isMobile ? 0.0009 : 0.0014  // slower wave on mobile
+    const WAVE_SCALE = 0.020               // spatial frequency of the wave
+    const FRAME_INTERVAL = isMobile ? 33 : 0    // throttle to ~30fps on mobile
+    let lastFrame = 0
 
     let width = 0, height = 0, cols = 0, rows = 0
     let dots = []
@@ -47,6 +50,11 @@ export default function GradientDots({ className = '' }) {
     }
 
     function draw(ts) {
+      if (FRAME_INTERVAL && ts - lastFrame < FRAME_INTERVAL) {
+        raf = requestAnimationFrame(draw)
+        return
+      }
+      lastFrame = ts
       const t = ts * SPEED
       ctx.clearRect(0, 0, width, height)
 
