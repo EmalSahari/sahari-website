@@ -7,25 +7,45 @@ import SpotlightCard from '../components/SpotlightCard'
 import Reveal from '../components/Reveal'
 import useIsMobile from '../hooks/useIsMobile'
 
-const makeFadeUp = (isMobile) => ({
-  hidden: { opacity: 0, y: isMobile ? 16 : 28, filter: `blur(${isMobile ? 3 : 8}px)` },
-  show: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: isMobile ? 0.5 : 0.7, delay: i * (isMobile ? 0.05 : 0.08), ease: [0.21, 0.47, 0.32, 0.98] },
-  }),
-})
+const makeFadeUp = (isMobile) =>
+  isMobile
+    ? {
+        hidden: { opacity: 0, y: 14 },
+        show: (i = 0) => ({
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.45, delay: i * 0.04, ease: [0.21, 0.47, 0.32, 0.98] },
+        }),
+      }
+    : {
+        hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
+        show: (i = 0) => ({
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          transition: { duration: 0.7, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] },
+        }),
+      }
 
-const makeHeroFadeUp = (isMobile) => ({
-  hidden: { opacity: 0, y: isMobile ? 24 : 40, filter: `blur(${isMobile ? 6 : 18}px)` },
-  show: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: isMobile ? 0.9 : 1.4, delay: 0.15 + i * (isMobile ? 0.14 : 0.22), ease: [0.16, 1, 0.3, 1] },
-  }),
-})
+const makeHeroFadeUp = (isMobile) =>
+  isMobile
+    ? {
+        hidden: { opacity: 0, y: 20 },
+        show: (i = 0) => ({
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.8, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+        }),
+      }
+    : {
+        hidden: { opacity: 0, y: 40, filter: 'blur(18px)' },
+        show: (i = 0) => ({
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          transition: { duration: 1.4, delay: 0.15 + i * 0.22, ease: [0.16, 1, 0.3, 1] },
+        }),
+      }
 
 function ServiceCard({ service, i }) {
   return (
