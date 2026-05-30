@@ -14,14 +14,14 @@ const platforms = [
   },
   {
     name: 'Apple Music',
-    href: 'https://music.apple.com/',
+    href: 'https://music.apple.com/dk/artist/ham-fra-syd/1489584760',
     bg: 'bg-red-500/10',
     text: 'text-red-400',
     border: 'border-red-500/30',
   },
   {
     name: 'YouTube',
-    href: 'https://www.youtube.com/@hamfrasyd',
+    href: 'https://www.youtube.com/channel/UCxrjdPDb8GLbt7_5NTe1R9A',
     bg: 'bg-white/5',
     text: 'text-white',
     border: 'border-white/10',
