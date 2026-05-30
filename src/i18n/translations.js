@@ -47,8 +47,8 @@ export const translations = {
     // Projects
     'projects.eyebrow': 'Portfolio',
     'projects.heading': "Things I've built",
-    'projects.mokio.title': 'Mokio: Booking Widget',
-    'projects.mokio.desc': 'An embeddable booking widget for freelancers and small businesses. Set up your hours, copy one line of code, and clients book you directly from your own site.',
+    'projects.mokio.title': 'Mokio: Booking Platform',
+    'projects.mokio.desc': 'A booking platform for freelancers and small businesses. Get a hosted booking page or embed the widget on your own site — set up your hours and let clients book you directly.',
     'projects.mokio.tag': 'SaaS · Booking',
     'projects.fitness.title': 'FitTrack: Fitness Tracker',
     'projects.fitness.desc': 'A full workout and nutrition tracking web app with user accounts, an AI coach, and a paid Pro subscription. Log meals, track calories, and monitor progress.',
@@ -248,8 +248,8 @@ export const translations = {
     // Projects
     'projects.eyebrow': 'Portfolio',
     'projects.heading': 'Ting jeg har bygget',
-    'projects.mokio.title': 'Mokio: Booking Widget',
-    'projects.mokio.desc': 'En embeddable booking-widget til freelancere og små virksomheder. Sæt dine tider op, kopier én linje kode, og kunder booker dig direkte fra din egen side.',
+    'projects.mokio.title': 'Mokio: Booking-platform',
+    'projects.mokio.desc': 'En booking-platform til freelancere og små virksomheder. Få en hostet booking-side eller embed widget på din egen side — sæt dine tider op og lad kunder booke dig direkte.',
     'projects.mokio.tag': 'SaaS · Booking',
     'projects.fitness.title': 'FitTrack: Fitness Tracker',
     'projects.fitness.desc': 'En komplet webapp til træning og kost med brugerkonti, en AI-træner og et betalt Pro-abonnement. Log måltider, tæl kalorier og følg fremskridt.',
