@@ -70,7 +70,7 @@ export default function HamFraSydHub() {
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-70"
-            style={{ objectPosition: '50% 45%' }}
+            style={{ objectPosition: '50% 20%' }}
             onError={(e) => { e.currentTarget.style.display = 'none' }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black" />
