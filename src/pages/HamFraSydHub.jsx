@@ -33,25 +33,25 @@ const releases = [
     title: 'KTK',
     year: '2021',
     cover: '/hamfrasyd/cover-1.png',
-    href: 'https://open.spotify.com/artist/142bVo1OspxTJbxwyawU5h',
+    href: 'https://open.spotify.com/album/0rwvBdhO09iJ73IA493pgm',
   },
   {
     title: 'Narnia',
     year: '2023',
     cover: '/hamfrasyd/cover-2.png',
-    href: 'https://open.spotify.com/artist/142bVo1OspxTJbxwyawU5h',
+    href: 'https://open.spotify.com/album/5032mDWdcMx0FmEJViNijl',
   },
   {
     title: 'Offside',
-    year: '2023',
+    year: '2025',
     cover: '/hamfrasyd/cover-3.png',
-    href: 'https://open.spotify.com/artist/142bVo1OspxTJbxwyawU5h',
+    href: 'https://open.spotify.com/album/3W8d8UncswlwSJ82td84Ni',
   },
   {
     title: 'Money Talks',
-    year: '2023',
+    year: '2024',
     cover: '/hamfrasyd/cover-4.png',
-    href: 'https://open.spotify.com/artist/142bVo1OspxTJbxwyawU5h',
+    href: 'https://open.spotify.com/album/3tPZCAN5x9qk2KIwjqfyPN',
   },
 ]
 
