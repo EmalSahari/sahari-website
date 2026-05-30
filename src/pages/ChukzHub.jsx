@@ -14,53 +14,38 @@ const platforms = [
   },
   {
     name: 'Apple Music',
-    href: 'https://music.apple.com/',
+    href: 'https://music.apple.com/us/artist/chukz/1711455072',
     bg: 'bg-pink-500/10',
     text: 'text-pink-400',
     border: 'border-pink-500/30',
   },
   {
-    name: 'YouTube Music',
-    href: 'https://music.youtube.com/',
+    name: 'YouTube',
+    href: 'https://www.youtube.com/@ChukzJr',
     bg: 'bg-red-500/10',
     text: 'text-red-400',
     border: 'border-red-500/30',
-  },
-  {
-    name: 'SoundCloud',
-    href: 'https://soundcloud.com/',
-    bg: 'bg-orange-500/10',
-    text: 'text-orange-400',
-    border: 'border-orange-500/30',
-  },
-  {
-    name: 'Tidal',
-    href: 'https://tidal.com/',
-    bg: 'bg-white/5',
-    text: 'text-white',
-    border: 'border-white/20',
-  },
-  {
-    name: 'Amazon Music',
-    href: 'https://music.amazon.com/',
-    bg: 'bg-sky-500/10',
-    text: 'text-sky-400',
-    border: 'border-sky-500/30',
   },
 ]
 
 const releases = [
   {
-    title: 'Skabt Af Pres',
+    title: 'HELE LIVET',
     year: '2025',
-    cover: '/chukz/cover-1.png',
-    href: `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`,
+    cover: '/chukz/cover-3.png',
+    href: 'https://open.spotify.com/album/58IQJ3RO3LRmOvkY4YFtIZ',
   },
   {
-    title: 'Untitled',
+    title: 'Skabt Af Pres',
+    year: '2024',
+    cover: '/chukz/cover-1.png',
+    href: 'https://open.spotify.com/album/7nA98gIKgpHZCzBhBR8ckG',
+  },
+  {
+    title: 'TO OM NATTEN',
     year: '2024',
     cover: '/chukz/cover-2.png',
-    href: `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`,
+    href: 'https://open.spotify.com/album/4YugKOIaP4dq24uqXYWAtI',
   },
 ]
 
@@ -71,7 +56,7 @@ export default function ChukzHub() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex flex-col items-center text-center px-6 overflow-hidden pb-24">
+      <section className="relative min-h-[92vh] flex flex-col items-center text-center px-6 overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
           <img
@@ -79,10 +64,10 @@ export default function ChukzHub() {
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover opacity-80"
-            style={{ objectPosition: '50% 10%' }}
+            style={{ objectPosition: '50% 40%' }}
             onError={(e) => { e.currentTarget.style.display = 'none' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black" />
         </div>
 
         {/* Gradient backdrop */}
@@ -92,14 +77,15 @@ export default function ChukzHub() {
           <div className="absolute top-1/2 right-1/4 w-[350px] h-[350px] bg-purple-600/15 rounded-full blur-[100px]" />
         </div>
 
-        <div className="relative mt-auto">
+        {/* Content — pinned to top so the image shows below */}
+        <div className="relative flex-1 flex flex-col items-center justify-start pt-28 pb-10 w-full">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             className="text-fuchsia-400 text-xs font-semibold tracking-[0.4em] uppercase mb-6"
           >
-            Official Artist
+            Officiel Artist
           </motion.p>
 
           <motion.h1
@@ -117,7 +103,7 @@ export default function ChukzHub() {
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 max-w-md mx-auto text-zinc-300 text-lg leading-relaxed"
           >
-            New music, drops, and everything else — one place.
+            Ny musik, drops og alt det andet — ét sted.
           </motion.p>
 
           <motion.div
@@ -131,22 +117,23 @@ export default function ChukzHub() {
               className="group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-fuchsia-100 transition-colors"
             >
               <Play size={16} className="fill-black" />
-              Listen now
+              Lyt nu
             </a>
             <a
               href="#connect"
               className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/30 hover:border-white/60 text-white font-medium rounded-full backdrop-blur-sm bg-black/20 transition-colors"
             >
-              Follow
+              Følg
             </a>
           </motion.div>
         </div>
 
+        {/* Scroll indicator — part of flex flow, never overlaps buttons */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-500 text-xs z-10"
+          className="relative pb-8 flex flex-col items-center gap-2 text-zinc-500 text-xs"
         >
           <div className="w-px h-10 bg-gradient-to-b from-transparent to-zinc-500" />
           scroll
@@ -161,12 +148,12 @@ export default function ChukzHub() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Now Playing</p>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-8">Latest drops</h2>
+          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Nu spiller</p>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-8">Seneste udgivelser</h2>
 
           <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur">
             <iframe
-              title="Chukz on Spotify"
+              title="Chukz på Spotify"
               src={`https://open.spotify.com/embed/artist/${SPOTIFY_ARTIST_ID}?utm_source=generator&theme=0`}
               width="100%"
               height="420"
@@ -187,10 +174,10 @@ export default function ChukzHub() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Discography</p>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-10">Releases</h2>
+          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Diskografi</p>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-10">Udgivelser</h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 max-w-3xl">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-4xl">
             {releases.map((r, i) => (
               <motion.a
                 key={r.title}
@@ -236,9 +223,9 @@ export default function ChukzHub() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Stream</p>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-8">Listen everywhere</h2>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-8">Lyt overalt</h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {platforms.map((p, i) => (
               <motion.a
                 key={p.name}
@@ -267,8 +254,8 @@ export default function ChukzHub() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Connect</p>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-10">Stay close</h2>
+          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Forbind</p>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-10">Hold kontakten</h2>
 
           <div className="grid md:grid-cols-3 gap-4">
             {/* Portrait */}
@@ -308,7 +295,7 @@ export default function ChukzHub() {
                   <Mail size={20} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-zinc-400 text-xs uppercase tracking-wider mb-1">Booking & Press</p>
+                  <p className="text-zinc-400 text-xs uppercase tracking-wider mb-1">Booking & Presse</p>
                   <p className="text-white font-semibold">booking@chukz.com</p>
                 </div>
                 <ExternalLink size={16} className="text-zinc-500 group-hover:text-white transition-colors" />
@@ -333,14 +320,14 @@ export default function ChukzHub() {
           <div className="relative">
             <Music2 size={36} className="text-fuchsia-400 mx-auto mb-5" />
             <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-3">
-              Get the next drop first
+              Vær den første til at høre nyt
             </h2>
             <p className="text-zinc-400 max-w-md mx-auto mb-8">
-              Join the mailing list. New releases, tour dates, merch, before anyone else.
+              Tilmeld dig maillisten. Nye udgivelser, koncerter og merch — før alle andre.
             </p>
 
             {subscribed ? (
-              <p className="text-fuchsia-300 font-medium">You're in. Watch your inbox.</p>
+              <p className="text-fuchsia-300 font-medium">Du er med. Hold øje med din indbakke.</p>
             ) : (
               <form
                 onSubmit={(e) => {
@@ -354,14 +341,14 @@ export default function ChukzHub() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your@email.com"
+                  placeholder="din@email.com"
                   className="flex-1 px-5 py-3.5 rounded-full bg-white/5 border border-white/10 focus:border-fuchsia-500/50 focus:outline-none text-white placeholder:text-zinc-500"
                 />
                 <button
                   type="submit"
                   className="px-7 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-fuchsia-100 transition-colors"
                 >
-                  Sign up
+                  Tilmeld
                 </button>
               </form>
             )}
@@ -369,7 +356,7 @@ export default function ChukzHub() {
         </motion.div>
 
         <p className="text-center text-zinc-600 text-xs mt-12">
-          Concept site by{' '}
+          Concept-side af{' '}
           <a href="/" className="text-zinc-400 hover:text-white transition-colors underline underline-offset-4">
             Sahari
           </a>
