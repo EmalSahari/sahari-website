@@ -9,14 +9,17 @@ export default function GradientDots({ className = '' }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
+    // Skip canvas entirely on mobile — competes with scroll and causes jank on iOS
+    if (window.matchMedia('(max-width: 768px)').matches) return
+
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
 
     const SPACING = 22       // px between dot centres
     const RADIUS  = 1.4      // dot radius
-    const SPEED   = 0.0004   // how fast the wave travels
-    const WAVE_SCALE = 0.012 // spatial frequency of the wave
+    const SPEED   = 0.0014   // how fast the wave travels
+    const WAVE_SCALE = 0.020 // spatial frequency of the wave
 
     let width = 0, height = 0, cols = 0, rows = 0
     let dots = []
@@ -55,10 +58,10 @@ export default function GradientDots({ className = '' }) {
         const phase = (d.x + d.y) * WAVE_SCALE + t
 
         // Hue oscillates through violet / indigo / blue-violet range
-        const hue = 250 + Math.sin(phase) * 35              // 215–285
-        const sat = 80  + Math.sin(phase * 1.3 + 1) * 15   // 65–95 %
-        const lit = 60  + Math.sin(phase * 0.9 + 2) * 12   // 48–72 %
-        const alpha = 0.18 + Math.sin(phase * 0.7) * 0.14  // 0.04–0.32
+        const hue = 250 + Math.sin(phase) * 45              // 205–295
+        const sat = 78  + Math.sin(phase * 1.3 + 1) * 15   // 63–93 %
+        const lit = 58  + Math.sin(phase * 0.9 + 2) * 12   // 46–70 %
+        const alpha = 0.16 + Math.sin(phase * 0.7) * 0.14  // 0.02–0.30
 
         ctx.beginPath()
         ctx.arc(d.x, d.y, RADIUS, 0, Math.PI * 2)

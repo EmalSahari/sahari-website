@@ -1,27 +1,55 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Users, Eye, Clock } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Music, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
+import Reveal from '../components/Reveal'
+import useIsMobile from '../hooks/useIsMobile'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
-  }),
-}
+const makeFadeUp = (isMobile) =>
+  isMobile
+    ? {
+        hidden: { opacity: 0, y: 14 },
+        show: (i = 0) => ({
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.45, delay: i * 0.04, ease: [0.21, 0.47, 0.32, 0.98] },
+        }),
+      }
+    : {
+        hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
+        show: (i = 0) => ({
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          transition: { duration: 0.7, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] },
+        }),
+      }
+
+const makeHeroFadeUp = (isMobile) =>
+  isMobile
+    ? {
+        hidden: { opacity: 0, y: 20 },
+        show: (i = 0) => ({
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.8, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+        }),
+      }
+    : {
+        hidden: { opacity: 0, y: 40, filter: 'blur(18px)' },
+        show: (i = 0) => ({
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          transition: { duration: 1.4, delay: 0.15 + i * 0.22, ease: [0.16, 1, 0.3, 1] },
+        }),
+      }
 
 function ServiceCard({ service, i }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: i * 0.1 }}
-    >
+    <Reveal i={i}>
       <SpotlightCard className="group border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
         <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center mb-5 group-hover:bg-violet-500/25 transition-colors">
           {service.icon}
@@ -29,18 +57,28 @@ function ServiceCard({ service, i }) {
         <h3 className="text-white font-semibold mb-2 leading-snug">{service.title}</h3>
         <p className="text-zinc-500 text-sm leading-relaxed">{service.desc}</p>
       </SpotlightCard>
-    </motion.div>
+    </Reveal>
   )
 }
 
 export default function Home() {
   const t = useT()
+  const isMobile = useIsMobile()
+  const fadeUp = makeFadeUp(isMobile)
+  const heroFadeUp = makeHeroFadeUp(isMobile)
 
   const services = [
     { icon: <Globe size={20} />, title: t('services.web.title'), desc: t('services.web.desc') },
     { icon: <Smartphone size={20} />, title: t('services.mobile.title'), desc: t('services.mobile.desc') },
     { icon: <Server size={20} />, title: t('services.backend.title'), desc: t('services.backend.desc') },
     { icon: <Zap size={20} />, title: t('services.automation.title'), desc: t('services.automation.desc') },
+  ]
+
+  const process = [
+    { icon: <Lightbulb size={20} />, title: t('process.idea.title'), desc: t('process.idea.desc') },
+    { icon: <Code2 size={20} />, title: t('process.build.title'), desc: t('process.build.desc') },
+    { icon: <Rocket size={20} />, title: t('process.launch.title'), desc: t('process.launch.desc') },
+    { icon: <RefreshCw size={20} />, title: t('process.support.title'), desc: t('process.support.desc') },
   ]
 
   const projects = [
@@ -72,6 +110,20 @@ export default function Home() {
       colSpan: 'md:col-span-1',
       imageAspect: 'aspect-[4/3]',
     },
+    {
+      icon: <Music size={20} />,
+      title: t('projects.somuchfun.title'),
+      desc: t('projects.somuchfun.desc'),
+      tag: t('projects.somuchfun.tag'),
+      href: 'https://somuchfun.vercel.app/',
+      image: '/somuchfun.png',
+      color: 'from-lime-900/40 to-[#0f0f0f]',
+      border: 'border-lime-500/20',
+      hoverBorder: 'hover:border-lime-400/50',
+      iconBg: 'bg-lime-500/15 text-lime-400',
+      colSpan: 'md:col-span-3',
+      imageAspect: 'aspect-[21/9]',
+    },
   ]
 
   const channels = [
@@ -97,7 +149,7 @@ export default function Home() {
         </div>
 
         <motion.div
-          variants={fadeUp}
+          variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={0}
@@ -108,7 +160,7 @@ export default function Home() {
         </motion.div>
 
         <motion.h1
-          variants={fadeUp}
+          variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={1}
@@ -120,7 +172,7 @@ export default function Home() {
         </motion.h1>
 
         <motion.p
-          variants={fadeUp}
+          variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={2}
@@ -130,7 +182,7 @@ export default function Home() {
         </motion.p>
 
         <motion.div
-          variants={fadeUp}
+          variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={3}
@@ -144,9 +196,7 @@ export default function Home() {
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <a
-            href="https://youtube.com/@SahariYT"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#youtube"
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
           >
             <Youtube size={16} className="text-red-400" />
@@ -191,6 +241,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Process — how I work */}
+      <section className="max-w-6xl mx-auto px-6 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14 max-w-2xl mx-auto"
+        >
+          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            {t('process.heading')}
+          </h2>
+          <p className="text-zinc-400 leading-relaxed">
+            {t('process.subtitle')}
+          </p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {process.map((p, i) => (
+            <Reveal key={p.title} i={i} className="relative">
+              <SpotlightCard className="border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center flex-shrink-0">
+                    {p.icon}
+                  </div>
+                  <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <h3 className="text-white font-semibold mb-2 leading-snug">{p.title}</h3>
+                <p className="text-zinc-500 text-sm leading-relaxed">{p.desc}</p>
+              </SpotlightCard>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* Projects */}
       <section className="max-w-6xl mx-auto px-6 py-12">
         <motion.div
@@ -208,51 +296,44 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
           {projects.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`${p.colSpan}`}
-            >
-            <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
-            <a
-              href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
-            >
-              <div className={`relative ${p.imageAspect} overflow-hidden bg-black/40 border-b border-white/5`}>
-                <img
-                  src={p.image}
-                  alt={p.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <div className={`w-10 h-10 rounded-lg ${p.iconBg} flex items-center justify-center mb-5`}>
-                  {p.icon}
-                </div>
-                <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
-                <h3 className="text-white font-semibold text-xl mt-1 mb-2">{p.title}</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
-                  {t('projects.viewLive')}
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </div>
-            </a>
-            </SpotlightCard>
-            </motion.div>
+            <Reveal key={p.title} i={i} className={p.colSpan}>
+              <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
+                >
+                  <div className={`relative ${p.imageAspect} overflow-hidden bg-black/40 border-b border-white/5`}>
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                  <div className="p-8 flex flex-col flex-1">
+                    <div className={`w-10 h-10 rounded-lg ${p.iconBg} flex items-center justify-center mb-5`}>
+                      {p.icon}
+                    </div>
+                    <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
+                    <h3 className="text-white font-semibold text-xl mt-1 mb-2">{p.title}</h3>
+                    <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
+                    <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
+                      {t('projects.viewLive')}
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </a>
+              </SpotlightCard>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* YouTube */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
+      <section id="youtube" className="max-w-6xl mx-auto px-6 py-12 scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

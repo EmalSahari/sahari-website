@@ -12,6 +12,8 @@ function getInitialLang() {
   } catch {
     // ignore — localStorage may be unavailable
   }
+  const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase()
+  if (browserLang.startsWith('da')) return 'da'
   return 'en'
 }
 

@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import About from '../pages/About'
 import Contact from '../pages/Contact'
 import WorkWithUs from '../pages/WorkWithUs'
+import ChukzHub from '../pages/ChukzHub'
 import NotFound from '../pages/NotFound'
 
 export default function AnimatedRoutes() {
@@ -15,13 +16,14 @@ export default function AnimatedRoutes() {
       { path: '/about', element: <About /> },
       { path: '/work-with-us', element: <WorkWithUs /> },
       { path: '/contact', element: <Contact /> },
+      { path: '/chukz', element: <ChukzHub /> },
       { path: '*', element: <NotFound /> },
     ],
     location,
   )
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname}
         initial={{ opacity: 0, y: 12 }}

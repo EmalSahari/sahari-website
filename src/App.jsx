@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { LanguageProvider } from './i18n/LanguageContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -23,6 +24,7 @@ function App() {
           </div>
           <CookieNotice />
         </div>
+        <Analytics />
       </Router>
     </LanguageProvider>
   )

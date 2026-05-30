@@ -81,19 +81,47 @@ export default function Contact() {
             className="md:col-span-3"
           >
             {submitted ? (
-              <div className="gradient-border bg-[#0f0f0f] rounded-2xl p-10 text-center h-full flex flex-col items-center justify-center gap-4">
-                <CheckCircle2 size={48} className="text-violet-400" />
-                <h3 className="text-white font-semibold text-xl">{t('contact.form.success.title')}</h3>
-                <p className="text-zinc-400 text-sm">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="gradient-border bg-[#0f0f0f] rounded-2xl p-10 text-center h-full flex flex-col items-center justify-center gap-4"
+              >
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.1, duration: 0.6, type: 'spring', stiffness: 200, damping: 15 }}
+                  className="relative"
+                >
+                  <div className="absolute inset-0 bg-violet-500/30 rounded-full blur-xl" />
+                  <CheckCircle2 size={56} className="text-violet-400 relative" />
+                </motion.div>
+                <motion.h3
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.4 }}
+                  className="text-white font-semibold text-xl"
+                >
+                  {t('contact.form.success.title')}
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.4 }}
+                  className="text-zinc-400 text-sm"
+                >
                   {t('contact.form.success.subtitle')}
-                </p>
-                <button
-                  onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '' }) }}
+                </motion.p>
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.4 }}
+                  onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '', _gotcha: '' }) }}
                   className="mt-2 text-violet-400 hover:text-violet-300 text-sm transition-colors"
                 >
                   {t('contact.form.success.again')}
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             ) : (
               <form
                 onSubmit={handleSubmit}

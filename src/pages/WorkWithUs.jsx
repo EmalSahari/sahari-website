@@ -5,11 +5,12 @@ import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    filter: 'blur(0px)',
+    transition: { duration: 0.7, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] },
   }),
 }
 
