@@ -10,9 +10,9 @@ export const translations = {
 
     // Hero
     'hero.badge': 'Software developer & content creator',
-    'hero.headline.start': 'Websites that look',
+    'hero.headline.start': 'Software that works',
     'hero.headline.highlight': 'as good',
-    'hero.headline.end': 'as your work.',
+    'hero.headline.end': 'as it looks.',
     'hero.subtitle': 'I build software (websites, mobile apps, backends, custom tools) for businesses and creators who want a real online presence. Also a YouTuber and content creator.',
     'hero.cta.work': 'Work with me',
     'hero.cta.watch': 'Watch my content',
@@ -208,9 +208,9 @@ export const translations = {
 
     // Hero
     'hero.badge': 'Softwareudvikler & content creator',
-    'hero.headline.start': 'Hjemmesider der ser',
-    'hero.headline.highlight': 'lige så godt ud',
-    'hero.headline.end': 'som dit arbejde.',
+    'hero.headline.start': 'Software der virker',
+    'hero.headline.highlight': 'lige så godt',
+    'hero.headline.end': 'som det ser ud.',
     'hero.subtitle': 'Jeg bygger software (hjemmesider, mobilapps, backends, skræddersyede værktøjer) til virksomheder og creators, der vil have en rigtig online tilstedeværelse. Også YouTuber og content creator.',
     'hero.cta.work': 'Samarbejd med mig',
     'hero.cta.watch': 'Se mit indhold',
