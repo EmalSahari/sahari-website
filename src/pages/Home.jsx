@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Music, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Music, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -82,6 +82,20 @@ export default function Home() {
   ]
 
   const projects = [
+    {
+      icon: <Calendar size={20} />,
+      title: t('projects.mokio.title'),
+      desc: t('projects.mokio.desc'),
+      tag: t('projects.mokio.tag'),
+      href: 'https://www.mokio.io/',
+      image: '/demo.png',
+      color: 'from-sky-900/40 to-[#0f0f0f]',
+      border: 'border-sky-500/20',
+      hoverBorder: 'hover:border-sky-400/50',
+      iconBg: 'bg-sky-500/15 text-sky-400',
+      colSpan: 'md:col-span-3',
+      imageAspect: 'aspect-[21/9]',
+    },
     {
       icon: <Dumbbell size={20} />,
       title: t('projects.fitness.title'),
