@@ -71,15 +71,15 @@ export default function ChukzHub() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex flex-col items-center text-center px-6 overflow-hidden pb-16">
+      <section className="relative min-h-[92vh] flex flex-col items-center text-center px-6 overflow-hidden pb-24">
         {/* Background image */}
         <div className="absolute inset-0">
           <img
             src="/chukz/hero.png"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover opacity-70"
-            style={{ objectPosition: '50% 25%' }}
+            className="w-full h-full object-cover opacity-80"
+            style={{ objectPosition: '50% 10%' }}
             onError={(e) => { e.currentTarget.style.display = 'none' }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black" />
@@ -106,7 +106,7 @@ export default function ChukzHub() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[18vw] md:text-[14rem] font-black tracking-tighter leading-none bg-gradient-to-br from-white via-fuchsia-200 to-fuchsia-500 bg-clip-text text-transparent drop-shadow-2xl"
+            className="text-[16vw] md:text-[10rem] font-black tracking-tighter leading-none bg-gradient-to-br from-white via-fuchsia-200 to-fuchsia-500 bg-clip-text text-transparent drop-shadow-2xl"
           >
             CHUKZ
           </motion.h1>
