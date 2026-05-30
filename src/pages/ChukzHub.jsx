@@ -51,27 +51,15 @@ const platforms = [
 
 const releases = [
   {
-    title: 'Release One',
+    title: 'Skabt Af Pres',
     year: '2025',
-    cover: '/chukz/cover-1.jpg',
+    cover: '/chukz/cover-1.png',
     href: `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`,
   },
   {
-    title: 'Release Two',
+    title: 'Untitled',
     year: '2024',
-    cover: '/chukz/cover-2.jpg',
-    href: `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`,
-  },
-  {
-    title: 'Release Three',
-    year: '2024',
-    cover: '/chukz/cover-3.jpg',
-    href: `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`,
-  },
-  {
-    title: 'Release Four',
-    year: '2023',
-    cover: '/chukz/cover-4.jpg',
+    cover: '/chukz/cover-2.png',
     href: `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`,
   },
 ]
@@ -87,7 +75,7 @@ export default function ChukzHub() {
         {/* Background image */}
         <div className="absolute inset-0">
           <img
-            src="/chukz/hero.jpg"
+            src="/chukz/hero.png"
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover object-center opacity-50"
@@ -201,7 +189,7 @@ export default function ChukzHub() {
           <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Discography</p>
           <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-10">Releases</h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 max-w-3xl">
             {releases.map((r, i) => (
               <motion.a
                 key={r.title}
@@ -285,7 +273,7 @@ export default function ChukzHub() {
             {/* Portrait */}
             <div className="md:col-span-1 relative aspect-[3/4] md:aspect-auto rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-fuchsia-950/40 to-zinc-900">
               <img
-                src="/chukz/portrait.jpg"
+                src="/chukz/portrait.png"
                 alt="Chukz"
                 className="w-full h-full object-cover"
                 onError={(e) => { e.currentTarget.style.display = 'none' }}
