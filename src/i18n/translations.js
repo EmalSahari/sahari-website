@@ -159,7 +159,7 @@ export const translations = {
     'workWithUs.eyebrow': 'Work with us',
     'workWithUs.heading.start': 'Open',
     'workWithUs.heading.highlight': 'roles',
-    'workWithUs.subtitle': "Looking for talent to join our content team. Pick the open role below, or pitch your own.",
+    'workWithUs.subtitle': "Looking for talent to join our content team. See open roles below, or pitch your own.",
     'workWithUs.hiring': 'Now Hiring',
 
     // Voice Actor role
@@ -357,7 +357,7 @@ export const translations = {
     'workWithUs.eyebrow': 'Samarbejd med os',
     'workWithUs.heading.start': 'Ledige',
     'workWithUs.heading.highlight': 'stillinger',
-    'workWithUs.subtitle': 'Søger talent til at blive en del af vores content-team. Vælg den ledige stilling herunder, eller foreslå din egen rolle.',
+    'workWithUs.subtitle': 'Søger talent til at blive en del af vores content-team. Se ledige stillinger herunder, eller foreslå din egen rolle.',
     'workWithUs.hiring': 'Ansætter nu',
 
     // Voice Actor role
