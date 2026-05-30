@@ -5,9 +5,10 @@ export default function Reveal({
   children,
   i = 0,
   className = '',
-  amount = 0.2,
+  amount,
 }) {
   const isMobile = useIsMobile()
+  const triggerAmount = amount ?? (isMobile ? 0.05 : 0.2)
 
   const variants = isMobile
     ? {
@@ -41,7 +42,7 @@ export default function Reveal({
       variants={variants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount }}
+      viewport={{ once: true, amount: triggerAmount }}
       custom={i}
       className={className}
     >
