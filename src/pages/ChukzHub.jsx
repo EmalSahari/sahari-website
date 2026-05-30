@@ -71,17 +71,18 @@ export default function ChukzHub() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero */}
-      <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      <section className="relative min-h-[92vh] flex flex-col items-center text-center px-6 overflow-hidden pb-16">
         {/* Background image */}
         <div className="absolute inset-0">
           <img
             src="/chukz/hero.png"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-center opacity-50"
+            className="w-full h-full object-cover opacity-70"
+            style={{ objectPosition: '50% 25%' }}
             onError={(e) => { e.currentTarget.style.display = 'none' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black" />
         </div>
 
         {/* Gradient backdrop */}
@@ -91,7 +92,7 @@ export default function ChukzHub() {
           <div className="absolute top-1/2 right-1/4 w-[350px] h-[350px] bg-purple-600/15 rounded-full blur-[100px]" />
         </div>
 
-        <div className="relative">
+        <div className="relative mt-auto">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
