@@ -211,7 +211,7 @@ export const translations = {
     'hero.headline.start': 'Hjemmesider der ser',
     'hero.headline.highlight': 'lige så godt ud',
     'hero.headline.end': 'som dit arbejde.',
-    'hero.subtitle': 'Jeg bygger software (hjemmesider, mobilapps, backends, skræddersyede værktøjer) til virksomheder og creators, der vil have en rigtig online tilstedeværelse. Også YouTuber med tre kanaler.',
+    'hero.subtitle': 'Jeg bygger software (hjemmesider, mobilapps, backends, skræddersyede værktøjer) til virksomheder og creators, der vil have en rigtig online tilstedeværelse. Også YouTuber og content creator.',
     'hero.cta.work': 'Samarbejd med mig',
     'hero.cta.watch': 'Se mit indhold',
     'hero.scroll': 'scroll',
