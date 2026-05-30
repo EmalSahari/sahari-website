@@ -8,23 +8,23 @@ const platforms = [
   {
     name: 'Spotify',
     href: `https://open.spotify.com/artist/${SPOTIFY_ARTIST_ID}`,
-    bg: 'bg-[#1DB954]/10',
-    text: 'text-[#1DB954]',
-    border: 'border-[#1DB954]/30',
+    bg: 'bg-white/5',
+    text: 'text-white',
+    border: 'border-white/10',
   },
   {
     name: 'Apple Music',
     href: 'https://music.apple.com/us/artist/chukz/1711455072',
-    bg: 'bg-pink-500/10',
-    text: 'text-pink-400',
-    border: 'border-pink-500/30',
+    bg: 'bg-white/5',
+    text: 'text-white',
+    border: 'border-white/10',
   },
   {
     name: 'YouTube',
     href: 'https://www.youtube.com/@ChukzJr',
-    bg: 'bg-red-500/10',
-    text: 'text-red-400',
-    border: 'border-red-500/30',
+    bg: 'bg-white/5',
+    text: 'text-white',
+    border: 'border-white/10',
   },
 ]
 
@@ -70,12 +70,6 @@ export default function ChukzHub() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black" />
         </div>
 
-        {/* Gradient backdrop */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-fuchsia-600/20 rounded-full blur-[140px]" />
-          <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-pink-500/15 rounded-full blur-[120px]" />
-          <div className="absolute top-1/2 right-1/4 w-[350px] h-[350px] bg-purple-600/15 rounded-full blur-[100px]" />
-        </div>
 
         {/* Content — pinned to top so the image shows below */}
         <div className="relative flex-1 flex flex-col items-center justify-start pt-28 pb-10 w-full">
@@ -83,7 +77,7 @@ export default function ChukzHub() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-fuchsia-400 text-xs font-semibold tracking-[0.4em] uppercase mb-6"
+            className="text-zinc-400 text-xs font-semibold tracking-[0.4em] uppercase mb-6"
           >
             Officiel Artist
           </motion.p>
@@ -92,7 +86,7 @@ export default function ChukzHub() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[16vw] md:text-[10rem] font-black tracking-tighter leading-none bg-gradient-to-br from-white via-fuchsia-200 to-fuchsia-500 bg-clip-text text-transparent drop-shadow-2xl"
+            className="text-[16vw] md:text-[10rem] font-black tracking-tighter leading-none text-white drop-shadow-2xl"
           >
             CHUKZ
           </motion.h1>
@@ -114,7 +108,7 @@ export default function ChukzHub() {
           >
             <a
               href="#listen"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-fuchsia-100 transition-colors"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-zinc-100 transition-colors"
             >
               <Play size={16} className="fill-black" />
               Lyt nu
@@ -148,7 +142,7 @@ export default function ChukzHub() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Nu spiller</p>
+          <p className="text-zinc-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Nu spiller</p>
           <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-8">Seneste udgivelser</h2>
 
           <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur">
@@ -174,7 +168,7 @@ export default function ChukzHub() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Diskografi</p>
+          <p className="text-zinc-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Diskografi</p>
           <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-10">Udgivelser</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-4xl">
@@ -190,7 +184,7 @@ export default function ChukzHub() {
                 transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="group block"
               >
-                <div className="relative aspect-square overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-fuchsia-950/40 to-zinc-900 group-hover:border-fuchsia-500/40 transition-colors">
+                <div className="relative aspect-square overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-zinc-900/60 to-zinc-950 group-hover:border-white/25 transition-colors">
                   <img
                     src={r.cover}
                     alt={r.title}
@@ -222,7 +216,7 @@ export default function ChukzHub() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Stream</p>
+          <p className="text-zinc-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Stream</p>
           <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-8">Lyt overalt</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -254,12 +248,12 @@ export default function ChukzHub() {
           viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-fuchsia-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Forbind</p>
+          <p className="text-zinc-400 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Forbind</p>
           <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-10">Hold kontakten</h2>
 
           <div className="grid md:grid-cols-3 gap-4">
             {/* Portrait */}
-            <div className="md:col-span-1 relative aspect-[3/4] md:aspect-auto rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-fuchsia-950/40 to-zinc-900">
+            <div className="md:col-span-1 relative aspect-[3/4] md:aspect-auto rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-950">
               <img
                 src="/chukz/portrait.png"
                 alt="Chukz"
@@ -275,9 +269,9 @@ export default function ChukzHub() {
                 href="https://www.instagram.com/chukz.jr/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-4 p-6 rounded-2xl border border-white/10 hover:border-fuchsia-500/40 bg-gradient-to-br from-fuchsia-950/30 to-transparent hover:from-fuchsia-900/40 transition-all"
+                className="group flex items-center gap-4 p-6 rounded-2xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/8 transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-fuchsia-500/15 text-fuchsia-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-white/10 text-white flex items-center justify-center flex-shrink-0">
                   <Instagram size={20} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -289,9 +283,9 @@ export default function ChukzHub() {
 
               <a
                 href="mailto:booking@chukz.com"
-                className="group flex items-center gap-4 p-6 rounded-2xl border border-white/10 hover:border-fuchsia-500/40 bg-gradient-to-br from-fuchsia-950/30 to-transparent hover:from-fuchsia-900/40 transition-all"
+                className="group flex items-center gap-4 p-6 rounded-2xl border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/8 transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-fuchsia-500/15 text-fuchsia-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-white/10 text-white flex items-center justify-center flex-shrink-0">
                   <Mail size={20} />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -312,13 +306,11 @@ export default function ChukzHub() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-3xl border border-fuchsia-500/20 bg-gradient-to-br from-fuchsia-950/40 via-black to-purple-950/30 p-10 md:p-16 text-center"
+          className="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950 p-10 md:p-16 text-center"
         >
-          <div className="absolute -top-32 -right-32 w-80 h-80 bg-fuchsia-600/30 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-purple-600/30 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative">
-            <Music2 size={36} className="text-fuchsia-400 mx-auto mb-5" />
+            <Music2 size={36} className="text-zinc-400 mx-auto mb-5" />
             <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-3">
               Vær den første til at høre nyt
             </h2>
@@ -327,7 +319,7 @@ export default function ChukzHub() {
             </p>
 
             {subscribed ? (
-              <p className="text-fuchsia-300 font-medium">Du er med. Hold øje med din indbakke.</p>
+              <p className="text-zinc-300 font-medium">Du er med. Hold øje med din indbakke.</p>
             ) : (
               <form
                 onSubmit={(e) => {
@@ -342,11 +334,11 @@ export default function ChukzHub() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="din@email.com"
-                  className="flex-1 px-5 py-3.5 rounded-full bg-white/5 border border-white/10 focus:border-fuchsia-500/50 focus:outline-none text-white placeholder:text-zinc-500"
+                  className="flex-1 px-5 py-3.5 rounded-full bg-white/5 border border-white/10 focus:border-white/40 focus:outline-none text-white placeholder:text-zinc-500"
                 />
                 <button
                   type="submit"
-                  className="px-7 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-fuchsia-100 transition-colors"
+                  className="px-7 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-zinc-100 transition-colors"
                 >
                   Tilmeld
                 </button>
