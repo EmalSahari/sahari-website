@@ -30,20 +30,20 @@ const platforms = [
 
 const releases = [
   {
+    title: 'Skabt Af Pres',
+    year: '2026',
+    cover: '/chukz/cover-1.png',
+    href: 'https://open.spotify.com/album/7nA98gIKgpHZCzBhBR8ckG',
+  },
+  {
     title: 'HELE LIVET',
     year: '2025',
     cover: '/chukz/cover-3.png',
     href: 'https://open.spotify.com/album/58IQJ3RO3LRmOvkY4YFtIZ',
   },
   {
-    title: 'Skabt Af Pres',
-    year: '2024',
-    cover: '/chukz/cover-1.png',
-    href: 'https://open.spotify.com/album/7nA98gIKgpHZCzBhBR8ckG',
-  },
-  {
     title: 'TO OM NATTEN',
-    year: '2024',
+    year: '2025',
     cover: '/chukz/cover-2.png',
     href: 'https://open.spotify.com/album/4YugKOIaP4dq24uqXYWAtI',
   },
