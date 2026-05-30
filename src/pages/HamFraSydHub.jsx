@@ -42,9 +42,15 @@ const releases = [
     href: 'https://open.spotify.com/artist/142bVo1OspxTJbxwyawU5h',
   },
   {
-    title: 'Uha Da Da',
-    year: '2020',
+    title: 'Offside',
+    year: '2023',
     cover: '/hamfrasyd/cover-3.png',
+    href: 'https://open.spotify.com/artist/142bVo1OspxTJbxwyawU5h',
+  },
+  {
+    title: 'Money Talks',
+    year: '2023',
+    cover: '/hamfrasyd/cover-4.png',
     href: 'https://open.spotify.com/artist/142bVo1OspxTJbxwyawU5h',
   },
 ]
@@ -176,7 +182,7 @@ export default function HamFraSydHub() {
           <p className="text-red-500 text-xs font-semibold tracking-[0.3em] uppercase mb-3">Diskografi</p>
           <h2 className="text-4xl md:text-6xl font-black tracking-tight mb-10">Udgivelser</h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-4xl">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
             {releases.map((r, i) => (
               <motion.a
                 key={r.title}
