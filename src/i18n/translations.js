@@ -3,6 +3,7 @@ export const translations = {
     // Nav
     'nav.home': 'Home',
     'nav.about': 'About',
+    'nav.work': 'Work',
     'nav.contact': 'Contact',
     'nav.workWithUs': 'Work with us',
     'nav.workWithMe': 'Work with me',
@@ -213,6 +214,7 @@ export const translations = {
     // Nav
     'nav.home': 'Hjem',
     'nav.about': 'Om',
+    'nav.work': 'Arbejde',
     'nav.contact': 'Kontakt',
     'nav.workWithUs': 'Samarbejd med os',
     'nav.workWithMe': 'Samarbejd med mig',
