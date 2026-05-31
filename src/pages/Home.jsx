@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Music, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Music, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -82,6 +82,20 @@ export default function Home() {
   ]
 
   const projects = [
+    {
+      icon: <Hammer size={20} />,
+      title: t('projects.nexbyg.title'),
+      desc: t('projects.nexbyg.desc'),
+      tag: t('projects.nexbyg.tag'),
+      href: 'https://www.nexbyg.dk/',
+      image: '/nexbyg.png',
+      color: 'from-orange-900/40 to-[#0f0f0f]',
+      border: 'border-orange-500/20',
+      hoverBorder: 'hover:border-orange-400/50',
+      iconBg: 'bg-orange-500/15 text-orange-400',
+      colSpan: 'md:col-span-3',
+      imageAspect: 'aspect-[21/9]',
+    },
     {
       icon: <Calendar size={20} />,
       title: t('projects.mokio.title'),

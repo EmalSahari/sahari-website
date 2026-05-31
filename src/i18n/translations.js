@@ -47,6 +47,9 @@ export const translations = {
     // Projects
     'projects.eyebrow': 'Portfolio',
     'projects.heading': "Things I've built",
+    'projects.nexbyg.title': 'Nexbyg',
+    'projects.nexbyg.desc': 'A clean, professional website for a Danish construction company. Built to showcase their services, projects, and make it easy for clients to get in touch.',
+    'projects.nexbyg.tag': 'Client · Website',
     'projects.mokio.title': 'Mokio: Booking Platform',
     'projects.mokio.desc': 'A booking platform for freelancers and small businesses. Get a hosted booking page or embed the widget on your own site — set up your hours and let clients book you directly.',
     'projects.mokio.tag': 'SaaS · Booking',
@@ -248,6 +251,9 @@ export const translations = {
     // Projects
     'projects.eyebrow': 'Portfolio',
     'projects.heading': 'Ting jeg har bygget',
+    'projects.nexbyg.title': 'Nexbyg',
+    'projects.nexbyg.desc': 'En ren og professionel hjemmeside til et dansk byggefirma. Bygget til at fremvise deres ydelser, projekter og gøre det nemt for kunder at komme i kontakt.',
+    'projects.nexbyg.tag': 'Kunde · Hjemmeside',
     'projects.mokio.title': 'Mokio: Booking-platform',
     'projects.mokio.desc': 'En booking-platform til freelancere og små virksomheder. Få en hostet booking-side eller embed widget på din egen side — sæt dine tider op og lad kunder booke dig direkte.',
     'projects.mokio.tag': 'SaaS · Booking',
