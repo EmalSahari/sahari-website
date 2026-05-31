@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import About from '../pages/About'
 import Contact from '../pages/Contact'
 import WorkWithUs from '../pages/WorkWithUs'
+import Work from '../pages/Work'
 import ChukzHub from '../pages/ChukzHub'
 import HamFraSydHub from '../pages/HamFraSydHub'
 import NotFound from '../pages/NotFound'
@@ -17,6 +18,7 @@ export default function AnimatedRoutes() {
       { path: '/about', element: <About /> },
       { path: '/work-with-us', element: <WorkWithUs /> },
       { path: '/contact', element: <Contact /> },
+      { path: '/work', element: <Work /> },
       { path: '/chukz', element: <ChukzHub /> },
       { path: '/hamfrasyd', element: <HamFraSydHub /> },
       { path: '*', element: <NotFound /> },

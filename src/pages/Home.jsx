@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Dumbbell, Trophy, Music, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -107,48 +107,6 @@ export default function Home() {
       border: 'border-sky-500/20',
       hoverBorder: 'hover:border-sky-400/50',
       iconBg: 'bg-sky-500/15 text-sky-400',
-      colSpan: 'md:col-span-3',
-      imageAspect: 'aspect-[21/9]',
-    },
-    {
-      icon: <Dumbbell size={20} />,
-      title: t('projects.fitness.title'),
-      desc: t('projects.fitness.desc'),
-      tag: t('projects.fitness.tag'),
-      href: 'https://fitness-mocha-five.vercel.app/',
-      image: '/fitness-progress.png',
-      color: 'from-emerald-900/40 to-[#0f0f0f]',
-      border: 'border-emerald-500/20',
-      hoverBorder: 'hover:border-emerald-400/50',
-      iconBg: 'bg-emerald-500/15 text-emerald-400',
-      colSpan: 'md:col-span-2',
-      imageAspect: 'aspect-[16/9]',
-    },
-    {
-      icon: <Trophy size={20} />,
-      title: t('projects.chess.title'),
-      desc: t('projects.chess.desc'),
-      tag: t('projects.chess.tag'),
-      href: 'https://skak.onrender.com/',
-      image: '/chess-board.png',
-      color: 'from-amber-900/40 to-[#0f0f0f]',
-      border: 'border-amber-500/20',
-      hoverBorder: 'hover:border-amber-400/50',
-      iconBg: 'bg-amber-500/15 text-amber-400',
-      colSpan: 'md:col-span-1',
-      imageAspect: 'aspect-[4/3]',
-    },
-    {
-      icon: <Music size={20} />,
-      title: t('projects.somuchfun.title'),
-      desc: t('projects.somuchfun.desc'),
-      tag: t('projects.somuchfun.tag'),
-      href: 'https://somuchfun.vercel.app/',
-      image: '/somuchfun.png',
-      color: 'from-lime-900/40 to-[#0f0f0f]',
-      border: 'border-lime-500/20',
-      hoverBorder: 'hover:border-lime-400/50',
-      iconBg: 'bg-lime-500/15 text-lime-400',
       colSpan: 'md:col-span-3',
       imageAspect: 'aspect-[21/9]',
     },
@@ -358,6 +316,16 @@ export default function Home() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal i={2} className="mt-8 flex justify-center">
+          <Link
+            to="/work"
+            className="group inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-violet-500/40 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5 hover:bg-violet-500/10"
+          >
+            {t('work.seeAll')}
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </Reveal>
       </section>
 
       {/* YouTube */}

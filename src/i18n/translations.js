@@ -161,6 +161,12 @@ export const translations = {
     'cookie.body': 'This site uses minimal cookies for language preference and basic analytics. No tracking, no ads.',
     'cookie.accept': 'Got it',
 
+    // Work page
+    'work.eyebrow': 'Portfolio',
+    'work.heading': "Things I've built",
+    'work.subtitle': 'Client projects, personal builds, and design experiments. Everything I make ends up here.',
+    'work.seeAll': 'See all work',
+
     // Work With Us
     'workWithUs.eyebrow': 'Work with us',
     'workWithUs.heading.start': 'Open',
@@ -364,6 +370,12 @@ export const translations = {
     'cookie.heading': 'Vi bruger cookies',
     'cookie.body': 'Denne side bruger minimale cookies til sprogvalg og grundlæggende analyse. Ingen tracking, ingen annoncer.',
     'cookie.accept': 'Forstået',
+
+    // Work page
+    'work.eyebrow': 'Portfolio',
+    'work.heading': 'Ting jeg har bygget',
+    'work.subtitle': 'Kundeprojekter, personlige builds og designeksperimenter. Alt hvad jeg laver ender her.',
+    'work.seeAll': 'Se alt arbejde',
 
     // Work With Us
     'workWithUs.eyebrow': 'Samarbejd med os',
