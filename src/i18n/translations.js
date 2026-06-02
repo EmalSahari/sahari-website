@@ -35,6 +35,8 @@ export const translations = {
     'services.backend.desc': 'Custom servers, APIs, databases, and AI features. The behind-the-scenes work that makes products feel effortless.',
     'services.automation.title': 'Automation & Custom Software',
     'services.automation.desc': 'Scripts, bots, integrations, internal tools. If you can describe what you need, I can build it.',
+    'services.openTo': "Don't see what you need? I take on most projects — browser extensions, Discord bots, AI chat widgets, scrapers, anything.",
+    'services.openToCta': "Let's talk",
 
     // Process — how I work
     'process.eyebrow': 'How I work',
@@ -261,6 +263,8 @@ export const translations = {
     'services.backend.desc': 'Skræddersyede servere, APIs, databaser og AI-funktioner. Arbejdet bag scenen, der får produkter til at føles ubesværet.',
     'services.automation.title': 'Automatisering & Skræddersyet Software',
     'services.automation.desc': 'Scripts, bots, integrationer, interne værktøjer. Hvis du kan beskrive, hvad du har brug for, kan jeg bygge det.',
+    'services.openTo': 'Ser du ikke det du har brug for? Jeg tager de fleste projekter — browser extensions, Discord-bots, AI chat-widgets, scrapers, hvad som helst.',
+    'services.openToCta': 'Lad os snakke',
 
     // Process
     'process.eyebrow': 'Sådan arbejder jeg',

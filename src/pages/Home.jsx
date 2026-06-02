@@ -246,6 +246,13 @@ export default function Home() {
             <ServiceCard key={s.title} service={s} i={i} />
           ))}
         </div>
+
+        <p className="mt-10 text-center text-sm text-zinc-500">
+          {t('services.openTo')}{' '}
+          <Link to="/contact" className="text-violet-400 hover:text-violet-300 transition-colors">
+            {t('services.openToCta')}
+          </Link>
+        </p>
       </section>
 
       {/* Process — how I work */}
