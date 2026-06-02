@@ -276,9 +276,9 @@ export default function Home() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {process.map((p, i) => (
             <Reveal key={p.title} i={i} className="relative">
-              <SpotlightCard className="border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full">
+              <SpotlightCard className="group border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-500/25 transition-colors">
                     {p.icon}
                   </div>
                   <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
