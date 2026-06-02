@@ -363,7 +363,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-2xl border border-violet-500/20 hover:border-violet-400/40 bg-gradient-to-br from-violet-950/20 to-[#0f0f0f] hover:from-violet-950/30 transition-all duration-300 p-10 md:p-14"
+          className="relative rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-950/20 to-[#0f0f0f] hover:from-violet-950/30 transition-colors duration-200 p-10 md:p-14"
         >
           <Quote size={32} className="text-violet-400 mb-6" />
           <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6">
@@ -384,7 +384,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl border border-emerald-500/20 hover:border-emerald-400/40 bg-gradient-to-br from-emerald-950/30 to-[#0f0f0f] hover:from-emerald-950/40 transition-all duration-300 p-10 md:p-14"
+          className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-950/30 to-[#0f0f0f] hover:from-emerald-950/40 transition-colors duration-200 p-10 md:p-14"
         >
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
           <div className="relative">
@@ -409,7 +409,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl border border-red-500/20 hover:border-red-400/40 bg-gradient-to-br from-red-950/30 to-[#0f0f0f] hover:from-red-950/40 transition-all duration-300 p-10 md:p-14"
+          className="relative overflow-hidden rounded-2xl border border-red-500/20 bg-gradient-to-br from-red-950/30 to-[#0f0f0f] hover:from-red-950/40 transition-colors duration-200 p-10 md:p-14"
         >
           <div className="flex flex-col md:flex-row gap-10 items-start">
             <div className="flex-1">
@@ -462,7 +462,7 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-violet-900/40 to-indigo-900/40 hover:from-violet-900/50 hover:to-indigo-900/50 border border-violet-500/20 hover:border-violet-400/40 transition-all duration-300 p-10 md:p-14 text-center"
+          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-violet-900/40 to-indigo-900/40 hover:from-violet-900/50 hover:to-indigo-900/50 border border-violet-500/20 transition-colors duration-200 p-10 md:p-14 text-center"
         >
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-violet-600/20 rounded-full blur-3xl" />
           <Code2 size={32} className="text-violet-400 mx-auto mb-5" />
