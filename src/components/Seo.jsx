@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 const DEFAULT_DESC =
-  'Sahari is a software studio building websites, mobile apps, backends, and custom tools for businesses and creators.'
+  'Software studio in Denmark building secure websites, mobile apps, backends and custom tools. End-to-end delivery from DKK 9,995. Founded by Emal Sahari.'
 
 function setMeta(selector, attr, value) {
   let el = document.head.querySelector(selector)

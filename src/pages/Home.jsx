@@ -126,7 +126,7 @@ export default function Home() {
 
   return (
     <div className="pt-16">
-      <Seo description="Software studio building websites, mobile apps, backends, and custom tools. Also a YouTuber with three channels." />
+      <Seo description="Software studio in Denmark building secure websites, mobile apps, backends and custom tools. End-to-end delivery, fast turnaround, fixed pricing from DKK 9,995. Founded by Emal Sahari." />
       {/* Hero */}
       <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
