@@ -18,6 +18,9 @@ export const translations = {
     'hero.cta.work': 'Work with me',
     'hero.cta.watch': 'Watch my content',
     'hero.scroll': 'scroll',
+    'hero.feature.speed': 'Delivered in days, not months',
+    'hero.feature.security': 'Security-first development',
+    'hero.feature.endToEnd': 'End-to-end delivery',
 
     // Services
     'services.eyebrow': 'Services',
@@ -65,6 +68,16 @@ export const translations = {
     'projects.somuchfun.tag': 'Concept · Design Demo',
     'projects.viewLive': 'View live',
 
+    // Security section
+    'security.eyebrow': 'Built secure',
+    'security.heading': 'Security built into the process',
+    'security.subtitle': 'With a background in cybersecurity, every project gets reviewed for common vulnerabilities before launch: input validation, authentication, secret management, protection against XSS and SQL injection. You don\'t just get a site that works. You get one that won\'t leak your data.',
+
+    // Testimonial
+    'testimonial.quote': '"We went from no website to a finished, professional site in under two weeks. Sahari handled everything so we could focus on our actual work. We now get qualified leads through the site."',
+    'testimonial.name': 'Frederik Sørensen',
+    'testimonial.role': 'NexByg ApS',
+
     // YouTube section (Home)
     'youtube.heading': 'Also a YouTuber',
     'youtube.subtitle': 'I create content across multiple YouTube channels in different niches. Come check out the content.',
@@ -78,6 +91,7 @@ export const translations = {
     // CTA section (Home)
     'cta.heading': 'Ready to build something?',
     'cta.subtitle': "Whether you need a website, an app, or just want to talk through an idea, I'm open to new projects.",
+    'cta.pricing': 'Fixed pricing from DKK 9,995. Custom quotes based on scope.',
     'cta.button': "Let's talk",
 
     // About page
@@ -229,6 +243,9 @@ export const translations = {
     'hero.cta.work': 'Samarbejd med mig',
     'hero.cta.watch': 'Se mit indhold',
     'hero.scroll': 'scroll',
+    'hero.feature.speed': 'Levering på dage, ikke måneder',
+    'hero.feature.security': 'Sikkerheds-fokuseret udvikling',
+    'hero.feature.endToEnd': 'End-to-end leverance',
 
     // Services
     'services.eyebrow': 'Tjenester',
@@ -276,6 +293,16 @@ export const translations = {
     'projects.somuchfun.tag': 'Koncept · Designdemo',
     'projects.viewLive': 'Se live',
 
+    // Security section
+    'security.eyebrow': 'Sikkerheds-fokuseret',
+    'security.heading': 'Sikkerhed indbygget i processen',
+    'security.subtitle': 'Med en baggrund i cybersikkerhed gennemgår jeg hvert projekt for almindelige sårbarheder før launch: input-validering, autentificering, secret management, beskyttelse mod XSS og SQL injection. Du får ikke bare en hjemmeside der virker. Du får en der ikke lækker dine data.',
+
+    // Testimonial
+    'testimonial.quote': '"Vi gik fra ingen hjemmeside til en færdig, professionel side på under to uger. Sahari håndterede alt så vi kunne fokusere på vores arbejde. Vi får nu kvalificerede leads gennem siden."',
+    'testimonial.name': 'Frederik Sørensen',
+    'testimonial.role': 'NexByg ApS',
+
     // YouTube section (Home)
     'youtube.heading': 'Også YouTuber',
     'youtube.subtitle': 'Jeg laver indhold på YouTube i forskellige nicher. Kig forbi og se indholdet.',
@@ -289,6 +316,7 @@ export const translations = {
     // CTA section (Home)
     'cta.heading': 'Klar til at bygge noget?',
     'cta.subtitle': 'Uanset om du har brug for en hjemmeside, en app, eller bare vil snakke en idé igennem, er jeg åben for nye projekter.',
+    'cta.pricing': 'Fast pris fra 9.995 kr. Skræddersyede tilbud baseret på scope.',
     'cta.button': 'Lad os snakke',
 
     // About page

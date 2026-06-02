@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -191,6 +191,27 @@ export default function Home() {
         </motion.div>
 
         <motion.div
+          variants={heroFadeUp}
+          initial="hidden"
+          animate="show"
+          custom={4}
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
+        >
+          <span className="inline-flex items-center gap-2">
+            <Zap size={14} className="text-violet-400" />
+            {t('hero.feature.speed')}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Shield size={14} className="text-violet-400" />
+            {t('hero.feature.security')}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Workflow size={14} className="text-violet-400" />
+            {t('hero.feature.endToEnd')}
+          </span>
+        </motion.div>
+
+        <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
@@ -265,6 +286,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Security */}
+      <section className="max-w-6xl mx-auto px-6 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-950/30 to-[#0f0f0f] p-10 md:p-14"
+        >
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 mb-5">
+              <Shield size={24} />
+            </div>
+            <p className="text-emerald-400 text-sm font-medium tracking-widest uppercase mb-3">{t('security.eyebrow')}</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 max-w-2xl">
+              {t('security.heading')}
+            </h2>
+            <p className="text-zinc-400 leading-relaxed max-w-2xl">
+              {t('security.subtitle')}
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Projects */}
       <section className="max-w-6xl mx-auto px-6 py-12">
         <motion.div
@@ -326,6 +372,27 @@ export default function Home() {
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </Reveal>
+      </section>
+
+      {/* Testimonial */}
+      <section className="max-w-4xl mx-auto px-6 py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-950/20 to-[#0f0f0f] p-10 md:p-14"
+        >
+          <Quote size={32} className="text-violet-400 mb-6" />
+          <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6">
+            {t('testimonial.quote')}
+          </blockquote>
+          <footer className="text-sm text-zinc-400">
+            <span className="text-white font-medium">{t('testimonial.name')}</span>
+            <span className="mx-2 text-zinc-600">·</span>
+            <span>{t('testimonial.role')}</span>
+          </footer>
+        </motion.div>
       </section>
 
       {/* YouTube */}
@@ -395,8 +462,11 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             {t('cta.heading')}
           </h2>
-          <p className="text-zinc-400 max-w-md mx-auto mb-8">
+          <p className="text-zinc-400 max-w-md mx-auto mb-3">
             {t('cta.subtitle')}
+          </p>
+          <p className="text-sm text-zinc-500 mb-8">
+            {t('cta.pricing')}
           </p>
           <Link
             to="/contact"
