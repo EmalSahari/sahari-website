@@ -40,7 +40,7 @@ export default function Work() {
       title: t('projects.fitness.title'),
       desc: t('projects.fitness.desc'),
       tag: t('projects.fitness.tag'),
-      href: 'https://fitness-mocha-five.vercel.app/',
+      href: 'https://fittrack.sahari.io/',
       image: '/fitness-progress.png',
       color: 'from-emerald-900/40 to-[#0f0f0f]',
       border: 'border-emerald-500/20',
