@@ -286,31 +286,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Security */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-950/30 to-[#0f0f0f] p-10 md:p-14"
-        >
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 mb-5">
-              <Shield size={24} />
-            </div>
-            <p className="text-emerald-400 text-sm font-medium tracking-widest uppercase mb-3">{t('security.eyebrow')}</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 max-w-2xl">
-              {t('security.heading')}
-            </h2>
-            <p className="text-zinc-400 leading-relaxed max-w-2xl">
-              {t('security.subtitle')}
-            </p>
-          </div>
-        </motion.div>
-      </section>
-
       {/* Projects */}
       <section className="max-w-6xl mx-auto px-6 py-12">
         <motion.div
@@ -392,6 +367,31 @@ export default function Home() {
             <span className="mx-2 text-zinc-600">·</span>
             <span>{t('testimonial.role')}</span>
           </footer>
+        </motion.div>
+      </section>
+
+      {/* Security */}
+      <section className="max-w-6xl mx-auto px-6 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-950/30 to-[#0f0f0f] p-10 md:p-14"
+        >
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 mb-5">
+              <Shield size={24} />
+            </div>
+            <p className="text-emerald-400 text-sm font-medium tracking-widest uppercase mb-3">{t('security.eyebrow')}</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 max-w-2xl">
+              {t('security.heading')}
+            </h2>
+            <p className="text-zinc-400 leading-relaxed max-w-2xl">
+              {t('security.subtitle')}
+            </p>
+          </div>
         </motion.div>
       </section>
 

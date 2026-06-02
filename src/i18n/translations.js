@@ -5,7 +5,7 @@ export const translations = {
     'nav.about': 'About',
     'nav.work': 'Work',
     'nav.contact': 'Contact',
-    'nav.workWithUs': 'Work with us',
+    'nav.workWithUs': 'Careers',
     'nav.workWithMe': 'Work with me',
     'nav.toggleMenu': 'Toggle menu',
 
@@ -183,10 +183,10 @@ export const translations = {
     'work.seeAll': 'See all work',
 
     // Work With Us
-    'workWithUs.eyebrow': 'Work with us',
+    'workWithUs.eyebrow': 'Careers',
     'workWithUs.heading.start': 'Open',
     'workWithUs.heading.highlight': 'roles',
-    'workWithUs.subtitle': "Looking for talent to join Sahari's content team. Pick the open role below — or pitch your own.",
+    'workWithUs.subtitle': "Looking for talent to join Sahari's content team. Pick the open role below, or pitch your own.",
     'workWithUs.hiring': 'Now Hiring',
 
     // Voice Actor role
@@ -230,7 +230,7 @@ export const translations = {
     'nav.about': 'Om',
     'nav.work': 'Arbejde',
     'nav.contact': 'Kontakt',
-    'nav.workWithUs': 'Samarbejd med os',
+    'nav.workWithUs': 'Karriere',
     'nav.workWithMe': 'Samarbejd med mig',
     'nav.toggleMenu': 'Skift menu',
 
@@ -408,10 +408,10 @@ export const translations = {
     'work.seeAll': 'Se alt arbejde',
 
     // Work With Us
-    'workWithUs.eyebrow': 'Samarbejd med os',
+    'workWithUs.eyebrow': 'Karriere',
     'workWithUs.heading.start': 'Ledige',
     'workWithUs.heading.highlight': 'stillinger',
-    'workWithUs.subtitle': 'Søger talent til at blive en del af Saharis content-team. Vælg den ledige stilling herunder — eller foreslå din egen rolle.',
+    'workWithUs.subtitle': 'Søger talent til at blive en del af Saharis content-team. Vælg den ledige stilling herunder, eller foreslå din egen rolle.',
     'workWithUs.hiring': 'Ansætter nu',
 
     // Voice Actor role
