@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -181,13 +181,13 @@ export default function Home() {
             {t('hero.cta.work')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
-          <a
-            href="#youtube"
+          <Link
+            to="/work"
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
           >
-            <Youtube size={16} className="text-red-400" />
-            {t('hero.cta.watch')}
-          </a>
+            <Briefcase size={16} className="text-violet-400" />
+            {t('hero.cta.viewWork')}
+          </Link>
         </motion.div>
 
         <motion.div
@@ -216,7 +216,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={5}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-600 text-xs"
+          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-zinc-600 text-xs"
         >
           <div className="w-px h-10 bg-gradient-to-b from-transparent to-zinc-600" />
           {t('hero.scroll')}
