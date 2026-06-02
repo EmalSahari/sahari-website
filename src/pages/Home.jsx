@@ -363,17 +363,18 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-950/20 to-[#0f0f0f] hover:from-violet-950/30 transition-colors duration-200 p-10 md:p-14"
         >
-          <Quote size={32} className="text-violet-400 mb-6" />
-          <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6">
-            {t('testimonial.quote')}
-          </blockquote>
-          <footer className="text-sm text-zinc-400">
-            <span className="text-white font-medium">{t('testimonial.name')}</span>
-            <span className="mx-2 text-zinc-600">·</span>
-            <span>{t('testimonial.role')}</span>
-          </footer>
+          <SpotlightCard className="border border-violet-500/20 bg-gradient-to-br from-violet-950/20 to-[#0f0f0f] hover:from-violet-950/30 transition-colors duration-200 p-10 md:p-14">
+            <Quote size={32} className="text-violet-400 mb-6" />
+            <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6">
+              {t('testimonial.quote')}
+            </blockquote>
+            <footer className="text-sm text-zinc-400">
+              <span className="text-white font-medium">{t('testimonial.name')}</span>
+              <span className="mx-2 text-zinc-600">·</span>
+              <span>{t('testimonial.role')}</span>
+            </footer>
+          </SpotlightCard>
         </motion.div>
       </section>
 
@@ -384,21 +385,25 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-950/30 to-[#0f0f0f] hover:from-emerald-950/40 transition-colors duration-200 p-10 md:p-14"
         >
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 mb-5">
-              <Shield size={24} />
+          <SpotlightCard
+            glowColor="52,211,153"
+            className="overflow-hidden border border-emerald-500/20 bg-gradient-to-br from-emerald-950/30 to-[#0f0f0f] hover:from-emerald-950/40 transition-colors duration-200 p-10 md:p-14"
+          >
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-emerald-600/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-400 mb-5">
+                <Shield size={24} />
+              </div>
+              <p className="text-emerald-400 text-sm font-medium tracking-widest uppercase mb-3">{t('security.eyebrow')}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 max-w-2xl">
+                {t('security.heading')}
+              </h2>
+              <p className="text-zinc-400 leading-relaxed max-w-2xl">
+                {t('security.subtitle')}
+              </p>
             </div>
-            <p className="text-emerald-400 text-sm font-medium tracking-widest uppercase mb-3">{t('security.eyebrow')}</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 max-w-2xl">
-              {t('security.heading')}
-            </h2>
-            <p className="text-zinc-400 leading-relaxed max-w-2xl">
-              {t('security.subtitle')}
-            </p>
-          </div>
+          </SpotlightCard>
         </motion.div>
       </section>
 
@@ -409,8 +414,11 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl border border-red-500/20 bg-gradient-to-br from-red-950/30 to-[#0f0f0f] hover:from-red-950/40 transition-colors duration-200 p-10 md:p-14"
         >
+          <SpotlightCard
+            glowColor="248,113,113"
+            className="overflow-hidden border border-red-500/20 bg-gradient-to-br from-red-950/30 to-[#0f0f0f] hover:from-red-950/40 transition-colors duration-200 p-10 md:p-14"
+          >
           <div className="flex flex-col md:flex-row gap-10 items-start">
             <div className="flex-1">
               <Youtube size={36} className="text-red-400 mb-5" />
@@ -452,6 +460,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+          </SpotlightCard>
         </motion.div>
       </section>
 
@@ -462,26 +471,27 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-violet-900/40 to-indigo-900/40 hover:from-violet-900/50 hover:to-indigo-900/50 border border-violet-500/20 transition-colors duration-200 p-10 md:p-14 text-center"
         >
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-violet-600/20 rounded-full blur-3xl" />
-          <Code2 size={32} className="text-violet-400 mx-auto mb-5" />
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            {t('cta.heading')}
-          </h2>
-          <p className="text-zinc-400 max-w-md mx-auto mb-3">
-            {t('cta.subtitle')}
-          </p>
-          <p className="text-sm text-zinc-500 mb-8">
-            {t('cta.pricing')}
-          </p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
-          >
-            {t('cta.button')}
-            <ArrowRight size={16} />
-          </Link>
+          <SpotlightCard className="overflow-hidden bg-gradient-to-r from-violet-900/40 to-indigo-900/40 hover:from-violet-900/50 hover:to-indigo-900/50 border border-violet-500/20 transition-colors duration-200 p-10 md:p-14 text-center">
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-violet-600/20 rounded-full blur-3xl" />
+            <Code2 size={32} className="text-violet-400 mx-auto mb-5" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              {t('cta.heading')}
+            </h2>
+            <p className="text-zinc-400 max-w-md mx-auto mb-3">
+              {t('cta.subtitle')}
+            </p>
+            <p className="text-sm text-zinc-500 mb-8">
+              {t('cta.pricing')}
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
+            >
+              {t('cta.button')}
+              <ArrowRight size={16} />
+            </Link>
+          </SpotlightCard>
         </motion.div>
       </section>
     </div>
