@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -72,6 +72,7 @@ export default function Home() {
     { icon: <Smartphone size={20} />, title: t('services.mobile.title'), desc: t('services.mobile.desc') },
     { icon: <Server size={20} />, title: t('services.backend.title'), desc: t('services.backend.desc') },
     { icon: <Zap size={20} />, title: t('services.automation.title'), desc: t('services.automation.desc') },
+    { icon: <Wrench size={20} />, title: t('services.maintenance.title'), desc: t('services.maintenance.desc') },
   ]
 
   const process = [
@@ -241,7 +242,7 @@ export default function Home() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s, i) => (
             <ServiceCard key={s.title} service={s} i={i} />
           ))}
