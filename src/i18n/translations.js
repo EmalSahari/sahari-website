@@ -184,7 +184,7 @@ export const translations = {
     // Work page
     'work.eyebrow': 'Portfolio',
     'work.heading': "Things I've built",
-    'work.subtitle': 'Client projects, personal builds, and design experiments. Everything I make ends up here.',
+    'work.subtitle': 'Client projects, personal builds, and design experiments — a selection of work worth showing off.',
     'work.seeAll': 'See all work',
 
     // Work With Us
@@ -414,7 +414,7 @@ export const translations = {
     // Work page
     'work.eyebrow': 'Portfolio',
     'work.heading': 'Ting jeg har bygget',
-    'work.subtitle': 'Kundeprojekter, personlige builds og designeksperimenter. Alt hvad jeg laver ender her.',
+    'work.subtitle': 'Kundeprojekter, personlige builds og designeksperimenter — et udvalg af det jeg gerne vil vise frem.',
     'work.seeAll': 'Se alt arbejde',
 
     // Work With Us
