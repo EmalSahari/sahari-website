@@ -113,7 +113,7 @@ export default function Work() {
                     </div>
                     <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
                     <h3 className="text-white font-semibold text-lg mt-1 mb-2">{p.title}</h3>
-                    <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1 line-clamp-4">{p.desc}</p>
+                    <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
                     <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
                       {t('projects.viewLive')}
                       <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
