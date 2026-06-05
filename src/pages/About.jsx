@@ -83,10 +83,12 @@ export default function About() {
         >
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-violet-500/30 shadow-lg shadow-violet-900/40">
+              <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-violet-500/30 shadow-lg shadow-violet-900/40 bg-gradient-to-br from-violet-900/40 to-indigo-900/40">
                 <img
                   src="/emal.webp"
                   alt="Emal Sahari"
+                  fetchpriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover"
                   style={{ objectPosition: '50% 25%' }}
                 />
