@@ -101,15 +101,6 @@ export default function About() {
           <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto">
             {t('about.subtitle')}
           </p>
-
-          <div className="mt-8 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-            </span>
-            <span className="text-emerald-300 font-medium">{t('about.currentFocus')}:</span>
-            <span className="text-zinc-300">{t('about.currentFocusValue')}</span>
-          </div>
         </motion.div>
 
         {/* Values — how I work */}
