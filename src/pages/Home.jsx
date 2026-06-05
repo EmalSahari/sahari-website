@@ -373,7 +373,14 @@ export default function Home() {
             <footer className="text-sm text-zinc-400">
               <span className="text-white font-medium">{t('testimonial.name')}</span>
               <span className="mx-2 text-zinc-600">·</span>
-              <span>{t('testimonial.role')}</span>
+              <a
+                href="https://www.nexbyg.dk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 hover:text-violet-300 transition-colors underline decoration-zinc-700 hover:decoration-violet-400 underline-offset-4"
+              >
+                {t('testimonial.role')}
+              </a>
             </footer>
           </SpotlightCard>
         </motion.div>
