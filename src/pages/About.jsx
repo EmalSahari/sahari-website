@@ -39,10 +39,9 @@ export default function About() {
   ]
 
   const stats = [
-    { value: '4+', label: t('about.stats.coding') },
-    { value: '5+', label: t('about.stats.projects') },
     { value: '84K+', label: t('about.stats.subs') },
     { value: '11M+', label: t('about.stats.views') },
+    { value: '3', label: t('about.stats.channels') },
   ]
 
   const skills = [
@@ -145,7 +144,7 @@ export default function About() {
         >
           <SpotlightCard className="bg-gradient-to-br from-violet-950/30 to-[#0f0f0f] p-8">
             <h2 className="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-6">{t('about.stats.heading')}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-3 gap-6">
               {stats.map((s) => (
                 <div key={s.label}>
                   <p className="text-3xl md:text-4xl font-bold text-white tracking-tight">{s.value}</p>
