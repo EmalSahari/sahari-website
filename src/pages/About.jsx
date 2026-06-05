@@ -82,8 +82,15 @@ export default function About() {
           className="text-center mb-14"
         >
           <div className="flex justify-center mb-6">
-            <div className="relative w-24 h-24 rounded-2xl bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-violet-900/40">
-              <span className="text-white font-bold text-3xl tracking-tight">ES</span>
+            <div className="relative">
+              <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-violet-500/30 shadow-lg shadow-violet-900/40">
+                <img
+                  src="/emal.webp"
+                  alt="Emal Sahari"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: '50% 25%' }}
+                />
+              </div>
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-500/30 to-indigo-500/30 blur-lg -z-10" />
             </div>
           </div>
