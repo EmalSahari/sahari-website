@@ -79,7 +79,7 @@ export const translations = {
     'security.subtitle': 'With a background in cybersecurity, every project gets reviewed for common vulnerabilities before launch: input validation, authentication, secret management, protection against XSS and SQL injection. You don\'t just get a site that works. You get one that won\'t leak your data.',
 
     // Testimonial
-    'testimonial.quote': '"We went from no website to a finished, professional site in under two weeks. Sahari handled everything so we could focus on our actual work. We now get qualified leads through the site."',
+    'testimonial.quote': '"We went from no website to a finished, professional site in under a week. Sahari handled everything so we could focus on our actual work. We now get qualified leads through the site."',
     'testimonial.name': 'Frederik Sørensen',
     'testimonial.role': 'NexByg ApS',
 
@@ -319,7 +319,7 @@ export const translations = {
     'security.subtitle': 'Med en baggrund i cybersikkerhed gennemgår jeg hvert projekt for almindelige sårbarheder før launch: input-validering, autentificering, secret management, beskyttelse mod XSS og SQL injection. Du får ikke bare en hjemmeside der virker. Du får en der ikke lækker dine data.',
 
     // Testimonial
-    'testimonial.quote': '"Vi gik fra ingen hjemmeside til en færdig, professionel side på under to uger. Sahari håndterede alt så vi kunne fokusere på vores arbejde. Vi får nu kvalificerede leads gennem siden."',
+    'testimonial.quote': '"Vi gik fra ingen hjemmeside til en færdig, professionel side på under en uge. Sahari håndterede alt så vi kunne fokusere på vores arbejde. Vi får nu kvalificerede leads gennem siden."',
     'testimonial.name': 'Frederik Sørensen',
     'testimonial.role': 'NexByg ApS',
 
