@@ -60,51 +60,54 @@ function useOpenStatus() {
 
 // Drifting coffee beans background
 function DriftingBeans() {
-  const beans = Array.from({ length: 14 })
+  const beans = Array.from({ length: 16 })
   return (
-    <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
-      {beans.map((_, i) => {
-        const x = (i * 47 + 13) % 100
-        const delay = (i * 1.7) % 12
-        const duration = 18 + (i % 5) * 4
-        const size = 8 + (i % 4) * 4
-        const rotate = (i * 37) % 360
-        return (
-          <motion.div
-            key={i}
-            initial={{ y: '110vh', x: `${x}vw`, rotate }}
-            animate={{ y: '-20vh', rotate: rotate + 180 }}
-            transition={{
-              duration,
-              delay,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-            style={{
-              position: 'absolute',
-              width: size,
-              height: size * 1.4,
-              borderRadius: '50%',
-              backgroundColor: COLORS.accentDark,
-              opacity: 0.18,
-            }}
-          >
+    <>
+      <style>{`
+        @keyframes bean-drift {
+          0%   { transform: translateY(110vh) rotate(0deg); }
+          100% { transform: translateY(-30vh) rotate(360deg); }
+        }
+      `}</style>
+      <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+        {beans.map((_, i) => {
+          const x = (i * 47 + 13) % 100
+          const duration = 18 + (i % 5) * 4
+          // Negative delay so beans start mid-cycle and are visible on load
+          const delay = -(((i * 7) % 10) / 10) * duration
+          const size = 8 + (i % 4) * 4
+          return (
             <div
+              key={i}
               style={{
                 position: 'absolute',
-                top: '10%',
-                bottom: '10%',
-                left: '50%',
-                width: 1,
-                backgroundColor: COLORS.bg,
-                transform: 'translateX(-0.5px)',
-                opacity: 0.6,
+                left: `${x}vw`,
+                top: 0,
+                width: size,
+                height: size * 1.4,
+                borderRadius: '50%',
+                backgroundColor: COLORS.accentDark,
+                opacity: 0.18,
+                animation: `bean-drift ${duration}s linear ${delay}s infinite`,
               }}
-            />
-          </motion.div>
-        )
-      })}
-    </div>
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '10%',
+                  bottom: '10%',
+                  left: '50%',
+                  width: 1,
+                  backgroundColor: COLORS.bg,
+                  transform: 'translateX(-0.5px)',
+                  opacity: 0.6,
+                }}
+              />
+            </div>
+          )
+        })}
+      </div>
+    </>
   )
 }
 
