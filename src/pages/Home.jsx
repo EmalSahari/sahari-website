@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Sparkles, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, MapPin, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -50,8 +50,8 @@ const makeHeroFadeUp = (isMobile) =>
 function ServiceCard({ service, i }) {
   return (
     <Reveal i={i}>
-      <SpotlightCard className="group border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
-        <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center mb-5 group-hover:bg-violet-500/25 transition-colors">
+      <SpotlightCard className="group border border-white/10 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
+        <div className="w-10 h-10 rounded-lg bg-white/5 text-zinc-400 flex items-center justify-center mb-5 group-hover:bg-white/10 transition-colors">
           {service.icon}
         </div>
         <h3 className="text-white font-semibold mb-2 leading-snug">{service.title}</h3>
@@ -130,19 +130,14 @@ export default function Home() {
       <Seo description="Software studio in Denmark building secure websites, mobile apps, backends and custom tools. End-to-end delivery, fast turnaround, fixed pricing from DKK 9,995. Founded by Emal Sahari." />
       {/* Hero */}
       <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600/10 rounded-full blur-[120px]" />
-          <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-indigo-600/8 rounded-full blur-[100px]" />
-        </div>
-
         <motion.div
           variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={0}
-          className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-sm"
+          className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
         >
-          <Sparkles size={14} />
+          <MapPin size={14} />
           <span>{t('hero.badge')}</span>
         </motion.div>
 
@@ -177,7 +172,7 @@ export default function Home() {
         >
           <Link
             to="/contact"
-            className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
+            className="group inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
           >
             {t('hero.cta.work')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -186,7 +181,7 @@ export default function Home() {
             to="/work"
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
           >
-            <Briefcase size={16} className="text-violet-400" />
+            <Briefcase size={16} className="text-zinc-400" />
             {t('hero.cta.viewWork')}
           </Link>
         </motion.div>
@@ -199,15 +194,15 @@ export default function Home() {
           className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
         >
           <span className="inline-flex items-center gap-2">
-            <Zap size={14} className="text-violet-400" />
+            <Zap size={14} className="text-zinc-400" />
             {t('hero.feature.speed')}
           </span>
           <span className="inline-flex items-center gap-2">
-            <Shield size={14} className="text-violet-400" />
+            <Shield size={14} className="text-zinc-400" />
             {t('hero.feature.security')}
           </span>
           <span className="inline-flex items-center gap-2">
-            <Workflow size={14} className="text-violet-400" />
+            <Workflow size={14} className="text-zinc-400" />
             {t('hero.feature.endToEnd')}
           </span>
         </motion.div>
@@ -233,7 +228,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
+          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
             {t('services.heading')}
           </h2>
@@ -250,7 +245,7 @@ export default function Home() {
 
         <p className="mt-10 text-center text-sm text-zinc-500">
           {t('services.openTo')}{' '}
-          <Link to="/contact" className="text-violet-400 hover:text-violet-300 transition-colors">
+          <Link to="/contact" className="text-zinc-400 hover:text-zinc-200 transition-colors">
             {t('services.openToCta')}
           </Link>
         </p>
@@ -265,7 +260,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14 max-w-2xl mx-auto"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
+          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             {t('process.heading')}
           </h2>
@@ -277,9 +272,9 @@ export default function Home() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {process.map((p, i) => (
             <Reveal key={p.title} i={i} className="relative">
-              <SpotlightCard className="group border border-violet-500/15 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
+              <SpotlightCard className="group border border-white/10 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-500/25 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-white/5 text-zinc-400 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors">
                     {p.icon}
                   </div>
                   <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
@@ -303,7 +298,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
+          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
             {t('projects.heading')}
           </h2>
@@ -349,7 +344,7 @@ export default function Home() {
         <Reveal i={2} className="mt-8 flex justify-center">
           <Link
             to="/work"
-            className="group inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-violet-500/40 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5 hover:bg-violet-500/10"
+            className="group inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5 hover:bg-white/5"
           >
             {t('work.seeAll')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -364,9 +359,9 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative border-l-2 border-violet-500/40 pl-8 md:pl-12 py-4"
+          className="relative border-l-2 border-white/20 pl-8 md:pl-12 py-4"
         >
-          <Quote size={28} className="text-violet-400 mb-5" />
+          <Quote size={28} className="text-zinc-400 mb-5" />
           <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6 max-w-3xl">
             {t('testimonial.quote')}
           </blockquote>
@@ -377,7 +372,7 @@ export default function Home() {
               href="https://www.nexbyg.dk/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-400 hover:text-violet-300 transition-colors underline decoration-zinc-700 hover:decoration-violet-400 underline-offset-4"
+              className="text-zinc-400 hover:text-zinc-200 transition-colors underline decoration-zinc-700 hover:decoration-white underline-offset-4"
             >
               {t('testimonial.role')}
             </a>
@@ -480,7 +475,7 @@ export default function Home() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
           >
             {t('cta.button')}
             <ArrowRight size={16} />

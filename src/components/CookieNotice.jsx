@@ -31,7 +31,7 @@ export default function CookieNotice() {
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-sm z-50"
         >
-          <div className="gradient-border bg-[#0f0f0f]/95 backdrop-blur-xl rounded-2xl p-5 shadow-2xl shadow-violet-900/20">
+          <div className="gradient-border bg-[#0f0f0f]/95 backdrop-blur-xl rounded-2xl p-5 shadow-2xl shadow-black/20">
             <button
               onClick={accept}
               aria-label="Dismiss"
@@ -45,7 +45,7 @@ export default function CookieNotice() {
             </p>
             <button
               onClick={accept}
-              className="w-full px-4 py-2 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-lg shadow-violet-900/30"
+              className="w-full px-4 py-2 bg-white hover:bg-zinc-200 text-black text-sm font-medium rounded-lg transition-all duration-200 shadow-lg shadow-black/30"
             >
               {t('cookie.accept')}
             </button>

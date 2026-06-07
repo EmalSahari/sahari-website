@@ -41,7 +41,7 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+            <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-black font-bold text-sm">
               S
             </div>
             <span className="text-white font-semibold tracking-tight text-lg">
@@ -81,7 +81,7 @@ export default function Navbar() {
             <LanguageToggle />
             <Link
               to="/contact"
-              className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white rounded-lg transition-all duration-200 shadow-lg shadow-violet-900/30"
+              className="px-4 py-2 text-sm font-medium bg-white hover:bg-zinc-200 text-black rounded-lg transition-all duration-200 shadow-lg shadow-black/30"
             >
               {t('nav.workWithMe')}
             </Link>
@@ -124,7 +124,7 @@ export default function Navbar() {
               ))}
               <Link
                 to="/contact"
-                className="mt-2 px-4 py-3 text-sm font-medium bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-lg text-center"
+                className="mt-2 px-4 py-3 text-sm font-medium bg-white text-black rounded-lg text-center"
               >
                 {t('nav.workWithMe')}
               </Link>

@@ -62,7 +62,7 @@ export default function Contact() {
           custom={0}
           className="text-center mb-14"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('contact.eyebrow')}</p>
+          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('contact.eyebrow')}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
             {t('contact.heading')}
           </h1>
@@ -93,8 +93,8 @@ export default function Contact() {
                   transition={{ delay: 0.1, duration: 0.6, type: 'spring', stiffness: 200, damping: 15 }}
                   className="relative"
                 >
-                  <div className="absolute inset-0 bg-violet-500/30 rounded-full blur-xl" />
-                  <CheckCircle2 size={56} className="text-violet-400 relative" />
+                  <div className="absolute inset-0 bg-white/10 rounded-full blur-xl" />
+                  <CheckCircle2 size={56} className="text-zinc-400 relative" />
                 </motion.div>
                 <motion.h3
                   initial={{ opacity: 0, y: 8 }}
@@ -117,7 +117,7 @@ export default function Contact() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
                   onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '', _gotcha: '' }) }}
-                  className="mt-2 text-violet-400 hover:text-violet-300 text-sm transition-colors"
+                  className="mt-2 text-zinc-400 hover:text-zinc-200 text-sm transition-colors"
                 >
                   {t('contact.form.success.again')}
                 </motion.button>
@@ -150,7 +150,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     placeholder={t('contact.form.namePlaceholder')}
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/30 transition-all"
+                    className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 transition-all"
                   />
                 </div>
                 <div>
@@ -165,7 +165,7 @@ export default function Contact() {
                     value={form.email}
                     onChange={handleChange}
                     placeholder={t('contact.form.emailPlaceholder')}
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/30 transition-all"
+                    className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 transition-all"
                   />
                 </div>
                 <div>
@@ -180,13 +180,13 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder={t('contact.form.messagePlaceholder')}
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-violet-500/60 focus:ring-1 focus:ring-violet-500/30 transition-all resize-none"
+                    className="w-full bg-white/5 border border-white/10 text-white placeholder-zinc-600 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/20 transition-all resize-none"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 disabled:opacity-60 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 bg-white hover:bg-zinc-200 disabled:opacity-60 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
                 >
                   {loading ? (
                     <span className="flex items-center gap-2">
@@ -224,7 +224,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 group"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-violet-500/15 text-violet-400 flex items-center justify-center group-hover:bg-violet-500/25 transition-colors flex-shrink-0">
+                  <div className="w-9 h-9 rounded-lg bg-white/5 text-zinc-400 flex items-center justify-center group-hover:bg-white/10 transition-colors flex-shrink-0">
                     {s.icon}
                   </div>
                   <div>
@@ -235,8 +235,8 @@ export default function Contact() {
               </SpotlightCard>
             ))}
 
-            <div className="mt-6 p-5 rounded-xl border border-violet-500/20 bg-violet-500/5">
-              <p className="text-violet-300 text-sm font-medium mb-1">{t('contact.quick.heading')}</p>
+            <div className="mt-6 p-5 rounded-xl border border-white/10 bg-white/5">
+              <p className="text-zinc-200 text-sm font-medium mb-1">{t('contact.quick.heading')}</p>
               <p className="text-zinc-500 text-sm">
                 {t('contact.quick.subtitle')}
               </p>

@@ -8,7 +8,7 @@ import { useRef, useState } from 'react'
 export default function SpotlightCard({
   children,
   className = '',
-  glowColor = '167,139,250',  // violet-400 in rgb
+  glowColor = '255,255,255',  // white
 }) {
   const cardRef = useRef(null)
   const [pos, setPos] = useState({ x: 0, y: 0 })

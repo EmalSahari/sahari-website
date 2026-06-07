@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Recreates the efferd "Gradient Dots" style:
- * dense grid of dots, each independently cycling through the site's
- * violet → indigo → purple palette in a travelling wave pattern.
+ * Dense grid of dots, alpha-modulated by a travelling diagonal wave.
+ * Pure white — no color shift — to keep the background quiet.
  */
 export default function GradientDots({ className = '' }) {
   const canvasRef = useRef(null)
@@ -56,16 +55,11 @@ export default function GradientDots({ className = '' }) {
       dots.forEach(d => {
         // Travelling diagonal wave — phase depends on position + time
         const phase = (d.x + d.y) * WAVE_SCALE + t
-
-        // Hue oscillates through violet / indigo / blue-violet range
-        const hue = 250 + Math.sin(phase) * 45              // 205–295
-        const sat = 78  + Math.sin(phase * 1.3 + 1) * 15   // 63–93 %
-        const lit = 58  + Math.sin(phase * 0.9 + 2) * 12   // 46–70 %
-        const alpha = 0.16 + Math.sin(phase * 0.7) * 0.14  // 0.02–0.30
+        const alpha = 0.10 + Math.sin(phase * 0.7) * 0.07  // 0.03–0.17
 
         ctx.beginPath()
         ctx.arc(d.x, d.y, RADIUS, 0, Math.PI * 2)
-        ctx.fillStyle = `hsla(${hue.toFixed(1)},${sat.toFixed(1)}%,${lit.toFixed(1)}%,${alpha.toFixed(3)})`
+        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`
         ctx.fill()
       })
 

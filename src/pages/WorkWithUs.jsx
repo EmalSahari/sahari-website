@@ -47,7 +47,7 @@ export default function WorkWithUs() {
           variants={fadeUp} initial="hidden" animate="show" custom={0}
           className="text-center mb-14 max-w-2xl mx-auto"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('workWithUs.eyebrow')}</p>
+          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('workWithUs.eyebrow')}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
             {t('workWithUs.heading.start')} <span className="gradient-text">{t('workWithUs.heading.highlight')}</span>
           </h1>
@@ -56,16 +56,16 @@ export default function WorkWithUs() {
 
         {/* ── Featured: Voice Actor ──────────────────────────────── */}
         <motion.div variants={fadeUp} initial="hidden" animate="show" custom={1} className="mb-6">
-          <SpotlightCard className="border border-violet-500/25 bg-[#0f0f0f] p-8 md:p-10">
+          <SpotlightCard className="border border-white/10 bg-[#0f0f0f] p-8 md:p-10">
             {/* Header row */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="w-11 h-11 rounded-xl bg-violet-500/15 text-violet-400 flex items-center justify-center flex-shrink-0">
+              <div className="w-11 h-11 rounded-xl bg-white/5 text-zinc-400 flex items-center justify-center flex-shrink-0">
                 <Mic size={22} />
               </div>
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-semibold text-violet-400 uppercase tracking-wider">{t('workWithUs.voice.tag')}</span>
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-violet-500/20 border border-violet-500/30 text-violet-300 text-[11px] font-semibold uppercase tracking-wide">
+                  <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">{t('workWithUs.voice.tag')}</span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/10 border border-white/15 text-zinc-200 text-[11px] font-semibold uppercase tracking-wide">
                     {t('workWithUs.hiring')}
                   </span>
                 </div>
@@ -79,7 +79,7 @@ export default function WorkWithUs() {
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <Section
                 title={t('workWithUs.voice.need.heading')}
-                accent="text-violet-400"
+                accent="text-zinc-400"
                 items={[
                   t('workWithUs.voice.need.1'),
                   t('workWithUs.voice.need.2'),
@@ -89,7 +89,7 @@ export default function WorkWithUs() {
               />
               <Section
                 title={t('workWithUs.voice.offer.heading')}
-                accent="text-violet-400"
+                accent="text-zinc-400"
                 items={[
                   t('workWithUs.voice.offer.1'),
                   t('workWithUs.voice.offer.2'),
@@ -105,7 +105,7 @@ export default function WorkWithUs() {
               </div>
               <a
                 href={voiceMailto}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl text-sm transition-all duration-200 shadow-lg shadow-violet-900/40 flex-shrink-0"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl text-sm transition-all duration-200 shadow-lg shadow-black/40 flex-shrink-0"
               >
                 <Mail size={14} />
                 {t('workWithUs.voice.apply.cta')}

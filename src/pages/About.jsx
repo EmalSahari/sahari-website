@@ -22,7 +22,7 @@ export default function About() {
       icon: <Target size={22} />,
       title: t('about.values.fit.title'),
       desc: t('about.values.fit.desc'),
-      iconBg: 'bg-violet-500/15 text-violet-400',
+      iconBg: 'bg-white/5 text-zinc-400',
     },
     {
       icon: <CheckCircle2 size={22} />,
@@ -83,7 +83,7 @@ export default function About() {
         >
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-violet-500/30 shadow-lg shadow-violet-900/40 bg-gradient-to-br from-violet-900/40 to-indigo-900/40">
+              <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-white/15 shadow-lg shadow-black/40 bg-zinc-900">
                 <img
                   src="/emal.webp"
                   alt="Emal Sahari"
@@ -93,10 +93,9 @@ export default function About() {
                   style={{ objectPosition: '50% 25%' }}
                 />
               </div>
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-violet-500/30 to-indigo-500/30 blur-lg -z-10" />
             </div>
           </div>
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
+          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
             {t('about.heading.start')} <span className="gradient-text">{t('about.heading.highlight')}</span>
           </h1>
@@ -142,8 +141,8 @@ export default function About() {
           custom={2}
           className="mb-14"
         >
-          <SpotlightCard className="bg-gradient-to-br from-violet-950/30 to-[#0f0f0f] p-8">
-            <h2 className="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-6">{t('about.stats.heading')}</h2>
+          <SpotlightCard className="bg-zinc-950 p-8">
+            <h2 className="text-xs font-semibold text-zinc-400 uppercase tracking-widest mb-6">{t('about.stats.heading')}</h2>
             <div className="grid grid-cols-3 gap-6">
               {stats.map((s) => (
                 <div key={s.label}>
@@ -186,7 +185,7 @@ export default function About() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="relative"
               >
-                <div className="absolute -left-[1.85rem] w-7 h-7 rounded-full bg-[#0f0f0f] border border-violet-500/40 flex items-center justify-center text-violet-400">
+                <div className="absolute -left-[1.85rem] w-7 h-7 rounded-full bg-[#0f0f0f] border border-white/20 flex items-center justify-center text-zinc-400">
                   {item.icon}
                 </div>
                 <h3 className="text-white font-medium mb-1">{item.title}</h3>
@@ -209,9 +208,9 @@ export default function About() {
             {skills.map((skill) => (
               <span
                 key={skill}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-sm hover:border-violet-500/40 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-sm hover:border-white/20 hover:text-white transition-colors"
               >
-                <CheckCircle2 size={12} className="text-violet-400" />
+                <CheckCircle2 size={12} className="text-zinc-400" />
                 {skill}
               </span>
             ))}
@@ -258,7 +257,7 @@ export default function About() {
           <p className="text-zinc-400 mb-5">{t('about.workTogether')}</p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
           >
             {t('about.cta')}
             <ArrowRight size={16} />

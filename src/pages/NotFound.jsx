@@ -26,7 +26,7 @@ export default function NotFound() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10"
         >
-          <p className="text-violet-400 text-sm font-medium tracking-widest uppercase mb-4">
+          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-4">
             {t('notFound.eyebrow')}
           </p>
           <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-5">
@@ -38,7 +38,7 @@ export default function NotFound() {
           </p>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium rounded-xl transition-all duration-200 shadow-lg shadow-violet-900/40"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
           >
             <ArrowLeft size={16} />
             {t('notFound.back')}
