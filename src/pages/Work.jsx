@@ -68,7 +68,7 @@ export default function Work() {
 
   return (
     <div className="pt-16">
-      <Seo description="Portfolio of projects built by Sahari — client websites, SaaS products, web apps, and design demos." />
+      <Seo description="Portfolio of projects built by Sahari: client websites, SaaS products, web apps, and design demos." />
 
       <section className="max-w-6xl mx-auto px-6 py-20">
         <motion.div
