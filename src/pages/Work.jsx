@@ -48,7 +48,7 @@ export default function Work() {
       desc: t('projects.mork.desc'),
       tag: t('projects.mork.tag'),
       href: '/mork',
-      image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=85',
+      image: '/mork.png',
       color: 'from-amber-900/40 to-[#0f0f0f]',
       border: 'border-amber-600/20',
       iconBg: 'bg-amber-600/15 text-amber-500',
