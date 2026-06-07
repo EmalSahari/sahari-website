@@ -39,19 +39,16 @@ const specialties = [
 ]
 
 const works = [
-  { src: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=900&q=80', title: 'Snake & dagger', artist: 'Adam', year: '2024' },
-  { src: 'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=900&q=80', title: 'Botanical sleeve', artist: 'Mira', year: '2024' },
-  { src: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=900&q=80', title: 'Ornamental hand', artist: 'Adam', year: '2024' },
-  { src: 'https://images.unsplash.com/photo-1530021232320-687d8e3dba54?w=900&q=80', title: 'Black moth', artist: 'Sasha', year: '2023' },
-  { src: 'https://images.unsplash.com/photo-1543059080-f9b1272213d5?w=900&q=80', title: 'Fine line floral', artist: 'Mira', year: '2023' },
-  { src: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=900&q=80', title: 'Sacred geometry', artist: 'Adam', year: '2023' },
+  { src: '/blackstone/blackwork%20tattoo%20design1.jpg', title: 'Snake & dagger', artist: 'Adam', year: '2024' },
+  { src: '/blackstone/blackwork%20tattoo%20design2.jpg', title: 'Botanical sleeve', artist: 'Mira', year: '2024' },
+  { src: '/blackstone/blackwork%20tattoo%20design3.jpg', title: 'Ornamental hand', artist: 'Adam', year: '2024' },
+  { src: '/blackstone/blackwork%20tattoo%20design4.jpg', title: 'Black moth', artist: 'Sasha', year: '2023' },
+  { src: '/blackstone/blackwork%20tattoo%20design5.jpg', title: 'Fine line floral', artist: 'Mira', year: '2023' },
+  { src: '/blackstone/blackwork%20tattoo%20design6.jpg', title: 'Sacred geometry', artist: 'Adam', year: '2023' },
 ]
 
-const studioImages = [
-  'https://images.unsplash.com/photo-1612459284970-e8f027596582?w=1200&q=80',
-  'https://images.unsplash.com/photo-1571115332105-37e9f2c30b6f?w=900&q=80',
-  'https://images.unsplash.com/photo-1581985673473-0784a7a44e39?w=900&q=80',
-]
+const HERO_IMAGE = '/blackstone/tattoo%20close%20up%20black%20and%20white.jpg'
+const STUDIO_IMAGE = '/blackstone/tattoo%20studio%20dark%20aesthetic.jpg'
 
 const faqs = [
   {
@@ -165,16 +162,16 @@ export default function BlackStone() {
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=2000&q=85"
+            src={HERO_IMAGE}
             alt=""
             aria-hidden
-            className="w-full h-full object-cover opacity-40"
-            style={{ filter: 'grayscale(0.3) contrast(1.05)' }}
+            className="w-full h-full object-cover opacity-50"
+            style={{ filter: 'grayscale(0.4) contrast(1.05)' }}
           />
           <div
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(to bottom, ${COLORS.bg} 0%, rgba(10,10,10,0.4) 40%, ${COLORS.bg} 100%)`,
+              background: `linear-gradient(to bottom, ${COLORS.bg} 0%, rgba(10,10,10,0.35) 35%, rgba(10,10,10,0.55) 65%, ${COLORS.bg} 100%)`,
             }}
           />
         </div>
@@ -281,8 +278,8 @@ export default function BlackStone() {
       {/* Studio interior */}
       <section id="studio" className="py-20 md:py-32 px-6 md:px-10" style={{ borderTop: `1px solid ${COLORS.border}` }}>
         <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-6">
-            <div>
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-end mb-10 md:mb-14">
+            <div className="md:col-span-7">
               <p className="text-[10px] md:text-xs tracking-[0.35em] uppercase mb-4 md:mb-6" style={{ color: COLORS.accent }}>
                 ¶ Inside
               </p>
@@ -290,45 +287,34 @@ export default function BlackStone() {
                 The studio.
               </h2>
             </div>
-            <p className="max-w-sm text-sm md:text-base leading-relaxed" style={{ color: COLORS.textMuted }}>
-              A quiet room on Jægersborggade. Three chairs, good light,
-              and a strict no-walk-ins policy. Come for the consultation,
-              come back for the work.
-            </p>
+            <div className="md:col-span-5">
+              <p className="text-sm md:text-base leading-relaxed mb-6" style={{ color: COLORS.textMuted }}>
+                A quiet room on Jægersborggade. Three chairs, good light,
+                and a strict no-walk-ins policy. Come for the consultation,
+                come back for the work.
+              </p>
+              <p className="text-xs tracking-[0.25em] uppercase" style={{ color: COLORS.accent }}>
+                Open Tue — Sat · By appointment
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-12 gap-3 md:gap-5">
-            <motion.figure
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.7 }}
-              className="col-span-12 md:col-span-8 aspect-[16/10] overflow-hidden"
-              style={{ backgroundColor: COLORS.grey }}
-            >
-              <img src={studioImages[0]} alt="" className="w-full h-full object-cover" loading="lazy" />
-            </motion.figure>
-            <motion.figure
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="col-span-6 md:col-span-4 aspect-[3/4] overflow-hidden"
-              style={{ backgroundColor: COLORS.grey }}
-            >
-              <img src={studioImages[1]} alt="" className="w-full h-full object-cover" loading="lazy" />
-            </motion.figure>
-            <motion.figure
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="col-span-6 md:col-span-4 aspect-[3/4] overflow-hidden md:aspect-auto md:row-start-2"
-              style={{ backgroundColor: COLORS.grey }}
-            >
-              <img src={studioImages[2]} alt="" className="w-full h-full object-cover" loading="lazy" />
-            </motion.figure>
-          </div>
+          <motion.figure
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 0.8 }}
+            className="relative aspect-[21/9] overflow-hidden"
+            style={{ backgroundColor: COLORS.grey }}
+          >
+            <img src={STUDIO_IMAGE} alt="" className="w-full h-full object-cover" loading="lazy" />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `linear-gradient(to top, rgba(10,10,10,0.4) 0%, transparent 50%)`,
+              }}
+            />
+          </motion.figure>
         </div>
       </section>
 

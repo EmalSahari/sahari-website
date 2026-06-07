@@ -26,7 +26,7 @@ export default function Work() {
       desc: t('projects.blackstone.desc'),
       tag: t('projects.blackstone.tag'),
       href: '/black-stone',
-      image: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=1200&q=85',
+      image: '/blackstone/tattoo%20close%20up%20black%20and%20white.jpg',
       color: 'from-red-900/40 to-[#0f0f0f]',
       border: 'border-red-500/20',
       iconBg: 'bg-red-500/15 text-red-400',
