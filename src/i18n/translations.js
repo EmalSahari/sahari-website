@@ -105,7 +105,7 @@ export const translations = {
     // CTA section (Home)
     'cta.heading': 'Ready to build something?',
     'cta.subtitle': "Whether you need a website, an app, or just want to talk through an idea, I'm open to new projects.",
-    'cta.pricing': 'Fixed pricing from DKK 9,995. Custom quotes based on scope.',
+    'cta.pricing': 'Fixed pricing from DKK 4,995. Single-page sites can be priced lower. Custom quotes for larger scope.',
     'cta.button': "Let's talk",
 
     // About page
@@ -194,6 +194,7 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'All rights reserved.',
+    'footer.builtWith': 'Built with',
 
     // Cookie notice
     'cookie.heading': 'We use cookies',
@@ -354,7 +355,7 @@ export const translations = {
     // CTA section (Home)
     'cta.heading': 'Klar til at bygge noget?',
     'cta.subtitle': 'Uanset om du har brug for en hjemmeside, en app, eller bare vil snakke en idé igennem, er jeg åben for nye projekter.',
-    'cta.pricing': 'Fast pris fra 9.995 kr. Skræddersyede tilbud baseret på scope.',
+    'cta.pricing': 'Fast pris fra 4.995 kr. Single-page kan gøres billigere. Skræddersyede tilbud baseret på scope.',
     'cta.button': 'Lad os snakke',
 
     // About page
@@ -443,6 +444,7 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'Alle rettigheder forbeholdes.',
+    'footer.builtWith': 'Bygget med',
 
     // Cookie notice
     'cookie.heading': 'Vi bruger cookies',

@@ -127,7 +127,7 @@ export default function Home() {
 
   return (
     <div className="pt-16">
-      <Seo description="Software studio in Denmark building secure websites, mobile apps, backends and custom tools. End-to-end delivery, fast turnaround, fixed pricing from DKK 9,995. Founded by Emal Sahari." />
+      <Seo description="Software studio in Denmark building secure websites, mobile apps, backends and custom tools. End-to-end delivery, fast turnaround, fixed pricing from DKK 4,995. Founded by Emal Sahari." />
       {/* Hero */}
       <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         <motion.div
