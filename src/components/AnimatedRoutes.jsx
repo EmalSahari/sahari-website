@@ -7,7 +7,7 @@ import WorkWithUs from '../pages/WorkWithUs'
 import Work from '../pages/Work'
 import BlackStone from '../pages/BlackStone'
 import DriftCoffee from '../pages/DriftCoffee'
-import FoldHair from '../pages/FoldHair'
+import MorkBarber from '../pages/MorkBarber'
 import NotFound from '../pages/NotFound'
 
 export default function AnimatedRoutes() {
@@ -22,7 +22,7 @@ export default function AnimatedRoutes() {
       { path: '/work', element: <Work /> },
       { path: '/black-stone', element: <BlackStone /> },
       { path: '/drift', element: <DriftCoffee /> },
-      { path: '/fold', element: <FoldHair /> },
+      { path: '/mork', element: <MorkBarber /> },
       { path: '*', element: <NotFound /> },
     ],
     location,
