@@ -12,8 +12,8 @@ export const translations = {
     // Hero
     'hero.badge': 'Building software in Aarhus',
     'hero.headline.start': 'Websites in',
-    'hero.headline.highlight': 'a week',
-    'hero.headline.end': '. Not six months.',
+    'hero.headline.highlight': 'weeks',
+    'hero.headline.end': '. Not months.',
     'hero.subtitle': "Websites, apps, and custom software for businesses that want to go online without spending half a year at an agency. Most projects ship in a week or two.",
     'hero.cta.work': 'Work with me',
     'hero.cta.watch': 'Watch my content',
@@ -252,9 +252,9 @@ export const translations = {
     // Hero
     'hero.badge': 'Bygger software i Aarhus',
     'hero.headline.start': 'Hjemmesider på',
-    'hero.headline.highlight': 'en uge',
-    'hero.headline.end': '. Ikke seks måneder.',
-    'hero.subtitle': 'Hjemmesider, apps og skræddersyet software til virksomheder der vil online uden at bruge et halvt år hos et bureau. NexByg fik en færdig, professionel side på under en uge.',
+    'hero.headline.highlight': 'uger',
+    'hero.headline.end': '. Ikke måneder.',
+    'hero.subtitle': 'Hjemmesider, apps og skræddersyet software til virksomheder der vil online uden at bruge et halvt år hos et bureau. De fleste projekter er live på en uge eller to.',
     'hero.cta.work': 'Samarbejd med mig',
     'hero.cta.watch': 'Se mit indhold',
     'hero.cta.viewWork': 'Se mit arbejde',

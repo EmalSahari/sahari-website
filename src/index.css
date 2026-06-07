@@ -32,7 +32,8 @@ body {
   .gradient-text-animated {
     color: #ffffff;
     text-decoration: underline;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #fbbf24;
     text-underline-offset: 0.18em;
     text-decoration-skip-ink: none;
   }

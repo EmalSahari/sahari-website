@@ -137,7 +137,7 @@ export default function Home() {
           custom={0}
           className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
         >
-          <MapPin size={14} />
+          <MapPin size={14} className="text-amber-400" />
           <span>{t('hero.badge')}</span>
         </motion.div>
 
