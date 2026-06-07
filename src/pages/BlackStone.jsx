@@ -39,16 +39,16 @@ const specialties = [
 ]
 
 const works = [
-  { src: '/blackstone/blackwork%20tattoo%20design1.jpg', title: 'Snake & dagger', artist: 'Adam', year: '2024' },
-  { src: '/blackstone/blackwork%20tattoo%20design2.jpg', title: 'Botanical sleeve', artist: 'Mira', year: '2024' },
-  { src: '/blackstone/blackwork%20tattoo%20design3.jpg', title: 'Ornamental hand', artist: 'Adam', year: '2024' },
-  { src: '/blackstone/blackwork%20tattoo%20design4.jpg', title: 'Black moth', artist: 'Sasha', year: '2023' },
-  { src: '/blackstone/blackwork%20tattoo%20design5.jpg', title: 'Fine line floral', artist: 'Mira', year: '2023' },
-  { src: '/blackstone/blackwork%20tattoo%20design6.jpg', title: 'Sacred geometry', artist: 'Adam', year: '2023' },
+  { src: '/blackstone/work-1.jpg', title: 'Snake & dagger', artist: 'Adam', year: '2024' },
+  { src: '/blackstone/work-2.jpg', title: 'Botanical sleeve', artist: 'Mira', year: '2024' },
+  { src: '/blackstone/work-3.jpg', title: 'Ornamental hand', artist: 'Adam', year: '2024' },
+  { src: '/blackstone/work-4.jpg', title: 'Black moth', artist: 'Sasha', year: '2023' },
+  { src: '/blackstone/work-5.jpg', title: 'Fine line floral', artist: 'Mira', year: '2023' },
+  { src: '/blackstone/work-6.jpg', title: 'Sacred geometry', artist: 'Adam', year: '2023' },
 ]
 
-const HERO_IMAGE = '/blackstone/tattoo%20close%20up%20black%20and%20white.jpg'
-const STUDIO_IMAGE = '/blackstone/tattoo%20studio%20dark%20aesthetic.jpg'
+const HERO_IMAGE = '/blackstone/hero.jpg'
+const STUDIO_IMAGE = '/blackstone/studio.jpg'
 
 const faqs = [
   {
