@@ -1,0 +1,312 @@
+import { useEffect } from 'react'
+import { motion } from 'framer-motion'
+
+const COLORS = {
+  bg: '#0a0a0a',
+  text: '#f5f0e8',
+  textMuted: '#8a8478',
+  accent: '#8b1a1a',
+  grey: '#1c1c1c',
+  border: '#2a2826',
+}
+
+const display = { fontFamily: '"Fraunces", serif' }
+const body = { fontFamily: '"DM Sans", sans-serif' }
+
+const artists = [
+  {
+    name: 'Mira Vex',
+    style: 'Fine line · Botanical',
+    instagram: '@miravex.ink',
+  },
+  {
+    name: 'Adam Krohn',
+    style: 'Blackwork · Ornamental',
+    instagram: '@krohn.tattoo',
+  },
+  {
+    name: 'Sasha Lund',
+    style: 'Custom · Neo-traditional',
+    instagram: '@sashalund.tat',
+  },
+]
+
+const specialties = [
+  {
+    no: '01',
+    title: 'Fine line',
+    desc: 'Delicate strokes and minimalist motifs. Made with single needles for precision. Quiet, considered, legible thirty years from now.',
+  },
+  {
+    no: '02',
+    title: 'Blackwork',
+    desc: 'Heavy black areas, ornamental shapes, and graphic symbolism. Inspired by woodblock prints, old typography, and religious iconography.',
+  },
+  {
+    no: '03',
+    title: 'Custom design',
+    desc: 'Original pieces drawn from scratch with you. We meet for a consultation, sketches go back and forth, we build it together.',
+  },
+]
+
+const works = [
+  { src: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=900&q=80', title: 'Snake & dagger', artist: 'Adam', year: '2024' },
+  { src: 'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=900&q=80', title: 'Botanical sleeve', artist: 'Mira', year: '2024' },
+  { src: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=900&q=80', title: 'Ornamental hand', artist: 'Adam', year: '2024' },
+  { src: 'https://images.unsplash.com/photo-1530021232320-687d8e3dba54?w=900&q=80', title: 'Black moth', artist: 'Sasha', year: '2023' },
+  { src: 'https://images.unsplash.com/photo-1543059080-f9b1272213d5?w=900&q=80', title: 'Fine line floral', artist: 'Mira', year: '2023' },
+  { src: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=900&q=80', title: 'Sacred geometry', artist: 'Adam', year: '2023' },
+]
+
+export default function BlackStone() {
+  useEffect(() => {
+    document.title = 'BLACK STONE — Custom tattoo studio · Copenhagen'
+    const prev = document.body.style.backgroundColor
+    document.body.style.backgroundColor = COLORS.bg
+    return () => { document.body.style.backgroundColor = prev }
+  }, [])
+
+  return (
+    <div style={{ ...body, backgroundColor: COLORS.bg, color: COLORS.text }} className="min-h-screen overflow-x-hidden">
+      {/* Top bar */}
+      <header className="fixed top-0 left-0 right-0 z-40 backdrop-blur-sm" style={{ backgroundColor: 'rgba(10,10,10,0.6)' }}>
+        <div className="max-w-[1400px] mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
+          <span style={display} className="text-lg tracking-[0.25em] uppercase">Black Stone</span>
+          <nav className="hidden md:flex items-center gap-8 text-xs tracking-[0.25em] uppercase" style={{ color: COLORS.textMuted }}>
+            <a href="#work" className="hover:text-white transition-colors">Work</a>
+            <a href="#artists" className="hover:text-white transition-colors">Artists</a>
+            <a href="#booking" className="hover:text-white transition-colors">Book</a>
+          </nav>
+          <a
+            href="#booking"
+            className="text-xs tracking-[0.25em] uppercase border px-3 py-2 transition-colors hover:bg-white hover:text-black"
+            style={{ borderColor: COLORS.border, color: COLORS.text }}
+          >
+            Consultation
+          </a>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative min-h-screen flex flex-col justify-end pt-32 pb-16 px-6 md:px-10">
+        <div className="max-w-[1400px] mx-auto w-full">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-xs md:text-sm tracking-[0.35em] uppercase mb-8"
+            style={{ color: COLORS.textMuted }}
+          >
+            Custom tattoo studio · Copenhagen · Est. 2017
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            style={{ ...display, fontWeight: 400, lineHeight: 0.85, letterSpacing: '-0.04em' }}
+            className="text-[18vw] md:text-[13vw]"
+          >
+            BLACK<br />
+            <span style={{ fontStyle: 'italic', fontWeight: 300, color: COLORS.accent }}>stone</span>
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+          >
+            <p className="max-w-md text-base md:text-lg leading-relaxed" style={{ color: COLORS.textMuted }}>
+              Three artists. Fine line, blackwork, and custom. By
+              appointment only — every piece starts with a conversation.
+            </p>
+            <div className="flex items-center gap-4 text-xs tracking-[0.25em] uppercase" style={{ color: COLORS.textMuted }}>
+              <span>↓</span>
+              <span>Scroll</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Manifesto */}
+      <section className="py-32 md:py-48 px-6 md:px-10" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+        <div className="max-w-[1100px] mx-auto">
+          <p className="text-xs tracking-[0.35em] uppercase mb-10" style={{ color: COLORS.accent }}>
+            ¶ Manifesto
+          </p>
+          <blockquote
+            style={{ ...display, fontWeight: 300, lineHeight: 1.15, letterSpacing: '-0.02em' }}
+            className="text-3xl md:text-5xl lg:text-6xl"
+          >
+            <span style={{ color: COLORS.accent, fontStyle: 'italic' }}>"</span>
+            A tattoo isn't an accessory. It's a decision you carry
+            for the rest of your life. Our job is to make sure it still
+            makes sense <em style={{ color: COLORS.accent }}>thirty years</em> from now.
+            <span style={{ color: COLORS.accent, fontStyle: 'italic' }}>"</span>
+          </blockquote>
+          <p className="mt-10 text-sm tracking-[0.25em] uppercase" style={{ color: COLORS.textMuted }}>
+            — The Black Stone studio
+          </p>
+        </div>
+      </section>
+
+      {/* Specialties */}
+      <section className="py-24 md:py-32 px-6 md:px-10" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-6">
+            <h2 style={{ ...display, fontWeight: 400, letterSpacing: '-0.03em' }} className="text-5xl md:text-7xl leading-[0.95]">
+              Three ways<br />we work.
+            </h2>
+            <p className="max-w-sm text-sm md:text-base leading-relaxed" style={{ color: COLORS.textMuted }}>
+              We stay narrow on purpose. That way you get a piece that
+              holds together — not a catalogue of effects.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-px" style={{ backgroundColor: COLORS.border }}>
+            {specialties.map((s) => (
+              <div key={s.no} className="p-8 md:p-10" style={{ backgroundColor: COLORS.bg }}>
+                <div className="flex items-baseline gap-4 mb-6">
+                  <span style={{ ...display, color: COLORS.accent }} className="text-sm">
+                    {s.no}
+                  </span>
+                  <div className="flex-1 h-px" style={{ backgroundColor: COLORS.border }} />
+                </div>
+                <h3 style={{ ...display, fontWeight: 400, letterSpacing: '-0.02em' }} className="text-3xl md:text-4xl mb-5">
+                  {s.title}
+                </h3>
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: COLORS.textMuted }}>
+                  {s.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Artists */}
+      <section id="artists" className="py-24 md:py-32 px-6 md:px-10" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+        <div className="max-w-[1400px] mx-auto">
+          <p className="text-xs tracking-[0.35em] uppercase mb-8" style={{ color: COLORS.accent }}>
+            ¶ The studio
+          </p>
+          <h2 style={{ ...display, fontWeight: 400, letterSpacing: '-0.03em' }} className="text-5xl md:text-7xl leading-[0.95] mb-16">
+            Three artists.<br />
+            <em style={{ color: COLORS.accent, fontWeight: 300 }}>One room.</em>
+          </h2>
+          <div className="grid md:grid-cols-3 gap-px" style={{ backgroundColor: COLORS.border }}>
+            {artists.map((a) => (
+              <div key={a.name} className="p-8 md:p-10" style={{ backgroundColor: COLORS.bg }}>
+                <h3 style={{ ...display, fontWeight: 400, letterSpacing: '-0.02em' }} className="text-2xl md:text-3xl mb-2">
+                  {a.name}
+                </h3>
+                <p className="text-sm tracking-wider mb-6" style={{ color: COLORS.accent }}>
+                  {a.style}
+                </p>
+                <p className="text-sm" style={{ color: COLORS.textMuted }}>
+                  {a.instagram}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Work grid */}
+      <section id="work" className="py-24 md:py-32 px-6 md:px-10" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="flex items-baseline justify-between mb-16">
+            <h2 style={{ ...display, fontWeight: 400, letterSpacing: '-0.03em' }} className="text-5xl md:text-7xl">
+              Recent work
+            </h2>
+            <span className="text-xs tracking-[0.25em] uppercase" style={{ color: COLORS.textMuted }}>
+              2023 — 2024
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+            {works.map((w, i) => (
+              <motion.figure
+                key={w.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: (i % 3) * 0.1 }}
+                className="group relative aspect-[3/4] overflow-hidden"
+                style={{ backgroundColor: COLORS.grey }}
+              >
+                <img
+                  src={w.src}
+                  alt={w.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <figcaption
+                  className="absolute inset-x-0 bottom-0 p-4 md:p-5 flex items-baseline justify-between"
+                  style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 100%)' }}
+                >
+                  <div>
+                    <p style={display} className="text-base md:text-lg leading-tight">{w.title}</p>
+                    <p className="text-xs mt-1" style={{ color: COLORS.textMuted }}>by {w.artist}</p>
+                  </div>
+                  <span className="text-xs tracking-[0.2em] uppercase" style={{ color: COLORS.textMuted }}>{w.year}</span>
+                </figcaption>
+              </motion.figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Booking CTA */}
+      <section id="booking" className="py-32 md:py-48 px-6 md:px-10 relative" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+        <div className="max-w-[1100px] mx-auto text-center">
+          <p className="text-xs tracking-[0.35em] uppercase mb-10" style={{ color: COLORS.accent }}>
+            ¶ Book a consultation
+          </p>
+          <h2 style={{ ...display, fontWeight: 400, lineHeight: 1, letterSpacing: '-0.03em' }} className="text-6xl md:text-8xl mb-10">
+            Ready for
+            <br />
+            <em style={{ color: COLORS.accent, fontWeight: 300 }}>new ink?</em>
+          </h2>
+          <p className="max-w-xl mx-auto text-base md:text-lg leading-relaxed mb-12" style={{ color: COLORS.textMuted }}>
+            Send us an email with the motif, placement, and rough size.
+            Consultation is free, no commitment. You'll hear from us within
+            a couple of days.
+          </p>
+          <a
+            href="mailto:hello@blackstone.tattoo"
+            className="inline-block text-sm md:text-base tracking-[0.3em] uppercase px-10 py-5 transition-all hover:scale-[1.02]"
+            style={{ backgroundColor: COLORS.accent, color: COLORS.text }}
+          >
+            hello@blackstone.tattoo
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-6 md:px-10" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <p style={display} className="text-base tracking-[0.25em] uppercase mb-2">BLACK STONE TATTOO</p>
+            <p className="text-xs" style={{ color: COLORS.textMuted }}>
+              Jægersborggade 47 · 2200 Copenhagen N · By appointment only
+            </p>
+          </div>
+          <div className="flex items-center gap-6 text-xs tracking-[0.25em] uppercase" style={{ color: COLORS.textMuted }}>
+            <a href="#" className="hover:text-white transition-colors">Instagram</a>
+            <a href="mailto:hello@blackstone.tattoo" className="hover:text-white transition-colors">Mail</a>
+            <span>© 2024</span>
+          </div>
+        </div>
+        <div className="mt-12 pt-6 max-w-[1400px] mx-auto" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+          <p className="text-xs text-center" style={{ color: COLORS.textMuted }}>
+            Concept site designed & built by{' '}
+            <a href="https://sahari.io" className="underline hover:text-white transition-colors">Sahari</a>
+            {' '}— not a real business.
+          </p>
+        </div>
+      </footer>
+    </div>
+  )
+}

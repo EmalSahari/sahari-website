@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer } from 'lucide-react'
+import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -19,6 +19,17 @@ export default function Work() {
       color: 'from-orange-900/40 to-[#0f0f0f]',
       border: 'border-orange-500/20',
       iconBg: 'bg-orange-500/15 text-orange-400',
+    },
+    {
+      icon: <Flame size={20} />,
+      title: t('projects.blackstone.title'),
+      desc: t('projects.blackstone.desc'),
+      tag: t('projects.blackstone.tag'),
+      href: '/black-stone',
+      image: 'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=1200&q=85',
+      color: 'from-red-900/40 to-[#0f0f0f]',
+      border: 'border-red-500/20',
+      iconBg: 'bg-red-500/15 text-red-400',
     },
     {
       icon: <Calendar size={20} />,
