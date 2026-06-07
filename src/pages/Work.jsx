@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee } from 'lucide-react'
+import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee, Scissors } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -41,6 +41,17 @@ export default function Work() {
       color: 'from-amber-900/40 to-[#0f0f0f]',
       border: 'border-amber-500/20',
       iconBg: 'bg-amber-500/15 text-amber-400',
+    },
+    {
+      icon: <Scissors size={20} />,
+      title: t('projects.fold.title'),
+      desc: t('projects.fold.desc'),
+      tag: t('projects.fold.tag'),
+      href: '/fold',
+      image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=85',
+      color: 'from-emerald-900/40 to-[#0f0f0f]',
+      border: 'border-emerald-500/20',
+      iconBg: 'bg-emerald-500/15 text-emerald-400',
     },
     {
       icon: <Calendar size={20} />,
