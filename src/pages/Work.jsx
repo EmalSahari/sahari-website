@@ -37,7 +37,7 @@ export default function Work() {
       desc: t('projects.drift.desc'),
       tag: t('projects.drift.tag'),
       href: '/drift',
-      image: '/drift.png',
+      image: '/drift.webp',
       color: 'from-amber-900/40 to-[#0f0f0f]',
       border: 'border-amber-500/20',
       iconBg: 'bg-amber-500/15 text-amber-400',
