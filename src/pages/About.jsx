@@ -22,7 +22,7 @@ export default function About() {
       icon: <Target size={22} />,
       title: t('about.values.fit.title'),
       desc: t('about.values.fit.desc'),
-      iconBg: 'bg-white/5 text-zinc-400',
+      iconBg: 'bg-amber-500/15 text-amber-400',
     },
     {
       icon: <CheckCircle2 size={22} />,
@@ -95,7 +95,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
             {t('about.heading.start')} <span className="gradient-text">{t('about.heading.highlight')}</span>
           </h1>
@@ -120,7 +120,7 @@ export default function About() {
             {values.map((v, i) => (
               <SpotlightCard
                 key={v.title}
-                glowColor={v.iconBg.includes('emerald') ? '52,211,153' : v.iconBg.includes('sky') ? '56,189,248' : '167,139,250'}
+                glowColor={v.iconBg.includes('emerald') ? '52,211,153' : v.iconBg.includes('sky') ? '56,189,248' : '251,191,36'}
                 className="bg-[#0f0f0f] p-6 h-full"
               >
                 <div className={`w-11 h-11 rounded-lg ${v.iconBg} flex items-center justify-center mb-5`}>
@@ -185,7 +185,7 @@ export default function About() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="relative"
               >
-                <div className="absolute -left-[1.85rem] w-7 h-7 rounded-full bg-[#0f0f0f] border border-white/20 flex items-center justify-center text-zinc-400">
+                <div className="absolute -left-[1.85rem] w-7 h-7 rounded-full bg-[#0f0f0f] border border-amber-500/40 flex items-center justify-center text-amber-400">
                   {item.icon}
                 </div>
                 <h3 className="text-white font-medium mb-1">{item.title}</h3>
@@ -208,9 +208,9 @@ export default function About() {
             {skills.map((skill) => (
               <span
                 key={skill}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-sm hover:border-white/20 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-sm hover:border-amber-500/40 hover:text-white transition-colors"
               >
-                <CheckCircle2 size={12} className="text-zinc-400" />
+                <CheckCircle2 size={12} className="text-amber-400" />
                 {skill}
               </span>
             ))}

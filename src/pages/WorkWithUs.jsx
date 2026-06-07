@@ -47,7 +47,7 @@ export default function WorkWithUs() {
           variants={fadeUp} initial="hidden" animate="show" custom={0}
           className="text-center mb-14 max-w-2xl mx-auto"
         >
-          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('workWithUs.eyebrow')}</p>
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('workWithUs.eyebrow')}</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
             {t('workWithUs.heading.start')} <span className="gradient-text">{t('workWithUs.heading.highlight')}</span>
           </h1>

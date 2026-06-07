@@ -77,7 +77,7 @@ export default function Work() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
             {t('work.eyebrow')}
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">

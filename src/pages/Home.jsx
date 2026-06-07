@@ -51,7 +51,7 @@ function ServiceCard({ service, i }) {
   return (
     <Reveal i={i}>
       <SpotlightCard className="group border border-white/10 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
-        <div className="w-10 h-10 rounded-lg bg-white/5 text-zinc-400 flex items-center justify-center mb-5 group-hover:bg-white/10 transition-colors">
+        <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-5 group-hover:bg-amber-500/20 transition-colors">
           {service.icon}
         </div>
         <h3 className="text-white font-semibold mb-2 leading-snug">{service.title}</h3>
@@ -181,7 +181,7 @@ export default function Home() {
             to="/work"
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
           >
-            <Briefcase size={16} className="text-zinc-400" />
+            <Briefcase size={16} className="text-amber-400" />
             {t('hero.cta.viewWork')}
           </Link>
         </motion.div>
@@ -194,15 +194,15 @@ export default function Home() {
           className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
         >
           <span className="inline-flex items-center gap-2">
-            <Zap size={14} className="text-zinc-400" />
+            <Zap size={14} className="text-amber-400" />
             {t('hero.feature.speed')}
           </span>
           <span className="inline-flex items-center gap-2">
-            <Shield size={14} className="text-zinc-400" />
+            <Shield size={14} className="text-amber-400" />
             {t('hero.feature.security')}
           </span>
           <span className="inline-flex items-center gap-2">
-            <Workflow size={14} className="text-zinc-400" />
+            <Workflow size={14} className="text-amber-400" />
             {t('hero.feature.endToEnd')}
           </span>
         </motion.div>
@@ -228,7 +228,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
             {t('services.heading')}
           </h2>
@@ -245,7 +245,7 @@ export default function Home() {
 
         <p className="mt-10 text-center text-sm text-zinc-500">
           {t('services.openTo')}{' '}
-          <Link to="/contact" className="text-zinc-400 hover:text-zinc-200 transition-colors">
+          <Link to="/contact" className="text-amber-400 hover:text-amber-300 transition-colors">
             {t('services.openToCta')}
           </Link>
         </p>
@@ -260,7 +260,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14 max-w-2xl mx-auto"
         >
-          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             {t('process.heading')}
           </h2>
@@ -274,7 +274,7 @@ export default function Home() {
             <Reveal key={p.title} i={i} className="relative">
               <SpotlightCard className="group border border-white/10 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-white/5 text-zinc-400 flex items-center justify-center flex-shrink-0 group-hover:bg-white/10 transition-colors">
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500/20 transition-colors">
                     {p.icon}
                   </div>
                   <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
@@ -298,7 +298,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
             {t('projects.heading')}
           </h2>
@@ -359,9 +359,9 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative border-l-2 border-white/20 pl-8 md:pl-12 py-4"
+          className="relative border-l-2 border-amber-500/40 pl-8 md:pl-12 py-4"
         >
-          <Quote size={28} className="text-zinc-400 mb-5" />
+          <Quote size={28} className="text-amber-400 mb-5" />
           <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6 max-w-3xl">
             {t('testimonial.quote')}
           </blockquote>

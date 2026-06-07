@@ -26,7 +26,7 @@ export default function NotFound() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10"
         >
-          <p className="text-zinc-400 text-sm font-medium tracking-widest uppercase mb-4">
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-4">
             {t('notFound.eyebrow')}
           </p>
           <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-5">
