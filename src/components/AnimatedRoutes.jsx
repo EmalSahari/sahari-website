@@ -6,6 +6,7 @@ import Contact from '../pages/Contact'
 import WorkWithUs from '../pages/WorkWithUs'
 import Work from '../pages/Work'
 import BlackStone from '../pages/BlackStone'
+import DriftCoffee from '../pages/DriftCoffee'
 import NotFound from '../pages/NotFound'
 
 export default function AnimatedRoutes() {
@@ -19,6 +20,7 @@ export default function AnimatedRoutes() {
       { path: '/contact', element: <Contact /> },
       { path: '/work', element: <Work /> },
       { path: '/black-stone', element: <BlackStone /> },
+      { path: '/drift', element: <DriftCoffee /> },
       { path: '*', element: <NotFound /> },
     ],
     location,

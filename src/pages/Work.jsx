@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame } from 'lucide-react'
+import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -30,6 +30,17 @@ export default function Work() {
       color: 'from-red-900/40 to-[#0f0f0f]',
       border: 'border-red-500/20',
       iconBg: 'bg-red-500/15 text-red-400',
+    },
+    {
+      icon: <Coffee size={20} />,
+      title: t('projects.drift.title'),
+      desc: t('projects.drift.desc'),
+      tag: t('projects.drift.tag'),
+      href: '/drift',
+      image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=85',
+      color: 'from-amber-900/40 to-[#0f0f0f]',
+      border: 'border-amber-500/20',
+      iconBg: 'bg-amber-500/15 text-amber-400',
     },
     {
       icon: <Calendar size={20} />,
