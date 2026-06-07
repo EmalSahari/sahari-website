@@ -5,6 +5,7 @@ import About from '../pages/About'
 import Contact from '../pages/Contact'
 import WorkWithUs from '../pages/WorkWithUs'
 import Work from '../pages/Work'
+import Pricing from '../pages/Pricing'
 import BlackStone from '../pages/BlackStone'
 import DriftCoffee from '../pages/DriftCoffee'
 import MorkBarber from '../pages/MorkBarber'
@@ -20,6 +21,7 @@ export default function AnimatedRoutes() {
       { path: '/work-with-us', element: <WorkWithUs /> },
       { path: '/contact', element: <Contact /> },
       { path: '/work', element: <Work /> },
+      { path: '/pricing', element: <Pricing /> },
       { path: '/black-stone', element: <BlackStone /> },
       { path: '/drift', element: <DriftCoffee /> },
       { path: '/mork', element: <MorkBarber /> },
