@@ -26,7 +26,7 @@ export default function Work() {
       desc: t('projects.blackstone.desc'),
       tag: t('projects.blackstone.tag'),
       href: '/black-stone',
-      image: '/blackstone.jpg',
+      image: '/blackstone.webp',
       color: 'from-red-900/40 to-[#0f0f0f]',
       border: 'border-red-500/20',
       iconBg: 'bg-red-500/15 text-red-400',
