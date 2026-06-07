@@ -10,34 +10,34 @@ export const translations = {
     'nav.toggleMenu': 'Toggle menu',
 
     // Hero
-    'hero.badge': 'Software developer & content creator',
-    'hero.headline.start': 'Software that works',
-    'hero.headline.highlight': 'as good',
-    'hero.headline.end': 'as it looks.',
-    'hero.subtitle': 'I build software (websites, mobile apps, backends, custom tools) for businesses and creators who want a real online presence. Also a YouTuber and content creator.',
+    'hero.badge': 'Building software in Aarhus',
+    'hero.headline.start': 'Websites in',
+    'hero.headline.highlight': 'a week',
+    'hero.headline.end': '. Not six months.',
+    'hero.subtitle': "Websites, apps, and custom software for businesses that want to go online without spending half a year at an agency. Most projects ship in a week or two.",
     'hero.cta.work': 'Work with me',
     'hero.cta.watch': 'Watch my content',
     'hero.cta.viewWork': 'See my work',
     'hero.scroll': 'scroll',
     'hero.feature.speed': 'Delivered in days, not months',
-    'hero.feature.security': 'Security-first development',
-    'hero.feature.endToEnd': 'End-to-end delivery',
+    'hero.feature.security': 'Reviewed for security before launch',
+    'hero.feature.endToEnd': 'You talk to me, not a project manager',
 
     // Services
     'services.eyebrow': 'Services',
     'services.heading': 'What I build',
-    'services.subtitle': "From web and mobile to backend and beyond. If you can describe it, I'll build it.",
+    'services.subtitle': "If you can describe it, I can probably build it. Here's the usual stuff.",
     'services.web.title': 'Websites & Web Apps',
-    'services.web.desc': 'Fast, responsive sites and web apps designed to make your brand look serious and convert visitors into customers.',
+    'services.web.desc': "Sites that actually look like something. Built in React, hosted on Vercel, live in days. Squarespace templates are free — that's not what this is.",
     'services.mobile.title': 'Mobile Apps',
-    'services.mobile.desc': 'Apps for iOS and Android, built around your idea and shipped to the people who need them.',
+    'services.mobile.desc': 'iOS and Android. Native or cross-platform — whichever makes sense for what you actually need.',
     'services.backend.title': 'Backend, APIs & AI',
-    'services.backend.desc': 'Custom servers, APIs, databases, and AI features. The behind-the-scenes work that makes products feel effortless.',
+    'services.backend.desc': 'Servers, APIs, databases, AI features. The part that makes things actually work, not just look good in a demo.',
     'services.automation.title': 'Automation & Custom Software',
-    'services.automation.desc': 'Scripts, bots, integrations, internal tools. If you can describe what you need, I can build it.',
+    'services.automation.desc': "Scripts, bots, integrations, internal tools. If you do something manually 10 times a week, it can probably be automated.",
     'services.maintenance.title': 'Maintenance & Updates',
-    'services.maintenance.desc': 'Bug fixes, performance tuning, and new features for sites I built or modern stacks (React, Next.js, Vue). Keep things running smoothly after launch.',
-    'services.openTo': "Don't see what you need? I take on most projects — browser extensions, Discord bots, AI chat widgets, scrapers, anything.",
+    'services.maintenance.desc': "Bug fixes, performance, new features. On sites I built or modern stacks (React, Next.js, Vue). No 2014 WordPress nightmares.",
+    'services.openTo': "Need something not in here? Webshops, payment integration, browser extensions, Discord bots, AI chat widgets, scrapers — I take on most things.",
     'services.openToCta': "Let's talk",
 
     // Process — how I work
@@ -74,9 +74,9 @@ export const translations = {
     'projects.viewLive': 'View live',
 
     // Security section
-    'security.eyebrow': 'Built secure',
-    'security.heading': 'Security built into the process',
-    'security.subtitle': 'With a background in cybersecurity, every project gets reviewed for common vulnerabilities before launch: input validation, authentication, secret management, protection against XSS and SQL injection. You don\'t just get a site that works. You get one that won\'t leak your data.',
+    'security.eyebrow': 'Security',
+    'security.heading': "The part most developers skip",
+    'security.subtitle': "I study cybersecurity. That means every project gets checked for the basics before it goes live — input validation, auth, secret management, XSS, SQL injection. Plenty of freelancers paste API keys straight into frontend code. I don't.",
 
     // Testimonial
     'testimonial.quote': '"We went from no website to a finished, professional site in under a week. Sahari handled everything so we could focus on our actual work. We now get qualified leads through the site."',
@@ -94,10 +94,10 @@ export const translations = {
     'youtube.stats.hours': 'Watch hours',
 
     // CTA section (Home)
-    'cta.heading': 'Ready to build something?',
-    'cta.subtitle': "Whether you need a website, an app, or just want to talk through an idea, I'm open to new projects.",
-    'cta.pricing': 'Fixed pricing from DKK 9,995. Custom quotes based on scope.',
-    'cta.button': "Let's talk",
+    'cta.heading': "Got something you need built?",
+    'cta.subtitle': "Send a message with what you're thinking. I'll tell you straight if I can build it, what it'll take, and what it'll cost. No sales pitch.",
+    'cta.pricing': 'Fixed pricing from DKK 9,995. Larger projects scoped individually.',
+    'cta.button': "Send a message",
 
     // About page
     'about.eyebrow': 'About',
@@ -250,34 +250,34 @@ export const translations = {
     'nav.toggleMenu': 'Skift menu',
 
     // Hero
-    'hero.badge': 'Softwareudvikler & content creator',
-    'hero.headline.start': 'Software der virker',
-    'hero.headline.highlight': 'lige så godt',
-    'hero.headline.end': 'som det ser ud.',
-    'hero.subtitle': 'Jeg bygger software (hjemmesider, mobilapps, backends, skræddersyede værktøjer) til virksomheder og creators, der vil have en rigtig online tilstedeværelse. Også YouTuber og content creator.',
+    'hero.badge': 'Bygger software i Aarhus',
+    'hero.headline.start': 'Hjemmesider på',
+    'hero.headline.highlight': 'en uge',
+    'hero.headline.end': '. Ikke seks måneder.',
+    'hero.subtitle': 'Hjemmesider, apps og skræddersyet software til virksomheder der vil online uden at bruge et halvt år hos et bureau. NexByg fik en færdig, professionel side på under en uge.',
     'hero.cta.work': 'Samarbejd med mig',
     'hero.cta.watch': 'Se mit indhold',
     'hero.cta.viewWork': 'Se mit arbejde',
     'hero.scroll': 'scroll',
     'hero.feature.speed': 'Levering på dage, ikke måneder',
-    'hero.feature.security': 'Sikkerheds-fokuseret udvikling',
-    'hero.feature.endToEnd': 'End-to-end leverance',
+    'hero.feature.security': 'Gennemgået for sårbarheder før launch',
+    'hero.feature.endToEnd': 'Du snakker med mig, ikke en projektleder',
 
     // Services
     'services.eyebrow': 'Tjenester',
     'services.heading': 'Hvad jeg bygger',
-    'services.subtitle': 'Fra web og mobil til backend og videre. Hvis du kan beskrive det, kan jeg bygge det.',
+    'services.subtitle': 'Hvis du kan beskrive det, kan jeg sandsynligvis bygge det. Her er det jeg laver oftest.',
     'services.web.title': 'Hjemmesider & Webapps',
-    'services.web.desc': 'Hurtige, responsive sider og webapps designet til at få dit brand til at se seriøst ud og konvertere besøgende til kunder.',
+    'services.web.desc': 'Sider der faktisk ligner noget. Bygget i React, hostet på Vercel, live på dage. Squarespace-skabeloner er gratis — det er ikke det her.',
     'services.mobile.title': 'Mobilapps',
-    'services.mobile.desc': 'Apps til iOS og Android, bygget omkring din idé og leveret til dem, der har brug for dem.',
+    'services.mobile.desc': 'iOS og Android. Native eller cross-platform — det der giver mening for det du faktisk skal bruge.',
     'services.backend.title': 'Backend, APIs & AI',
-    'services.backend.desc': 'Skræddersyede servere, APIs, databaser og AI-funktioner. Arbejdet bag scenen, der får produkter til at føles ubesværet.',
+    'services.backend.desc': 'Servere, APIs, databaser, AI. Den del der får tingene til at virke i praksis, ikke bare se godt ud i en demo.',
     'services.automation.title': 'Automatisering & Skræddersyet Software',
-    'services.automation.desc': 'Scripts, bots, integrationer, interne værktøjer. Hvis du kan beskrive, hvad du har brug for, kan jeg bygge det.',
+    'services.automation.desc': 'Scripts, bots, integrationer, interne værktøjer. Gør du noget manuelt 10 gange om ugen, kan det sandsynligvis automatiseres.',
     'services.maintenance.title': 'Vedligeholdelse & Opdateringer',
-    'services.maintenance.desc': 'Bugfixes, performance-optimering og nye funktioner på sider jeg har bygget eller moderne stacks (React, Next.js, Vue). Hold tingene kørende efter launch.',
-    'services.openTo': 'Ser du ikke det du har brug for? Jeg tager de fleste projekter — browser extensions, Discord-bots, AI chat-widgets, scrapers, hvad som helst.',
+    'services.maintenance.desc': 'Bugfixes, performance, nye funktioner. På sider jeg har bygget eller moderne stacks (React, Next.js, Vue). Ingen WordPress-rædsler fra 2014.',
+    'services.openTo': 'Mangler du noget der ikke står her? Webshops, betalingsopsætning, browser extensions, Discord-bots, AI chat-widgets, scrapers — jeg tager de fleste opgaver.',
     'services.openToCta': 'Lad os snakke',
 
     // Process
@@ -314,9 +314,9 @@ export const translations = {
     'projects.viewLive': 'Se live',
 
     // Security section
-    'security.eyebrow': 'Sikkerheds-fokuseret',
-    'security.heading': 'Sikkerhed indbygget i processen',
-    'security.subtitle': 'Med en baggrund i cybersikkerhed gennemgår jeg hvert projekt for almindelige sårbarheder før launch: input-validering, autentificering, secret management, beskyttelse mod XSS og SQL injection. Du får ikke bare en hjemmeside der virker. Du får en der ikke lækker dine data.',
+    'security.eyebrow': 'Sikkerhed',
+    'security.heading': 'Den del de fleste udviklere springer over',
+    'security.subtitle': 'Jeg læser cybersikkerhed. Det betyder at hvert projekt bliver tjekket for det grundlæggende før det går live — input-validering, autentificering, secret management, XSS, SQL injection. Mange freelancere paster API-nøgler direkte ind i frontend-koden. Det gør jeg ikke.',
 
     // Testimonial
     'testimonial.quote': '"Vi gik fra ingen hjemmeside til en færdig, professionel side på under en uge. Sahari håndterede alt så vi kunne fokusere på vores arbejde. Vi får nu kvalificerede leads gennem siden."',
@@ -334,10 +334,10 @@ export const translations = {
     'youtube.stats.hours': 'Visningstimer',
 
     // CTA section (Home)
-    'cta.heading': 'Klar til at bygge noget?',
-    'cta.subtitle': 'Uanset om du har brug for en hjemmeside, en app, eller bare vil snakke en idé igennem, er jeg åben for nye projekter.',
-    'cta.pricing': 'Fast pris fra 9.995 kr. Skræddersyede tilbud baseret på scope.',
-    'cta.button': 'Lad os snakke',
+    'cta.heading': 'Har du noget der skal bygges?',
+    'cta.subtitle': 'Skriv hvad du tænker på. Jeg siger lige ud om jeg kan bygge det, hvad det tager, og hvad det koster. Ingen salgs-pitch.',
+    'cta.pricing': 'Fast pris fra 9.995 kr. Større projekter prissættes individuelt.',
+    'cta.button': 'Skriv til mig',
 
     // About page
     'about.eyebrow': 'Om',
