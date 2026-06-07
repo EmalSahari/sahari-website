@@ -15,7 +15,7 @@ export default function Work() {
       desc: t('projects.mokio.desc'),
       tag: t('projects.mokio.tag'),
       href: 'https://www.mokio.io/',
-      image: '/demo.webp',
+      image: '/mokio.png',
       color: 'from-sky-900/40 to-[#0f0f0f]',
       border: 'border-sky-500/20',
       iconBg: 'bg-sky-500/15 text-sky-400',

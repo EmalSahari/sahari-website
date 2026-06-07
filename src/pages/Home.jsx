@@ -89,7 +89,7 @@ export default function Home() {
       desc: t('projects.mokio.desc'),
       tag: t('projects.mokio.tag'),
       href: 'https://www.mokio.io/',
-      image: '/demo.webp',
+      image: '/mokio.png',
       color: 'from-sky-900/40 to-[#0f0f0f]',
       border: 'border-sky-500/20',
       hoverBorder: 'hover:border-sky-400/50',
