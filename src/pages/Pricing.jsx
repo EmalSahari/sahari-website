@@ -271,7 +271,16 @@ export default function Pricing() {
               <h3 className="text-white font-semibold text-sm md:text-base">{t('pricing.mokio.name')}</h3>
               <span className="text-amber-400 text-sm font-semibold whitespace-nowrap">{t('pricing.mokio.price')}</span>
             </div>
-            <p className="text-zinc-400 text-xs md:text-sm leading-relaxed">{t('pricing.mokio.desc')}</p>
+            <p className="text-zinc-400 text-xs md:text-sm leading-relaxed mb-3">{t('pricing.mokio.desc')}</p>
+            <a
+              href="https://www.mokio.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 text-xs md:text-sm font-medium transition-colors"
+            >
+              {t('pricing.mokio.link')}
+              <ArrowRight size={12} />
+            </a>
           </div>
         </motion.div>
 
