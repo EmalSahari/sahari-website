@@ -1,9 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Mail, Instagram, Send, CheckCircle2 } from 'lucide-react'
+import { Mail, Instagram, Send, CheckCircle2, Tag, X } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
+
+const TIER_LABELS = {
+  single: { en: 'Single page (4,995 kr)', da: 'Single page (4.995 kr)' },
+  standard: { en: 'Standard (9,995 kr)', da: 'Standard (9.995 kr)' },
+  premium: { en: 'Premium (from 19,995 kr)', da: 'Premium (fra 19.995 kr)' },
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -16,9 +23,24 @@ const fadeUp = {
 
 export default function Contact() {
   const t = useT()
-  const [form, setForm] = useState({ name: '', email: '', message: '', _gotcha: '' })
+  const lang = t('nav.home') === 'Hjem' ? 'da' : 'en'
+  const [searchParams, setSearchParams] = useSearchParams()
+  const tierSlug = searchParams.get('tier')
+  const tierLabel = tierSlug && TIER_LABELS[tierSlug]?.[lang]
+  const [form, setForm] = useState({ name: '', email: '', message: '', tier: '', _gotcha: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (tierLabel) {
+      setForm((f) => ({ ...f, tier: tierLabel }))
+    }
+  }, [tierLabel])
+
+  const clearTier = () => {
+    setForm((f) => ({ ...f, tier: '' }))
+    setSearchParams({}, { replace: true })
+  }
 
   const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
@@ -116,7 +138,7 @@ export default function Contact() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
-                  onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '', _gotcha: '' }) }}
+                  onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '', tier: '', _gotcha: '' }); setSearchParams({}, { replace: true }) }}
                   className="mt-2 text-zinc-400 hover:text-zinc-200 text-sm transition-colors"
                 >
                   {t('contact.form.success.again')}
@@ -138,6 +160,21 @@ export default function Contact() {
                   aria-hidden="true"
                   style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
                 />
+
+                {form.tier && (
+                  <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-medium">
+                    <Tag size={13} />
+                    <span>{t('contact.form.tierPrefix')}: <strong className="font-semibold">{form.tier}</strong></span>
+                    <button
+                      type="button"
+                      onClick={clearTier}
+                      className="ml-1 text-amber-400 hover:text-amber-200 transition-colors"
+                      aria-label="Remove tier"
+                    >
+                      <X size={13} />
+                    </button>
+                  </div>
+                )}
                 <div>
                   <label className="block text-zinc-400 text-sm mb-2" htmlFor="name">
                     {t('contact.form.name')}

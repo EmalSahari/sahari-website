@@ -62,7 +62,7 @@ function PricingCard({ tier, popular, i }) {
           </ul>
 
           <Link
-            to="/contact"
+            to={`/contact?tier=${tier.slug}`}
             className={`mt-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium text-sm transition-all duration-200 ${
               popular
                 ? 'bg-amber-400 hover:bg-amber-300 text-black shadow-lg shadow-amber-900/40'
@@ -113,6 +113,7 @@ export default function Pricing() {
 
   const tiers = [
     {
+      slug: 'single',
       name: t('pricing.single.name'),
       tagline: t('pricing.single.tagline'),
       prefix: t('pricing.from'),
@@ -128,11 +129,11 @@ export default function Pricing() {
       ],
       excludes: [
         t('pricing.single.exc.1'),
-        t('pricing.single.exc.2'),
       ],
       cta: t('pricing.single.cta'),
     },
     {
+      slug: 'standard',
       name: t('pricing.standard.name'),
       tagline: t('pricing.standard.tagline'),
       prefix: t('pricing.from'),
@@ -153,6 +154,7 @@ export default function Pricing() {
       cta: t('pricing.standard.cta'),
     },
     {
+      slug: 'premium',
       name: t('pricing.premium.name'),
       tagline: t('pricing.premium.tagline'),
       prefix: t('pricing.from'),
@@ -172,10 +174,8 @@ export default function Pricing() {
   ]
 
   const addOns = [
-    { name: t('pricing.addons.copy.name'), price: t('pricing.addons.copy.price'), desc: t('pricing.addons.copy.desc') },
-    { name: t('pricing.addons.payment.name'), price: t('pricing.addons.payment.price'), desc: t('pricing.addons.payment.desc') },
-    { name: t('pricing.addons.booking.name'), price: t('pricing.addons.booking.price'), desc: t('pricing.addons.booking.desc') },
-    { name: t('pricing.addons.brand.name'), price: t('pricing.addons.brand.price'), desc: t('pricing.addons.brand.desc') },
+    { name: t('pricing.addons.stripe.name'), price: t('pricing.addons.stripe.price'), desc: t('pricing.addons.stripe.desc') },
+    { name: t('pricing.addons.mobilepay.name'), price: t('pricing.addons.mobilepay.price'), desc: t('pricing.addons.mobilepay.desc') },
     { name: t('pricing.addons.maintenance.name'), price: t('pricing.addons.maintenance.price'), desc: t('pricing.addons.maintenance.desc') },
     { name: t('pricing.addons.extra.name'), price: t('pricing.addons.extra.price'), desc: t('pricing.addons.extra.desc') },
   ]
@@ -186,6 +186,7 @@ export default function Pricing() {
     { q: t('pricing.faq.3.q'), a: t('pricing.faq.3.a') },
     { q: t('pricing.faq.4.q'), a: t('pricing.faq.4.a') },
     { q: t('pricing.faq.5.q'), a: t('pricing.faq.5.a') },
+    { q: t('pricing.faq.6.q'), a: t('pricing.faq.6.a') },
   ]
 
   return (
@@ -251,7 +252,7 @@ export default function Pricing() {
             <p className="text-zinc-400 max-w-lg leading-relaxed">{t('pricing.addons.subtitle')}</p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
             {addOns.map((a) => (
               <div key={a.name} className="border border-white/10 bg-[#0f0f0f] rounded-xl p-5 hover:bg-[#131313] transition-colors">
                 <div className="flex items-baseline justify-between gap-3 mb-2">
@@ -261,6 +262,14 @@ export default function Pricing() {
                 <p className="text-zinc-500 text-xs md:text-sm leading-relaxed">{a.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-6 border border-amber-500/20 bg-amber-950/10 rounded-xl p-5">
+            <div className="flex items-baseline justify-between gap-3 mb-2">
+              <h3 className="text-white font-semibold text-sm md:text-base">{t('pricing.mokio.name')}</h3>
+              <span className="text-amber-400 text-sm font-semibold whitespace-nowrap">{t('pricing.mokio.price')}</span>
+            </div>
+            <p className="text-zinc-400 text-xs md:text-sm leading-relaxed">{t('pricing.mokio.desc')}</p>
           </div>
         </motion.div>
 
