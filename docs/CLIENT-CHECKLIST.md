@@ -38,12 +38,18 @@ Du behøver ikke spørge alt på første møde, men dæk i hvert fald:
 - [ ] Hvor mange sider tænker de?
 
 ### Praktik
-- [ ] Hvilken pakke ser de sig selv i (single / standard / premium)?
-- [ ] Realistisk budget?
+- [ ] Har de set pricing-siden? Hvilken pakke matcher de sig selv med
+      (single / standard / premium / custom)?
 - [ ] Hvornår skal det være live senest?
 - [ ] Vil de selv eje hosting/domæne (Option B) eller skal jeg fakturere
       årligt (Option A)?
 - [ ] Hvem er kontaktperson hos dem til hele projektet?
+
+**Note om budget:** Spørg ikke direkte om budget. Pricing-siden gør det
+arbejde for dig — hvis de kontakter dig, har de set tallene. Spørg i
+stedet hvilken pakke de tænker, så ved du allerede hvad de regner med
+at betale. Hvis de skal have noget custom over Premium, prissæt efter
+scope, ikke budget.
 
 ### Bookkeeping
 - [ ] Officielt firmanavn til faktura
