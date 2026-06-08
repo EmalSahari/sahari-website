@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee, Scissors } from 'lucide-react'
+import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee, Scissors, Palette } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -19,6 +19,17 @@ export default function Work() {
       color: 'from-sky-900/40 to-[#0f0f0f]',
       border: 'border-sky-500/20',
       iconBg: 'bg-sky-500/15 text-sky-400',
+    },
+    {
+      icon: <Palette size={20} />,
+      title: t('projects.brandKit.title'),
+      desc: t('projects.brandKit.desc'),
+      tag: t('projects.brandKit.tag'),
+      href: '/tools/brand-kit',
+      image: '/brand.png',
+      color: 'from-amber-900/40 to-[#0f0f0f]',
+      border: 'border-amber-500/20',
+      iconBg: 'bg-amber-500/15 text-amber-400',
     },
     {
       icon: <Hammer size={20} />,
