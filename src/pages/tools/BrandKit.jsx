@@ -972,18 +972,53 @@ function jitter(hex, range = { h: 4, s: 4, l: 2 }) {
   return hslToHex(newH, newS, newL)
 }
 
-function generatePalette(vibe, lockedSet = null, currentPalette = null) {
-  const actualVibe = resolveVibe(vibe)
-  const seeds = SEED_PALETTES[actualVibe]
-  const seed = seeds[Math.floor(Math.random() * seeds.length)]
+function ensureContrast(bg, text, target = 4.5) {
+  if (contrastRatio(bg, text) >= target) return text
+  const [, , bgL] = hexToHsl(bg)
+  const [th, ts] = hexToHsl(text)
+  const direction = bgL < 50 ? 1 : -1
+  let l = hexToHsl(text)[2]
+  for (let i = 0; i < 24; i++) {
+    l = Math.max(0, Math.min(100, l + direction * 5))
+    const candidate = hslToHex(th, ts, l)
+    if (contrastRatio(bg, candidate) >= target) return candidate
+    if (l === 0 || l === 100) break
+  }
+  return bgL < 50 ? '#ffffff' : '#0a0a0a'
+}
+
+function buildFromSeed(seed, lockedSet, currentPalette) {
   return seed.map((hex, i) => {
     if (lockedSet && lockedSet.has(i) && currentPalette) {
       return currentPalette[i]
     }
-    // Wider jitter so each shuffle feels distinct even on the same seed.
     const range = i < 2 ? { h: 6, s: 8, l: 3 } : { h: 20, s: 22, l: 9 }
     return jitter(hex, range)
   })
+}
+
+function generatePalette(vibe, lockedSet = null, currentPalette = null) {
+  const actualVibe = resolveVibe(vibe)
+  const seeds = SEED_PALETTES[actualVibe]
+
+  // Retry up to 8 seeds looking for one whose jittered bg/text contrast passes AA.
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const seed = seeds[Math.floor(Math.random() * seeds.length)]
+    const palette = buildFromSeed(seed, lockedSet, currentPalette)
+    if (contrastRatio(palette[0], palette[1]) >= 4.5) return palette
+  }
+
+  // Still failing: force-correct text against bg, or bg against text if text is locked.
+  const seed = seeds[Math.floor(Math.random() * seeds.length)]
+  const palette = buildFromSeed(seed, lockedSet, currentPalette)
+  const bgLocked = lockedSet?.has(0)
+  const textLocked = lockedSet?.has(1)
+  if (!textLocked) {
+    palette[1] = ensureContrast(palette[0], palette[1])
+  } else if (!bgLocked) {
+    palette[0] = ensureContrast(palette[1], palette[0])
+  }
+  return palette
 }
 
 // Pool of Google Fonts to roll from outside the curated set
