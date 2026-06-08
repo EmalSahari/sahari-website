@@ -6,6 +6,12 @@ import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
 import Reveal from '../components/Reveal'
 import useIsMobile from '../hooks/useIsMobile'
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
+
+const STILL = {
+  hidden: { opacity: 1 },
+  show: { opacity: 1, transition: { duration: 0 } },
+}
 
 const makeFadeUp = (isMobile) =>
   isMobile
@@ -64,8 +70,9 @@ function ServiceCard({ service, i }) {
 export default function Home() {
   const t = useT()
   const isMobile = useIsMobile()
-  const fadeUp = makeFadeUp(isMobile)
-  const heroFadeUp = makeHeroFadeUp(isMobile)
+  const reduce = usePrefersReducedMotion()
+  const fadeUp = reduce ? STILL : makeFadeUp(isMobile)
+  const heroFadeUp = reduce ? STILL : makeHeroFadeUp(isMobile)
 
   const services = [
     { icon: <Globe size={20} />, title: t('services.web.title'), desc: t('services.web.desc') },
@@ -142,29 +149,37 @@ export default function Home() {
         </motion.div>
 
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
-          {(() => {
-            const units = [
-              ...t('hero.headline.start').split(' ').map((w) => ({ word: w, highlight: false })),
-              { word: t('hero.headline.highlight'), highlight: true },
-              ...t('hero.headline.end').split(' ').map((w) => ({ word: w, highlight: false })),
-            ]
-            const baseDelay = 0.2
-            const stagger = isMobile ? 0.05 : 0.07
-            const duration = isMobile ? 0.55 : 0.8
-            const yStart = isMobile ? 16 : 28
-            return units.flatMap((u, i) => [
-              <motion.span
-                key={`w-${i}`}
-                initial={{ opacity: 0, y: yStart, filter: isMobile ? 'none' : 'blur(6px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ duration, delay: baseDelay + i * stagger, ease: [0.16, 1, 0.3, 1] }}
-                className={`inline-block ${u.highlight ? 'gradient-text-animated' : ''}`}
-              >
-                {u.word}
-              </motion.span>,
-              i < units.length - 1 ? <span key={`s-${i}`}>{' '}</span> : null,
-            ])
-          })()}
+          {reduce ? (
+            <>
+              {t('hero.headline.start')}{' '}
+              <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>{' '}
+              {t('hero.headline.end')}
+            </>
+          ) : (
+            (() => {
+              const units = [
+                ...t('hero.headline.start').split(' ').map((w) => ({ word: w, highlight: false })),
+                { word: t('hero.headline.highlight'), highlight: true },
+                ...t('hero.headline.end').split(' ').map((w) => ({ word: w, highlight: false })),
+              ]
+              const baseDelay = 0.2
+              const stagger = isMobile ? 0.05 : 0.07
+              const duration = isMobile ? 0.55 : 0.8
+              const yStart = isMobile ? 16 : 28
+              return units.flatMap((u, i) => [
+                <motion.span
+                  key={`w-${i}`}
+                  initial={{ opacity: 0, y: yStart, filter: isMobile ? 'none' : 'blur(6px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  transition={{ duration, delay: baseDelay + i * stagger, ease: [0.16, 1, 0.3, 1] }}
+                  className={`inline-block ${u.highlight ? 'gradient-text-animated' : ''}`}
+                >
+                  {u.word}
+                </motion.span>,
+                i < units.length - 1 ? <span key={`s-${i}`}>{' '}</span> : null,
+              ])
+            })()
+          )}
         </h1>
 
         <motion.p

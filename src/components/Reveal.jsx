@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import useIsMobile from '../hooks/useIsMobile'
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
 export default function Reveal({
   children,
@@ -8,7 +9,12 @@ export default function Reveal({
   amount,
 }) {
   const isMobile = useIsMobile()
+  const reduce = usePrefersReducedMotion()
   const triggerAmount = amount ?? (isMobile ? 0.05 : 0.2)
+
+  if (reduce) {
+    return <div className={className}>{children}</div>
+  }
 
   const variants = isMobile
     ? {

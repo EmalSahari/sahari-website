@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
 /**
  * SparklesCore - canvas particle system matching the Aceternity Sparkles style.
@@ -13,8 +14,10 @@ export default function SparklesCore({
   colors = ['#a78bfa', '#818cf8', '#c4b5fd', '#ffffff', '#e0e7ff'],
 }) {
   const canvasRef = useRef(null)
+  const reduce = usePrefersReducedMotion()
 
   useEffect(() => {
+    if (reduce) return
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -85,7 +88,9 @@ export default function SparklesCore({
     raf = requestAnimationFrame(draw)
 
     return () => { cancelAnimationFrame(raf); ro.disconnect() }
-  }, [particleCount, minSize, maxSize, speed, colors])
+  }, [particleCount, minSize, maxSize, speed, colors, reduce])
+
+  if (reduce) return null
 
   return (
     <canvas
