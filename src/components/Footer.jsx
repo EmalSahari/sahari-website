@@ -52,6 +52,7 @@ export default function Footer() {
           <Link to="/work-with-us" className="hover:text-white transition-colors">{t('nav.workWithUs')}</Link>
           <Link to="/contact" className="hover:text-white transition-colors">{t('nav.contact')}</Link>
           <Link to="/tools/brand-kit" className="hover:text-white transition-colors">{t('nav.brandKit')}</Link>
+          <Link to="/tools/estimate" className="hover:text-white transition-colors">{t('nav.estimate')}</Link>
         </nav>
       </div>
 

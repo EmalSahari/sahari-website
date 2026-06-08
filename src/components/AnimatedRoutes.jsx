@@ -10,6 +10,7 @@ import BlackStone from '../pages/BlackStone'
 import DriftCoffee from '../pages/DriftCoffee'
 import MorkBarber from '../pages/MorkBarber'
 import BrandKit from '../pages/tools/BrandKit'
+import QuoteEstimate from '../pages/tools/QuoteEstimate'
 import NotFound from '../pages/NotFound'
 
 export default function AnimatedRoutes() {
@@ -27,6 +28,7 @@ export default function AnimatedRoutes() {
       { path: '/drift', element: <DriftCoffee /> },
       { path: '/mork', element: <MorkBarber /> },
       { path: '/tools/brand-kit', element: <BrandKit /> },
+      { path: '/tools/estimate', element: <QuoteEstimate /> },
       { path: '*', element: <NotFound /> },
     ],
     location,

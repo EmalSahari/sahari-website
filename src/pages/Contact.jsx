@@ -26,6 +26,7 @@ export default function Contact() {
   const lang = t('nav.home') === 'Hjem' ? 'da' : 'en'
   const [searchParams, setSearchParams] = useSearchParams()
   const tierSlug = searchParams.get('tier')
+  const messageParam = searchParams.get('message')
   const tierLabel = tierSlug && TIER_LABELS[tierSlug]?.[lang]
   const [form, setForm] = useState({ name: '', email: '', message: '', tier: '', _gotcha: '' })
   const [submitted, setSubmitted] = useState(false)
@@ -36,6 +37,12 @@ export default function Contact() {
       setForm((f) => ({ ...f, tier: tierLabel }))
     }
   }, [tierLabel])
+
+  useEffect(() => {
+    if (messageParam) {
+      setForm((f) => ({ ...f, message: messageParam }))
+    }
+  }, [messageParam])
 
   const clearTier = () => {
     setForm((f) => ({ ...f, tier: '' }))
