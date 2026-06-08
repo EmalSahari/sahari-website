@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown, Undo2, Redo2, Image as ImageIcon } from 'lucide-react'
+import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown, Undo2, Redo2, Image as ImageIcon, FlipVertical, QrCode } from 'lucide-react'
 
 // -- Seed palettes per vibe -----------------------------------------------
 // Each entry: [bg, text, muted, accent, surface]
@@ -37,6 +37,19 @@ const SEED_PALETTES = {
     ['#1a1014', '#e8d9d8', '#8a7d80', '#b8836b', '#251a1f'],
     ['#0d0c08', '#e5d8b8', '#7d745c', '#a06738', '#1a1812'],
     ['#0e0f15', '#e6e2d6', '#7e8085', '#b5905a', '#181a20'],
+    ['#0c0a08', '#e8dec5', '#857a63', '#b89668', '#181410'],
+    ['#1a1518', '#ebe0d8', '#8a7d7d', '#a85e5e', '#251f22'],
+    ['#0a1018', '#dfe5ec', '#7a8390', '#c4934e', '#15202c'],
+    ['#0f0a14', '#e8e0e5', '#857d83', '#b8835e', '#1a1520'],
+    ['#0a0c0a', '#e3dfd5', '#7c7e75', '#8b6f47', '#15181a'],
+    ['#160f0d', '#e8d9c5', '#8a7c6a', '#a87245', '#221814'],
+    ['#0d121a', '#e8e8e8', '#7d7e85', '#d4a85e', '#181d28'],
+    ['#0a0a14', '#e0e2ec', '#7c7e90', '#8c6e3e', '#15151f'],
+    ['#1a1410', '#ede1c8', '#8c7d65', '#7e3e1a', '#251f17'],
+    ['#0d0d10', '#e8e3d8', '#7c7d7a', '#b88c45', '#1a1a1d'],
+    ['#100f0a', '#e8d9b8', '#857a5a', '#8b5e2a', '#1c1a14'],
+    ['#0a0f14', '#e5e0d8', '#7a8085', '#7e9e6e', '#15202b'],
+    ['#1c1814', '#ede1c5', '#8c7e60', '#854d0e', '#262017'],
   ],
   calm: [
     ['#f4f1ea', '#1d201d', '#6b6d68', '#7a8870', '#ebe6dc'],
@@ -73,6 +86,19 @@ const SEED_PALETTES = {
     ['#f5ede4', '#1a1815', '#7c7068', '#7e6b5a', '#ebe1d2'],
     ['#f0e8e8', '#1f1818', '#7c7070', '#9e7560', '#e3d6d6'],
     ['#eeeae0', '#1c1816', '#7a716a', '#5b7068', '#dfd9c5'],
+    ['#f5f0e8', '#1f1a16', '#7a6e5e', '#84a98c', '#ece4d4'],
+    ['#f0eee5', '#1a1814', '#736e60', '#a8856b', '#e5e1d5'],
+    ['#eef0e8', '#1f2421', '#6e756d', '#5b8aa8', '#dee3d8'],
+    ['#f3eeda', '#1a1814', '#7c715a', '#6e8a6e', '#e8e0c4'],
+    ['#f0ece4', '#1a1814', '#736e64', '#9c7560', '#e5e0d4'],
+    ['#eef0eb', '#1a2421', '#6e7570', '#7e8a72', '#dee5dc'],
+    ['#f5f0e2', '#1f1a14', '#7c6f5e', '#5b8b6f', '#ebe3cf'],
+    ['#f0e8d8', '#1a1410', '#7a6e5a', '#7e9070', '#e5dac0'],
+    ['#eef0eb', '#1a1f1c', '#6d756e', '#6b8a72', '#dde5de'],
+    ['#f3eee2', '#1a1612', '#736e60', '#9e8472', '#e8e3d2'],
+    ['#f5f0e8', '#1a1411', '#7a6e58', '#6e7e9c', '#ebe2d2'],
+    ['#eef0e8', '#1c2421', '#6e756d', '#7c8e5e', '#dee3d2'],
+    ['#f5ede5', '#1f1815', '#7a6e64', '#5b8b8a', '#ebe1d5'],
   ],
   bold: [
     ['#0a0a0a', '#fafafa', '#a3a3a3', '#fbbf24', '#1a1a1a'],
@@ -109,6 +135,19 @@ const SEED_PALETTES = {
     ['#0a0a0a', '#fafaf0', '#a3a397', '#22c55e', '#1a1a14'],
     ['#fdf4ff', '#0a0a0a', '#7a6a7a', '#7c3aed', '#f3e8ff'],
     ['#0a0a14', '#fafafa', '#9ca3af', '#fbbf24', '#15151f'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#d946ef', '#1a1a1a'],
+    ['#fefefa', '#0a0a0a', '#737373', '#0891b2', '#f5f5f0'],
+    ['#0a0a14', '#fafafa', '#a3a3b3', '#fb923c', '#15151f'],
+    ['#fdf2f8', '#1a0a0a', '#7a6a6e', '#dc2626', '#fce7f3'],
+    ['#0a0a14', '#fafafa', '#a3a3b3', '#10b981', '#15151f'],
+    ['#fef9c3', '#0a0a0a', '#7d7567', '#9333ea', '#fef08a'],
+    ['#0a0a14', '#fafafa', '#a3a3b3', '#fb7185', '#15151f'],
+    ['#fffbeb', '#0a0a0a', '#7c7060', '#16a34a', '#fef3c7'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#0ea5e9', '#1a1a1a'],
+    ['#fefce8', '#1a1a1a', '#737373', '#0e7490', '#fef9c3'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#facc15', '#1a1a1a'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#a855f7', '#1a1a1a'],
+    ['#fff7ed', '#0a0a0a', '#7a6e58', '#16a34a', '#fdba74'],
   ],
   warm: [
     ['#ede4d0', '#0a0a0a', '#6b614e', '#b46a1f', '#e0d4b8'],
@@ -145,6 +184,17 @@ const SEED_PALETTES = {
     ['#fbf0d2', '#1f1814', '#7c6c54', '#8b3a1a', '#f0e2bb'],
     ['#f0e3c0', '#221a14', '#7a6c52', '#a55a28', '#e5d4a8'],
     ['#f8ead2', '#1a1410', '#7c6e58', '#9c4a1f', '#eddfba'],
+    ['#f5e8c8', '#1a1410', '#7c6e54', '#3e2818', '#ebda9c'],
+    ['#f0e3c0', '#1f1814', '#7a6c52', '#702e1a', '#e5d4a8'],
+    ['#f8edd2', '#1a1410', '#7c6e54', '#5e2a14', '#eddfba'],
+    ['#f5ebc8', '#1d1814', '#7e6c54', '#b07642', '#ebdfa8'],
+    ['#f0e3b8', '#221a14', '#7c6e52', '#a64020', '#e5d4a0'],
+    ['#fbf2dc', '#1a1814', '#7e6e58', '#854d0e', '#f0e6c5'],
+    ['#f5ead8', '#1a1411', '#7e6e5c', '#92571f', '#ebe0c5'],
+    ['#f0e3c2', '#1f1814', '#7c6e54', '#a25a25', '#e5d6a8'],
+    ['#f8eecd', '#1a1614', '#7e6e58', '#b08858', '#ede2c0'],
+    ['#fbf2d6', '#1d1814', '#7e6e58', '#a04621', '#f0e6c0'],
+    ['#f0e0b6', '#1c1610', '#7a685a', '#7c4a2a', '#e3d29c'],
   ],
   modern: [
     ['#fafafa', '#0a0a0a', '#737373', '#3b82f6', '#f5f5f5'],
@@ -181,6 +231,17 @@ const SEED_PALETTES = {
     ['#ffffff', '#0a0a0a', '#737373', '#0891b2', '#fafafa'],
     ['#fafafa', '#0a0a0a', '#737373', '#84cc16', '#f5f5f5'],
     ['#f1f5f9', '#0f172a', '#64748b', '#f59e0b', '#e2e8f0'],
+    ['#fafafa', '#171717', '#737373', '#3b82f6', '#f5f5f5'],
+    ['#fafafa', '#0a0a0a', '#737373', '#16a34a', '#f5f5f5'],
+    ['#ffffff', '#0f172a', '#64748b', '#0284c7', '#fafafa'],
+    ['#fafafa', '#171717', '#737373', '#a855f7', '#f5f5f5'],
+    ['#ffffff', '#0a0a0a', '#737373', '#dc2626', '#fafafa'],
+    ['#f1f5f9', '#0f172a', '#64748b', '#0f766e', '#e2e8f0'],
+    ['#fafafa', '#0a0a0a', '#737373', '#7c2d12', '#f5f5f5'],
+    ['#ffffff', '#171717', '#737373', '#1e40af', '#fafafa'],
+    ['#fafafa', '#0a0a0a', '#737373', '#15803d', '#f5f5f5'],
+    ['#f8fafc', '#0f172a', '#64748b', '#9333ea', '#e2e8f0'],
+    ['#fafafa', '#171717', '#737373', '#0d9488', '#f5f5f5'],
   ],
   editorial: [
     ['#0a0a0a', '#f5f0e8', '#8a8478', '#8b1a1a', '#1c1c1c'],
@@ -217,6 +278,17 @@ const SEED_PALETTES = {
     ['#0a0a0a', '#e8dcc0', '#857a63', '#b08545', '#1a1a1a'],
     ['#f3eddc', '#1a1411', '#7c6e58', '#5b3e2a', '#e8e1c8'],
     ['#1c1817', '#ebe0c5', '#8a7e6b', '#4a6b6b', '#262017'],
+    ['#f5efe6', '#1a1411', '#7a6c5e', '#8b2a14', '#ebe2d2'],
+    ['#1c1815', '#e8dec5', '#857a63', '#d4af37', '#262017'],
+    ['#f3eddf', '#1a1411', '#776e5c', '#4a2c2a', '#e8e1cd'],
+    ['#0a0a0a', '#e8d9b8', '#857a5a', '#a86a25', '#1a1a1a'],
+    ['#f5f0e2', '#1a1411', '#7c6f5c', '#1e4a3a', '#ebe3cf'],
+    ['#1c1612', '#e8d9c0', '#8a7d65', '#a85e3a', '#251f17'],
+    ['#f5ead8', '#1a1410', '#7c6e58', '#7e2a2a', '#ebe0c5'],
+    ['#0a0a0a', '#ebe0c5', '#857a64', '#9c5a3e', '#1a1a1a'],
+    ['#f5efe6', '#1a1411', '#7a6c5e', '#3e6d6b', '#ebe2d2'],
+    ['#1c1815', '#e8d9bf', '#8a7e68', '#854d0e', '#262017'],
+    ['#f3ead4', '#1a1410', '#7c6e58', '#5b3a1a', '#e8e0c4'],
   ],
   minimal: [
     ['#ffffff', '#000000', '#737373', '#000000', '#f5f5f5'],
@@ -435,6 +507,30 @@ const FONT_PAIRS = [
   { display: 'EB Garamond', body: 'Manrope', vibes: ['premium', 'editorial'] },
   { display: 'Libre Caslon Text', body: 'Inter Tight', vibes: ['premium', 'editorial'] },
   { display: 'Libre Caslon Text', body: 'Manrope', vibes: ['premium', 'editorial', 'calm'] },
+
+  // Even more options
+  { display: 'Spectral', body: 'DM Sans', vibes: ['warm', 'editorial'] },
+  { display: 'Lora', body: 'Inter Tight', vibes: ['warm', 'calm', 'vintage'] },
+  { display: 'Source Serif 4', body: 'Manrope', vibes: ['editorial', 'calm'] },
+  { display: 'Inter', body: 'Inter', vibes: ['modern', 'minimal'] },
+  { display: 'IBM Plex Sans', body: 'IBM Plex Sans', vibes: ['modern', 'minimal', 'futuristic'] },
+  { display: 'IBM Plex Serif', body: 'IBM Plex Sans', vibes: ['editorial', 'premium'] },
+  { display: 'Syne', body: 'Inter Tight', vibes: ['bold', 'futuristic'] },
+  { display: 'Syne', body: 'DM Sans', vibes: ['bold', 'modern'] },
+  { display: 'Unbounded', body: 'Manrope', vibes: ['bold', 'futuristic'] },
+  { display: 'Bricolage Grotesque', body: 'Inter Tight', vibes: ['modern', 'bold'] },
+  { display: 'Bricolage Grotesque', body: 'DM Sans', vibes: ['modern', 'calm'] },
+  { display: 'Familjen Grotesk', body: 'Inter Tight', vibes: ['modern', 'minimal'] },
+  { display: 'Geist', body: 'Geist', vibes: ['modern', 'minimal', 'futuristic'] },
+  { display: 'Geist Mono', body: 'Geist', vibes: ['minimal', 'futuristic'] },
+  { display: 'Newsreader', body: 'Inter Tight', vibes: ['editorial', 'warm'] },
+  { display: 'Newsreader', body: 'Manrope', vibes: ['editorial', 'calm'] },
+  { display: 'Cormorant Garamond', body: 'Geist', vibes: ['premium', 'editorial', 'minimal'] },
+  { display: 'Anton', body: 'DM Sans', vibes: ['bold'] },
+  { display: 'Bebas Neue', body: 'DM Sans', vibes: ['bold', 'editorial'] },
+  { display: 'Yeseva One', body: 'Karla', vibes: ['vintage', 'editorial'] },
+  { display: 'Abril Fatface', body: 'Karla', vibes: ['vintage', 'bold', 'editorial'] },
+  { display: 'Abril Fatface', body: 'Manrope', vibes: ['bold', 'editorial'] },
 ]
 
 const VIBES = [
@@ -649,6 +745,7 @@ export default function BrandKit() {
   const [historyIndex, setHistoryIndex] = useState(-1)
   const [editingSwatch, setEditingSwatch] = useState(null)
   const [editingHex, setEditingHex] = useState('')
+  const [qrOpen, setQrOpen] = useState(false)
   const fileInputRef = useRef(null)
   const isApplyingHistory = useRef(false)
 
@@ -716,6 +813,25 @@ export default function BrandKit() {
   const updateSwatch = useCallback((index, hex) => {
     setPalette((prev) => prev.map((p, i) => (i === index ? hex : p)))
   }, [])
+
+  const adjustSwatchHsl = useCallback((index, channel, value) => {
+    setPalette((prev) => prev.map((p, i) => {
+      if (i !== index) return p
+      const [h, s, l] = hexToHsl(p)
+      const next = { h, s, l }
+      next[channel] = value
+      return hslToHex(next.h, next.s, next.l)
+    }))
+  }, [])
+
+  const invertPalette = useCallback(() => {
+    setPalette((prev) => prev.map((hex) => {
+      const [h, s, l] = hexToHsl(hex)
+      return hslToHex(h, s, 100 - l)
+    }))
+  }, [])
+
+  const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}${typeof window !== 'undefined' ? window.location.pathname : '/tools/brand-kit'}?${encodeKit(palette, fontPair.display, fontPair.body)}`
 
   const startEditing = (index, current) => {
     setEditingSwatch(index)
@@ -1150,12 +1266,28 @@ $font-body: '${fontPair.body}', sans-serif;`
               )}
             </div>
             <button
+              onClick={invertPalette}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              title="Invert lightness on every colour (dark to light or vice versa)"
+            >
+              <FlipVertical size={12} />
+              <span className="hidden sm:inline">Invert</span>
+            </button>
+            <button
               onClick={copyShareLink}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
               title="Copy a shareable link"
             >
               {shareCopied ? <Check size={12} /> : <Share2 size={12} />}
               <span className="hidden sm:inline">{shareCopied ? 'Link copied' : 'Share'}</span>
+            </button>
+            <button
+              onClick={() => setQrOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              title="Show QR code for the share link"
+            >
+              <QrCode size={12} />
+              <span className="hidden sm:inline">QR</span>
             </button>
           </div>
         </div>
@@ -1517,59 +1649,94 @@ $font-body: '${fontPair.body}', sans-serif;`
                 {swatches.map((swatch, i) => {
                   const isLocked = locked.has(i)
                   const isEditing = editingSwatch === i
+                  const [hh, ss, ll] = hexToHsl(swatch.hex)
                   return (
                     <div
                       key={swatch.label}
-                      className={`flex items-center gap-2 p-2 rounded-lg transition-colors ${isLocked ? 'bg-amber-400/5' : 'hover:bg-white/5'}`}
+                      className={`rounded-lg transition-colors ${isLocked ? 'bg-amber-400/5' : 'hover:bg-white/5'} ${isEditing ? 'bg-white/[0.04]' : ''}`}
                     >
-                      <input
-                        type="color"
-                        value={swatch.hex}
-                        onChange={(e) => updateSwatch(i, e.target.value)}
-                        className="w-9 h-9 rounded-md border border-white/10 flex-shrink-0 cursor-pointer bg-transparent"
-                        style={{ padding: 0 }}
-                        title="Open color picker"
-                      />
-                      <div className="flex-1 flex items-baseline justify-between min-w-0">
-                        <span className="text-xs text-zinc-400">{swatch.label}</span>
-                        {isEditing ? (
-                          <input
-                            type="text"
-                            value={editingHex}
-                            onChange={(e) => setEditingHex(e.target.value)}
-                            onBlur={commitEdit}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter') commitEdit()
-                              if (e.key === 'Escape') {
-                                setEditingSwatch(null)
-                                setEditingHex('')
-                              }
-                            }}
-                            autoFocus
-                            className="text-xs font-mono bg-white/10 border border-white/20 rounded px-1.5 py-0.5 w-20 text-right text-zinc-200 tabular-nums focus:outline-none focus:border-amber-400/60"
-                            maxLength={7}
-                          />
-                        ) : (
-                          <button
-                            onClick={() => startEditing(i, swatch.hex)}
-                            className="text-xs font-mono text-zinc-500 tabular-nums hover:text-zinc-200 transition-colors"
-                            title="Click to edit hex"
-                          >
-                            {swatch.hex}
-                          </button>
-                        )}
+                      <div className="flex items-center gap-2 p-2">
+                        <input
+                          type="color"
+                          value={swatch.hex}
+                          onChange={(e) => updateSwatch(i, e.target.value)}
+                          className="w-9 h-9 rounded-md border border-white/10 flex-shrink-0 cursor-pointer bg-transparent"
+                          style={{ padding: 0 }}
+                          title="Open color picker"
+                        />
+                        <div className="flex-1 flex items-baseline justify-between min-w-0">
+                          <span className="text-xs text-zinc-400">{swatch.label}</span>
+                          {isEditing ? (
+                            <input
+                              type="text"
+                              value={editingHex}
+                              onChange={(e) => setEditingHex(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') commitEdit()
+                                if (e.key === 'Escape') {
+                                  setEditingSwatch(null)
+                                  setEditingHex('')
+                                }
+                              }}
+                              autoFocus
+                              className="text-xs font-mono bg-white/10 border border-white/20 rounded px-1.5 py-0.5 w-20 text-right text-zinc-200 tabular-nums focus:outline-none focus:border-amber-400/60"
+                              maxLength={7}
+                            />
+                          ) : (
+                            <button
+                              onClick={() => startEditing(i, swatch.hex)}
+                              className="text-xs font-mono text-zinc-500 tabular-nums hover:text-zinc-200 transition-colors"
+                              title="Click to edit hex"
+                            >
+                              {swatch.hex}
+                            </button>
+                          )}
+                        </div>
+                        <button
+                          onClick={() => toggleLock(i)}
+                          className={`p-1.5 rounded-md transition-colors flex-shrink-0 ${
+                            isLocked
+                              ? 'text-amber-400 hover:text-amber-300'
+                              : 'text-zinc-600 hover:text-zinc-300'
+                          }`}
+                          title={isLocked ? 'Unlock this color' : 'Lock this color while shuffling'}
+                        >
+                          {isLocked ? <Lock size={13} /> : <Unlock size={13} />}
+                        </button>
                       </div>
-                      <button
-                        onClick={() => toggleLock(i)}
-                        className={`p-1.5 rounded-md transition-colors flex-shrink-0 ${
-                          isLocked
-                            ? 'text-amber-400 hover:text-amber-300'
-                            : 'text-zinc-600 hover:text-zinc-300'
-                        }`}
-                        title={isLocked ? 'Unlock this color' : 'Lock this color while shuffling'}
-                      >
-                        {isLocked ? <Lock size={13} /> : <Unlock size={13} />}
-                      </button>
+                      {isEditing && (
+                        <div className="px-2 pb-2 pt-1 space-y-1.5">
+                          {[
+                            { ch: 'h', label: 'H', value: hh, max: 360 },
+                            { ch: 's', label: 'S', value: ss, max: 100 },
+                            { ch: 'l', label: 'L', value: ll, max: 100 },
+                          ].map(({ ch, label, value, max }) => (
+                            <div key={ch} className="flex items-center gap-2">
+                              <span className="text-[10px] font-mono text-zinc-500 w-3">{label}</span>
+                              <input
+                                type="range"
+                                min={0}
+                                max={max}
+                                step={1}
+                                value={Math.round(value)}
+                                onChange={(e) => adjustSwatchHsl(i, ch, parseFloat(e.target.value))}
+                                className="flex-1 h-1 accent-amber-400"
+                              />
+                              <span className="text-[10px] font-mono text-zinc-500 w-8 text-right tabular-nums">
+                                {Math.round(value)}
+                              </span>
+                            </div>
+                          ))}
+                          <div className="flex justify-end pt-1">
+                            <button
+                              onClick={() => { setEditingSwatch(null); setEditingHex('') }}
+                              className="text-[10px] uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+                            >
+                              Done
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )
                 })}
@@ -1660,6 +1827,51 @@ $font-body: '${fontPair.body}', sans-serif;`
           </div>
         </aside>
       </div>
+
+      {/* QR modal */}
+      <AnimatePresence>
+        {qrOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setQrOpen(false)}
+              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 8 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 8 }}
+                transition={{ duration: 0.2 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white rounded-2xl p-8 max-w-sm w-full text-center relative"
+              >
+                <button
+                  onClick={() => setQrOpen(false)}
+                  className="absolute top-3 right-3 text-zinc-500 hover:text-black transition-colors"
+                  aria-label="Close"
+                >
+                  <X size={18} />
+                </button>
+                <h3 className="text-black font-semibold text-lg mb-2">Scan to load this kit</h3>
+                <p className="text-zinc-500 text-sm mb-5">
+                  Open the camera on a phone and point it here.
+                </p>
+                <img
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(shareUrl)}&margin=8`}
+                  alt="QR code for this brand kit"
+                  className="w-full h-auto rounded-md border border-zinc-200"
+                />
+                <p className="text-[10px] text-zinc-400 mt-4 break-all font-mono">
+                  {shareUrl.length > 60 ? shareUrl.slice(0, 60) + '...' : shareUrl}
+                </p>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Saved panel */}
       <AnimatePresence>
