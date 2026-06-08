@@ -66,6 +66,7 @@ const FONT_PAIRS = [
 ]
 
 const VIBES = [
+  { id: 'any', label: 'Any' },
   { id: 'premium', label: 'Premium' },
   { id: 'calm', label: 'Calm' },
   { id: 'bold', label: 'Bold' },
@@ -73,6 +74,15 @@ const VIBES = [
   { id: 'modern', label: 'Modern' },
   { id: 'editorial', label: 'Editorial' },
 ]
+
+const VIBE_IDS = VIBES.filter((v) => v.id !== 'any').map((v) => v.id)
+
+function resolveVibe(selectedVibe) {
+  if (selectedVibe === 'any') {
+    return VIBE_IDS[Math.floor(Math.random() * VIBE_IDS.length)]
+  }
+  return selectedVibe
+}
 
 // -- Helpers --------------------------------------------------------------
 function hexToHsl(hex) {
@@ -119,7 +129,8 @@ function jitter(hex, range = { h: 4, s: 4, l: 2 }) {
 }
 
 function generatePalette(vibe) {
-  const seeds = SEED_PALETTES[vibe]
+  const actualVibe = resolveVibe(vibe)
+  const seeds = SEED_PALETTES[actualVibe]
   const seed = seeds[Math.floor(Math.random() * seeds.length)]
   return seed.map((hex, i) => {
     const range = i < 2 ? { h: 2, s: 2, l: 1 } : { h: 6, s: 8, l: 3 }
@@ -128,6 +139,9 @@ function generatePalette(vibe) {
 }
 
 function pickFontPair(vibe) {
+  if (vibe === 'any') {
+    return FONT_PAIRS[Math.floor(Math.random() * FONT_PAIRS.length)]
+  }
   const filtered = FONT_PAIRS.filter((p) => p.vibes.includes(vibe))
   const pool = filtered.length ? filtered : FONT_PAIRS
   return pool[Math.floor(Math.random() * pool.length)]
@@ -139,9 +153,9 @@ function getContrastColor(bg) {
 }
 
 export default function BrandKit() {
-  const [vibe, setVibe] = useState('premium')
-  const [palette, setPalette] = useState(() => generatePalette('premium'))
-  const [fontPair, setFontPair] = useState(() => pickFontPair('premium'))
+  const [vibe, setVibe] = useState('any')
+  const [palette, setPalette] = useState(() => generatePalette('any'))
+  const [fontPair, setFontPair] = useState(() => pickFontPair('any'))
   const [copied, setCopied] = useState(false)
 
   const regenerate = useCallback(() => {
