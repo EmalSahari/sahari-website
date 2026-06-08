@@ -26,8 +26,8 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sahari.io/tools/estimate</loc>
+    <loc>https://sahari.io/tools/site-check</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
 </urlset>
