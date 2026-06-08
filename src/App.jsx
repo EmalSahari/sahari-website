@@ -8,7 +8,7 @@ import CookieNotice from './components/CookieNotice'
 import ScrollToTop from './components/ScrollToTop'
 import GradientDots from './components/GradientDots'
 
-const STANDALONE_ROUTES = ['/black-stone', '/drift', '/mork']
+const STANDALONE_ROUTES = ['/black-stone', '/drift', '/mork', '/tools/brand-kit']
 
 function Layout() {
   const location = useLocation()
