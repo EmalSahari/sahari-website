@@ -297,7 +297,7 @@ export const translations = {
     'work.subtitle': 'Client projects, personal builds, and design experiments. A selection of work worth showing off.',
     'work.concepts.eyebrow': 'Concepts',
     'work.concepts.heading': 'Demo sites',
-    'work.concepts.subtitle': 'Made-up brands, fully built out. A sandbox for typography, layout and motion.',
+    'work.concepts.subtitle': 'Fake brands I built to test design and code.',
     'work.seeAll': 'See all work',
 
     // Work With Us
@@ -640,7 +640,7 @@ export const translations = {
     'work.subtitle': 'Kundeprojekter, personlige builds og designeksperimenter. Et udvalg af det jeg gerne vil vise frem.',
     'work.concepts.eyebrow': 'Koncepter',
     'work.concepts.heading': 'Demo-sider',
-    'work.concepts.subtitle': 'Opdigtede brands, bygget i fuld størrelse. En legeplads for typografi, layout og motion.',
+    'work.concepts.subtitle': 'Fiktive brands jeg har bygget for at teste design og kode.',
     'work.seeAll': 'Se alt arbejde',
 
     // Work With Us
