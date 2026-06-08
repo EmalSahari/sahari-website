@@ -1,11 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#8b5cf6"/>
-      <stop offset="1" stop-color="#4f46e5"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#g)"/>
-  <text x="50%" y="50%" dy=".06em" text-anchor="middle" dominant-baseline="central"
-        font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="40" fill="#ffffff">S</text>
+  <rect width="64" height="64" rx="14" fill="#ffffff"/>
+  <text x="50%" y="50%" dy=".08em" text-anchor="middle" dominant-baseline="central"
+        font-family="Unbounded, Inter, system-ui, sans-serif" font-weight="800" font-size="40" fill="#0a0a0a">S</text>
 </svg>
