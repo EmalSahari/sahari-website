@@ -46,7 +46,7 @@ function useOpenStatus() {
     const id = setInterval(() => setNow(new Date()), 60_000)
     return () => clearInterval(id)
   }, [])
-  // Open Tue–Sun, 7:30 – 17:00. Closed Mondays.
+  // Open Tue to Sun, 7:30 to 17:00. Closed Mondays.
   const day = now.getDay() // 0 = Sun, 1 = Mon
   const hour = now.getHours() + now.getMinutes() / 60
   const isMonday = day === 1
@@ -54,7 +54,7 @@ function useOpenStatus() {
   const isOpen = !isMonday && inHours
   return {
     isOpen,
-    label: isMonday ? 'Closed Mondays' : (isOpen ? 'Open now — until 17:00' : 'Opens at 7:30'),
+    label: isMonday ? 'Closed Mondays' : (isOpen ? 'Open now, until 17:00' : 'Opens at 7:30'),
   }
 }
 
@@ -173,7 +173,7 @@ export default function DriftCoffee() {
   const imageOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.4])
 
   useEffect(() => {
-    document.title = 'DRIFT — Specialty coffee · København'
+    document.title = 'DRIFT · Specialty coffee · København'
     const prev = document.body.style.backgroundColor
     document.body.style.backgroundColor = COLORS.bg
     return () => { document.body.style.backgroundColor = prev }
@@ -269,7 +269,7 @@ export default function DriftCoffee() {
             </div>
             <p className="md:col-span-5 text-sm md:text-base leading-relaxed" style={{ color: COLORS.textMuted }}>
               Beans rotate. Pastries rotate. Some weekdays the board says different things.
-              The fixed parts are below — ask about the rest when you come in.
+              The fixed parts are below. Ask about the rest when you come in.
             </p>
           </div>
 
@@ -330,7 +330,7 @@ export default function DriftCoffee() {
               </p>
               <p>
                 We work with two roasters in Scandinavia and rotate beans by season.
-                Every cup is pulled by hand — no automation, no shortcuts.
+                Every cup is pulled by hand. No automation, no shortcuts.
               </p>
               <p>
                 You'll find us in a corner of Vesterbro. Two windows, a long shared
@@ -370,12 +370,12 @@ export default function DriftCoffee() {
                     <span>Closed</span>
                   </li>
                   <li className="flex justify-between gap-4 max-w-[14rem]">
-                    <span style={{ color: COLORS.textMuted }}>Tue — Fri</span>
-                    <span>7:30 — 17:00</span>
+                    <span style={{ color: COLORS.textMuted }}>Tue-Fri</span>
+                    <span>7:30-17:00</span>
                   </li>
                   <li className="flex justify-between gap-4 max-w-[14rem]">
-                    <span style={{ color: COLORS.textMuted }}>Sat — Sun</span>
-                    <span>9:00 — 16:00</span>
+                    <span style={{ color: COLORS.textMuted }}>Sat-Sun</span>
+                    <span>9:00-16:00</span>
                   </li>
                 </ul>
               </div>

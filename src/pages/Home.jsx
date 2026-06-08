@@ -251,7 +251,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Process — how I work */}
+      {/* Process - how I work */}
       <section className="max-w-6xl mx-auto px-6 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

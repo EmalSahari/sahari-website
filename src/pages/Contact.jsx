@@ -149,7 +149,7 @@ export default function Contact() {
                 onSubmit={handleSubmit}
                 className="gradient-border bg-[#0f0f0f] rounded-2xl p-8 space-y-5"
               >
-                {/* Honeypot — hidden from real users, bots fill it and get rejected */}
+                {/* Honeypot - hidden from real users, bots fill it and get rejected */}
                 <input
                   type="text"
                   name="_gotcha"

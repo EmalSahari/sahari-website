@@ -104,7 +104,7 @@ export default function About() {
           </p>
         </motion.div>
 
-        {/* Values — how I work */}
+        {/* Values - how I work */}
         <motion.div
           variants={fadeUp}
           initial="hidden"

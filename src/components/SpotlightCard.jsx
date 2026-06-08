@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 
 /**
- * SpotlightCard — matches the easemize Spotlight Card style.
+ * SpotlightCard - matches the easemize Spotlight Card style.
  * A bright neon beam tracks the cursor along the card border,
  * with a soft inner radial glow following the mouse.
  */
@@ -30,7 +30,7 @@ export default function SpotlightCard({
       style={{ isolation: 'isolate' }}
     >
       {/* ── Border beam ─────────────────────────────────────────── */}
-      {/* Outer glow ring — very bright at cursor, fades away */}
+      {/* Outer glow ring - very bright at cursor, fades away */}
       <div
         aria-hidden
         className="absolute inset-0 rounded-[inherit] pointer-events-none transition-opacity duration-500"

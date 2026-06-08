@@ -78,8 +78,8 @@ const faqs = [
 ]
 
 const aftercareSteps = [
-  { day: 'Day 0–2', title: 'Keep the wrap on', body: 'Your artist sends you home with a fresh wrap. Follow the timing they give you for when to take it off.' },
-  { day: 'Day 2–14', title: 'Wash and moisturise', body: 'Gentle soap, clean water, fragrance-free lotion. Twice a day. No soaking, no sun.' },
+  { day: 'Day 0 to 2', title: 'Keep the wrap on', body: 'Your artist sends you home with a fresh wrap. Follow the timing they give you for when to take it off.' },
+  { day: 'Day 2 to 14', title: 'Wash and moisturise', body: 'Gentle soap, clean water, fragrance-free lotion. Twice a day. No soaking, no sun.' },
   { day: 'Day 14+', title: 'Settle in', body: 'The tattoo is healed on the surface but still settling underneath. Keep it out of direct sun and moisturise as needed.' },
 ]
 
@@ -119,7 +119,7 @@ function Faq({ q, a }) {
 
 export default function BlackStone() {
   useEffect(() => {
-    document.title = 'BLACK STONE — Custom tattoo studio · Copenhagen'
+    document.title = 'BLACK STONE · Custom tattoo studio · Copenhagen'
     const prev = document.body.style.backgroundColor
     document.body.style.backgroundColor = COLORS.bg
     return () => { document.body.style.backgroundColor = prev }
@@ -127,7 +127,7 @@ export default function BlackStone() {
 
   return (
     <div style={{ ...body, backgroundColor: COLORS.bg, color: COLORS.text }} className="min-h-screen overflow-x-hidden relative">
-      {/* Film grain overlay — site-wide */}
+      {/* Film grain overlay, site-wide */}
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 z-[60] opacity-[0.08] mix-blend-overlay"
@@ -211,7 +211,7 @@ export default function BlackStone() {
           >
             <p className="max-w-md text-sm md:text-lg leading-relaxed" style={{ color: COLORS.textMuted }}>
               Three artists. Fine line, blackwork, and custom. By
-              appointment only — every piece starts with a conversation.
+              appointment only. Every piece starts with a conversation.
             </p>
             <div className="flex items-center gap-4 text-[10px] md:text-xs tracking-[0.25em] uppercase" style={{ color: COLORS.textMuted }}>
               <span>↓</span>
@@ -238,7 +238,7 @@ export default function BlackStone() {
             <span style={{ color: COLORS.accent, fontStyle: 'italic' }}>"</span>
           </blockquote>
           <p className="mt-8 md:mt-10 text-xs md:text-sm tracking-[0.25em] uppercase" style={{ color: COLORS.textMuted }}>
-            — The Black Stone studio
+            The Black Stone studio
           </p>
         </div>
       </section>
@@ -252,7 +252,7 @@ export default function BlackStone() {
             </h2>
             <p className="max-w-sm text-sm md:text-base leading-relaxed" style={{ color: COLORS.textMuted }}>
               We stay narrow on purpose. That way you get a piece that
-              holds together — not a catalogue of effects.
+              holds together, not a catalogue of effects.
             </p>
           </div>
 
@@ -294,7 +294,7 @@ export default function BlackStone() {
                 come back for the work.
               </p>
               <p className="text-xs tracking-[0.25em] uppercase" style={{ color: COLORS.accent }}>
-                Open Tue — Sat · By appointment
+                Open Tue to Sat · By appointment
               </p>
             </div>
           </div>
@@ -354,7 +354,7 @@ export default function BlackStone() {
               Recent work
             </h2>
             <span className="text-[10px] md:text-xs tracking-[0.25em] uppercase" style={{ color: COLORS.textMuted }}>
-              2023 — 2024
+              2023 to 2024
             </span>
           </div>
 

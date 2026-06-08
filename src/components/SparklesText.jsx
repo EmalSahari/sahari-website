@@ -1,14 +1,14 @@
 import SparklesCore from './SparklesCore'
 
 /**
- * Sparkles — renders a contained sparkle field behind children.
+ * Sparkles - renders a contained sparkle field behind children.
  * The canvas is absolutely positioned so it never affects layout.
  * Matches the Aceternity Sparkles pattern: section-level background under text.
  */
 export default function SparklesText({ children, className = '' }) {
   return (
     <span className={`relative inline-block ${className}`}>
-      {/* Sparkle canvas — absolutely positioned, doesn't affect layout */}
+      {/* Sparkle canvas - absolutely positioned, doesn't affect layout */}
       <span
         className="absolute pointer-events-none"
         aria-hidden="true"

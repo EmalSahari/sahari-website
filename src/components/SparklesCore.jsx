@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * SparklesCore — canvas particle system matching the Aceternity Sparkles style.
+ * SparklesCore - canvas particle system matching the Aceternity Sparkles style.
  * Hundreds of tiny dots drift slowly, pulse in opacity, creating a galaxy/nebula feel.
  */
 export default function SparklesCore({

@@ -10,7 +10,7 @@ function getInitialLang() {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored === 'en' || stored === 'da') return stored
   } catch {
-    // ignore — localStorage may be unavailable
+    // ignore - localStorage may be unavailable
   }
   const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase()
   if (browserLang.startsWith('da')) return 'da'

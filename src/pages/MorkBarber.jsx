@@ -39,7 +39,7 @@ const gallery = [
 const steps = [
   { no: '01', title: 'Book a slot', body: 'Drop me a message with what you want done. I reply same day with a time.' },
   { no: '02', title: 'Show up', body: '15 minutes early. I work alone, so we start on time. Coffee is on the counter.' },
-  { no: '03', title: 'Sit back', body: '30–45 minutes depending on the cut. Hot towel, line up, brush off. Done.' },
+  { no: '03', title: 'Sit back', body: '30 to 45 minutes depending on the cut. Hot towel, line up, brush off. Done.' },
 ]
 
 function useOpenStatus() {
@@ -48,7 +48,7 @@ function useOpenStatus() {
     const id = setInterval(() => setNow(new Date()), 60_000)
     return () => clearInterval(id)
   }, [])
-  // Open Wed–Sat, 10:00 – 18:00. Closed Sun, Mon, Tue.
+  // Open Wed to Sat, 10:00 to 18:00. Closed Sun, Mon, Tue.
   const day = now.getDay()
   const hour = now.getHours() + now.getMinutes() / 60
   const isClosedDay = day < 3 // Sun(0), Mon(1), Tue(2)
@@ -113,7 +113,7 @@ export default function MorkBarber() {
   const { isOpen, label } = useOpenStatus()
 
   useEffect(() => {
-    document.title = 'MØRK — Barber by Rasmus Mørk · Aarhus'
+    document.title = 'MØRK · Barber by Rasmus Mørk · Aarhus'
     const prev = document.body.style.backgroundColor
     document.body.style.backgroundColor = COLORS.bg
     return () => { document.body.style.backgroundColor = prev }
@@ -404,15 +404,15 @@ export default function MorkBarber() {
                 <p className="text-xs tracking-[0.25em] uppercase font-semibold mb-3" style={{ color: COLORS.textMuted }}>Hours</p>
                 <ul className="space-y-1 text-sm md:text-base font-medium" style={{ color: COLORS.text }}>
                   <li className="flex justify-between gap-4 max-w-[14rem]">
-                    <span style={{ color: COLORS.textMuted }}>Wed — Fri</span>
-                    <span>10 — 18</span>
+                    <span style={{ color: COLORS.textMuted }}>Wed-Fri</span>
+                    <span>10-18</span>
                   </li>
                   <li className="flex justify-between gap-4 max-w-[14rem]">
                     <span style={{ color: COLORS.textMuted }}>Sat</span>
-                    <span>9 — 15</span>
+                    <span>9-15</span>
                   </li>
                   <li className="flex justify-between gap-4 max-w-[14rem]">
-                    <span style={{ color: COLORS.textMuted }}>Sun — Tue</span>
+                    <span style={{ color: COLORS.textMuted }}>Sun-Tue</span>
                     <span>Closed</span>
                   </li>
                 </ul>

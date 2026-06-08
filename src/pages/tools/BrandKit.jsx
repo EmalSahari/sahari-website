@@ -328,7 +328,7 @@ const SEED_PALETTES = {
   ],
 }
 
-// Curated locked combos — palette + fonts pre-paired
+// Curated locked combos - palette + fonts pre-paired
 const CURATED_PRESETS = [
   { name: 'NYT Editorial', palette: ['#f5efe6', '#1f1a16', '#6b5a4d', '#8b1a1a', '#ece4d4'], display: 'Fraunces', body: 'DM Sans' },
   { name: 'Linear Dark', palette: ['#0a0a0a', '#fafafa', '#a3a3a3', '#9d4edd', '#1a1a1a'], display: 'Inter Tight', body: 'Inter Tight' },
@@ -438,18 +438,18 @@ const FONT_PAIRS = [
 ]
 
 const VIBES = [
-  { id: 'any', label: 'Any', desc: 'A random vibe each shuffle — surprise me' },
-  { id: 'curated', label: 'Curated ✦', desc: '20 hand-paired presets where palette and fonts are locked together' },
-  { id: 'premium', label: 'Premium', desc: 'Dark, sophisticated — luxury brand, fine dining, high-end studio' },
-  { id: 'calm', label: 'Calm', desc: 'Soft, peaceful — wellness, yoga, spa, therapist' },
-  { id: 'bold', label: 'Bold', desc: 'High contrast, attention-grabbing — bold startups, statements' },
-  { id: 'warm', label: 'Warm', desc: 'Earthy tones — café, bakery, hospitality, artisans' },
-  { id: 'modern', label: 'Modern', desc: 'Clean, tech-y — SaaS, startups, agencies' },
-  { id: 'editorial', label: 'Editorial', desc: 'Magazine sophistication — design studios, publications' },
-  { id: 'minimal', label: 'Minimal', desc: 'Mono or near-mono — galleries, minimalist brands' },
-  { id: 'playful', label: 'Playful', desc: 'Bright, friendly — kids, food, lifestyle brands' },
-  { id: 'vintage', label: 'Vintage', desc: 'Retro 70s/80s warm earth tones — heritage, craft' },
-  { id: 'futuristic', label: 'Futuristic', desc: 'Dark + electric neon — tech, gaming, sci-fi' },
+  { id: 'any', label: 'Any', desc: 'A random vibe each shuffle. Surprise me.' },
+  { id: 'curated', label: 'Curated ✦', desc: 'Hand-paired presets where palette and fonts are locked together.' },
+  { id: 'premium', label: 'Premium', desc: 'Dark, sophisticated. Luxury brand, fine dining, high-end studio.' },
+  { id: 'calm', label: 'Calm', desc: 'Soft, peaceful. Wellness, yoga, spa, therapist.' },
+  { id: 'bold', label: 'Bold', desc: 'High contrast, attention-grabbing. Bold startups, statements.' },
+  { id: 'warm', label: 'Warm', desc: 'Earthy tones. Café, bakery, hospitality, artisans.' },
+  { id: 'modern', label: 'Modern', desc: 'Clean, tech-y. SaaS, startups, agencies.' },
+  { id: 'editorial', label: 'Editorial', desc: 'Magazine sophistication. Design studios, publications.' },
+  { id: 'minimal', label: 'Minimal', desc: 'Mono or near-mono. Galleries, minimalist brands.' },
+  { id: 'playful', label: 'Playful', desc: 'Bright, friendly. Kids, food, lifestyle brands.' },
+  { id: 'vintage', label: 'Vintage', desc: 'Retro 70s and 80s warm earth tones. Heritage, craft.' },
+  { id: 'futuristic', label: 'Futuristic', desc: 'Dark plus electric neon. Tech, gaming, sci-fi.' },
 ]
 
 const VIBE_IDS = VIBES.filter((v) => v.id !== 'any' && v.id !== 'curated').map((v) => v.id)

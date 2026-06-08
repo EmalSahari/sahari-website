@@ -2,13 +2,13 @@ import { useEffect, useRef } from 'react'
 
 /**
  * Dense grid of dots, alpha-modulated by a travelling diagonal wave.
- * Pure white — no color shift — to keep the background quiet.
+ * Pure white - no color shift - to keep the background quiet.
  */
 export default function GradientDots({ className = '' }) {
   const canvasRef = useRef(null)
 
   useEffect(() => {
-    // Skip canvas entirely on mobile — competes with scroll and causes jank on iOS
+    // Skip canvas entirely on mobile - competes with scroll and causes jank on iOS
     if (window.matchMedia('(max-width: 768px)').matches) return
 
     const canvas = canvasRef.current
@@ -53,9 +53,9 @@ export default function GradientDots({ className = '' }) {
       ctx.clearRect(0, 0, width, height)
 
       dots.forEach(d => {
-        // Travelling diagonal wave — phase depends on position + time
+        // Travelling diagonal wave - phase depends on position + time
         const phase = (d.x + d.y) * WAVE_SCALE + t
-        const alpha = 0.10 + Math.sin(phase * 0.7) * 0.07  // 0.03–0.17
+        const alpha = 0.10 + Math.sin(phase * 0.7) * 0.07  // 0.03-0.17
 
         ctx.beginPath()
         ctx.arc(d.x, d.y, RADIUS, 0, Math.PI * 2)
