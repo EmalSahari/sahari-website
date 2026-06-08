@@ -746,6 +746,7 @@ export default function BrandKit() {
   const [editingSwatch, setEditingSwatch] = useState(null)
   const [editingHex, setEditingHex] = useState('')
   const [qrOpen, setQrOpen] = useState(false)
+  const [vibeDropdownOpen, setVibeDropdownOpen] = useState(false)
   const fileInputRef = useRef(null)
   const isApplyingHistory = useRef(false)
 
@@ -1141,32 +1142,45 @@ $font-body: '${fontPair.body}', sans-serif;`
       {/* Vibe + actions row */}
       <div className="border-b border-white/5 flex-shrink-0">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-3 flex flex-wrap items-center gap-2 md:gap-3">
-          <div className="flex flex-wrap items-center gap-1.5">
-            {VIBES.map((v) => (
-              <div key={v.id} className="relative group">
-                <button
-                  onClick={() => setVibe(v.id)}
-                  title={v.desc}
-                  className={`px-3 py-1.5 rounded-full text-xs md:text-sm font-medium transition-all ${
-                    vibe === v.id
-                      ? 'bg-amber-400 text-black'
-                      : 'bg-white/5 text-zinc-300 hover:bg-white/10 border border-white/10'
-                  }`}
-                >
-                  {v.label}
-                </button>
+          <div className="relative">
+            <button
+              onClick={() => setVibeDropdownOpen((v) => !v)}
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-400 text-black rounded-full text-xs md:text-sm font-medium hover:bg-amber-300 transition-all"
+            >
+              <span className="text-[10px] tracking-[0.2em] uppercase opacity-70">Vibe</span>
+              <span className="font-semibold">{VIBES.find((v) => v.id === vibe)?.label || 'Any'}</span>
+              <ChevronDown size={12} className={`transition-transform ${vibeDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {vibeDropdownOpen && (
+              <>
                 <div
-                  className="hidden md:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-[#1a1a1a] border border-white/15 rounded-lg text-xs text-zinc-200 w-56 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-150 shadow-xl z-50 text-center leading-snug"
-                  role="tooltip"
-                >
-                  {v.desc}
-                  <span
-                    aria-hidden
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 -mt-1 rotate-45 bg-[#1a1a1a] border-r border-b border-white/15"
-                  />
+                  onClick={() => setVibeDropdownOpen(false)}
+                  className="fixed inset-0 z-30"
+                />
+                <div className="absolute top-full left-0 mt-1 z-40 bg-[#1a1a1a] border border-white/10 rounded-xl shadow-2xl py-2 w-72 max-h-[70vh] overflow-y-auto">
+                  {VIBES.map((v) => (
+                    <button
+                      key={v.id}
+                      onClick={() => {
+                        setVibe(v.id)
+                        setVibeDropdownOpen(false)
+                      }}
+                      className={`w-full text-left px-3 py-2 transition-colors ${
+                        vibe === v.id ? 'bg-amber-400/15' : 'hover:bg-white/5'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-0.5">
+                        <span className={`text-sm font-medium ${vibe === v.id ? 'text-amber-300' : 'text-white'}`}>
+                          {v.label}
+                        </span>
+                        {vibe === v.id && <Check size={13} className="text-amber-400" />}
+                      </div>
+                      <p className="text-[11px] leading-snug text-zinc-500">{v.desc}</p>
+                    </button>
+                  ))}
                 </div>
-              </div>
-            ))}
+              </>
+            )}
           </div>
           <div className="flex items-center gap-2 ml-auto">
             <div className="hidden md:flex items-center gap-1 mr-1">
