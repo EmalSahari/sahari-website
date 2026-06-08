@@ -26,21 +26,11 @@ body {
 
 @layer utilities {
   .gradient-text {
-    font-family: 'Fraunces', 'Instrument Serif', 'Georgia', serif;
-    font-style: italic;
-    font-weight: 700;
-    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
     color: #fbbf24;
-    letter-spacing: -0.02em;
   }
 
   .gradient-text-animated {
-    font-family: 'Fraunces', 'Instrument Serif', 'Georgia', serif;
-    font-style: italic;
-    font-weight: 700;
-    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
     color: #fbbf24;
-    letter-spacing: -0.02em;
     position: relative;
     display: inline-block;
   }
