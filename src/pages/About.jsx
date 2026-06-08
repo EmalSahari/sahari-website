@@ -96,8 +96,8 @@ export default function About() {
             </div>
           </div>
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
-          <h1 className="font-display font-medium text-white text-5xl md:text-7xl tracking-[-0.04em] leading-[0.95] mb-6">
-            {t('about.heading.start')} <span className="italic font-normal text-amber-400">{t('about.heading.highlight')}</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
+            {t('about.heading.start')} <span className="gradient-text">{t('about.heading.highlight')}</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto">
             {t('about.subtitle')}
@@ -113,7 +113,7 @@ export default function About() {
           className="mb-14"
         >
           <div className="text-center mb-8">
-            <h2 className="font-display font-medium text-white text-3xl md:text-5xl tracking-[-0.035em] leading-[1] mb-4">{t('about.values.heading')}</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-3">{t('about.values.heading')}</h2>
             <p className="text-zinc-400 max-w-lg mx-auto">{t('about.values.subtitle')}</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
