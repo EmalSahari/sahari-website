@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark } from 'lucide-react'
+import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown } from 'lucide-react'
 
 // -- Seed palettes per vibe -----------------------------------------------
 // Each entry: [bg, text, muted, accent, surface]
@@ -505,13 +505,14 @@ function jitter(hex, range = { h: 4, s: 4, l: 2 }) {
   return hslToHex(newH, newS, newL)
 }
 
-function generatePalette(vibe) {
+function generatePalette(vibe, lockedSet = null, currentPalette = null) {
   const actualVibe = resolveVibe(vibe)
   const seeds = SEED_PALETTES[actualVibe]
   const seed = seeds[Math.floor(Math.random() * seeds.length)]
   return seed.map((hex, i) => {
-    // Slightly looser jitter than before so the same seed produces more
-    // visibly different results between shuffles.
+    if (lockedSet && lockedSet.has(i) && currentPalette) {
+      return currentPalette[i]
+    }
     const range = i < 2 ? { h: 3, s: 4, l: 2 } : { h: 10, s: 12, l: 5 }
     return jitter(hex, range)
   })
@@ -560,39 +561,140 @@ function getContrastColor(bg) {
   return l > 50 ? '#000000' : '#ffffff'
 }
 
+// WCAG contrast
+function relativeLuminance(hex) {
+  const r = parseInt(hex.slice(1, 3), 16) / 255
+  const g = parseInt(hex.slice(3, 5), 16) / 255
+  const b = parseInt(hex.slice(5, 7), 16) / 255
+  const f = (c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4))
+  return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+}
+
+function contrastRatio(hex1, hex2) {
+  const l1 = relativeLuminance(hex1)
+  const l2 = relativeLuminance(hex2)
+  const [a, b] = [Math.max(l1, l2), Math.min(l1, l2)]
+  return (a + 0.05) / (b + 0.05)
+}
+
+function contrastBadge(ratio) {
+  if (ratio >= 7) return { label: 'AAA', tone: 'good', tip: 'High contrast, easily readable.' }
+  if (ratio >= 4.5) return { label: 'AA', tone: 'good', tip: 'Meets WCAG AA for body text.' }
+  if (ratio >= 3) return { label: 'AA Large', tone: 'warn', tip: 'Only safe for large text (24px+ or 18px bold).' }
+  return { label: 'Fails', tone: 'bad', tip: 'Text on background is hard to read. Try regenerating.' }
+}
+
+// Share URL encoding
+function encodeKit(palette, display, body) {
+  const p = palette.map((h) => h.slice(1)).join('-')
+  const params = new URLSearchParams()
+  params.set('p', p)
+  params.set('d', display)
+  params.set('b', body)
+  return params.toString()
+}
+
+function decodeKitFromSearch(searchParams) {
+  const p = searchParams.get('p')
+  if (!p) return null
+  const parts = p.split('-')
+  if (parts.length !== 5) return null
+  const palette = parts.map((h) => `#${h}`)
+  if (!palette.every((h) => /^#[0-9a-fA-F]{6}$/.test(h))) return null
+  const display = searchParams.get('d') || 'Inter'
+  const body = searchParams.get('b') || 'Inter'
+  return { palette, display, body }
+}
+
+// Color blindness CSS filters via inline SVG matrices
+const CB_FILTERS = {
+  none: null,
+  protanopia: '0.567 0.433 0     0 0  0.558 0.442 0     0 0  0     0.242 0.758 0 0  0 0 0 1 0',
+  deuteranopia: '0.625 0.375 0   0 0  0.7   0.3   0     0 0  0     0.3   0.7   0 0  0 0 0 1 0',
+  tritanopia: '0.95  0.05  0    0 0  0     0.433 0.567 0 0  0     0.475 0.525 0 0  0 0 0 1 0',
+}
+
+// Multiple preview layouts
+const PREVIEW_LAYOUTS = [
+  { id: 'hero', label: 'Hero' },
+  { id: 'card', label: 'Card' },
+  { id: 'list', label: 'List' },
+  { id: 'mobile', label: 'Mobile' },
+]
+
 export default function BrandKit() {
+  const [searchParams, setSearchParams] = useSearchParams()
+  const sharedKit = decodeKitFromSearch(searchParams)
+
   const [vibe, setVibe] = useState('any')
-  const [palette, setPalette] = useState(() => generatePalette('any'))
-  const [fontPair, setFontPair] = useState(() => pickFontPair('any'))
+  const [palette, setPalette] = useState(() => sharedKit?.palette || generatePalette('any'))
+  const [fontPair, setFontPair] = useState(() =>
+    sharedKit
+      ? { display: sharedKit.display, body: sharedKit.body }
+      : pickFontPair('any')
+  )
   const [presetName, setPresetName] = useState(null)
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(null)
+  const [exportFormat, setExportFormat] = useState('css')
+  const [exportOpen, setExportOpen] = useState(false)
+  const [shareCopied, setShareCopied] = useState(false)
   const [saved, setSaved] = useState(loadSaved)
   const [savedOpen, setSavedOpen] = useState(false)
+  const [locked, setLocked] = useState(() => new Set())
+  const [cbMode, setCbMode] = useState('none')
+  const [layout, setLayout] = useState('hero')
 
   const applyCombo = useCallback((newPalette, newFont, newPresetName = null) => {
     setPalette(newPalette)
     setFontPair(newFont)
     setPresetName(newPresetName)
+    setLocked(new Set())
   }, [])
 
   const regenerate = useCallback(() => {
     if (vibe === 'curated') {
       const preset = pickCuratedPreset()
-      applyCombo(preset.palette, { display: preset.display, body: preset.body }, preset.name)
+      setPalette(preset.palette)
+      setFontPair({ display: preset.display, body: preset.body })
+      setPresetName(preset.name)
     } else {
-      applyCombo(generatePalette(vibe), pickFontPair(vibe))
+      setPalette((prev) => generatePalette(vibe, locked, prev))
+      setFontPair(pickFontPair(vibe))
+      setPresetName(null)
     }
-  }, [vibe, applyCombo])
+  }, [vibe, locked])
 
   useEffect(() => {
+    if (sharedKit) return // honour incoming URL on first load
     if (vibe === 'curated') {
       const preset = pickCuratedPreset()
-      applyCombo(preset.palette, { display: preset.display, body: preset.body }, preset.name)
+      setPalette(preset.palette)
+      setFontPair({ display: preset.display, body: preset.body })
+      setPresetName(preset.name)
     } else {
-      applyCombo(generatePalette(vibe), pickFontPair(vibe))
+      setPalette(generatePalette(vibe))
+      setFontPair(pickFontPair(vibe))
+      setPresetName(null)
     }
+    setLocked(new Set())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vibe])
+
+  const toggleLock = useCallback((index) => {
+    setLocked((prev) => {
+      const next = new Set(prev)
+      if (next.has(index)) next.delete(index)
+      else next.add(index)
+      return next
+    })
+  }, [])
+
+  const copyShareLink = useCallback(() => {
+    const url = `${window.location.origin}${window.location.pathname}?${encodeKit(palette, fontPair.display, fontPair.body)}`
+    navigator.clipboard.writeText(url)
+    setShareCopied(true)
+    setTimeout(() => setShareCopied(false), 2000)
+  }, [palette, fontPair])
 
   const currentKey = kitKey(palette, fontPair.display, fontPair.body)
   const isCurrentSaved = saved.some((s) => s.key === currentKey)
@@ -661,19 +763,61 @@ export default function BrandKit() {
     document.title = 'Brand Kit Generator · Sahari Tools'
   }, [])
 
-  const copyCSS = () => {
-    const css = `:root {
-  --color-bg: ${palette[0]};
-  --color-text: ${palette[1]};
-  --color-muted: ${palette[2]};
-  --color-accent: ${palette[3]};
-  --color-surface: ${palette[4]};
+  const buildExport = (format) => {
+    const [bg, text, muted, accent, surface] = palette
+    switch (format) {
+      case 'tailwind':
+        return `// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        bg: '${bg}',
+        text: '${text}',
+        muted: '${muted}',
+        accent: '${accent}',
+        surface: '${surface}',
+      },
+      fontFamily: {
+        display: ['${fontPair.display}', 'serif'],
+        body: ['${fontPair.body}', 'sans-serif'],
+      },
+    },
+  },
+}`
+      case 'scss':
+        return `$color-bg: ${bg};
+$color-text: ${text};
+$color-muted: ${muted};
+$color-accent: ${accent};
+$color-surface: ${surface};
+$font-display: '${fontPair.display}', serif;
+$font-body: '${fontPair.body}', sans-serif;`
+      case 'json':
+        return JSON.stringify({
+          colors: { bg, text, muted, accent, surface },
+          fonts: { display: fontPair.display, body: fontPair.body },
+        }, null, 2)
+      case 'css':
+      default:
+        return `:root {
+  --color-bg: ${bg};
+  --color-text: ${text};
+  --color-muted: ${muted};
+  --color-accent: ${accent};
+  --color-surface: ${surface};
   --font-display: "${fontPair.display}", serif;
   --font-body: "${fontPair.body}", sans-serif;
 }`
-    navigator.clipboard.writeText(css)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    }
+  }
+
+  const copyExport = (format) => {
+    navigator.clipboard.writeText(buildExport(format))
+    setExportFormat(format)
+    setCopied(format)
+    setExportOpen(false)
+    setTimeout(() => setCopied(null), 2000)
   }
 
   const [bg, text, muted, accent, surface] = palette
@@ -689,6 +833,19 @@ export default function BrandKit() {
 
   return (
     <div className="h-screen bg-[#0a0a0a] text-zinc-100 flex flex-col overflow-hidden" style={{ fontFamily: '"Inter", sans-serif' }}>
+      {/* SVG filters for color blindness simulation */}
+      <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden>
+        <defs>
+          {Object.entries(CB_FILTERS).map(([key, matrix]) =>
+            matrix ? (
+              <filter key={key} id={`cb-${key}`}>
+                <feColorMatrix type="matrix" values={matrix} />
+              </filter>
+            ) : null
+          )}
+        </defs>
+      </svg>
+
       {/* Top bar */}
       <header className="border-b border-white/5 backdrop-blur bg-[#0a0a0a]/85 flex-shrink-0">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 h-12 flex items-center justify-between">
@@ -764,12 +921,47 @@ export default function BrandKit() {
                 <span>{saved.length}</span>
               </button>
             )}
+            <div className="relative">
+              <button
+                onClick={() => setExportOpen((v) => !v)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              >
+                {copied ? <Check size={12} /> : <Copy size={12} />}
+                <span className="hidden sm:inline">{copied ? `Copied ${copied.toUpperCase()}` : 'Export'}</span>
+                <ChevronDown size={12} />
+              </button>
+              {exportOpen && (
+                <>
+                  <div
+                    onClick={() => setExportOpen(false)}
+                    className="fixed inset-0 z-30"
+                  />
+                  <div className="absolute top-full right-0 mt-1 z-40 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-xl py-1 min-w-[140px]">
+                    {[
+                      { id: 'css', label: 'CSS variables' },
+                      { id: 'tailwind', label: 'Tailwind config' },
+                      { id: 'scss', label: 'SCSS variables' },
+                      { id: 'json', label: 'JSON tokens' },
+                    ].map((opt) => (
+                      <button
+                        key={opt.id}
+                        onClick={() => copyExport(opt.id)}
+                        className="w-full text-left px-3 py-2 text-xs text-zinc-200 hover:bg-white/10 transition-colors"
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
             <button
-              onClick={copyCSS}
+              onClick={copyShareLink}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              title="Copy a shareable link"
             >
-              {copied ? <Check size={12} /> : <Copy size={12} />}
-              <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy CSS'}</span>
+              {shareCopied ? <Check size={12} /> : <Share2 size={12} />}
+              <span className="hidden sm:inline">{shareCopied ? 'Link copied' : 'Share'}</span>
             </button>
           </div>
         </div>
@@ -783,9 +975,57 @@ export default function BrandKit() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="overflow-y-auto"
-          style={{ backgroundColor: bg, color: text }}
+          className="overflow-y-auto relative"
+          style={{
+            backgroundColor: bg,
+            color: text,
+            filter: cbMode !== 'none' ? `url(#cb-${cbMode})` : 'none',
+          }}
         >
+          {/* Layout + color blindness controls (floating) */}
+          <div
+            className="sticky top-0 z-10 flex flex-wrap items-center gap-2 px-4 py-2 backdrop-blur"
+            style={{ backgroundColor: `${bg}cc` }}
+          >
+            <div className="flex items-center gap-1 text-[10px] font-medium" style={{ color: muted }}>
+              {PREVIEW_LAYOUTS.map((l) => (
+                <button
+                  key={l.id}
+                  onClick={() => setLayout(l.id)}
+                  className="px-2.5 py-1 rounded-md transition-all"
+                  style={{
+                    backgroundColor: layout === l.id ? text : 'transparent',
+                    color: layout === l.id ? bg : muted,
+                  }}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+            <div className="flex items-center gap-1 ml-auto text-[10px] font-medium" style={{ color: muted }}>
+              <Eye size={11} style={{ color: muted }} />
+              {[
+                { id: 'none', label: 'Normal' },
+                { id: 'protanopia', label: 'Prota' },
+                { id: 'deuteranopia', label: 'Deutera' },
+                { id: 'tritanopia', label: 'Trita' },
+              ].map((c) => (
+                <button
+                  key={c.id}
+                  onClick={() => setCbMode(c.id)}
+                  className="px-2 py-1 rounded-md transition-all"
+                  style={{
+                    backgroundColor: cbMode === c.id ? text : 'transparent',
+                    color: cbMode === c.id ? bg : muted,
+                  }}
+                  title={c.id === 'none' ? 'Normal vision' : `Simulate ${c.label} color blindness`}
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          {layout === 'hero' && (
           <div className="p-6 md:p-10 lg:p-12 h-full flex flex-col">
             {/* Mini "navbar" */}
             <div
@@ -883,6 +1123,173 @@ export default function BrandKit() {
               </div>
             </div>
           </div>
+          )}
+
+          {layout === 'card' && (
+            <div className="p-6 md:p-10 lg:p-12 h-full flex items-center justify-center">
+              <div
+                className="rounded-2xl p-8 md:p-10 max-w-md w-full shadow-2xl"
+                style={{ backgroundColor: surface }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl mb-6 flex items-center justify-center font-bold"
+                  style={{ backgroundColor: accent, color: buttonTextColor, fontFamily: `"${fontPair.display}", serif` }}
+                >
+                  YB
+                </div>
+                <p
+                  className="text-[10px] tracking-[0.3em] uppercase mb-3"
+                  style={{ color: accent, fontFamily: `"${fontPair.body}", sans-serif`, fontWeight: 600 }}
+                >
+                  Business card
+                </p>
+                <h2
+                  style={{
+                    fontFamily: `"${fontPair.display}", serif`,
+                    fontWeight: 700,
+                    letterSpacing: '-0.02em',
+                    lineHeight: 1,
+                  }}
+                  className="text-3xl md:text-4xl mb-3"
+                >
+                  Your Brand
+                </h2>
+                <p
+                  style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
+                  className="text-sm leading-relaxed mb-6"
+                >
+                  A one-line description of what the brand does, set in the body face.
+                </p>
+                <div className="flex items-center justify-between text-xs" style={{ fontFamily: `"${fontPair.body}", sans-serif`, color: text }}>
+                  <span>hello@yourbrand.com</span>
+                  <span style={{ color: accent }}>yourbrand.com</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {layout === 'list' && (
+            <div className="p-6 md:p-10 lg:p-12 h-full flex flex-col">
+              <p
+                className="text-[10px] tracking-[0.3em] uppercase mb-3"
+                style={{ color: accent, fontFamily: `"${fontPair.body}", sans-serif`, fontWeight: 600 }}
+              >
+                Article list
+              </p>
+              <h2
+                style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.03em' }}
+                className="text-3xl md:text-5xl mb-8"
+              >
+                Recent writing.
+              </h2>
+              <div className="space-y-1">
+                {[
+                  { date: 'Jun 12', title: 'The cost of looking serious online', read: '4 min' },
+                  { date: 'May 28', title: 'Designing for the small business owner', read: '6 min' },
+                  { date: 'May 10', title: 'A short guide to choosing colour', read: '3 min' },
+                  { date: 'Apr 24', title: 'Type pairing for non-designers', read: '5 min' },
+                  { date: 'Apr 02', title: 'Why most sites die after launch', read: '7 min' },
+                ].map((post, i) => (
+                  <div
+                    key={i}
+                    className="flex items-baseline justify-between gap-4 py-4"
+                    style={{ borderBottom: `1px solid ${muted}33` }}
+                  >
+                    <span
+                      style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
+                      className="text-xs tabular-nums w-16 flex-shrink-0"
+                    >
+                      {post.date}
+                    </span>
+                    <span
+                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 500 }}
+                      className="text-base md:text-lg flex-1"
+                    >
+                      {post.title}
+                    </span>
+                    <span
+                      style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
+                      className="text-xs tabular-nums hidden sm:inline"
+                    >
+                      {post.read}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {layout === 'mobile' && (
+            <div className="p-6 md:p-10 lg:p-12 h-full flex items-center justify-center">
+              <div
+                className="w-[300px] h-[600px] rounded-[40px] p-4 shadow-2xl"
+                style={{ backgroundColor: '#1a1a1a' }}
+              >
+                <div
+                  className="w-full h-full rounded-[28px] overflow-y-auto p-6"
+                  style={{ backgroundColor: bg }}
+                >
+                  <div className="flex items-center justify-between mb-8" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
+                    <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-sm">
+                      Your Brand
+                    </span>
+                    <span className="text-[9px] tracking-widest uppercase" style={{ color: muted }}>
+                      Menu
+                    </span>
+                  </div>
+                  <p
+                    className="text-[9px] tracking-[0.25em] uppercase mb-3"
+                    style={{ color: accent, fontFamily: `"${fontPair.body}", sans-serif`, fontWeight: 600 }}
+                  >
+                    Welcome
+                  </p>
+                  <h2
+                    style={{
+                      fontFamily: `"${fontPair.display}", serif`,
+                      fontWeight: 700,
+                      letterSpacing: '-0.03em',
+                      lineHeight: 0.95,
+                    }}
+                    className="text-3xl mb-4"
+                  >
+                    Made by hand,{' '}
+                    <span style={{ color: accent, fontStyle: 'italic', fontWeight: 400 }}>
+                      for real.
+                    </span>
+                  </h2>
+                  <p
+                    style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
+                    className="text-xs leading-relaxed mb-5"
+                  >
+                    A real layout shown at phone size to test how your palette and type read on a small screen.
+                  </p>
+                  <button
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs"
+                    style={{ backgroundColor: accent, color: buttonTextColor, fontFamily: `"${fontPair.body}", sans-serif` }}
+                  >
+                    Get started
+                  </button>
+                  <div
+                    className="mt-5 p-3 rounded-lg"
+                    style={{ backgroundColor: surface }}
+                  >
+                    <p
+                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 600 }}
+                      className="text-sm"
+                    >
+                      Card example
+                    </p>
+                    <p
+                      style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
+                      className="text-[10px] mt-1"
+                    >
+                      Two lines of body copy here, mobile size.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </motion.div>
 
         {/* Right column: specs */}
@@ -890,29 +1297,66 @@ export default function BrandKit() {
           <div className="p-5 md:p-6 space-y-6">
             {/* Palette */}
             <section>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 mb-3 font-semibold">
-                Palette
-              </p>
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 font-semibold">
+                  Palette
+                </p>
+                {(() => {
+                  const ratio = contrastRatio(palette[0], palette[1])
+                  const badge = contrastBadge(ratio)
+                  const colorMap = {
+                    good: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+                    warn: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+                    bad: 'bg-rose-500/15 text-rose-300 border-rose-500/30',
+                  }
+                  return (
+                    <span
+                      className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border ${colorMap[badge.tone]}`}
+                      title={`${badge.tip} Contrast ratio: ${ratio.toFixed(2)}:1`}
+                    >
+                      {badge.label} {ratio.toFixed(1)}
+                    </span>
+                  )
+                })()}
+              </div>
               <div className="space-y-2">
-                {swatches.map((swatch) => (
-                  <button
-                    key={swatch.label}
-                    onClick={() => navigator.clipboard.writeText(swatch.hex)}
-                    className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors group"
-                    title="Click to copy"
-                  >
+                {swatches.map((swatch, i) => {
+                  const isLocked = locked.has(i)
+                  return (
                     <div
-                      className="w-9 h-9 rounded-md border border-white/10 flex-shrink-0"
-                      style={{ backgroundColor: swatch.hex }}
-                    />
-                    <div className="flex-1 flex items-baseline justify-between min-w-0">
-                      <span className="text-xs text-zinc-400">{swatch.label}</span>
-                      <span className="text-xs font-mono text-zinc-500 tabular-nums group-hover:text-zinc-300">
-                        {swatch.hex}
-                      </span>
+                      key={swatch.label}
+                      className={`flex items-center gap-2 p-2 rounded-lg transition-colors ${isLocked ? 'bg-amber-400/5' : 'hover:bg-white/5'}`}
+                    >
+                      <button
+                        onClick={() => navigator.clipboard.writeText(swatch.hex)}
+                        className="flex items-center gap-3 flex-1 min-w-0 text-left group"
+                        title="Click to copy hex"
+                      >
+                        <div
+                          className="w-9 h-9 rounded-md border border-white/10 flex-shrink-0"
+                          style={{ backgroundColor: swatch.hex }}
+                        />
+                        <div className="flex-1 flex items-baseline justify-between min-w-0">
+                          <span className="text-xs text-zinc-400">{swatch.label}</span>
+                          <span className="text-xs font-mono text-zinc-500 tabular-nums group-hover:text-zinc-300">
+                            {swatch.hex}
+                          </span>
+                        </div>
+                      </button>
+                      <button
+                        onClick={() => toggleLock(i)}
+                        className={`p-1.5 rounded-md transition-colors flex-shrink-0 ${
+                          isLocked
+                            ? 'text-amber-400 hover:text-amber-300'
+                            : 'text-zinc-600 hover:text-zinc-300'
+                        }`}
+                        title={isLocked ? 'Unlock this color' : 'Lock this color while shuffling'}
+                      >
+                        {isLocked ? <Lock size={13} /> : <Unlock size={13} />}
+                      </button>
                     </div>
-                  </button>
-                ))}
+                  )
+                })}
               </div>
             </section>
 
