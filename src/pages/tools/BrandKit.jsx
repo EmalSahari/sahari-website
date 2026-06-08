@@ -1149,6 +1149,7 @@ export default function BrandKit() {
   const [editingHex, setEditingHex] = useState('')
   const [qrOpen, setQrOpen] = useState(false)
   const [vibeDropdownOpen, setVibeDropdownOpen] = useState(false)
+  const [sourceOpen, setSourceOpen] = useState(false)
   const [urlScrapeOpen, setUrlScrapeOpen] = useState(false)
   const [scrapeUrl, setScrapeUrl] = useState('')
   const [scrapeLoading, setScrapeLoading] = useState(false)
@@ -1834,30 +1835,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 <Redo2 size={13} />
               </button>
             </div>
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
-              title="Generate palette from an image"
-            >
-              <ImageIcon size={12} />
-              <span className="hidden sm:inline">Image</span>
-            </button>
-            <button
-              onClick={() => { setUrlScrapeOpen(true); setScrapeError(null) }}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
-              title="Extract palette from a website URL"
-            >
-              <Globe size={12} />
-              <span className="hidden sm:inline">URL</span>
-            </button>
-            <button
-              onClick={pickFromScreen}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
-              title="Pick a colour from anywhere on the screen (Chrome / Edge)"
-            >
-              <Pipette size={12} />
-              <span className="hidden sm:inline">Pick</span>
-            </button>
+
             <input
               ref={fileInputRef}
               type="file"
@@ -1865,6 +1843,57 @@ $font-body: '${fontPair.body}', sans-serif;`
               onChange={handleImageUpload}
               className="hidden"
             />
+
+            {/* Source dropdown: Image, URL, Pick, Invert */}
+            <div className="relative">
+              <button
+                onClick={() => setSourceOpen((v) => !v)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+                title="Generate or modify palette source"
+              >
+                <ImageIcon size={12} />
+                <span className="hidden sm:inline">Source</span>
+                <ChevronDown size={12} />
+              </button>
+              {sourceOpen && (
+                <>
+                  <div onClick={() => setSourceOpen(false)} className="fixed inset-0 z-30" />
+                  <div className="absolute top-full right-0 mt-1 z-40 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-xl py-1 min-w-[180px]">
+                    <button
+                      onClick={() => { setSourceOpen(false); fileInputRef.current?.click() }}
+                      className="w-full text-left px-3 py-2 text-xs text-zinc-200 hover:bg-white/10 transition-colors flex items-center gap-2"
+                    >
+                      <ImageIcon size={12} className="text-zinc-500" />
+                      <span>From image</span>
+                    </button>
+                    <button
+                      onClick={() => { setSourceOpen(false); setUrlScrapeOpen(true); setScrapeError(null) }}
+                      className="w-full text-left px-3 py-2 text-xs text-zinc-200 hover:bg-white/10 transition-colors flex items-center gap-2"
+                    >
+                      <Globe size={12} className="text-zinc-500" />
+                      <span>From website URL</span>
+                    </button>
+                    <button
+                      onClick={() => { setSourceOpen(false); pickFromScreen() }}
+                      className="w-full text-left px-3 py-2 text-xs text-zinc-200 hover:bg-white/10 transition-colors flex items-center gap-2"
+                    >
+                      <Pipette size={12} className="text-zinc-500" />
+                      <span>Pick from screen</span>
+                    </button>
+                    <div className="my-1 border-t border-white/5" />
+                    <button
+                      onClick={() => { setSourceOpen(false); invertPalette() }}
+                      className="w-full text-left px-3 py-2 text-xs text-zinc-200 hover:bg-white/10 transition-colors flex items-center gap-2"
+                    >
+                      <FlipVertical size={12} className="text-zinc-500" />
+                      <span>Invert lightness</span>
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Primary action */}
             <button
               onClick={regenerate}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white text-black rounded-lg text-xs md:text-sm font-medium hover:bg-zinc-200 transition-all"
@@ -1873,6 +1902,8 @@ $font-body: '${fontPair.body}', sans-serif;`
               <RefreshCw size={12} />
               <span className="hidden sm:inline">Shuffle</span>
             </button>
+
+            {/* Save */}
             <button
               onClick={toggleSave}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all border ${
@@ -1889,27 +1920,30 @@ $font-body: '${fontPair.body}', sans-serif;`
               <button
                 onClick={() => setSavedOpen(true)}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+                title="View saved kits"
               >
                 <Bookmark size={12} />
                 <span>{saved.length}</span>
               </button>
             )}
+
+            {/* Export & share dropdown */}
             <div className="relative">
               <button
                 onClick={() => setExportOpen((v) => !v)}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
               >
-                {copied ? <Check size={12} /> : <Copy size={12} />}
-                <span className="hidden sm:inline">{copied ? `Copied ${copied.toUpperCase()}` : 'Export'}</span>
+                {copied || shareCopied ? <Check size={12} /> : <Share2 size={12} />}
+                <span className="hidden sm:inline">
+                  {copied ? `Copied ${copied.toUpperCase()}` : shareCopied ? 'Link copied' : 'Export'}
+                </span>
                 <ChevronDown size={12} />
               </button>
               {exportOpen && (
                 <>
-                  <div
-                    onClick={() => setExportOpen(false)}
-                    className="fixed inset-0 z-30"
-                  />
-                  <div className="absolute top-full right-0 mt-1 z-40 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-xl py-1 min-w-[140px]">
+                  <div onClick={() => setExportOpen(false)} className="fixed inset-0 z-30" />
+                  <div className="absolute top-full right-0 mt-1 z-40 bg-[#1a1a1a] border border-white/10 rounded-lg shadow-xl py-1 min-w-[180px]">
+                    <p className="px-3 pt-2 pb-1 text-[9px] tracking-widest uppercase text-zinc-500 font-semibold">Code</p>
                     {[
                       { id: 'css', label: 'CSS variables' },
                       { id: 'tailwind', label: 'Tailwind config' },
@@ -1919,47 +1953,39 @@ $font-body: '${fontPair.body}', sans-serif;`
                       <button
                         key={opt.id}
                         onClick={() => copyExport(opt.id)}
-                        className="w-full text-left px-3 py-2 text-xs text-zinc-200 hover:bg-white/10 transition-colors"
+                        className="w-full text-left px-3 py-1.5 text-xs text-zinc-200 hover:bg-white/10 transition-colors flex items-center gap-2"
                       >
-                        {opt.label}
+                        <Copy size={11} className="text-zinc-500" />
+                        <span>{opt.label}</span>
                       </button>
                     ))}
+                    <div className="my-1 border-t border-white/5" />
+                    <p className="px-3 pt-1 pb-1 text-[9px] tracking-widest uppercase text-zinc-500 font-semibold">File and share</p>
+                    <button
+                      onClick={() => { setExportOpen(false); exportPDF() }}
+                      className="w-full text-left px-3 py-1.5 text-xs text-zinc-200 hover:bg-white/10 transition-colors flex items-center gap-2"
+                    >
+                      <FileDown size={11} className="text-zinc-500" />
+                      <span>PDF moodboard</span>
+                    </button>
+                    <button
+                      onClick={() => { setExportOpen(false); copyShareLink() }}
+                      className="w-full text-left px-3 py-1.5 text-xs text-zinc-200 hover:bg-white/10 transition-colors flex items-center gap-2"
+                    >
+                      <Share2 size={11} className="text-zinc-500" />
+                      <span>Copy share link</span>
+                    </button>
+                    <button
+                      onClick={() => { setExportOpen(false); setQrOpen(true) }}
+                      className="w-full text-left px-3 py-1.5 text-xs text-zinc-200 hover:bg-white/10 transition-colors flex items-center gap-2"
+                    >
+                      <QrCode size={11} className="text-zinc-500" />
+                      <span>Show QR code</span>
+                    </button>
                   </div>
                 </>
               )}
             </div>
-            <button
-              onClick={invertPalette}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
-              title="Invert lightness on every colour (dark to light or vice versa)"
-            >
-              <FlipVertical size={12} />
-              <span className="hidden sm:inline">Invert</span>
-            </button>
-            <button
-              onClick={exportPDF}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
-              title="Download a 1-page PDF moodboard"
-            >
-              <FileDown size={12} />
-              <span className="hidden sm:inline">PDF</span>
-            </button>
-            <button
-              onClick={copyShareLink}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
-              title="Copy a shareable link"
-            >
-              {shareCopied ? <Check size={12} /> : <Share2 size={12} />}
-              <span className="hidden sm:inline">{shareCopied ? 'Link copied' : 'Share'}</span>
-            </button>
-            <button
-              onClick={() => setQrOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
-              title="Show QR code for the share link"
-            >
-              <QrCode size={12} />
-              <span className="hidden sm:inline">QR</span>
-            </button>
           </div>
         </div>
       </div>
@@ -2033,7 +2059,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }}
                 className="text-base md:text-lg tracking-tight"
               >
-                {brandName}
+                {brandName || 'Your Brand'}
               </span>
               <nav className="hidden sm:flex items-center gap-5 text-[10px] tracking-widest uppercase" style={{ color: muted }}>
                 <span>Work</span>
@@ -2132,7 +2158,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   className="w-12 h-12 rounded-xl mb-6 flex items-center justify-center font-bold"
                   style={{ backgroundColor: accent, color: buttonTextColor, fontFamily: `"${fontPair.display}", serif` }}
                 >
-                  {brandName.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()}
+                  {(brandName || 'Your Brand').split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()}
                 </div>
                 <p
                   className="text-[10px] tracking-[0.3em] uppercase mb-3"
@@ -2149,7 +2175,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   }}
                   className="text-3xl md:text-4xl mb-3"
                 >
-                  {brandName}
+                  {brandName || 'Your Brand'}
                 </h2>
                 <p
                   style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
@@ -2227,7 +2253,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   <div className="p-4 h-full flex flex-col">
                     <div className="flex items-center justify-between mb-4" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
                       <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-xs">
-                        {brandName}
+                        {brandName || 'Your Brand'}
                       </span>
                       <span className="text-[8px] tracking-widest uppercase" style={{ color: muted }}>Menu</span>
                     </div>
@@ -2259,7 +2285,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   <div className="p-4 h-full flex flex-col">
                     <div className="flex items-center justify-between mb-3" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
                       <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-xs">
-                        {brandName}
+                        {brandName || 'Your Brand'}
                       </span>
                     </div>
                     <h3
@@ -2297,7 +2323,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   <div className="p-3 h-full flex flex-col">
                     <div className="flex items-center justify-between mb-3" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
                       <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-[10px]">
-                        {brandName}
+                        {brandName || 'Your Brand'}
                       </span>
                     </div>
                     <h3
@@ -2335,7 +2361,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 >
                   <div className="flex items-center justify-between mb-8" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
                     <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-sm">
-                      {brandName}
+                      {brandName || 'Your Brand'}
                     </span>
                     <span className="text-[9px] tracking-widest uppercase" style={{ color: muted }}>
                       Menu
@@ -2529,7 +2555,7 @@ $font-body: '${fontPair.body}', sans-serif;`
               <input
                 type="text"
                 value={brandName}
-                onChange={(e) => setBrandName(e.target.value || 'Your Brand')}
+                onChange={(e) => setBrandName(e.target.value)}
                 placeholder="Your Brand"
                 maxLength={32}
                 className="w-full bg-white/[0.02] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400/50"
