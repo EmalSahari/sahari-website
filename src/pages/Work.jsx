@@ -43,6 +43,31 @@ export default function Work() {
       iconBg: 'bg-orange-500/15 text-orange-400',
     },
     {
+      icon: <Dumbbell size={20} />,
+      title: t('projects.fitness.title'),
+      desc: t('projects.fitness.desc'),
+      tag: t('projects.fitness.tag'),
+      href: 'https://fittrack.sahari.io/',
+      image: '/fitness-progress.webp',
+      color: 'from-emerald-900/40 to-[#0f0f0f]',
+      border: 'border-emerald-500/20',
+      iconBg: 'bg-emerald-500/15 text-emerald-400',
+    },
+    {
+      icon: <Trophy size={20} />,
+      title: t('projects.chess.title'),
+      desc: t('projects.chess.desc'),
+      tag: t('projects.chess.tag'),
+      href: 'https://skak.onrender.com/',
+      image: '/chess-board.webp',
+      color: 'from-amber-900/40 to-[#0f0f0f]',
+      border: 'border-amber-500/20',
+      iconBg: 'bg-amber-500/15 text-amber-400',
+    },
+  ]
+
+  const concepts = [
+    {
       icon: <Flame size={20} />,
       title: t('projects.blackstone.title'),
       desc: t('projects.blackstone.desc'),
@@ -76,28 +101,6 @@ export default function Work() {
       iconBg: 'bg-amber-500/15 text-amber-400',
     },
     {
-      icon: <Dumbbell size={20} />,
-      title: t('projects.fitness.title'),
-      desc: t('projects.fitness.desc'),
-      tag: t('projects.fitness.tag'),
-      href: 'https://fittrack.sahari.io/',
-      image: '/fitness-progress.webp',
-      color: 'from-emerald-900/40 to-[#0f0f0f]',
-      border: 'border-emerald-500/20',
-      iconBg: 'bg-emerald-500/15 text-emerald-400',
-    },
-    {
-      icon: <Trophy size={20} />,
-      title: t('projects.chess.title'),
-      desc: t('projects.chess.desc'),
-      tag: t('projects.chess.tag'),
-      href: 'https://skak.onrender.com/',
-      image: '/chess-board.webp',
-      color: 'from-amber-900/40 to-[#0f0f0f]',
-      border: 'border-amber-500/20',
-      iconBg: 'bg-amber-500/15 text-amber-400',
-    },
-    {
       icon: <Music size={20} />,
       title: t('projects.somuchfun.title'),
       desc: t('projects.somuchfun.desc'),
@@ -109,6 +112,41 @@ export default function Work() {
       iconBg: 'bg-lime-500/15 text-lime-400',
     },
   ]
+
+  const renderCard = (p, i) => (
+    <Reveal key={p.title} i={i}>
+      <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
+        <a
+          href={p.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
+        >
+          <div className="relative aspect-[16/9] overflow-hidden bg-black/40 border-b border-white/5">
+            <img
+              src={p.image}
+              alt={p.title}
+              loading="lazy"
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+          </div>
+          <div className="p-6 flex flex-col flex-1">
+            <div className={`w-9 h-9 rounded-lg ${p.iconBg} flex items-center justify-center mb-4`}>
+              {p.icon}
+            </div>
+            <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
+            <h3 className="text-white font-semibold text-lg mt-1 mb-2">{p.title}</h3>
+            <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
+            <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
+              {t('projects.viewLive')}
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </span>
+          </div>
+        </a>
+      </SpotlightCard>
+    </Reveal>
+  )
 
   return (
     <div className="pt-16">
@@ -133,40 +171,29 @@ export default function Work() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
-          {projects.map((p, i) => (
-            <Reveal key={p.title} i={i}>
-              <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
-                <a
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
-                >
-                  <div className="relative aspect-[16/9] overflow-hidden bg-black/40 border-b border-white/5">
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                  </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className={`w-9 h-9 rounded-lg ${p.iconBg} flex items-center justify-center mb-4`}>
-                      {p.icon}
-                    </div>
-                    <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
-                    <h3 className="text-white font-semibold text-lg mt-1 mb-2">{p.title}</h3>
-                    <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
-                      {t('projects.viewLive')}
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </a>
-              </SpotlightCard>
-            </Reveal>
-          ))}
+          {projects.map(renderCard)}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+          className="mt-24 mb-12 pt-16 border-t border-white/5"
+        >
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
+            {t('work.concepts.eyebrow')}
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            {t('work.concepts.heading')}
+          </h2>
+          <p className="text-zinc-400 max-w-lg leading-relaxed">
+            {t('work.concepts.subtitle')}
+          </p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
+          {concepts.map(renderCard)}
         </div>
       </section>
     </div>

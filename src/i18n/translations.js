@@ -75,7 +75,7 @@ export const translations = {
     'projects.mokio.tag': 'SaaS · Booking',
     'projects.brandKit.title': 'Brand Kit Generator',
     'projects.brandKit.desc': 'A free in-browser tool that generates brand color palettes and Google Font pairings in seconds. Lock colors, edit hex, check WCAG contrast, preview on hero, card and device mockups, then export to CSS, Tailwind, SCSS, JSON or PDF.',
-    'projects.brandKit.tag': 'Tool · Free',
+    'projects.brandKit.tag': 'Tool',
     'projects.fitness.title': 'FitTrack: Fitness Tracker',
     'projects.fitness.desc': 'A full workout and nutrition tracking web app with user accounts, an AI coach, and a paid Pro subscription. Includes AI photo logging that identifies meals from a picture using GPT-4o Vision. Log meals, track water and calories, and monitor progress with weekly summaries.',
     'projects.fitness.tag': 'Web App',
@@ -295,6 +295,9 @@ export const translations = {
     'work.eyebrow': 'Portfolio',
     'work.heading': "Things I've built",
     'work.subtitle': 'Client projects, personal builds, and design experiments. A selection of work worth showing off.',
+    'work.concepts.eyebrow': 'Concepts',
+    'work.concepts.heading': 'Demo sites',
+    'work.concepts.subtitle': 'Made-up brands, fully built out. A sandbox for typography, layout and motion.',
     'work.seeAll': 'See all work',
 
     // Work With Us
@@ -415,7 +418,7 @@ export const translations = {
     'projects.mokio.tag': 'SaaS · Booking',
     'projects.brandKit.title': 'Brand Kit Generator',
     'projects.brandKit.desc': 'Et gratis browser-værktøj der genererer brand-paletter og Google Font-par på sekunder. Lås farver, rediger hex, tjek WCAG-kontrast, preview i hero, card og device-mockups og eksportér til CSS, Tailwind, SCSS, JSON eller PDF.',
-    'projects.brandKit.tag': 'Værktøj · Gratis',
+    'projects.brandKit.tag': 'Værktøj',
     'projects.fitness.title': 'FitTrack: Fitness Tracker',
     'projects.fitness.desc': 'En komplet webapp til træning og kost med brugerkonti, en AI-træner og et betalt Pro-abonnement. Inkluderer AI foto-logging der genkender måltider fra et billede via GPT-4o Vision. Log måltider, tæl kalorier og vand, og følg fremskridt med ugentlige opsummeringer.',
     'projects.fitness.tag': 'Webapp',
@@ -635,6 +638,9 @@ export const translations = {
     'work.eyebrow': 'Portfolio',
     'work.heading': 'Ting jeg har bygget',
     'work.subtitle': 'Kundeprojekter, personlige builds og designeksperimenter. Et udvalg af det jeg gerne vil vise frem.',
+    'work.concepts.eyebrow': 'Koncepter',
+    'work.concepts.heading': 'Demo-sider',
+    'work.concepts.subtitle': 'Opdigtede brands, bygget i fuld størrelse. En legeplads for typografi, layout og motion.',
     'work.seeAll': 'Se alt arbejde',
 
     // Work With Us
