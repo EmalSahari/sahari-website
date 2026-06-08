@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown, Undo2, Redo2, Image as ImageIcon, FlipVertical, QrCode } from 'lucide-react'
+import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown, Undo2, Redo2, Image as ImageIcon, FlipVertical, QrCode, FileDown } from 'lucide-react'
+import jsPDF from 'jspdf'
 
 // -- Seed palettes per vibe -----------------------------------------------
 // Each entry: [bg, text, muted, accent, surface]
@@ -834,6 +835,161 @@ export default function BrandKit() {
 
   const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}${typeof window !== 'undefined' ? window.location.pathname : '/tools/brand-kit'}?${encodeKit(palette, fontPair.display, fontPair.body)}`
 
+  const exportPDF = useCallback(() => {
+    const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' })
+    const W = doc.internal.pageSize.getWidth()
+    const H = doc.internal.pageSize.getHeight()
+    const margin = 18
+    const innerW = W - margin * 2
+    const [bg, text, muted, accent, surface] = palette
+
+    const hexToRgb = (hex) => {
+      const r = parseInt(hex.slice(1, 3), 16)
+      const g = parseInt(hex.slice(3, 5), 16)
+      const b = parseInt(hex.slice(5, 7), 16)
+      return [r, g, b]
+    }
+    const setFill = (hex) => doc.setFillColor(...hexToRgb(hex))
+    const setText = (hex) => doc.setTextColor(...hexToRgb(hex))
+
+    // Page background
+    setFill(bg)
+    doc.rect(0, 0, W, H, 'F')
+
+    // Header
+    setText(muted)
+    doc.setFontSize(8)
+    doc.setFont('helvetica', 'bold')
+    doc.text('BRAND KIT', margin, margin + 1)
+    doc.text(new Date().toLocaleDateString(), W - margin, margin + 1, { align: 'right' })
+
+    // Big brand name
+    setText(text)
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(36)
+    doc.text(brandName || 'Your Brand', margin, margin + 22)
+
+    // Subtitle
+    setText(muted)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(10)
+    const subtitle = presetName
+      ? `${presetName} - ${fontPair.display} & ${fontPair.body}`
+      : `${fontPair.display} & ${fontPair.body}`
+    doc.text(subtitle, margin, margin + 31)
+
+    // Divider
+    setFill(muted)
+    doc.rect(margin, margin + 38, innerW, 0.3, 'F')
+
+    // Palette section
+    setText(text)
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(9)
+    doc.text('PALETTE', margin, margin + 50)
+
+    const swatchY = margin + 56
+    const swatchH = 36
+    const swatchW = innerW / 5
+    const labels = ['Background', 'Text', 'Muted', 'Accent', 'Surface']
+    palette.forEach((hex, i) => {
+      const x = margin + i * swatchW
+      setFill(hex)
+      doc.rect(x, swatchY, swatchW - 2, swatchH, 'F')
+      // Label and hex below
+      setText(text)
+      doc.setFont('helvetica', 'bold')
+      doc.setFontSize(7)
+      doc.text(labels[i].toUpperCase(), x, swatchY + swatchH + 5)
+      setText(muted)
+      doc.setFont('courier', 'normal')
+      doc.setFontSize(8)
+      doc.text(hex.toUpperCase(), x, swatchY + swatchH + 10)
+    })
+
+    // Typography section
+    const typeY = swatchY + swatchH + 25
+    setText(text)
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(9)
+    doc.text('TYPOGRAPHY', margin, typeY)
+
+    setText(text)
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(28)
+    doc.text(fontPair.display, margin, typeY + 12)
+    setText(muted)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(8)
+    doc.text('DISPLAY', margin, typeY + 17)
+
+    setText(text)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(18)
+    doc.text(fontPair.body, margin, typeY + 32)
+    setText(muted)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(8)
+    doc.text('BODY', margin, typeY + 37)
+
+    // Preview block (using bg/text/accent)
+    const previewY = typeY + 48
+    setFill(surface)
+    doc.rect(margin, previewY, innerW, 48, 'F')
+
+    setText(accent)
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(7)
+    doc.text('SAMPLE', margin + 6, previewY + 8)
+
+    setText(text)
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(18)
+    doc.text(`Made for ${brandName || 'Your Brand'}.`, margin + 6, previewY + 18)
+
+    setText(muted)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(9)
+    doc.text(
+      `This is how your palette reads on a real surface. Body copy at ${fontPair.body}.`,
+      margin + 6,
+      previewY + 26,
+      { maxWidth: innerW - 12 }
+    )
+
+    // CTA button
+    setFill(accent)
+    doc.rect(margin + 6, previewY + 32, 36, 10, 'F')
+    const btnText = getContrastColor(accent)
+    setText(btnText)
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(8)
+    doc.text('PRIMARY ACTION', margin + 6 + 18, previewY + 38.5, { align: 'center' })
+
+    // Contrast info
+    const ratio = contrastRatio(palette[0], palette[1])
+    const badge = contrastBadge(ratio)
+    const ctxY = previewY + 56
+    setText(text)
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(9)
+    doc.text('CONTRAST', margin, ctxY)
+    setText(muted)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(9)
+    doc.text(`Text on background: ${ratio.toFixed(2)}:1 (${badge.label})`, margin, ctxY + 6)
+
+    // Footer
+    setText(muted)
+    doc.setFont('helvetica', 'normal')
+    doc.setFontSize(7)
+    doc.text('Generated at sahari.io/tools/brand-kit', margin, H - margin)
+    doc.text(shareUrl.length > 80 ? shareUrl.slice(0, 80) + '...' : shareUrl, W - margin, H - margin, { align: 'right' })
+
+    const safeName = (brandName || 'brand-kit').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+    doc.save(`${safeName || 'brand-kit'}.pdf`)
+  }, [palette, fontPair, brandName, presetName, shareUrl])
+
   const startEditing = (index, current) => {
     setEditingSwatch(index)
     setEditingHex(current)
@@ -1286,6 +1442,14 @@ $font-body: '${fontPair.body}', sans-serif;`
             >
               <FlipVertical size={12} />
               <span className="hidden sm:inline">Invert</span>
+            </button>
+            <button
+              onClick={exportPDF}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              title="Download a 1-page PDF moodboard"
+            >
+              <FileDown size={12} />
+              <span className="hidden sm:inline">PDF</span>
             </button>
             <button
               onClick={copyShareLink}
