@@ -148,24 +148,22 @@ export default function Home() {
               { word: t('hero.headline.highlight'), highlight: true },
               ...t('hero.headline.end').split(' ').map((w) => ({ word: w, highlight: false })),
             ]
-            const baseDelay = 0.25
+            const baseDelay = 0.2
             const stagger = isMobile ? 0.05 : 0.07
-            const duration = isMobile ? 0.7 : 1.0
-            return units.map((u, i) => (
-              <span key={i} className="inline-flex">
-                <span className="inline-block overflow-hidden align-top pb-[0.08em]">
-                  <motion.span
-                    initial={{ y: '110%' }}
-                    animate={{ y: 0 }}
-                    transition={{ duration, delay: baseDelay + i * stagger, ease: [0.16, 1, 0.3, 1] }}
-                    className={`inline-block ${u.highlight ? 'gradient-text-animated' : ''}`}
-                  >
-                    {u.word}
-                  </motion.span>
-                </span>
-                {i < units.length - 1 && <span>&nbsp;</span>}
-              </span>
-            ))
+            const duration = isMobile ? 0.55 : 0.8
+            const yStart = isMobile ? 16 : 28
+            return units.flatMap((u, i) => [
+              <motion.span
+                key={`w-${i}`}
+                initial={{ opacity: 0, y: yStart, filter: isMobile ? 'none' : 'blur(6px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration, delay: baseDelay + i * stagger, ease: [0.16, 1, 0.3, 1] }}
+                className={`inline-block ${u.highlight ? 'gradient-text-animated' : ''}`}
+              >
+                {u.word}
+              </motion.span>,
+              i < units.length - 1 ? <span key={`s-${i}`}>{' '}</span> : null,
+            ])
           })()}
         </h1>
 
