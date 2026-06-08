@@ -2666,7 +2666,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 Like the vibe? I can build a real site with it.
               </p>
               <p className="text-xs text-zinc-400 mb-3 leading-relaxed">
-                Sahari builds custom websites from DKK 4,995.
+                Sahari builds custom websites for solo creators and small businesses.
               </p>
               <Link
                 to="/pricing"
