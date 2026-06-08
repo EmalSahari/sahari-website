@@ -26,11 +26,19 @@ body {
 
 @layer utilities {
   .gradient-text {
-    color: #ffffff;
+    font-family: 'Instrument Serif', 'Georgia', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #fbbf24;
+    letter-spacing: -0.01em;
   }
 
   .gradient-text-animated {
-    color: #ffffff;
+    font-family: 'Instrument Serif', 'Georgia', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #fbbf24;
+    letter-spacing: -0.01em;
     position: relative;
     display: inline-block;
   }
