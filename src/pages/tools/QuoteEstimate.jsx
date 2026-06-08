@@ -3,7 +3,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   Sparkles, Check, ArrowRight, Minus, Plus, CreditCard,
-  Smartphone, Wrench, Calendar, FileText, Info,
+  Smartphone, Wrench, Calendar, FileText, Info, Search, Globe,
+  Image as ImageIcon, Video, Map, Upload, User, LayoutDashboard,
+  Mail, MessageCircle, Bot, Zap, Filter, Smartphone as PhoneIcon,
 } from 'lucide-react'
 import { useT } from '../../i18n/LanguageContext'
 import Seo from '../../components/Seo'
@@ -12,33 +14,147 @@ const TIERS = [
   {
     slug: 'single',
     base: 4995,
-    deliveryDaysMin: 3,
-    deliveryDaysMax: 5,
-    deliveryUnit: 'days',
+    baseDays: 4,
+    includedPages: 1,
   },
   {
     slug: 'standard',
     base: 9995,
-    deliveryDaysMin: 1,
-    deliveryDaysMax: 2,
-    deliveryUnit: 'weeks',
+    baseDays: 10,
+    includedPages: 5,
     popular: true,
   },
   {
     slug: 'premium',
     base: 19995,
-    deliveryDaysMin: 2,
-    deliveryDaysMax: 4,
-    deliveryUnit: 'weeks',
+    baseDays: 20,
+    includedPages: 10,
   },
 ]
 
-const EXTRA_PAGE_PRICE = 995
-const STRIPE_PRICE = 2500
+const EXTRA_PAGE_PRICE = 1000
+const EXTRA_PAGE_DAYS = 1
+const RUSH_PRICE_MULTIPLIER = 1.3
+const RUSH_TIME_MULTIPLIER = 0.5
+const MIN_RUSH_DAYS = 3
 const CARE_MONTHLY = 495
 
+const GROUPS = {
+  content: { en: 'Content & structure', da: 'Indhold & struktur' },
+  users: { en: 'Users & accounts', da: 'Brugere & konti' },
+  commerce: { en: 'Commerce & booking', da: 'Handel & booking' },
+  extras: { en: 'Extras', da: 'Ekstra' },
+}
+
+const FEATURES = [
+  // Content
+  {
+    id: 'blog', group: 'content', icon: FileText, price: 2500, days: 2,
+    title: { en: 'Blog or content section', da: 'Blog eller indholdssektion' },
+    desc: { en: 'Listing page, post pages, basic editor flow.', da: 'Oversigt, indlæg-sider og simpelt editor-flow.' },
+  },
+  {
+    id: 'search', group: 'content', icon: Search, price: 1500, days: 1,
+    title: { en: 'On-site search', da: 'Søgning på siden' },
+    desc: { en: 'Search across pages, posts or products.', da: 'Søg på tværs af sider, indlæg eller produkter.' },
+  },
+  {
+    id: 'multilingual', group: 'content', icon: Globe, price: 1500, days: 1,
+    title: { en: 'Multilingual', da: 'Flersproget' },
+    desc: { en: 'Add a second language with proper i18n setup.', da: 'Tilføj et andet sprog med ordentlig i18n.' },
+  },
+  {
+    id: 'galleries', group: 'content', icon: ImageIcon, price: 1000, days: 1,
+    title: { en: 'Image galleries', da: 'Billed-gallerier' },
+    desc: { en: 'Lightbox or grid galleries with image optimization.', da: 'Lightbox eller grid-gallerier med billed-optimering.' },
+  },
+  {
+    id: 'video', group: 'content', icon: Video, price: 500, days: 1,
+    title: { en: 'Video integration', da: 'Video-integration' },
+    desc: { en: 'YouTube, Vimeo or hosted video with custom player.', da: 'YouTube, Vimeo eller hosted video med custom player.' },
+  },
+  {
+    id: 'uploads', group: 'content', icon: Upload, price: 2000, days: 2,
+    title: { en: 'File uploads', da: 'Fil-uploads' },
+    desc: { en: 'Visitors upload files. Storage, validation, security.', da: 'Besøgende uploader filer. Storage, validering, sikkerhed.' },
+  },
+
+  // Users
+  {
+    id: 'auth', group: 'users', icon: User, price: 3500, days: 3,
+    title: { en: 'User accounts and login', da: 'Brugerkonti og login' },
+    desc: { en: 'Sign up, sign in, password reset, sessions.', da: 'Opret bruger, login, password-reset, sessions.' },
+  },
+  {
+    id: 'cms', group: 'users', icon: LayoutDashboard, price: 5000, days: 4,
+    title: { en: 'Custom admin or CMS', da: 'Skræddersyet admin eller CMS' },
+    desc: { en: 'You edit content yourself without me in the loop.', da: 'Du redigerer indhold selv uden mig som mellemmand.' },
+  },
+  {
+    id: 'newsletter', group: 'users', icon: Mail, price: 500, days: 1,
+    title: { en: 'Newsletter signup', da: 'Nyhedsbrev-tilmelding' },
+    desc: { en: 'Connected to Mailchimp, Brevo or similar.', da: 'Forbundet til Mailchimp, Brevo eller lignende.' },
+  },
+  {
+    id: 'emailauto', group: 'users', icon: MessageCircle, price: 1500, days: 2,
+    title: { en: 'Email automation', da: 'Email-automation' },
+    desc: { en: 'Triggered emails on signup, purchase, abandon, etc.', da: 'Trigger-mails ved tilmelding, køb, afbrudt køb osv.' },
+  },
+
+  // Commerce
+  {
+    id: 'stripe', group: 'commerce', icon: CreditCard, price: 2500, days: 2,
+    title: { en: 'Stripe payments', da: 'Stripe-betalinger' },
+    desc: { en: 'Cards, Apple Pay, Google Pay. You need a Stripe account.', da: 'Kort, Apple Pay, Google Pay. Du skal have en Stripe-konto.' },
+  },
+  {
+    id: 'mobilepay', group: 'commerce', icon: Smartphone, price: 0, quoted: true, days: 3,
+    title: { en: 'MobilePay', da: 'MobilePay' },
+    desc: { en: 'Quoted per project. Separate approval process.', da: 'Pris per projekt. Separat godkendelses-proces.' },
+  },
+  {
+    id: 'mokio', group: 'commerce', icon: Calendar, price: 0, included: true, days: 1,
+    title: { en: 'Booking via Mokio', da: 'Booking via Mokio' },
+    desc: { en: 'Free to set up with an active Mokio subscription.', da: 'Gratis at sætte op med et aktivt Mokio-abonnement.' },
+    external: 'https://www.mokio.io/',
+  },
+  {
+    id: 'filtering', group: 'commerce', icon: Filter, price: 2000, days: 2,
+    title: { en: 'Catalog filtering and sorting', da: 'Katalog-filtrering og sortering' },
+    desc: { en: 'For shops or directories with many items.', da: 'Til shops eller kataloger med mange items.' },
+  },
+
+  // Extras
+  {
+    id: 'maps', group: 'extras', icon: Map, price: 500, days: 1,
+    title: { en: 'Maps integration', da: 'Kort-integration' },
+    desc: { en: 'Embedded map with custom markers.', da: 'Indlejret kort med custom markører.' },
+  },
+  {
+    id: 'chatbot', group: 'extras', icon: Bot, price: 5000, days: 4,
+    title: { en: 'AI chatbot', da: 'AI-chatbot' },
+    desc: { en: 'Trained on your content. OpenAI or Anthropic backend.', da: 'Trænet på dit indhold. OpenAI eller Anthropic-backend.' },
+  },
+  {
+    id: 'pwa', group: 'extras', icon: PhoneIcon, price: 2000, days: 1,
+    title: { en: 'PWA and offline', da: 'PWA og offline' },
+    desc: { en: 'Install to home screen, basic offline support.', da: 'Installer til hjemmeskærm, basal offline-support.' },
+  },
+]
+
 function fmt(amount, lang) {
-  return new Intl.NumberFormat(lang === 'da' ? 'da-DK' : 'en-US').format(amount)
+  return new Intl.NumberFormat(lang === 'da' ? 'da-DK' : 'en-US').format(Math.round(amount))
+}
+
+function formatDelivery(days, lang) {
+  if (days <= 0) return ''
+  if (days <= 9) {
+    return `${days} ${lang === 'da' ? 'dage' : 'days'}`
+  }
+  const weeksMin = Math.floor(days / 7)
+  const weeksMax = Math.ceil(days / 5)
+  if (weeksMin === weeksMax) return `${weeksMin} ${lang === 'da' ? 'uger' : 'weeks'}`
+  return `${weeksMin} - ${weeksMax} ${lang === 'da' ? 'uger' : 'weeks'}`
 }
 
 export default function QuoteEstimate() {
@@ -49,10 +165,9 @@ export default function QuoteEstimate() {
 
   const [tier, setTier] = useState('standard')
   const [extraPages, setExtraPages] = useState(0)
-  const [stripe, setStripe] = useState(false)
-  const [mobilepay, setMobilepay] = useState(false)
+  const [features, setFeatures] = useState(() => new Set())
   const [carePlan, setCarePlan] = useState(false)
-  const [mokio, setMokio] = useState(false)
+  const [rush, setRush] = useState(false)
 
   useEffect(() => {
     document.title = `${t('estimate.heading')} | Sahari`
@@ -60,36 +175,45 @@ export default function QuoteEstimate() {
 
   const selectedTier = TIERS.find((x) => x.slug === tier)
 
-  const subtotal = useMemo(() => {
-    let s = selectedTier?.base || 0
-    s += extraPages * EXTRA_PAGE_PRICE
-    if (stripe) s += STRIPE_PRICE
-    return s
-  }, [selectedTier, extraPages, stripe])
+  const tierContent = {
+    single: { title: t('pricing.single.name'), tagline: t('pricing.single.tagline') },
+    standard: { title: t('pricing.standard.name'), tagline: t('pricing.standard.tagline') },
+    premium: { title: t('pricing.premium.name'), tagline: t('pricing.premium.tagline') },
+  }
+
+  const toggleFeature = (id) => {
+    setFeatures((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  const { featuresCost, featuresDays, selectedFeatures } = useMemo(() => {
+    const list = FEATURES.filter((f) => features.has(f.id))
+    return {
+      selectedFeatures: list,
+      featuresCost: list.reduce((s, f) => s + (f.price || 0), 0),
+      featuresDays: list.reduce((s, f) => s + (f.days || 0), 0),
+    }
+  }, [features])
+
+  const rawSubtotal = (selectedTier?.base || 0) + extraPages * EXTRA_PAGE_PRICE + featuresCost
+  const subtotal = rush ? Math.round(rawSubtotal * RUSH_PRICE_MULTIPLIER) : rawSubtotal
+  const rushSurcharge = subtotal - rawSubtotal
+
+  const rawDays = (selectedTier?.baseDays || 0) + extraPages * EXTRA_PAGE_DAYS + featuresDays
+  const finalDays = rush ? Math.max(MIN_RUSH_DAYS, Math.round(rawDays * RUSH_TIME_MULTIPLIER)) : rawDays
 
   const monthly = carePlan ? CARE_MONTHLY : 0
 
-  const deliveryText = useMemo(() => {
-    if (!selectedTier) return ''
-    const { deliveryDaysMin: a, deliveryDaysMax: b, deliveryUnit } = selectedTier
-    const unitDa = deliveryUnit === 'days' ? (lang === 'da' ? 'dage' : 'days') : (lang === 'da' ? 'uger' : 'weeks')
-    return `${a}${b !== a ? ` - ${b}` : ''} ${unitDa}`
-  }, [selectedTier, lang])
-
-  const tierContent = {
-    single: {
-      title: t('pricing.single.name'),
-      tagline: t('pricing.single.tagline'),
-    },
-    standard: {
-      title: t('pricing.standard.name'),
-      tagline: t('pricing.standard.tagline'),
-    },
-    premium: {
-      title: t('pricing.premium.name'),
-      tagline: t('pricing.premium.tagline'),
-    },
-  }
+  const groupedFeatures = useMemo(() => {
+    const out = {}
+    for (const key of Object.keys(GROUPS)) out[key] = []
+    for (const f of FEATURES) out[f.group].push(f)
+    return out
+  }, [])
 
   const goToContact = () => {
     const lines = []
@@ -97,14 +221,22 @@ export default function QuoteEstimate() {
     lines.push('')
     lines.push(`${tierContent[tier].title}: ${fmt(selectedTier.base, lang)} ${currency}`)
     if (extraPages > 0) {
-      lines.push(`${t('estimate.addons.extraPages.title')} (${extraPages}): ${fmt(extraPages * EXTRA_PAGE_PRICE, lang)} ${currency}`)
+      lines.push(`+${extraPages} ${lang === 'da' ? 'ekstra sider' : 'extra pages'}: ${fmt(extraPages * EXTRA_PAGE_PRICE, lang)} ${currency}`)
     }
-    if (stripe) lines.push(`${t('estimate.addons.stripe.title')}: ${fmt(STRIPE_PRICE, lang)} ${currency}`)
-    if (mobilepay) lines.push(`${t('estimate.addons.mobilepay.title')}: ${t('estimate.contactPrice')}`)
-    if (mokio) lines.push(`${t('estimate.addons.mokio.title')}: ${t('estimate.included')}`)
+    for (const f of selectedFeatures) {
+      let valueLabel
+      if (f.quoted) valueLabel = lang === 'da' ? 'Pris aftales' : 'Quoted'
+      else if (f.included) valueLabel = lang === 'da' ? 'Inkluderet' : 'Included'
+      else valueLabel = `${fmt(f.price, lang)} ${currency}`
+      lines.push(`${f.title[lang]}: ${valueLabel}`)
+    }
+    if (rush) {
+      lines.push(`${lang === 'da' ? 'Rush-levering' : 'Rush delivery'} (+30%): ${fmt(rushSurcharge, lang)} ${currency}`)
+    }
     lines.push('')
-    lines.push(`${t('estimate.summary.subtotal')}: ${fmt(subtotal, lang)} ${currency}`)
-    if (carePlan) lines.push(`${t('estimate.addons.care.title')}: ${fmt(CARE_MONTHLY, lang)} ${currency} ${t('estimate.perMonth')}`)
+    lines.push(`${t('estimate.summary.total')}: ${fmt(subtotal, lang)} ${currency}`)
+    if (carePlan) lines.push(`${lang === 'da' ? 'Care-aftale' : 'Care plan'}: ${fmt(CARE_MONTHLY, lang)} ${currency} ${t('estimate.perMonth')}`)
+    lines.push(`${t('estimate.summary.delivery')}: ${formatDelivery(finalDays, lang)}`)
     lines.push('')
     lines.push(lang === 'da' ? '(Skriv her hvad projektet handler om)' : '(Tell me about the project)')
 
@@ -114,10 +246,9 @@ export default function QuoteEstimate() {
 
   return (
     <div className="pt-28 pb-20 min-h-screen">
-      <Seo title={t('estimate.heading')} description="Pick a tier, add what you need, and get an instant rough estimate for your Sahari project." />
+      <Seo title={t('estimate.heading')} description="Pick a tier, add features and get an instant rough estimate for your Sahari project." />
 
       <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,7 +267,6 @@ export default function QuoteEstimate() {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Selectors */}
           <div className="lg:col-span-2 space-y-12">
             {/* Tier */}
             <section>
@@ -166,8 +296,11 @@ export default function QuoteEstimate() {
                       <p className={`text-[10px] tracking-[0.25em] uppercase font-semibold mb-2 ${selected ? 'text-amber-300' : 'text-zinc-500'}`}>
                         {content.title}
                       </p>
-                      <p className="text-white font-medium text-sm leading-snug mb-4 min-h-[3.5rem]">
+                      <p className="text-white font-medium text-sm leading-snug mb-3 min-h-[3.5rem]">
                         {content.tagline}
+                      </p>
+                      <p className="text-xs text-zinc-500 mb-3">
+                        {lang === 'da' ? 'Inkluderer' : 'Includes'} {tx.includedPages} {lang === 'da' ? (tx.includedPages === 1 ? 'side' : 'sider') : (tx.includedPages === 1 ? 'page' : 'pages')}
                       </p>
                       <div className="flex items-baseline gap-1.5">
                         <span className="text-xs text-zinc-500">{t('pricing.from')}</span>
@@ -182,14 +315,12 @@ export default function QuoteEstimate() {
               </div>
             </section>
 
-            {/* Add-ons */}
+            {/* Extra pages */}
             <section>
               <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
-                {t('estimate.addons.title')}
+                {lang === 'da' ? 'Sider' : 'Pages'}
               </h2>
-
-              {/* Extra pages with counter */}
-              <div className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-5 mb-3">
+              <div className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-5">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-white/5 text-zinc-400 flex items-center justify-center flex-shrink-0">
                     <FileText size={18} />
@@ -197,8 +328,12 @@ export default function QuoteEstimate() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-4 flex-wrap">
                       <div>
-                        <p className="text-white font-medium leading-tight">{t('estimate.addons.extraPages.title')}</p>
-                        <p className="text-zinc-500 text-sm mt-0.5">{t('estimate.addons.extraPages.desc')}</p>
+                        <p className="text-white font-medium leading-tight">
+                          {lang === 'da' ? 'Sider udover dit niveau' : 'Pages beyond your tier'}
+                        </p>
+                        <p className="text-zinc-500 text-sm mt-0.5">
+                          {lang === 'da' ? `${selectedTier.includedPages} sider er allerede inkluderet.` : `${selectedTier.includedPages} pages already included.`}
+                        </p>
                       </div>
                       <div className="flex items-center gap-3 flex-shrink-0">
                         <button
@@ -210,7 +345,7 @@ export default function QuoteEstimate() {
                         </button>
                         <span className="text-white font-semibold tabular-nums min-w-[2ch] text-center">{extraPages}</span>
                         <button
-                          onClick={() => setExtraPages((n) => Math.min(20, n + 1))}
+                          onClick={() => setExtraPages((n) => Math.min(50, n + 1))}
                           className="w-8 h-8 rounded-lg border border-white/10 hover:border-white/30 text-zinc-300 flex items-center justify-center transition-colors"
                           aria-label="Increase"
                         >
@@ -219,46 +354,89 @@ export default function QuoteEstimate() {
                       </div>
                     </div>
                     <p className="text-xs text-zinc-500 mt-2">
-                      {fmt(EXTRA_PAGE_PRICE, lang)} {currency} / {t('estimate.addons.extraPages.unit')}
+                      {fmt(EXTRA_PAGE_PRICE, lang)} {currency} / {lang === 'da' ? 'side' : 'page'}
                     </p>
                   </div>
                 </div>
               </div>
+            </section>
 
-              {/* Toggle add-ons */}
-              <AddonRow
-                icon={<CreditCard size={18} />}
-                title={t('estimate.addons.stripe.title')}
-                desc={t('estimate.addons.stripe.desc')}
-                price={`${fmt(STRIPE_PRICE, lang)} ${currency}`}
-                active={stripe}
-                onToggle={() => setStripe((v) => !v)}
-              />
-              <AddonRow
-                icon={<Smartphone size={18} />}
-                title={t('estimate.addons.mobilepay.title')}
-                desc={t('estimate.addons.mobilepay.desc')}
-                price={t('estimate.contactPrice')}
-                active={mobilepay}
-                onToggle={() => setMobilepay((v) => !v)}
-              />
-              <AddonRow
-                icon={<Wrench size={18} />}
-                title={t('estimate.addons.care.title')}
-                desc={t('estimate.addons.care.desc')}
-                price={`${fmt(CARE_MONTHLY, lang)} ${currency} ${t('estimate.perMonth')}`}
-                active={carePlan}
-                onToggle={() => setCarePlan((v) => !v)}
-              />
-              <AddonRow
-                icon={<Calendar size={18} />}
-                title={t('estimate.addons.mokio.title')}
-                desc={t('estimate.addons.mokio.desc')}
-                price={t('estimate.included')}
-                active={mokio}
-                onToggle={() => setMokio((v) => !v)}
-                external="https://www.mokio.io/"
-              />
+            {/* Feature groups */}
+            {Object.entries(GROUPS).map(([key, label]) => (
+              <section key={key}>
+                <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
+                  {label[lang]}
+                </h2>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {groupedFeatures[key].map((f) => (
+                    <FeatureTile
+                      key={f.id}
+                      feature={f}
+                      lang={lang}
+                      currency={currency}
+                      active={features.has(f.id)}
+                      onToggle={() => toggleFeature(f.id)}
+                    />
+                  ))}
+                </div>
+              </section>
+            ))}
+
+            {/* Delivery and ongoing */}
+            <section>
+              <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
+                {lang === 'da' ? 'Levering & support' : 'Delivery and support'}
+              </h2>
+              <button
+                onClick={() => setRush((v) => !v)}
+                className={`w-full rounded-2xl border p-5 mb-3 text-left transition-all duration-200 ${
+                  rush ? 'border-amber-400 bg-amber-500/[0.06]' : 'border-white/10 bg-[#0f0f0f] hover:border-white/25'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${rush ? 'bg-amber-400 text-black' : 'bg-white/5 text-zinc-400'}`}>
+                    {rush ? <Check size={18} /> : <Zap size={18} />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-4 flex-wrap">
+                      <p className="text-white font-medium leading-tight">
+                        {lang === 'da' ? 'Rush-levering' : 'Rush delivery'}
+                      </p>
+                      <p className={`text-sm font-semibold tracking-tight ${rush ? 'text-amber-300' : 'text-zinc-300'}`}>
+                        +30%
+                      </p>
+                    </div>
+                    <p className="text-zinc-500 text-sm mt-0.5">
+                      {lang === 'da' ? 'Halvér leveringstiden, jeg prioriterer dit projekt.' : 'Cut delivery time in half, your project goes to the top.'}
+                    </p>
+                  </div>
+                </div>
+              </button>
+              <button
+                onClick={() => setCarePlan((v) => !v)}
+                className={`w-full rounded-2xl border p-5 text-left transition-all duration-200 ${
+                  carePlan ? 'border-amber-400 bg-amber-500/[0.06]' : 'border-white/10 bg-[#0f0f0f] hover:border-white/25'
+                }`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${carePlan ? 'bg-amber-400 text-black' : 'bg-white/5 text-zinc-400'}`}>
+                    {carePlan ? <Check size={18} /> : <Wrench size={18} />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-4 flex-wrap">
+                      <p className="text-white font-medium leading-tight">
+                        {t('estimate.addons.care.title')}
+                      </p>
+                      <p className={`text-sm font-semibold tracking-tight ${carePlan ? 'text-amber-300' : 'text-zinc-300'}`}>
+                        {fmt(CARE_MONTHLY, lang)} {currency} {t('estimate.perMonth')}
+                      </p>
+                    </div>
+                    <p className="text-zinc-500 text-sm mt-0.5">
+                      {t('estimate.addons.care.desc')}
+                    </p>
+                  </div>
+                </div>
+              </button>
             </section>
           </div>
 
@@ -272,18 +450,27 @@ export default function QuoteEstimate() {
               <SummaryRow label={tierContent[tier].title} value={`${fmt(selectedTier.base, lang)} ${currency}`} />
               {extraPages > 0 && (
                 <SummaryRow
-                  label={`${t('estimate.addons.extraPages.title')} × ${extraPages}`}
+                  label={`+${extraPages} ${lang === 'da' ? (extraPages === 1 ? 'side' : 'sider') : (extraPages === 1 ? 'page' : 'pages')}`}
                   value={`${fmt(extraPages * EXTRA_PAGE_PRICE, lang)} ${currency}`}
                 />
               )}
-              {stripe && (
-                <SummaryRow label={t('estimate.addons.stripe.title')} value={`${fmt(STRIPE_PRICE, lang)} ${currency}`} />
-              )}
-              {mobilepay && (
-                <SummaryRow label={t('estimate.addons.mobilepay.title')} value={t('estimate.contactPrice')} muted />
-              )}
-              {mokio && (
-                <SummaryRow label={t('estimate.addons.mokio.title')} value={t('estimate.included')} muted />
+              {selectedFeatures.map((f) => (
+                <SummaryRow
+                  key={f.id}
+                  label={f.title[lang]}
+                  value={
+                    f.quoted ? (lang === 'da' ? 'Pris aftales' : 'Quoted')
+                      : f.included ? (lang === 'da' ? 'Inkluderet' : 'Included')
+                      : `${fmt(f.price, lang)} ${currency}`
+                  }
+                  muted={f.quoted || f.included}
+                />
+              ))}
+              {rush && (
+                <SummaryRow
+                  label={lang === 'da' ? 'Rush (+30%)' : 'Rush (+30%)'}
+                  value={`+${fmt(rushSurcharge, lang)} ${currency}`}
+                />
               )}
 
               <div className="border-t border-white/10 mt-4 pt-4">
@@ -313,7 +500,7 @@ export default function QuoteEstimate() {
                 )}
                 <div className="mt-3 flex items-center justify-between text-xs text-zinc-500">
                   <span>{t('estimate.summary.delivery')}</span>
-                  <span className="text-zinc-300 font-medium">{deliveryText}</span>
+                  <span className="text-zinc-300 font-medium">{formatDelivery(finalDays, lang)}</span>
                 </div>
               </div>
 
@@ -344,31 +531,38 @@ export default function QuoteEstimate() {
   )
 }
 
-function AddonRow({ icon, title, desc, price, active, onToggle, external }) {
+function FeatureTile({ feature, lang, currency, active, onToggle }) {
+  const Icon = feature.icon
+  const priceLabel = feature.quoted
+    ? (lang === 'da' ? 'Pris aftales' : 'Quoted')
+    : feature.included
+    ? (lang === 'da' ? 'Inkluderet' : 'Included')
+    : `${new Intl.NumberFormat(lang === 'da' ? 'da-DK' : 'en-US').format(feature.price)} ${currency}`
+
   return (
     <button
       onClick={onToggle}
-      className={`w-full rounded-2xl border p-5 mb-3 text-left transition-all duration-200 ${
-        active
-          ? 'border-amber-400 bg-amber-500/[0.06]'
-          : 'border-white/10 bg-[#0f0f0f] hover:border-white/25'
+      className={`text-left rounded-2xl border p-4 transition-all duration-200 ${
+        active ? 'border-amber-400 bg-amber-500/[0.06]' : 'border-white/10 bg-[#0f0f0f] hover:border-white/25'
       }`}
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-3">
         <div
-          className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+          className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${
             active ? 'bg-amber-400 text-black' : 'bg-white/5 text-zinc-400'
           }`}
         >
-          {active ? <Check size={18} /> : icon}
+          {active ? <Check size={16} /> : <Icon size={16} />}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div className="flex items-center gap-2">
-              <p className="text-white font-medium leading-tight">{title}</p>
-              {external && (
+          <div className="flex items-start justify-between gap-2 flex-wrap">
+            <div className="flex items-center gap-1.5">
+              <p className="text-white font-medium text-sm leading-tight">
+                {feature.title[lang]}
+              </p>
+              {feature.external && (
                 <a
-                  href={external}
+                  href={feature.external}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
@@ -378,11 +572,11 @@ function AddonRow({ icon, title, desc, price, active, onToggle, external }) {
                 </a>
               )}
             </div>
-            <p className={`text-sm font-semibold tracking-tight ${active ? 'text-amber-300' : 'text-zinc-300'}`}>
-              {price}
+            <p className={`text-xs font-semibold tracking-tight whitespace-nowrap ${active ? 'text-amber-300' : 'text-zinc-400'}`}>
+              {priceLabel}
             </p>
           </div>
-          <p className="text-zinc-500 text-sm mt-0.5">{desc}</p>
+          <p className="text-zinc-500 text-xs mt-1 leading-snug">{feature.desc[lang]}</p>
         </div>
       </div>
     </button>
@@ -391,9 +585,9 @@ function AddonRow({ icon, title, desc, price, active, onToggle, external }) {
 
 function SummaryRow({ label, value, muted }) {
   return (
-    <div className="flex items-baseline justify-between text-sm mb-2">
-      <span className="text-zinc-400 truncate pr-2">{label}</span>
-      <span className={`font-medium tracking-tight flex-shrink-0 ${muted ? 'text-zinc-500' : 'text-white'}`}>
+    <div className="flex items-baseline justify-between text-sm mb-2 gap-2">
+      <span className="text-zinc-400 truncate">{label}</span>
+      <span className={`font-medium tracking-tight flex-shrink-0 text-right ${muted ? 'text-zinc-500' : 'text-white'}`}>
         {value}
       </span>
     </div>
