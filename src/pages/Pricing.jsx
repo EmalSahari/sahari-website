@@ -17,6 +17,8 @@ const fadeUp = {
 
 function PricingCard({ tier, popular, i }) {
   const t = useT()
+  const lang = t('nav.home') === 'Hjem' ? 'da' : 'en'
+  const formattedPrice = new Intl.NumberFormat(lang === 'da' ? 'da-DK' : 'en-US').format(tier.price)
   return (
     <motion.div variants={fadeUp} initial="hidden" animate="show" custom={i} className="relative">
       {popular && (
@@ -41,8 +43,8 @@ function PricingCard({ tier, popular, i }) {
 
           <div className="flex items-baseline gap-2 mb-2">
             <span className="text-zinc-500 text-sm">{tier.prefix}</span>
-            <span className="text-4xl md:text-5xl font-bold text-white tracking-tight">{tier.price}</span>
-            <span className="text-zinc-500 text-sm">kr</span>
+            <span className="text-4xl md:text-5xl font-bold text-white tracking-tight">{formattedPrice}</span>
+            <span className="text-zinc-500 text-sm">{t('pricing.currency')}</span>
           </div>
           <p className="text-xs text-zinc-500 mb-7">{tier.delivery}</p>
 
@@ -117,7 +119,7 @@ export default function Pricing() {
       name: t('pricing.single.name'),
       tagline: t('pricing.single.tagline'),
       prefix: t('pricing.from'),
-      price: '4.995',
+      price: 4995,
       delivery: t('pricing.single.delivery'),
       includes: [
         t('pricing.single.inc.1'),
@@ -137,7 +139,7 @@ export default function Pricing() {
       name: t('pricing.standard.name'),
       tagline: t('pricing.standard.tagline'),
       prefix: t('pricing.from'),
-      price: '9.995',
+      price: 9995,
       delivery: t('pricing.standard.delivery'),
       includes: [
         t('pricing.standard.inc.1'),
@@ -158,7 +160,7 @@ export default function Pricing() {
       name: t('pricing.premium.name'),
       tagline: t('pricing.premium.tagline'),
       prefix: t('pricing.from'),
-      price: '19.995',
+      price: 19995,
       delivery: t('pricing.premium.delivery'),
       includes: [
         t('pricing.premium.inc.1'),

@@ -7,9 +7,9 @@ import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
 
 const TIER_LABELS = {
-  single: { en: 'Single page (4,995 kr)', da: 'Single page (4.995 kr)' },
-  standard: { en: 'Standard (9,995 kr)', da: 'Standard (9.995 kr)' },
-  premium: { en: 'Premium (from 19,995 kr)', da: 'Premium (fra 19.995 kr)' },
+  single: { en: 'Single page (4,995 DKK)', da: 'Single page (4.995 kr)' },
+  standard: { en: 'Standard (9,995 DKK)', da: 'Standard (9.995 kr)' },
+  premium: { en: 'Premium (from 19,995 DKK)', da: 'Premium (fra 19.995 kr)' },
 }
 
 const fadeUp = {
