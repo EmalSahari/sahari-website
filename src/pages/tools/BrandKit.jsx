@@ -5,7 +5,6 @@ import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft } from 'lucide-react'
 
 // -- Seed palettes per vibe -----------------------------------------------
 // Each entry: [bg, text, muted, accent, surface]
-// Order: 0=background, 1=primary text, 2=muted text, 3=accent, 4=surface/card
 const SEED_PALETTES = {
   premium: [
     ['#0f0e0d', '#f5f0e8', '#8a8478', '#c2722d', '#1c1c1c'],
@@ -51,7 +50,6 @@ const SEED_PALETTES = {
   ],
 }
 
-// -- Curated font pairs ---------------------------------------------------
 const FONT_PAIRS = [
   { display: 'Fraunces', body: 'DM Sans', vibes: ['editorial', 'premium', 'warm'] },
   { display: 'Crimson Pro', body: 'Manrope', vibes: ['warm', 'calm', 'editorial'] },
@@ -85,9 +83,8 @@ function hexToHsl(hex) {
   const min = Math.min(r, g, b)
   let h, s
   const l = (max + min) / 2
-  if (max === min) {
-    h = s = 0
-  } else {
+  if (max === min) { h = s = 0 }
+  else {
     const d = max - min
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
     switch (max) {
@@ -125,7 +122,6 @@ function generatePalette(vibe) {
   const seeds = SEED_PALETTES[vibe]
   const seed = seeds[Math.floor(Math.random() * seeds.length)]
   return seed.map((hex, i) => {
-    // Less jitter on bg/text (positions 0,1) for safety; more on others.
     const range = i < 2 ? { h: 2, s: 2, l: 1 } : { h: 6, s: 8, l: 3 }
     return jitter(hex, range)
   })
@@ -142,7 +138,6 @@ function getContrastColor(bg) {
   return l > 50 ? '#000000' : '#ffffff'
 }
 
-// -- Component ------------------------------------------------------------
 export default function BrandKit() {
   const [vibe, setVibe] = useState('premium')
   const [palette, setPalette] = useState(() => generatePalette('premium'))
@@ -154,13 +149,11 @@ export default function BrandKit() {
     setFontPair(pickFontPair(vibe))
   }, [vibe])
 
-  // Regenerate when vibe changes
   useEffect(() => {
     setPalette(generatePalette(vibe))
     setFontPair(pickFontPair(vibe))
   }, [vibe])
 
-  // Spacebar = regenerate
   useEffect(() => {
     const onKey = (e) => {
       if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
@@ -172,7 +165,6 @@ export default function BrandKit() {
     return () => window.removeEventListener('keydown', onKey)
   }, [regenerate])
 
-  // Dynamically load the selected fonts
   useEffect(() => {
     const id = 'brand-kit-fonts'
     let link = document.getElementById(id)
@@ -212,89 +204,99 @@ export default function BrandKit() {
   const [bg, text, muted, accent, surface] = palette
   const buttonTextColor = getContrastColor(accent)
 
+  const swatches = [
+    { label: 'Background', hex: palette[0] },
+    { label: 'Text', hex: palette[1] },
+    { label: 'Muted', hex: palette[2] },
+    { label: 'Accent', hex: palette[3] },
+    { label: 'Surface', hex: palette[4] },
+  ]
+
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100" style={{ fontFamily: '"Inter", sans-serif' }}>
+    <div className="h-screen bg-[#0a0a0a] text-zinc-100 flex flex-col overflow-hidden" style={{ fontFamily: '"Inter", sans-serif' }}>
       {/* Top bar */}
-      <header className="border-b border-white/5 sticky top-0 z-30 backdrop-blur bg-[#0a0a0a]/85">
-        <div className="max-w-[1400px] mx-auto px-6 h-14 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm">
+      <header className="border-b border-white/5 backdrop-blur bg-[#0a0a0a]/85 flex-shrink-0">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 h-12 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-xs md:text-sm">
             <ArrowLeft size={14} />
             <span>Sahari</span>
           </Link>
-          <span className="text-xs tracking-[0.25em] uppercase text-amber-400">Tools / Brand Kit</span>
-          <span className="hidden md:block text-xs text-zinc-500">Press space to regenerate</span>
+          <span className="text-[10px] md:text-xs tracking-[0.25em] uppercase text-amber-400 font-semibold">
+            Brand Kit Generator
+          </span>
+          <span className="hidden md:block text-xs text-zinc-500">
+            <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 font-mono text-[10px]">space</kbd> to shuffle
+          </span>
         </div>
       </header>
 
-      <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-16">
-        {/* Header */}
-        <div className="text-center mb-10 md:mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-4">
-            Brand kit in <span className="text-amber-400">30 seconds</span>.
-          </h1>
-          <p className="text-zinc-400 max-w-xl mx-auto leading-relaxed">
-            Pick a vibe. Get a colour palette and a typography pairing,
-            shown in a real layout. Hit space to regenerate. Free, no signup.
-          </p>
-        </div>
-
-        {/* Vibe selector */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
-          {VIBES.map((v) => (
+      {/* Vibe + actions row */}
+      <div className="border-b border-white/5 flex-shrink-0">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-3 flex flex-wrap items-center gap-2 md:gap-3">
+          <div className="flex flex-wrap items-center gap-1.5">
+            {VIBES.map((v) => (
+              <button
+                key={v.id}
+                onClick={() => setVibe(v.id)}
+                className={`px-3 py-1.5 rounded-full text-xs md:text-sm font-medium transition-all ${
+                  vibe === v.id
+                    ? 'bg-amber-400 text-black'
+                    : 'bg-white/5 text-zinc-300 hover:bg-white/10 border border-white/10'
+                }`}
+              >
+                {v.label}
+              </button>
+            ))}
+          </div>
+          <div className="flex items-center gap-2 ml-auto">
             <button
-              key={v.id}
-              onClick={() => setVibe(v.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                vibe === v.id
-                  ? 'bg-amber-400 text-black'
-                  : 'bg-white/5 text-zinc-300 hover:bg-white/10 border border-white/10'
-              }`}
+              onClick={regenerate}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white text-black rounded-lg text-xs md:text-sm font-medium hover:bg-zinc-200 transition-all"
             >
-              {v.label}
+              <RefreshCw size={12} />
+              <span className="hidden sm:inline">Shuffle</span>
             </button>
-          ))}
+            <button
+              onClick={copyCSS}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+            >
+              {copied ? <Check size={12} /> : <Copy size={12} />}
+              <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy CSS'}</span>
+            </button>
+          </div>
         </div>
+      </div>
 
-        {/* Action row */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
-          <button
-            onClick={regenerate}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-xl text-sm font-medium hover:bg-zinc-200 transition-all"
-          >
-            <RefreshCw size={14} />
-            Regenerate
-          </button>
-          <button
-            onClick={copyCSS}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 text-zinc-200 border border-white/10 rounded-xl text-sm font-medium hover:bg-white/10 transition-all"
-          >
-            {copied ? <Check size={14} /> : <Copy size={14} />}
-            {copied ? 'Copied!' : 'Copy CSS'}
-          </button>
-        </div>
-
-        {/* Live preview */}
+      {/* Main split */}
+      <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-[1fr_360px] overflow-hidden">
+        {/* Preview */}
         <motion.div
           key={`${vibe}-${palette[0]}-${fontPair.display}`}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="overflow-y-auto"
           style={{ backgroundColor: bg, color: text }}
         >
-          <div className="p-10 md:p-16">
+          <div className="p-6 md:p-10 lg:p-12 h-full flex flex-col">
             {/* Mini "navbar" */}
-            <div className="flex items-center justify-between mb-12 md:mb-20" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
-              <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-lg tracking-tight">
+            <div
+              className="flex items-center justify-between mb-10 md:mb-14"
+              style={{ fontFamily: `"${fontPair.body}", sans-serif` }}
+            >
+              <span
+                style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }}
+                className="text-base md:text-lg tracking-tight"
+              >
                 Your Brand
               </span>
-              <nav className="hidden sm:flex items-center gap-6 text-xs tracking-widest uppercase" style={{ color: muted }}>
+              <nav className="hidden sm:flex items-center gap-5 text-[10px] tracking-widest uppercase" style={{ color: muted }}>
                 <span>Work</span>
                 <span>About</span>
                 <span>Contact</span>
               </nav>
               <span
-                className="text-xs font-semibold tracking-widest uppercase px-3 py-2 rounded-md"
+                className="text-[10px] font-semibold tracking-widest uppercase px-2.5 py-1.5 rounded-md"
                 style={{ backgroundColor: accent, color: buttonTextColor }}
               >
                 Book
@@ -302,9 +304,9 @@ export default function BrandKit() {
             </div>
 
             {/* Hero */}
-            <div className="max-w-2xl">
+            <div className="max-w-2xl flex-1">
               <p
-                className="text-xs tracking-[0.3em] uppercase mb-5"
+                className="text-[10px] tracking-[0.3em] uppercase mb-4"
                 style={{ color: accent, fontFamily: `"${fontPair.body}", sans-serif`, fontWeight: 600 }}
               >
                 ¶ A real layout
@@ -316,29 +318,29 @@ export default function BrandKit() {
                   letterSpacing: '-0.03em',
                   lineHeight: 0.95,
                 }}
-                className="text-5xl md:text-7xl mb-6"
+                className="text-4xl md:text-6xl lg:text-7xl mb-5"
               >
                 Made by hand,<br />
                 <span style={{ color: accent, fontStyle: 'italic', fontWeight: 400 }}>for real.</span>
               </h2>
               <p
                 style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
-                className="text-base md:text-lg leading-relaxed mb-8"
+                className="text-sm md:text-base leading-relaxed mb-6 max-w-lg"
               >
                 This is how your palette and typography look together on a
                 real page. Hit space to try another combination, or pick a
                 different vibe above.
               </p>
-              <div className="flex flex-wrap items-center gap-4" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
+              <div className="flex flex-wrap items-center gap-3" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
                 <button
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-transform hover:scale-[1.02]"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm transition-transform hover:scale-[1.02]"
                   style={{ backgroundColor: accent, color: buttonTextColor }}
                 >
                   Primary action
-                  <ArrowRight size={14} />
+                  <ArrowRight size={13} />
                 </button>
                 <button
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm border"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm border"
                   style={{ borderColor: muted, color: text }}
                 >
                   Secondary
@@ -346,126 +348,123 @@ export default function BrandKit() {
               </div>
             </div>
 
-            {/* Card row */}
-            <div className="grid sm:grid-cols-3 gap-4 mt-16 md:mt-24">
-              {['Service one', 'Service two', 'Service three'].map((s, i) => (
-                <div
-                  key={s}
-                  className="p-6 rounded-xl"
-                  style={{ backgroundColor: surface }}
+            {/* Surface sample at the bottom */}
+            <div
+              className="mt-8 p-5 rounded-xl flex items-center gap-4"
+              style={{ backgroundColor: surface }}
+            >
+              <div
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0"
+                style={{ backgroundColor: accent, color: buttonTextColor }}
+              >
+                01
+              </div>
+              <div>
+                <p
+                  style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 600 }}
+                  className="text-base md:text-lg leading-tight"
                 >
-                  <div
-                    className="w-9 h-9 rounded-lg mb-4 flex items-center justify-center text-xs font-bold"
-                    style={{ backgroundColor: accent, color: buttonTextColor }}
-                  >
-                    0{i + 1}
-                  </div>
-                  <h3
-                    style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 600 }}
-                    className="text-lg mb-2"
-                  >
-                    {s}
-                  </h3>
-                  <p
-                    style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
-                    className="text-sm leading-relaxed"
-                  >
-                    A short line of supporting copy that demonstrates how
-                    the body font reads at small sizes.
-                  </p>
-                </div>
-              ))}
+                  Surface card
+                </p>
+                <p
+                  style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
+                  className="text-xs md:text-sm"
+                >
+                  This is how a card or callout looks on this palette.
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Specs */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {/* Palette spec */}
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
-            <p className="text-xs tracking-[0.3em] uppercase text-amber-400 mb-4 font-semibold">
-              Palette
-            </p>
-            <div className="space-y-3">
-              {[
-                { label: 'Background', hex: palette[0] },
-                { label: 'Text', hex: palette[1] },
-                { label: 'Muted text', hex: palette[2] },
-                { label: 'Accent', hex: palette[3] },
-                { label: 'Surface', hex: palette[4] },
-              ].map((swatch) => (
-                <div key={swatch.label} className="flex items-center gap-4">
-                  <div
-                    className="w-10 h-10 rounded-lg border border-white/10 flex-shrink-0"
-                    style={{ backgroundColor: swatch.hex }}
-                  />
-                  <div className="flex-1 flex items-baseline justify-between">
-                    <span className="text-sm text-zinc-300">{swatch.label}</span>
-                    <span className="text-sm font-mono text-zinc-500 tabular-nums">{swatch.hex}</span>
-                  </div>
+        {/* Right column: specs */}
+        <aside className="border-t lg:border-t-0 lg:border-l border-white/5 bg-[#0d0d0d] overflow-y-auto">
+          <div className="p-5 md:p-6 space-y-6">
+            {/* Palette */}
+            <section>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 mb-3 font-semibold">
+                Palette
+              </p>
+              <div className="space-y-2">
+                {swatches.map((swatch) => (
+                  <button
+                    key={swatch.label}
+                    onClick={() => navigator.clipboard.writeText(swatch.hex)}
+                    className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors group"
+                    title="Click to copy"
+                  >
+                    <div
+                      className="w-9 h-9 rounded-md border border-white/10 flex-shrink-0"
+                      style={{ backgroundColor: swatch.hex }}
+                    />
+                    <div className="flex-1 flex items-baseline justify-between min-w-0">
+                      <span className="text-xs text-zinc-400">{swatch.label}</span>
+                      <span className="text-xs font-mono text-zinc-500 tabular-nums group-hover:text-zinc-300">
+                        {swatch.hex}
+                      </span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            {/* Typography */}
+            <section>
+              <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 mb-3 font-semibold">
+                Typography
+              </p>
+              <div className="space-y-3">
+                <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5">
+                  <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">Display</p>
+                  <p
+                    className="text-xl text-white leading-tight truncate"
+                    style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }}
+                  >
+                    {fontPair.display}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </div>
+                <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5">
+                  <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">Body</p>
+                  <p
+                    className="text-base text-white truncate"
+                    style={{ fontFamily: `"${fontPair.body}", sans-serif` }}
+                  >
+                    {fontPair.body}
+                  </p>
+                </div>
+                <a
+                  href={`https://fonts.google.com/?query=${encodeURIComponent(fontPair.display)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 text-xs transition-colors"
+                >
+                  Find on Google Fonts
+                  <ArrowRight size={11} />
+                </a>
+              </div>
+            </section>
 
-          {/* Typography spec */}
-          <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
-            <p className="text-xs tracking-[0.3em] uppercase text-amber-400 mb-4 font-semibold">
-              Typography
-            </p>
-            <div className="space-y-5">
-              <div>
-                <p className="text-xs uppercase tracking-widest text-zinc-500 mb-2">Display</p>
-                <p
-                  className="text-3xl text-white leading-tight"
-                  style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }}
-                >
-                  {fontPair.display}
-                </p>
-              </div>
-              <div className="border-t border-white/10 pt-5">
-                <p className="text-xs uppercase tracking-widest text-zinc-500 mb-2">Body</p>
-                <p
-                  className="text-xl text-white"
-                  style={{ fontFamily: `"${fontPair.body}", sans-serif` }}
-                >
-                  {fontPair.body}
-                </p>
-              </div>
-              <a
-                href={`https://fonts.google.com/?query=${encodeURIComponent(fontPair.display)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 text-sm transition-colors"
+            {/* Sahari CTA */}
+            <section className="rounded-xl border border-amber-500/20 bg-amber-950/10 p-4">
+              <p
+                className="text-sm font-semibold text-white mb-2 leading-snug"
+                style={{ fontFamily: '"Inter", sans-serif' }}
               >
-                Find on Google Fonts
+                Like the vibe? I can build a real site with it.
+              </p>
+              <p className="text-xs text-zinc-400 mb-3 leading-relaxed">
+                Sahari builds custom websites from DKK 4,995.
+              </p>
+              <Link
+                to="/pricing"
+                className="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-zinc-200 text-black font-medium rounded-lg text-xs transition-all"
+              >
+                See pricing
                 <ArrowRight size={12} />
-              </a>
-            </div>
+              </Link>
+            </section>
           </div>
-        </div>
-
-        {/* Sahari CTA */}
-        <div className="rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-950/20 to-[#0f0f0f] p-8 md:p-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
-            Like the vibe? I can build a real site with it.
-          </h2>
-          <p className="text-zinc-400 max-w-lg mx-auto mb-6 leading-relaxed">
-            Sahari builds custom websites from DKK 4,995. The brand kit you
-            generated here can be the starting point.
-          </p>
-          <Link
-            to="/pricing"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all"
-          >
-            See pricing
-            <ArrowRight size={14} />
-          </Link>
-        </div>
-
-        <p className="text-center text-xs text-zinc-600 mt-12">
-          Tip: hit <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 font-mono text-[10px]">space</kbd> anywhere to regenerate.
-        </p>
+        </aside>
       </div>
     </div>
   )
