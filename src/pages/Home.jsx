@@ -141,23 +141,39 @@ export default function Home() {
           <span>{t('hero.badge')}</span>
         </motion.div>
 
-        <motion.h1
-          variants={heroFadeUp}
-          initial="hidden"
-          animate="show"
-          custom={1}
-          className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl"
-        >
-          {t('hero.headline.start')}{' '}
-          <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>{' '}
-          {t('hero.headline.end')}
-        </motion.h1>
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
+          {(() => {
+            const units = [
+              ...t('hero.headline.start').split(' ').map((w) => ({ word: w, highlight: false })),
+              { word: t('hero.headline.highlight'), highlight: true },
+              ...t('hero.headline.end').split(' ').map((w) => ({ word: w, highlight: false })),
+            ]
+            const baseDelay = 0.25
+            const stagger = isMobile ? 0.05 : 0.07
+            const duration = isMobile ? 0.7 : 1.0
+            return units.map((u, i) => (
+              <span key={i} className="inline-flex">
+                <span className="inline-block overflow-hidden align-top pb-[0.08em]">
+                  <motion.span
+                    initial={{ y: '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ duration, delay: baseDelay + i * stagger, ease: [0.16, 1, 0.3, 1] }}
+                    className={`inline-block ${u.highlight ? 'gradient-text-animated' : ''}`}
+                  >
+                    {u.word}
+                  </motion.span>
+                </span>
+                {i < units.length - 1 && <span>&nbsp;</span>}
+              </span>
+            ))
+          })()}
+        </h1>
 
         <motion.p
           variants={heroFadeUp}
           initial="hidden"
           animate="show"
-          custom={2}
+          custom={5}
           className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
         >
           {t('hero.subtitle')}
@@ -167,7 +183,7 @@ export default function Home() {
           variants={heroFadeUp}
           initial="hidden"
           animate="show"
-          custom={3}
+          custom={6}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
@@ -190,7 +206,7 @@ export default function Home() {
           variants={heroFadeUp}
           initial="hidden"
           animate="show"
-          custom={4}
+          custom={7}
           className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
         >
           <span className="inline-flex items-center gap-2">
@@ -211,7 +227,7 @@ export default function Home() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          custom={5}
+          custom={9}
           className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-zinc-600 text-xs"
         >
           <div className="w-px h-10 bg-gradient-to-b from-transparent to-zinc-600" />
