@@ -176,7 +176,8 @@ export default function Pricing() {
   const addOns = [
     { name: t('pricing.addons.stripe.name'), price: t('pricing.addons.stripe.price'), desc: t('pricing.addons.stripe.desc') },
     { name: t('pricing.addons.mobilepay.name'), price: t('pricing.addons.mobilepay.price'), desc: t('pricing.addons.mobilepay.desc') },
-    { name: t('pricing.addons.maintenance.name'), price: t('pricing.addons.maintenance.price'), desc: t('pricing.addons.maintenance.desc') },
+    { name: t('pricing.addons.fix.name'), price: t('pricing.addons.fix.price'), desc: t('pricing.addons.fix.desc') },
+    { name: t('pricing.addons.care.name'), price: t('pricing.addons.care.price'), desc: t('pricing.addons.care.desc') },
     { name: t('pricing.addons.extra.name'), price: t('pricing.addons.extra.price'), desc: t('pricing.addons.extra.desc') },
   ]
 
