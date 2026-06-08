@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown, Undo2, Redo2, Image as ImageIcon, FlipVertical, QrCode, FileDown } from 'lucide-react'
+import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown, Undo2, Redo2, Image as ImageIcon, FlipVertical, QrCode, FileDown, Pipette, Globe, Shuffle as ShuffleIcon } from 'lucide-react'
 import jsPDF from 'jspdf'
 
 // -- Seed palettes per vibe -----------------------------------------------
@@ -980,9 +980,39 @@ function generatePalette(vibe, lockedSet = null, currentPalette = null) {
     if (lockedSet && lockedSet.has(i) && currentPalette) {
       return currentPalette[i]
     }
-    const range = i < 2 ? { h: 3, s: 4, l: 2 } : { h: 10, s: 12, l: 5 }
+    // Wider jitter so each shuffle feels distinct even on the same seed.
+    const range = i < 2 ? { h: 6, s: 8, l: 3 } : { h: 20, s: 22, l: 9 }
     return jitter(hex, range)
   })
+}
+
+// Pool of Google Fonts to roll from outside the curated set
+const FONT_POOL_DISPLAY = [
+  'Fraunces', 'Crimson Pro', 'Playfair Display', 'DM Serif Display', 'Big Shoulders Display',
+  'Bricolage Grotesque', 'Cormorant Garamond', 'Archivo Black', 'Outfit', 'Lora', 'Plus Jakarta Sans',
+  'Instrument Serif', 'Spectral', 'EB Garamond', 'Anton', 'Bebas Neue', 'Oswald', 'Source Serif 4',
+  'Libre Caslon Text', 'Sora', 'Hanken Grotesk', 'Work Sans', 'Space Grotesk', 'Cardo', 'Domine',
+  'Crimson Text', 'Tinos', 'IBM Plex Sans', 'IBM Plex Serif', 'Syne', 'Unbounded', 'Familjen Grotesk',
+  'Geist', 'Newsreader', 'Yeseva One', 'Abril Fatface', 'Marcellus', 'Cinzel', 'Cormorant Infant',
+  'Italiana', 'Bodoni Moda', 'Libre Bodoni', 'Prata', 'Vollkorn', 'Merriweather', 'Lustria',
+  'Antic Slab', 'Roboto Slab', 'Suez One', 'Sansita Swashed', 'Caveat', 'Pacifico', 'Permanent Marker',
+  'Bowlby One', 'Russo One', 'Chivo', 'Onest', 'Public Sans', 'Figtree', 'Albert Sans', 'Be Vietnam Pro',
+  'Mulish', 'Lexend', 'League Spartan', 'Sen', 'Saira', 'Saira Condensed', 'Barlow', 'Barlow Condensed',
+  'Fjalla One', 'Alfa Slab One', 'Black Ops One', 'Bungee', 'Bungee Inline', 'Monoton', 'Major Mono Display',
+  'VT323', 'Press Start 2P', 'Silkscreen', 'Sixtyfour', 'Doto', 'Limelight', 'Italianno', 'Great Vibes',
+]
+
+const FONT_POOL_BODY = [
+  'Inter Tight', 'Manrope', 'DM Sans', 'Karla', 'Outfit', 'Sora', 'Hanken Grotesk', 'Work Sans',
+  'Space Grotesk', 'Plus Jakarta Sans', 'Open Sans', 'Source Sans 3', 'IBM Plex Sans', 'Public Sans',
+  'Figtree', 'Albert Sans', 'Mulish', 'Lexend', 'Sen', 'Onest', 'Chivo', 'Be Vietnam Pro',
+  'League Spartan', 'Saira', 'Barlow', 'Roboto', 'Nunito', 'Poppins', 'Geist',
+]
+
+function pickRandomFontPair() {
+  const d = FONT_POOL_DISPLAY[Math.floor(Math.random() * FONT_POOL_DISPLAY.length)]
+  const b = FONT_POOL_BODY[Math.floor(Math.random() * FONT_POOL_BODY.length)]
+  return { display: d, body: b, vibes: [] }
 }
 
 function pickFontPair(vibe) {
@@ -1087,6 +1117,7 @@ const PREVIEW_LAYOUTS = [
   { id: 'card', label: 'Card' },
   { id: 'list', label: 'List' },
   { id: 'mobile', label: 'Mobile' },
+  { id: 'devices', label: 'Devices' },
 ]
 
 export default function BrandKit() {
@@ -1118,6 +1149,10 @@ export default function BrandKit() {
   const [editingHex, setEditingHex] = useState('')
   const [qrOpen, setQrOpen] = useState(false)
   const [vibeDropdownOpen, setVibeDropdownOpen] = useState(false)
+  const [urlScrapeOpen, setUrlScrapeOpen] = useState(false)
+  const [scrapeUrl, setScrapeUrl] = useState('')
+  const [scrapeLoading, setScrapeLoading] = useState(false)
+  const [scrapeError, setScrapeError] = useState(null)
   const fileInputRef = useRef(null)
   const isApplyingHistory = useRef(false)
 
@@ -1204,6 +1239,78 @@ export default function BrandKit() {
   }, [])
 
   const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}${typeof window !== 'undefined' ? window.location.pathname : '/tools/brand-kit'}?${encodeKit(palette, fontPair.display, fontPair.body)}`
+
+  const pickFromScreen = useCallback(async () => {
+    if (typeof window === 'undefined' || !('EyeDropper' in window)) {
+      alert('Your browser does not support EyeDropper. Try Chrome, Edge or Opera.')
+      return
+    }
+    try {
+      // eslint-disable-next-line no-undef
+      const dropper = new EyeDropper()
+      const result = await dropper.open()
+      const hex = result.sRGBHex.toLowerCase()
+      // Apply to the first unlocked slot (or accent if all unlocked)
+      const targetIndex = locked.has(3) ? palette.findIndex((_, i) => !locked.has(i)) : 3
+      if (targetIndex >= 0) {
+        updateSwatch(targetIndex, hex)
+      }
+    } catch {
+      // User cancelled
+    }
+  }, [locked, palette, updateSwatch])
+
+  const rollRandomFont = useCallback(() => {
+    setFontPair(pickRandomFontPair())
+  }, [])
+
+  const scrapeFromUrl = useCallback(async () => {
+    if (!scrapeUrl) return
+    setScrapeLoading(true)
+    setScrapeError(null)
+    try {
+      let target = scrapeUrl.trim()
+      if (!/^https?:\/\//i.test(target)) target = 'https://' + target
+      const proxy = `https://api.allorigins.win/raw?url=${encodeURIComponent(target)}`
+      const res = await fetch(proxy)
+      if (!res.ok) throw new Error('Could not load the page.')
+      const html = await res.text()
+      // Find hex colors and rgb() colors
+      const hexMatches = html.match(/#[0-9a-fA-F]{6}\b/g) || []
+      const rgbMatches = [...html.matchAll(/rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/g)].map(m => {
+        const toHex = (n) => parseInt(n).toString(16).padStart(2, '0')
+        return `#${toHex(m[1])}${toHex(m[2])}${toHex(m[3])}`
+      })
+      const all = [...hexMatches.map((h) => h.toLowerCase()), ...rgbMatches]
+      // Tally
+      const counts = new Map()
+      for (const h of all) {
+        counts.set(h, (counts.get(h) || 0) + 1)
+      }
+      const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([h]) => h)
+      // Skip near-white/near-black duplicates by tolerance? keep simple and just dedupe
+      const unique = sorted.filter((h, i, arr) => arr.indexOf(h) === i)
+      if (unique.length < 5) {
+        throw new Error(`Only found ${unique.length} unique colours. Try a different page.`)
+      }
+      // Sort by luminance to slot into bg/text/muted/accent/surface
+      const top = unique.slice(0, 12)
+      const sortedByLum = [...top].sort((a, b) => relativeLuminance(b) - relativeLuminance(a))
+      const bg = sortedByLum[0]
+      const text = sortedByLum[sortedByLum.length - 1]
+      const muted = sortedByLum[Math.floor(sortedByLum.length * 0.66)]
+      const accent = sortedByLum[Math.floor(sortedByLum.length / 2)]
+      const surface = sortedByLum[1]
+      setPalette([bg, text, muted, accent, surface])
+      setPresetName(`From ${target.replace(/^https?:\/\//, '').replace(/\/$/, '')}`)
+      setUrlScrapeOpen(false)
+      setScrapeUrl('')
+    } catch (e) {
+      setScrapeError(e.message || 'Something went wrong.')
+    } finally {
+      setScrapeLoading(false)
+    }
+  }, [scrapeUrl])
 
   const exportPDF = useCallback(() => {
     const doc = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' })
@@ -1735,6 +1842,22 @@ $font-body: '${fontPair.body}', sans-serif;`
               <ImageIcon size={12} />
               <span className="hidden sm:inline">Image</span>
             </button>
+            <button
+              onClick={() => { setUrlScrapeOpen(true); setScrapeError(null) }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              title="Extract palette from a website URL"
+            >
+              <Globe size={12} />
+              <span className="hidden sm:inline">URL</span>
+            </button>
+            <button
+              onClick={pickFromScreen}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              title="Pick a colour from anywhere on the screen (Chrome / Edge)"
+            >
+              <Pipette size={12} />
+              <span className="hidden sm:inline">Pick</span>
+            </button>
             <input
               ref={fileInputRef}
               type="file"
@@ -2093,6 +2216,113 @@ $font-body: '${fontPair.body}', sans-serif;`
             </div>
           )}
 
+          {layout === 'devices' && (
+            <div className="p-6 md:p-10 h-full flex items-center justify-center gap-6 overflow-x-auto">
+              {/* Desktop */}
+              <div className="flex-shrink-0 flex flex-col items-center gap-2">
+                <div
+                  className="w-[440px] h-[260px] rounded-lg overflow-hidden shadow-2xl border"
+                  style={{ borderColor: muted, backgroundColor: bg }}
+                >
+                  <div className="p-4 h-full flex flex-col">
+                    <div className="flex items-center justify-between mb-4" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
+                      <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-xs">
+                        {brandName}
+                      </span>
+                      <span className="text-[8px] tracking-widest uppercase" style={{ color: muted }}>Menu</span>
+                    </div>
+                    <h3
+                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
+                      className="text-2xl mb-2"
+                    >
+                      Made for <span style={{ color: accent, fontStyle: 'italic' }}>real</span>.
+                    </h3>
+                    <p style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }} className="text-[10px] leading-relaxed mb-3 flex-1">
+                      Desktop preview at 440 by 260 pixels.
+                    </p>
+                    <div className="flex gap-2">
+                      <span className="text-[9px] font-medium px-2.5 py-1 rounded" style={{ backgroundColor: accent, color: buttonTextColor }}>
+                        Action
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[10px] tracking-widest uppercase" style={{ color: muted }}>Desktop</span>
+              </div>
+
+              {/* Tablet */}
+              <div className="flex-shrink-0 flex flex-col items-center gap-2">
+                <div
+                  className="w-[280px] h-[360px] rounded-lg overflow-hidden shadow-2xl border"
+                  style={{ borderColor: muted, backgroundColor: bg }}
+                >
+                  <div className="p-4 h-full flex flex-col">
+                    <div className="flex items-center justify-between mb-3" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
+                      <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-xs">
+                        {brandName}
+                      </span>
+                    </div>
+                    <h3
+                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
+                      className="text-xl mb-2"
+                    >
+                      Made for{' '}
+                      <span style={{ color: accent, fontStyle: 'italic' }}>real</span>.
+                    </h3>
+                    <p style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }} className="text-[10px] leading-relaxed mb-3">
+                      Tablet view, narrower hero.
+                    </p>
+                    <span
+                      className="self-start text-[9px] font-medium px-2.5 py-1 rounded"
+                      style={{ backgroundColor: accent, color: buttonTextColor }}
+                    >
+                      Action
+                    </span>
+                    <div className="mt-auto p-2 rounded" style={{ backgroundColor: surface }}>
+                      <p style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 600 }} className="text-[10px]">
+                        Card example
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[10px] tracking-widest uppercase" style={{ color: muted }}>Tablet</span>
+              </div>
+
+              {/* Phone */}
+              <div className="flex-shrink-0 flex flex-col items-center gap-2">
+                <div
+                  className="w-[180px] h-[380px] rounded-2xl overflow-hidden shadow-2xl border"
+                  style={{ borderColor: muted, backgroundColor: bg }}
+                >
+                  <div className="p-3 h-full flex flex-col">
+                    <div className="flex items-center justify-between mb-3" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
+                      <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-[10px]">
+                        {brandName}
+                      </span>
+                    </div>
+                    <h3
+                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
+                      className="text-base mb-2"
+                    >
+                      Made for{' '}
+                      <span style={{ color: accent, fontStyle: 'italic' }}>real</span>.
+                    </h3>
+                    <p style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }} className="text-[8px] leading-relaxed mb-2">
+                      Phone view.
+                    </p>
+                    <span
+                      className="self-start text-[8px] font-medium px-2 py-0.5 rounded"
+                      style={{ backgroundColor: accent, color: buttonTextColor }}
+                    >
+                      Action
+                    </span>
+                  </div>
+                </div>
+                <span className="text-[10px] tracking-widest uppercase" style={{ color: muted }}>Phone</span>
+              </div>
+            </div>
+          )}
+
           {layout === 'mobile' && (
             <div className="p-6 md:p-10 lg:p-12 h-full flex items-center justify-center">
               <div
@@ -2312,15 +2542,24 @@ $font-body: '${fontPair.body}', sans-serif;`
                 <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 font-semibold">
                   Typography
                 </p>
-                <button
-                  onClick={() => setLockedFont((v) => !v)}
-                  className={`p-1 rounded-md transition-colors ${
-                    lockedFont ? 'text-amber-400 hover:text-amber-300' : 'text-zinc-600 hover:text-zinc-300'
-                  }`}
-                  title={lockedFont ? 'Unlock font (F)' : 'Lock font while shuffling palette (F)'}
-                >
-                  {lockedFont ? <Lock size={13} /> : <Unlock size={13} />}
-                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={rollRandomFont}
+                    className="p-1 rounded-md text-zinc-500 hover:text-amber-400 transition-colors"
+                    title="Roll a completely random Google Font outside the curated set"
+                  >
+                    <ShuffleIcon size={13} />
+                  </button>
+                  <button
+                    onClick={() => setLockedFont((v) => !v)}
+                    className={`p-1 rounded-md transition-colors ${
+                      lockedFont ? 'text-amber-400 hover:text-amber-300' : 'text-zinc-600 hover:text-zinc-300'
+                    }`}
+                    title={lockedFont ? 'Unlock font (F)' : 'Lock font while shuffling palette (F)'}
+                  >
+                    {lockedFont ? <Lock size={13} /> : <Unlock size={13} />}
+                  </button>
+                </div>
               </div>
               <div className="space-y-3">
                 <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5">
@@ -2418,6 +2657,70 @@ $font-body: '${fontPair.body}', sans-serif;`
               </motion.div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* URL scrape modal */}
+      <AnimatePresence>
+        {urlScrapeOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => !scrapeLoading && setUrlScrapeOpen(false)}
+            className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-center justify-center p-6"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 8 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 max-w-md w-full relative"
+            >
+              <button
+                onClick={() => !scrapeLoading && setUrlScrapeOpen(false)}
+                className="absolute top-3 right-3 text-zinc-500 hover:text-white transition-colors"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+              <h3 className="text-white font-semibold text-lg mb-2">Extract palette from a website</h3>
+              <p className="text-zinc-400 text-sm mb-4 leading-relaxed">
+                Paste a URL. I will fetch the page through a proxy, scan it for colour values, and build a palette from the most common ones. Works best on sites with inline hex colours.
+              </p>
+              <input
+                type="url"
+                value={scrapeUrl}
+                onChange={(e) => setScrapeUrl(e.target.value)}
+                onKeyDown={(e) => { if (e.key === 'Enter') scrapeFromUrl() }}
+                placeholder="https://stripe.com"
+                disabled={scrapeLoading}
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400/50 disabled:opacity-50 mb-3"
+                autoFocus
+              />
+              {scrapeError && (
+                <p className="text-rose-400 text-xs mb-3">{scrapeError}</p>
+              )}
+              <div className="flex items-center justify-end gap-2">
+                <button
+                  onClick={() => setUrlScrapeOpen(false)}
+                  disabled={scrapeLoading}
+                  className="px-3 py-2 text-xs text-zinc-400 hover:text-white transition-colors disabled:opacity-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={scrapeFromUrl}
+                  disabled={scrapeLoading || !scrapeUrl}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-400 hover:bg-amber-300 text-black rounded-lg text-xs font-medium disabled:opacity-50"
+                >
+                  {scrapeLoading ? 'Loading...' : 'Extract'}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 
