@@ -1423,13 +1423,13 @@ export default function BrandKit() {
     setText(text)
     doc.setFont('helvetica', 'bold')
     doc.setFontSize(18)
-    doc.text(`Made for ${brandName || 'Your Brand'}.`, margin + 6, previewY + 18)
+    doc.text(`${brandName || 'Your Brand'}, display.`, margin + 6, previewY + 18)
 
     setText(muted)
     doc.setFont('helvetica', 'normal')
     doc.setFontSize(9)
     doc.text(
-      `This is how your palette reads on a real surface. Body copy at ${fontPair.body}.`,
+      `Palette and type on a surface. Body set in ${fontPair.body}.`,
       margin + 6,
       previewY + 26,
       { maxWidth: innerW - 12 }
@@ -2080,7 +2080,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 className="text-[10px] tracking-[0.3em] uppercase mb-4"
                 style={{ color: accent, fontFamily: `"${fontPair.body}", sans-serif`, fontWeight: 600 }}
               >
-                ¶ {presetName || 'A real layout'}
+                ¶ {presetName || 'Preview'}
               </p>
               <h2
                 style={{
@@ -2091,16 +2091,15 @@ $font-body: '${fontPair.body}', sans-serif;`
                 }}
                 className="text-4xl md:text-6xl lg:text-7xl mb-5"
               >
-                Made by hand,<br />
-                <span style={{ color: accent, fontStyle: 'italic', fontWeight: 400 }}>for real.</span>
+                Display headline,<br />
+                <span style={{ color: accent, fontStyle: 'italic', fontWeight: 400 }}>set in italic.</span>
               </h2>
               <p
                 style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
                 className="text-sm md:text-base leading-relaxed mb-6 max-w-lg"
               >
-                This is how your palette and typography look together on a
-                real page. Hit space to try another combination, or pick a
-                different vibe above.
+                Palette and typography on a layout. Press space for a
+                new combination, or switch the vibe above.
               </p>
               <div className="flex flex-wrap items-center gap-3" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
                 <button
@@ -2261,7 +2260,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                       style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
                       className="text-2xl mb-2"
                     >
-                      Made for <span style={{ color: accent, fontStyle: 'italic' }}>real</span>.
+                      Display, <span style={{ color: accent, fontStyle: 'italic' }}>italic</span>.
                     </h3>
                     <p style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }} className="text-[10px] leading-relaxed mb-3 flex-1">
                       Desktop preview at 440 by 260 pixels.
@@ -2292,8 +2291,8 @@ $font-body: '${fontPair.body}', sans-serif;`
                       style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
                       className="text-xl mb-2"
                     >
-                      Made for{' '}
-                      <span style={{ color: accent, fontStyle: 'italic' }}>real</span>.
+                      Display,{' '}
+                      <span style={{ color: accent, fontStyle: 'italic' }}>italic</span>.
                     </h3>
                     <p style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }} className="text-[10px] leading-relaxed mb-3">
                       Tablet view, narrower hero.
@@ -2330,8 +2329,8 @@ $font-body: '${fontPair.body}', sans-serif;`
                       style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
                       className="text-base mb-2"
                     >
-                      Made for{' '}
-                      <span style={{ color: accent, fontStyle: 'italic' }}>real</span>.
+                      Display,{' '}
+                      <span style={{ color: accent, fontStyle: 'italic' }}>italic</span>.
                     </h3>
                     <p style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }} className="text-[8px] leading-relaxed mb-2">
                       Phone view.
@@ -2382,16 +2381,16 @@ $font-body: '${fontPair.body}', sans-serif;`
                     }}
                     className="text-3xl mb-4"
                   >
-                    Made by hand,{' '}
+                    Display,{' '}
                     <span style={{ color: accent, fontStyle: 'italic', fontWeight: 400 }}>
-                      for real.
+                      italic.
                     </span>
                   </h2>
                   <p
                     style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
                     className="text-xs leading-relaxed mb-5"
                   >
-                    A real layout shown at phone size to test how your palette and type read on a small screen.
+                    Phone-size view to check the palette and type on a small screen.
                   </p>
                   <button
                     className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs"
