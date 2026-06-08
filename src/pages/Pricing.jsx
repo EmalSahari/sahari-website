@@ -187,6 +187,7 @@ export default function Pricing() {
     { q: t('pricing.faq.4.q'), a: t('pricing.faq.4.a') },
     { q: t('pricing.faq.5.q'), a: t('pricing.faq.5.a') },
     { q: t('pricing.faq.6.q'), a: t('pricing.faq.6.a') },
+    { q: t('pricing.faq.7.q'), a: t('pricing.faq.7.a') },
   ]
 
   return (
