@@ -2087,7 +2087,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   fontFamily: `"${fontPair.display}", serif`,
                   fontWeight: 700,
                   letterSpacing: '-0.03em',
-                  lineHeight: 0.95,
+                  lineHeight: 1.1,
                 }}
                 className="text-4xl md:text-6xl lg:text-7xl mb-5"
               >
@@ -2257,7 +2257,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                       <span className="text-[8px] tracking-widest uppercase" style={{ color: muted }}>Menu</span>
                     </div>
                     <h3
-                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
+                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.1 }}
                       className="text-2xl mb-2"
                     >
                       Display, <span style={{ color: accent, fontStyle: 'italic' }}>italic</span>.
@@ -2288,7 +2288,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                       </span>
                     </div>
                     <h3
-                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
+                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.1 }}
                       className="text-xl mb-2"
                     >
                       Display,{' '}
@@ -2326,7 +2326,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                       </span>
                     </div>
                     <h3
-                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.95 }}
+                      style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 1.1 }}
                       className="text-base mb-2"
                     >
                       Display,{' '}
@@ -2377,7 +2377,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                       fontFamily: `"${fontPair.display}", serif`,
                       fontWeight: 700,
                       letterSpacing: '-0.03em',
-                      lineHeight: 0.95,
+                      lineHeight: 1.1,
                     }}
                     className="text-3xl mb-4"
                   >
