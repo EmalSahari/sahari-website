@@ -146,10 +146,10 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={1}
-          className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl"
+          className="font-display text-white max-w-5xl text-[clamp(3rem,9vw,7.5rem)] leading-[0.92] tracking-[-0.04em] font-medium"
         >
           {t('hero.headline.start')}{' '}
-          <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>{' '}
+          <span className="italic font-normal text-amber-400">{t('hero.headline.highlight')}</span>{' '}
           {t('hero.headline.end')}
         </motion.h1>
 
@@ -229,7 +229,7 @@ export default function Home() {
           className="text-center mb-16"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="font-display font-medium text-white text-4xl md:text-6xl tracking-[-0.035em] leading-[1]">
             {t('services.heading')}
           </h2>
           <p className="mt-4 text-zinc-400 max-w-lg mx-auto">
@@ -299,7 +299,7 @@ export default function Home() {
           className="text-center mb-12"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="font-display font-medium text-white text-4xl md:text-6xl tracking-[-0.035em] leading-[1]">
             {t('projects.heading')}
           </h2>
         </motion.div>
@@ -393,7 +393,7 @@ export default function Home() {
             <Shield size={16} />
             {t('security.eyebrow')}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
+          <h2 className="font-display font-medium text-white text-4xl md:text-6xl mb-5 leading-[1] tracking-[-0.035em]">
             {t('security.heading')}
           </h2>
           <p className="text-zinc-400 leading-relaxed text-lg">
@@ -414,7 +414,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-10 items-start">
             <div className="flex-1">
               <Youtube size={36} className="text-red-400 mb-5" />
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              <h2 className="font-display font-medium text-white text-3xl md:text-5xl mb-3 leading-[1] tracking-[-0.035em]">
                 {t('youtube.heading')}
               </h2>
               <p className="text-zinc-400 leading-relaxed max-w-md">
@@ -464,7 +464,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="font-display font-medium text-white text-4xl md:text-6xl mb-5 leading-[1] tracking-[-0.035em]">
             {t('cta.heading')}
           </h2>
           <p className="text-zinc-400 mb-3 text-lg">

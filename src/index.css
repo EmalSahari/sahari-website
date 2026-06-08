@@ -25,6 +25,16 @@ body {
 }
 
 @layer utilities {
+  .font-display {
+    font-optical-sizing: auto;
+    font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 0;
+  }
+
+  .font-display-soft {
+    font-optical-sizing: auto;
+    font-variation-settings: 'opsz' 36, 'SOFT' 80, 'WONK' 0;
+  }
+
   .gradient-text {
     color: #ffffff;
   }

@@ -204,7 +204,7 @@ export default function Pricing() {
           className="text-center mb-16 max-w-3xl mx-auto"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.eyebrow')}</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5 leading-tight">
+          <h1 className="font-display font-medium text-white text-5xl md:text-7xl tracking-[-0.04em] leading-[0.95] mb-6">
             {t('pricing.heading')}
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed">
@@ -250,7 +250,7 @@ export default function Pricing() {
         >
           <div className="mb-10">
             <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.addons.eyebrow')}</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">{t('pricing.addons.heading')}</h2>
+            <h2 className="font-display font-medium text-white text-4xl md:text-6xl tracking-[-0.035em] leading-[1] mb-5">{t('pricing.addons.heading')}</h2>
             <p className="text-zinc-400 max-w-lg leading-relaxed">{t('pricing.addons.subtitle')}</p>
           </div>
 
@@ -295,7 +295,7 @@ export default function Pricing() {
         >
           <div className="mb-10">
             <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.faq.eyebrow')}</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">{t('pricing.faq.heading')}</h2>
+            <h2 className="font-display font-medium text-white text-4xl md:text-6xl tracking-[-0.035em] leading-[1]">{t('pricing.faq.heading')}</h2>
           </div>
 
           <div className="border-t border-white/10 max-w-3xl">
