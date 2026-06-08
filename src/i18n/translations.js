@@ -6,6 +6,7 @@ export const translations = {
     'nav.work': 'Work',
     'nav.pricing': 'Pricing',
     'nav.contact': 'Contact',
+    'nav.brandKit': 'Brand Kit',
     'nav.workWithUs': 'Careers',
     'nav.workWithMe': 'Work with me',
     'nav.toggleMenu': 'Toggle menu',
@@ -196,7 +197,6 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'All rights reserved.',
-    'footer.builtWith': 'Built with',
 
     // Cookie notice
     'cookie.heading': 'We use cookies',
@@ -343,6 +343,7 @@ export const translations = {
     'nav.work': 'Arbejde',
     'nav.pricing': 'Priser',
     'nav.contact': 'Kontakt',
+    'nav.brandKit': 'Brand Kit',
     'nav.workWithUs': 'Karriere',
     'nav.workWithMe': 'Samarbejd med mig',
     'nav.toggleMenu': 'Skift menu',
@@ -533,7 +534,6 @@ export const translations = {
 
     // Footer
     'footer.copyright': 'Alle rettigheder forbeholdes.',
-    'footer.builtWith': 'Bygget med',
 
     // Cookie notice
     'cookie.heading': 'Vi bruger cookies',

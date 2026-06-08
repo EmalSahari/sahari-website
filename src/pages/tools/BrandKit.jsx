@@ -1671,7 +1671,47 @@ export default function BrandKit() {
   }, [fontPair])
 
   useEffect(() => {
-    document.title = 'Brand Kit Generator · Sahari Tools'
+    const description = 'Generate brand color palettes and Google Font pairings in seconds. Lock colors, edit hex, check WCAG contrast, preview on hero, card and device mockups, export to CSS, Tailwind, SCSS, JSON or PDF. Free, no signup.'
+    const title = 'Brand Kit Generator: free color palette and font pairing tool | Sahari'
+    const url = 'https://sahari.io/tools/brand-kit'
+
+    const prevTitle = document.title
+    const prevCanonical = document.head.querySelector('link[rel="canonical"]')?.getAttribute('href') || 'https://sahari.io/'
+    const prevDesc = document.head.querySelector('meta[name="description"]')?.getAttribute('content') || ''
+
+    document.title = title
+
+    const setMeta = (selector, attr, value, content) => {
+      let el = document.head.querySelector(selector)
+      if (!el) {
+        el = document.createElement('meta')
+        el.setAttribute(attr, value)
+        document.head.appendChild(el)
+      }
+      el.setAttribute('content', content)
+    }
+
+    setMeta('meta[name="description"]', 'name', 'description', description)
+    setMeta('meta[property="og:title"]', 'property', 'og:title', title)
+    setMeta('meta[property="og:description"]', 'property', 'og:description', description)
+    setMeta('meta[property="og:url"]', 'property', 'og:url', url)
+    setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title)
+    setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description)
+
+    let canonical = document.head.querySelector('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.setAttribute('rel', 'canonical')
+      document.head.appendChild(canonical)
+    }
+    canonical.setAttribute('href', url)
+
+    return () => {
+      document.title = prevTitle
+      canonical?.setAttribute('href', prevCanonical)
+      const descEl = document.head.querySelector('meta[name="description"]')
+      if (descEl && prevDesc) descEl.setAttribute('content', prevDesc)
+    }
   }, [])
 
   const buildExport = (format) => {

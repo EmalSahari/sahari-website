@@ -51,23 +51,10 @@ export default function Footer() {
           <Link to="/about" className="hover:text-white transition-colors">{t('nav.about')}</Link>
           <Link to="/work-with-us" className="hover:text-white transition-colors">{t('nav.workWithUs')}</Link>
           <Link to="/contact" className="hover:text-white transition-colors">{t('nav.contact')}</Link>
+          <Link to="/tools/brand-kit" className="hover:text-white transition-colors">{t('nav.brandKit')}</Link>
         </nav>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 mt-6 pt-6 border-t border-white/[0.03]">
-        <p className="text-xs text-zinc-600 text-center md:text-left">
-          {t('footer.builtWith')}{' '}
-          <span className="text-zinc-500">React</span>
-          <span className="mx-1.5 text-zinc-700">·</span>
-          <span className="text-zinc-500">Vite</span>
-          <span className="mx-1.5 text-zinc-700">·</span>
-          <span className="text-zinc-500">Tailwind</span>
-          <span className="mx-1.5 text-zinc-700">·</span>
-          <span className="text-zinc-500">Framer Motion</span>
-          <span className="mx-1.5 text-zinc-700">·</span>
-          <span className="text-zinc-500">Vercel</span>
-        </p>
-      </div>
     </footer>
   )
 }
