@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark } from 'lucide-react'
 
 // -- Seed palettes per vibe -----------------------------------------------
 // Each entry: [bg, text, muted, accent, surface]
@@ -218,7 +218,139 @@ const SEED_PALETTES = {
     ['#f3eddc', '#1a1411', '#7c6e58', '#5b3e2a', '#e8e1c8'],
     ['#1c1817', '#ebe0c5', '#8a7e6b', '#4a6b6b', '#262017'],
   ],
+  minimal: [
+    ['#ffffff', '#000000', '#737373', '#000000', '#f5f5f5'],
+    ['#fafafa', '#0a0a0a', '#737373', '#171717', '#f5f5f5'],
+    ['#f5f5f4', '#1c1917', '#78716c', '#1c1917', '#e7e5e4'],
+    ['#f8fafc', '#0f172a', '#64748b', '#0f172a', '#e2e8f0'],
+    ['#fefefe', '#171717', '#737373', '#525252', '#fafafa'],
+    ['#fafaf7', '#1c1917', '#78716c', '#44403c', '#f5f5f4'],
+    ['#f4f4f5', '#18181b', '#71717a', '#27272a', '#e4e4e7'],
+    ['#ffffff', '#0a0a0a', '#525252', '#262626', '#f5f5f5'],
+    ['#fafafa', '#171717', '#737373', '#3f3f46', '#f4f4f5'],
+    ['#f5f5f5', '#0a0a0a', '#737373', '#171717', '#e7e5e4'],
+    ['#fafaf9', '#1c1917', '#78716c', '#292524', '#e7e5e4'],
+    ['#ffffff', '#171717', '#737373', '#404040', '#fafafa'],
+    ['#f5f4f3', '#1c1917', '#78716c', '#3f3f46', '#e7e5e4'],
+    ['#fafafa', '#0a0a0a', '#737373', '#1f2937', '#f5f5f5'],
+    ['#f8fafc', '#0f172a', '#475569', '#1e293b', '#e2e8f0'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#fafafa', '#1a1a1a'],
+    ['#171717', '#fafafa', '#a3a3a3', '#e5e5e5', '#262626'],
+    ['#1c1917', '#f5f5f4', '#a8a29e', '#f5f5f4', '#292524'],
+    ['#18181b', '#fafafa', '#a1a1aa', '#e4e4e7', '#27272a'],
+    ['#0a0a0a', '#fafaf9', '#a8a29e', '#f5f5f4', '#1c1917'],
+    ['#0f172a', '#f8fafc', '#94a3b8', '#e2e8f0', '#1e293b'],
+    ['#1a1a1a', '#fafafa', '#737373', '#a3a3a3', '#262626'],
+    ['#0a0a0a', '#e5e5e5', '#737373', '#fafafa', '#1a1a1a'],
+    ['#171717', '#fafafa', '#a3a3a3', '#525252', '#262626'],
+    ['#1c1917', '#fafaf9', '#78716c', '#44403c', '#292524'],
+  ],
+  playful: [
+    ['#fef3c7', '#1f2937', '#6b7280', '#f97316', '#fde68a'],
+    ['#fce7f3', '#1f2937', '#6b7280', '#9333ea', '#fbcfe8'],
+    ['#e0f2fe', '#0f172a', '#64748b', '#ec4899', '#bae6fd'],
+    ['#ecfccb', '#1c1917', '#78716c', '#f97316', '#d9f99d'],
+    ['#ffe4e6', '#1f1717', '#6b5d5d', '#0891b2', '#fecdd3'],
+    ['#dbeafe', '#0f172a', '#475569', '#f59e0b', '#bfdbfe'],
+    ['#fef3c7', '#1c1917', '#6b6260', '#ec4899', '#fde68a'],
+    ['#d1fae5', '#1c1917', '#6b7280', '#f97316', '#a7f3d0'],
+    ['#fce7f3', '#1f1717', '#7a6a6e', '#06b6d4', '#fbcfe8'],
+    ['#fed7aa', '#1c1917', '#6b6260', '#16a34a', '#fdba74'],
+    ['#e9d5ff', '#1f1717', '#7a6a7a', '#facc15', '#d8b4fe'],
+    ['#fef9c3', '#1c1917', '#7d7567', '#dc2626', '#fef08a'],
+    ['#bae6fd', '#0f172a', '#64748b', '#ec4899', '#7dd3fc'],
+    ['#fce7f3', '#1f1717', '#7a6a6e', '#7c3aed', '#fbcfe8'],
+    ['#dcfce7', '#1c1917', '#6b7280', '#f43f5e', '#bbf7d0'],
+    ['#fff1f2', '#1a0e10', '#806a6e', '#22d3ee', '#ffe4e6'],
+    ['#fffbeb', '#1c1917', '#78716c', '#3b82f6', '#fef3c7'],
+    ['#fed7aa', '#1c1110', '#7d6058', '#0ea5e9', '#fdba74'],
+    ['#e0e7ff', '#1e1b4b', '#6b7280', '#f97316', '#c7d2fe'],
+    ['#fef3c7', '#0f1419', '#5d6e7e', '#dc2626', '#fde68a'],
+    ['#fce7f3', '#1c1917', '#7a6a6e', '#16a34a', '#fbcfe8'],
+    ['#a7f3d0', '#0f172a', '#475569', '#f59e0b', '#6ee7b7'],
+    ['#fed7aa', '#1f1717', '#7a6260', '#7c3aed', '#fdba74'],
+    ['#ffe4e6', '#1c1917', '#6b5d5d', '#84cc16', '#fecdd3'],
+    ['#fef3c7', '#1c1917', '#6b6260', '#ec4899', '#fde68a'],
+  ],
+  vintage: [
+    ['#f0e3c8', '#221912', '#7e6e58', '#704220', '#e5d6b5'],
+    ['#ede0b8', '#1f1814', '#76685a', '#3e5934', '#e3d4a5'],
+    ['#f5e8c8', '#1d1814', '#7d685a', '#854d0e', '#ebdfb8'],
+    ['#f0e3a0', '#251f14', '#766850', '#a04621', '#e5d28e'],
+    ['#e8c98f', '#1f1814', '#7c6850', '#3e5934', '#dec07e'],
+    ['#d4a574', '#1a1410', '#7c6852', '#3e2818', '#c8965f'],
+    ['#c19a6b', '#1a1410', '#766852', '#3e2818', '#b88955'],
+    ['#e8d4a8', '#1f1814', '#7a6e58', '#854d0e', '#decd9a'],
+    ['#fce4d0', '#2a1f1f', '#7a6e6e', '#5b8aa8', '#f5d7c0'],
+    ['#ffd5c8', '#2a1f1f', '#7a6e6e', '#3e4d5b', '#f5c2b5'],
+    ['#e8d4d4', '#1c1414', '#7a6e6e', '#5b6e8a', '#dec8c8'],
+    ['#e8c5a5', '#1c1414', '#76685c', '#5b3e1a', '#dec095'],
+    ['#d8b896', '#1f1814', '#7a6c58', '#3e4d5b', '#cbab83'],
+    ['#e0b870', '#1a1410', '#766852', '#3e2818', '#d4a85e'],
+    ['#f0c590', '#221814', '#7c6c54', '#5b3e1a', '#e3b87a'],
+    ['#d8a878', '#1a1410', '#766852', '#3e2818', '#c89665'],
+    ['#a89978', '#0f0a08', '#5d5546', '#3e2818', '#988a6c'],
+    ['#8a7f5e', '#0a0805', '#4d4636', '#1f1410', '#7e735a'],
+    ['#9a8762', '#0f0a08', '#594f3e', '#2a1810', '#8c7a56'],
+    ['#a89070', '#0a0805', '#5d5040', '#1f1410', '#988260'],
+    ['#736548', '#0a0805', '#4a4030', '#1c1208', '#5d513a'],
+    ['#d4b896', '#1a1410', '#766852', '#3e2818', '#c4a878'],
+    ['#fbf3d8', '#1c1612', '#7d6e54', '#7e3f1a', '#f0e6c5'],
+    ['#f5ead8', '#1c1610', '#7d6e58', '#854d0e', '#ebdfc0'],
+    ['#ede4ba', '#221b15', '#7c6e52', '#a04621', '#e3d6a5'],
+  ],
+  futuristic: [
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#22d3ee', '#1a1a1a'],
+    ['#0d0d14', '#fafafa', '#a3a3b3', '#a855f7', '#1a1a25'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#10b981', '#1a1a1a'],
+    ['#0a0014', '#fafafa', '#a3a3b3', '#ec4899', '#15001f'],
+    ['#0a0a14', '#fafafa', '#a3a3b3', '#3b82f6', '#15151f'],
+    ['#0d0a14', '#fafafa', '#a3a3b3', '#fbbf24', '#181522'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#06b6d4', '#1a1a1a'],
+    ['#0d0d0d', '#fafafa', '#a3a3a3', '#84cc16', '#1a1a1a'],
+    ['#0a0014', '#fafafa', '#a3a3b3', '#fb7185', '#15001f'],
+    ['#0a0a0f', '#fafafa', '#a3a3a8', '#22d3ee', '#15151a'],
+    ['#0d0d14', '#fafafa', '#a3a3b3', '#9333ea', '#1a1a25'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#f59e0b', '#1a1a1a'],
+    ['#0a1414', '#fafafa', '#a3a8a8', '#22d3ee', '#152525'],
+    ['#0a0a14', '#fafafa', '#a3a3b3', '#84cc16', '#15151f'],
+    ['#0d0814', '#fafafa', '#a3a3b3', '#a855f7', '#1a1525'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#0ea5e9', '#1a1a1a'],
+    ['#0a0a14', '#fafafa', '#a3a3b3', '#ec4899', '#15151f'],
+    ['#0a0d0a', '#fafafa', '#a3a8a3', '#22c55e', '#15201a'],
+    ['#0a0a14', '#fafafa', '#a3a3b3', '#06b6d4', '#15151f'],
+    ['#0d0a14', '#fafafa', '#a3a3b3', '#fbbf24', '#181525'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#d946ef', '#1a1a1a'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#7c3aed', '#1a1a1a'],
+    ['#0a0a14', '#fafafa', '#a3a3b3', '#facc15', '#15151f'],
+    ['#0a0a0a', '#fafafa', '#a3a3a3', '#14b8a6', '#1a1a1a'],
+    ['#0d0a14', '#fafafa', '#a3a3b3', '#22c55e', '#181525'],
+  ],
 }
+
+// Curated locked combos — palette + fonts pre-paired
+const CURATED_PRESETS = [
+  { name: 'NYT Editorial', palette: ['#f5efe6', '#1f1a16', '#6b5a4d', '#8b1a1a', '#ece4d4'], display: 'Fraunces', body: 'DM Sans' },
+  { name: 'Linear Dark', palette: ['#0a0a0a', '#fafafa', '#a3a3a3', '#9d4edd', '#1a1a1a'], display: 'Inter Tight', body: 'Inter Tight' },
+  { name: 'Stripe Classic', palette: ['#ffffff', '#0a0a0a', '#737373', '#635bff', '#f5f5f5'], display: 'Inter Tight', body: 'Inter Tight' },
+  { name: 'Vercel Pure', palette: ['#0a0a0a', '#fafafa', '#a3a3a3', '#fafafa', '#1a1a1a'], display: 'Manrope', body: 'Manrope' },
+  { name: 'Apple Modern', palette: ['#ffffff', '#1d1d1f', '#86868b', '#0066cc', '#f5f5f7'], display: 'Manrope', body: 'Manrope' },
+  { name: 'Brutalist Bold', palette: ['#fafafa', '#0a0a0a', '#737373', '#ff0000', '#f5f5f5'], display: 'Archivo Black', body: 'Karla' },
+  { name: 'Editorial Magazine', palette: ['#f5efe6', '#1a1411', '#7a6c5e', '#7c2d12', '#ece4d4'], display: 'Playfair Display', body: 'Karla' },
+  { name: 'Warm Bistro', palette: ['#f5efe6', '#1f1a16', '#6b5a4d', '#94632d', '#ece4d4'], display: 'Crimson Pro', body: 'Manrope' },
+  { name: 'Minimal Studio', palette: ['#f5f5f4', '#1c1917', '#78716c', '#1c1917', '#e7e5e4'], display: 'Inter Tight', body: 'Inter Tight' },
+  { name: 'Luxury Brand', palette: ['#0d0d0d', '#e5dbc0', '#7d7361', '#d4af37', '#1a1916'], display: 'Cormorant Garamond', body: 'Karla' },
+  { name: 'Tech Startup', palette: ['#fafafa', '#0a0a0a', '#737373', '#3b82f6', '#f5f5f5'], display: 'Plus Jakarta Sans', body: 'Plus Jakarta Sans' },
+  { name: 'Cyberpunk', palette: ['#0a0a0a', '#fafafa', '#a3a3a3', '#22d3ee', '#1a1a1a'], display: 'Space Grotesk', body: 'Sora' },
+  { name: 'Wellness Studio', palette: ['#f4f1ea', '#1d201d', '#6b6d68', '#7a8870', '#ebe6dc'], display: 'Lora', body: 'Manrope' },
+  { name: 'Boutique Femme', palette: ['#fce7f3', '#1f1717', '#7a6a6e', '#1c1917', '#fbcfe8'], display: 'DM Serif Display', body: 'DM Sans' },
+  { name: 'Premium Hotel', palette: ['#0c1116', '#e8edf2', '#8b97a5', '#d4af37', '#161d24'], display: 'Cormorant Garamond', body: 'DM Sans' },
+  { name: 'Editorial Cool', palette: ['#f5efe6', '#1f1a16', '#6b5a4d', '#0f3d2e', '#ece4d4'], display: 'EB Garamond', body: 'Inter Tight' },
+  { name: 'Fashion Forward', palette: ['#f5f0e8', '#1a1411', '#7a6c5e', '#1a1411', '#ebe2d2'], display: 'Instrument Serif', body: 'Inter Tight' },
+  { name: 'Indie Magazine', palette: ['#fef3c7', '#1c1917', '#7d7567', '#dc2626', '#fef08a'], display: 'Bricolage Grotesque', body: 'Manrope' },
+  { name: 'Sustainable Brand', palette: ['#eef0ec', '#1f2937', '#6b7280', '#5b8b6f', '#dde2dc'], display: 'Cardo', body: 'Karla' },
+  { name: 'Bold Editorial', palette: ['#0a0a0a', '#f5f0e8', '#8a8478', '#fbbf24', '#1c1c1c'], display: 'Big Shoulders Display', body: 'Manrope' },
+]
 
 const FONT_PAIRS = [
   // Editorial / serif display + clean body
@@ -307,15 +439,20 @@ const FONT_PAIRS = [
 
 const VIBES = [
   { id: 'any', label: 'Any' },
+  { id: 'curated', label: 'Curated ✦' },
   { id: 'premium', label: 'Premium' },
   { id: 'calm', label: 'Calm' },
   { id: 'bold', label: 'Bold' },
   { id: 'warm', label: 'Warm' },
   { id: 'modern', label: 'Modern' },
   { id: 'editorial', label: 'Editorial' },
+  { id: 'minimal', label: 'Minimal' },
+  { id: 'playful', label: 'Playful' },
+  { id: 'vintage', label: 'Vintage' },
+  { id: 'futuristic', label: 'Futuristic' },
 ]
 
-const VIBE_IDS = VIBES.filter((v) => v.id !== 'any').map((v) => v.id)
+const VIBE_IDS = VIBES.filter((v) => v.id !== 'any' && v.id !== 'curated').map((v) => v.id)
 
 function resolveVibe(selectedVibe) {
   if (selectedVibe === 'any') {
@@ -381,12 +518,41 @@ function generatePalette(vibe) {
 }
 
 function pickFontPair(vibe) {
-  if (vibe === 'any') {
+  if (vibe === 'any' || vibe === 'curated') {
     return FONT_PAIRS[Math.floor(Math.random() * FONT_PAIRS.length)]
   }
   const filtered = FONT_PAIRS.filter((p) => p.vibes.includes(vibe))
   const pool = filtered.length ? filtered : FONT_PAIRS
   return pool[Math.floor(Math.random() * pool.length)]
+}
+
+function pickCuratedPreset() {
+  return CURATED_PRESETS[Math.floor(Math.random() * CURATED_PRESETS.length)]
+}
+
+// localStorage helpers
+const STORAGE_KEY = 'sahari-brand-kit-saved'
+
+function loadSaved() {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? JSON.parse(raw) : []
+  } catch {
+    return []
+  }
+}
+
+function persistSaved(items) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+  } catch {
+    // ignore quota / privacy mode
+  }
+}
+
+function kitKey(palette, display, body) {
+  return [...palette, display, body].join('|')
 }
 
 function getContrastColor(bg) {
@@ -398,20 +564,73 @@ export default function BrandKit() {
   const [vibe, setVibe] = useState('any')
   const [palette, setPalette] = useState(() => generatePalette('any'))
   const [fontPair, setFontPair] = useState(() => pickFontPair('any'))
+  const [presetName, setPresetName] = useState(null)
   const [copied, setCopied] = useState(false)
+  const [saved, setSaved] = useState(loadSaved)
+  const [savedOpen, setSavedOpen] = useState(false)
+
+  const applyCombo = useCallback((newPalette, newFont, newPresetName = null) => {
+    setPalette(newPalette)
+    setFontPair(newFont)
+    setPresetName(newPresetName)
+  }, [])
 
   const regenerate = useCallback(() => {
-    setPalette(generatePalette(vibe))
-    setFontPair(pickFontPair(vibe))
-  }, [vibe])
+    if (vibe === 'curated') {
+      const preset = pickCuratedPreset()
+      applyCombo(preset.palette, { display: preset.display, body: preset.body }, preset.name)
+    } else {
+      applyCombo(generatePalette(vibe), pickFontPair(vibe))
+    }
+  }, [vibe, applyCombo])
 
   useEffect(() => {
-    setPalette(generatePalette(vibe))
-    setFontPair(pickFontPair(vibe))
+    if (vibe === 'curated') {
+      const preset = pickCuratedPreset()
+      applyCombo(preset.palette, { display: preset.display, body: preset.body }, preset.name)
+    } else {
+      applyCombo(generatePalette(vibe), pickFontPair(vibe))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [vibe])
+
+  const currentKey = kitKey(palette, fontPair.display, fontPair.body)
+  const isCurrentSaved = saved.some((s) => s.key === currentKey)
+
+  const toggleSave = useCallback(() => {
+    if (isCurrentSaved) {
+      const next = saved.filter((s) => s.key !== currentKey)
+      setSaved(next)
+      persistSaved(next)
+    } else {
+      const item = {
+        key: currentKey,
+        palette,
+        display: fontPair.display,
+        body: fontPair.body,
+        name: presetName,
+        savedAt: Date.now(),
+      }
+      const next = [item, ...saved]
+      setSaved(next)
+      persistSaved(next)
+    }
+  }, [isCurrentSaved, saved, currentKey, palette, fontPair, presetName])
+
+  const removeSaved = useCallback((key) => {
+    const next = saved.filter((s) => s.key !== key)
+    setSaved(next)
+    persistSaved(next)
+  }, [saved])
+
+  const applySaved = useCallback((item) => {
+    applyCombo(item.palette, { display: item.display, body: item.body }, item.name)
+    setSavedOpen(false)
+  }, [applyCombo])
 
   useEffect(() => {
     const onKey = (e) => {
+      if (savedOpen) return
       if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
         e.preventDefault()
         regenerate()
@@ -419,7 +638,7 @@ export default function BrandKit() {
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [regenerate])
+  }, [regenerate, savedOpen])
 
   useEffect(() => {
     const id = 'brand-kit-fonts'
@@ -513,6 +732,27 @@ export default function BrandKit() {
               <span className="hidden sm:inline">Shuffle</span>
             </button>
             <button
+              onClick={toggleSave}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all border ${
+                isCurrentSaved
+                  ? 'bg-amber-400/10 border-amber-400/40 text-amber-300 hover:bg-amber-400/20'
+                  : 'bg-white/5 border-white/10 text-zinc-200 hover:bg-white/10'
+              }`}
+              title={isCurrentSaved ? 'Remove from saved' : 'Save this kit'}
+            >
+              <Heart size={12} fill={isCurrentSaved ? 'currentColor' : 'none'} />
+              <span className="hidden sm:inline">{isCurrentSaved ? 'Saved' : 'Save'}</span>
+            </button>
+            {saved.length > 0 && (
+              <button
+                onClick={() => setSavedOpen(true)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              >
+                <Bookmark size={12} />
+                <span>{saved.length}</span>
+              </button>
+            )}
+            <button
               onClick={copyCSS}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
             >
@@ -565,7 +805,7 @@ export default function BrandKit() {
                 className="text-[10px] tracking-[0.3em] uppercase mb-4"
                 style={{ color: accent, fontFamily: `"${fontPair.body}", sans-serif`, fontWeight: 600 }}
               >
-                ¶ A real layout
+                ¶ {presetName || 'A real layout'}
               </p>
               <h2
                 style={{
@@ -722,6 +962,109 @@ export default function BrandKit() {
           </div>
         </aside>
       </div>
+
+      {/* Saved panel */}
+      <AnimatePresence>
+        {savedOpen && (
+          <>
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setSavedOpen(false)}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.aside
+              key="panel"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-[#0d0d0d] border-l border-white/10 flex flex-col"
+            >
+              <header className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+                <div>
+                  <p className="text-[10px] tracking-[0.25em] uppercase text-amber-400 font-semibold">Saved kits</p>
+                  <p className="text-sm text-zinc-400 mt-0.5">{saved.length} stored locally</p>
+                </div>
+                <button
+                  onClick={() => setSavedOpen(false)}
+                  className="text-zinc-400 hover:text-white transition-colors"
+                  aria-label="Close"
+                >
+                  <X size={20} />
+                </button>
+              </header>
+
+              <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                {saved.length === 0 ? (
+                  <div className="text-center text-zinc-500 text-sm py-12">
+                    Nothing saved yet. Hit <Heart size={12} className="inline align-text-bottom" /> on a kit you like.
+                  </div>
+                ) : (
+                  saved.map((item) => (
+                    <div
+                      key={item.key}
+                      className="rounded-xl border border-white/10 bg-white/[0.02] overflow-hidden group hover:border-white/20 transition-colors"
+                    >
+                      <button
+                        onClick={() => applySaved(item)}
+                        className="w-full text-left"
+                      >
+                        <div className="flex">
+                          {item.palette.map((hex, i) => (
+                            <div
+                              key={i}
+                              className="flex-1 h-12"
+                              style={{ backgroundColor: hex }}
+                            />
+                          ))}
+                        </div>
+                      </button>
+                      <div className="px-4 py-3 flex items-center justify-between gap-3">
+                        <div className="min-w-0 flex-1">
+                          {item.name && (
+                            <p className="text-xs text-amber-400 font-medium truncate">{item.name}</p>
+                          )}
+                          <p
+                            className="text-sm text-white truncate"
+                            style={{ fontFamily: `"${item.display}", serif` }}
+                          >
+                            {item.display}
+                          </p>
+                          <p
+                            className="text-xs text-zinc-500 truncate"
+                            style={{ fontFamily: `"${item.body}", sans-serif` }}
+                          >
+                            + {item.body}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => applySaved(item)}
+                            className="px-2.5 py-1.5 bg-white text-black text-xs rounded-md hover:bg-zinc-200 font-medium"
+                          >
+                            Apply
+                          </button>
+                          <button
+                            onClick={() => removeSaved(item.key)}
+                            className="p-1.5 text-zinc-500 hover:text-rose-400 transition-colors"
+                            aria-label="Delete"
+                          >
+                            <X size={14} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
