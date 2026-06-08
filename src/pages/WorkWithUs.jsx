@@ -48,7 +48,7 @@ export default function WorkWithUs() {
           className="text-center mb-14 max-w-2xl mx-auto"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('workWithUs.eyebrow')}</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
             {t('workWithUs.heading.start')} <span className="gradient-text">{t('workWithUs.heading.highlight')}</span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed">{t('workWithUs.subtitle')}</p>
@@ -72,7 +72,7 @@ export default function WorkWithUs() {
               </div>
             </div>
 
-            <h2 className="text-white font-bold text-3xl mb-3 tracking-tight">{t('workWithUs.voice.title')}</h2>
+            <h2 className="font-display text-white font-bold text-3xl mb-3 tracking-tight">{t('workWithUs.voice.title')}</h2>
             <p className="text-zinc-400 leading-relaxed mb-8 max-w-2xl">{t('workWithUs.voice.about')}</p>
 
             {/* Two-column details */}

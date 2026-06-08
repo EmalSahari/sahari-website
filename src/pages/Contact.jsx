@@ -85,7 +85,7 @@ export default function Contact() {
           className="text-center mb-14"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('contact.eyebrow')}</p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
             {t('contact.heading')}
           </h1>
           <p className="text-zinc-400 text-lg max-w-lg mx-auto">

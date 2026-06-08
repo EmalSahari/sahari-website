@@ -29,7 +29,7 @@ export default function NotFound() {
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-4">
             {t('notFound.eyebrow')}
           </p>
-          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-5">
+          <h1 className="font-display text-5xl md:text-7xl font-bold text-white tracking-tight mb-5">
             {t('notFound.heading.start')}{' '}
             <span className="gradient-text">{t('notFound.heading.highlight')}</span>
           </h1>

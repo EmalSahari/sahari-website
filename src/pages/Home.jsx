@@ -148,7 +148,7 @@ export default function Home() {
           <span>{t('hero.badge')}</span>
         </motion.div>
 
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
+        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
           {reduce ? (
             <>
               {t('hero.headline.start')}{' '}
@@ -258,7 +258,7 @@ export default function Home() {
           className="text-center mb-16"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight">
             {t('services.heading')}
           </h2>
           <p className="mt-4 text-zinc-400 max-w-lg mx-auto">
@@ -290,7 +290,7 @@ export default function Home() {
           className="text-center mb-14 max-w-2xl mx-auto"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             {t('process.heading')}
           </h2>
           <p className="text-zinc-400 leading-relaxed">
@@ -328,7 +328,7 @@ export default function Home() {
           className="text-center mb-12"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight">
             {t('projects.heading')}
           </h2>
         </motion.div>
@@ -422,7 +422,7 @@ export default function Home() {
             <Shield size={16} />
             {t('security.eyebrow')}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">
             {t('security.heading')}
           </h2>
           <p className="text-zinc-400 leading-relaxed text-lg">
@@ -443,7 +443,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-10 items-start">
             <div className="flex-1">
               <Youtube size={36} className="text-red-400 mb-5" />
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">
                 {t('youtube.heading')}
               </h2>
               <p className="text-zinc-400 leading-relaxed max-w-md">
@@ -493,7 +493,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
             {t('cta.heading')}
           </h2>
           <p className="text-zinc-400 mb-3 text-lg">
