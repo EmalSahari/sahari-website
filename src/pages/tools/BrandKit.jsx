@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown } from 'lucide-react'
+import { ArrowRight, RefreshCw, Copy, Check, ArrowLeft, Heart, X, Bookmark, Lock, Unlock, Eye, Share2, ChevronDown, Undo2, Redo2, Image as ImageIcon } from 'lucide-react'
 
 // -- Seed palettes per vibe -----------------------------------------------
 // Each entry: [bg, text, muted, accent, surface]
@@ -641,8 +641,16 @@ export default function BrandKit() {
   const [saved, setSaved] = useState(loadSaved)
   const [savedOpen, setSavedOpen] = useState(false)
   const [locked, setLocked] = useState(() => new Set())
+  const [lockedFont, setLockedFont] = useState(false)
   const [cbMode, setCbMode] = useState('none')
   const [layout, setLayout] = useState('hero')
+  const [brandName, setBrandName] = useState('Your Brand')
+  const [history, setHistory] = useState([])
+  const [historyIndex, setHistoryIndex] = useState(-1)
+  const [editingSwatch, setEditingSwatch] = useState(null)
+  const [editingHex, setEditingHex] = useState('')
+  const fileInputRef = useRef(null)
+  const isApplyingHistory = useRef(false)
 
   const applyCombo = useCallback((newPalette, newFont, newPresetName = null) => {
     setPalette(newPalette)
@@ -659,10 +667,112 @@ export default function BrandKit() {
       setPresetName(preset.name)
     } else {
       setPalette((prev) => generatePalette(vibe, locked, prev))
-      setFontPair(pickFontPair(vibe))
+      if (!lockedFont) {
+        setFontPair(pickFontPair(vibe))
+      }
       setPresetName(null)
     }
-  }, [vibe, locked])
+  }, [vibe, locked, lockedFont])
+
+  // Track changes to palette + fontPair in history
+  useEffect(() => {
+    if (isApplyingHistory.current) {
+      isApplyingHistory.current = false
+      return
+    }
+    const entry = { palette, fontPair, presetName }
+    setHistory((prev) => {
+      const trimmed = prev.slice(0, historyIndex + 1)
+      const next = [...trimmed, entry].slice(-50) // cap at 50 entries
+      return next
+    })
+    setHistoryIndex((prev) => Math.min(prev + 1, 49))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [palette, fontPair, presetName])
+
+  const canUndo = historyIndex > 0
+  const canRedo = historyIndex < history.length - 1
+
+  const undo = useCallback(() => {
+    if (!canUndo) return
+    const entry = history[historyIndex - 1]
+    isApplyingHistory.current = true
+    setPalette(entry.palette)
+    setFontPair(entry.fontPair)
+    setPresetName(entry.presetName)
+    setHistoryIndex(historyIndex - 1)
+  }, [history, historyIndex, canUndo])
+
+  const redo = useCallback(() => {
+    if (!canRedo) return
+    const entry = history[historyIndex + 1]
+    isApplyingHistory.current = true
+    setPalette(entry.palette)
+    setFontPair(entry.fontPair)
+    setPresetName(entry.presetName)
+    setHistoryIndex(historyIndex + 1)
+  }, [history, historyIndex, canRedo])
+
+  const updateSwatch = useCallback((index, hex) => {
+    setPalette((prev) => prev.map((p, i) => (i === index ? hex : p)))
+  }, [])
+
+  const startEditing = (index, current) => {
+    setEditingSwatch(index)
+    setEditingHex(current)
+  }
+
+  const commitEdit = () => {
+    const trimmed = editingHex.trim()
+    const normalized = trimmed.startsWith('#') ? trimmed : `#${trimmed}`
+    if (/^#[0-9a-fA-F]{6}$/.test(normalized)) {
+      updateSwatch(editingSwatch, normalized.toLowerCase())
+    }
+    setEditingSwatch(null)
+    setEditingHex('')
+  }
+
+  const handleImageUpload = useCallback((e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      const size = 64
+      canvas.width = size
+      canvas.height = size
+      const ctx = canvas.getContext('2d')
+      ctx.drawImage(img, 0, 0, size, size)
+      const { data } = ctx.getImageData(0, 0, size, size)
+      // Build a coarse histogram by quantizing colors into bins
+      const bins = new Map()
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i] & 0xe0
+        const g = data[i + 1] & 0xe0
+        const b = data[i + 2] & 0xe0
+        const key = (r << 16) | (g << 8) | b
+        bins.set(key, (bins.get(key) || 0) + 1)
+      }
+      const sorted = [...bins.entries()].sort((a, b) => b[1] - a[1])
+      const toHex = (n) => `#${n.toString(16).padStart(6, '0')}`
+      const top = sorted.slice(0, 10).map(([k]) => toHex(k >>> 0))
+      if (top.length < 5) {
+        return
+      }
+      // Pick 5 by sorted luminance for bg/text/muted/accent/surface
+      const sortedByLum = [...top].sort((a, b) => relativeLuminance(b) - relativeLuminance(a))
+      const lightest = sortedByLum[0]
+      const darkest = sortedByLum[sortedByLum.length - 1]
+      const accent = sortedByLum[Math.floor(sortedByLum.length / 2)]
+      const muted = sortedByLum[Math.floor(sortedByLum.length * 0.66)]
+      const surface = sortedByLum[1]
+      const newPalette = [lightest, darkest, muted, accent, surface]
+      setPalette(newPalette)
+      setPresetName('From image')
+    }
+    img.src = URL.createObjectURL(file)
+    e.target.value = '' // allow re-uploading same file
+  }, [])
 
   useEffect(() => {
     if (sharedKit) return // honour incoming URL on first load
@@ -733,14 +843,64 @@ export default function BrandKit() {
   useEffect(() => {
     const onKey = (e) => {
       if (savedOpen) return
-      if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-        e.preventDefault()
-        regenerate()
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
+      if (e.metaKey || e.ctrlKey || e.altKey) return
+
+      // Numeric 1-9 select vibe by index in VIBES
+      if (/^[1-9]$/.test(e.key)) {
+        const idx = parseInt(e.key, 10) - 1
+        if (VIBES[idx]) {
+          e.preventDefault()
+          setVibe(VIBES[idx].id)
+        }
+        return
+      }
+
+      switch (e.code) {
+        case 'Space':
+        case 'KeyR':
+          e.preventDefault()
+          regenerate()
+          break
+        case 'KeyS':
+          e.preventDefault()
+          toggleSave()
+          break
+        case 'KeyC':
+          e.preventDefault()
+          copyExport(exportFormat)
+          break
+        case 'KeyF':
+          e.preventDefault()
+          setLockedFont((v) => !v)
+          break
+        case 'KeyL':
+          e.preventDefault()
+          setLocked((prev) => {
+            // toggle: if any locked, clear all. otherwise lock all.
+            if (prev.size > 0) return new Set()
+            return new Set([0, 1, 2, 3, 4])
+          })
+          break
+        case 'ArrowLeft':
+          if (canUndo) {
+            e.preventDefault()
+            undo()
+          }
+          break
+        case 'ArrowRight':
+          if (canRedo) {
+            e.preventDefault()
+            redo()
+          }
+          break
+        default:
+          break
       }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [regenerate, savedOpen])
+  }, [regenerate, savedOpen, toggleSave, exportFormat, canUndo, canRedo, undo, redo])
 
   useEffect(() => {
     const id = 'brand-kit-fonts'
@@ -893,9 +1053,43 @@ $font-body: '${fontPair.body}', sans-serif;`
             ))}
           </div>
           <div className="flex items-center gap-2 ml-auto">
+            <div className="hidden md:flex items-center gap-1 mr-1">
+              <button
+                onClick={undo}
+                disabled={!canUndo}
+                className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-zinc-400 transition-all"
+                title="Undo (Left arrow)"
+              >
+                <Undo2 size={13} />
+              </button>
+              <button
+                onClick={redo}
+                disabled={!canRedo}
+                className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-zinc-400 transition-all"
+                title="Redo (Right arrow)"
+              >
+                <Redo2 size={13} />
+              </button>
+            </div>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/5 text-zinc-200 border border-white/10 rounded-lg text-xs md:text-sm font-medium hover:bg-white/10 transition-all"
+              title="Generate palette from an image"
+            >
+              <ImageIcon size={12} />
+              <span className="hidden sm:inline">Image</span>
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="hidden"
+            />
             <button
               onClick={regenerate}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white text-black rounded-lg text-xs md:text-sm font-medium hover:bg-zinc-200 transition-all"
+              title="Shuffle (Space or R)"
             >
               <RefreshCw size={12} />
               <span className="hidden sm:inline">Shuffle</span>
@@ -1036,7 +1230,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }}
                 className="text-base md:text-lg tracking-tight"
               >
-                Your Brand
+                {brandName}
               </span>
               <nav className="hidden sm:flex items-center gap-5 text-[10px] tracking-widest uppercase" style={{ color: muted }}>
                 <span>Work</span>
@@ -1135,7 +1329,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   className="w-12 h-12 rounded-xl mb-6 flex items-center justify-center font-bold"
                   style={{ backgroundColor: accent, color: buttonTextColor, fontFamily: `"${fontPair.display}", serif` }}
                 >
-                  YB
+                  {brandName.split(' ').slice(0, 2).map((w) => w[0]).join('').toUpperCase()}
                 </div>
                 <p
                   className="text-[10px] tracking-[0.3em] uppercase mb-3"
@@ -1152,7 +1346,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   }}
                   className="text-3xl md:text-4xl mb-3"
                 >
-                  Your Brand
+                  {brandName}
                 </h2>
                 <p
                   style={{ color: muted, fontFamily: `"${fontPair.body}", sans-serif` }}
@@ -1231,7 +1425,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 >
                   <div className="flex items-center justify-between mb-8" style={{ fontFamily: `"${fontPair.body}", sans-serif` }}>
                     <span style={{ fontFamily: `"${fontPair.display}", serif`, fontWeight: 700 }} className="text-sm">
-                      Your Brand
+                      {brandName}
                     </span>
                     <span className="text-[9px] tracking-widest uppercase" style={{ color: muted }}>
                       Menu
@@ -1322,27 +1516,49 @@ $font-body: '${fontPair.body}', sans-serif;`
               <div className="space-y-2">
                 {swatches.map((swatch, i) => {
                   const isLocked = locked.has(i)
+                  const isEditing = editingSwatch === i
                   return (
                     <div
                       key={swatch.label}
                       className={`flex items-center gap-2 p-2 rounded-lg transition-colors ${isLocked ? 'bg-amber-400/5' : 'hover:bg-white/5'}`}
                     >
-                      <button
-                        onClick={() => navigator.clipboard.writeText(swatch.hex)}
-                        className="flex items-center gap-3 flex-1 min-w-0 text-left group"
-                        title="Click to copy hex"
-                      >
-                        <div
-                          className="w-9 h-9 rounded-md border border-white/10 flex-shrink-0"
-                          style={{ backgroundColor: swatch.hex }}
-                        />
-                        <div className="flex-1 flex items-baseline justify-between min-w-0">
-                          <span className="text-xs text-zinc-400">{swatch.label}</span>
-                          <span className="text-xs font-mono text-zinc-500 tabular-nums group-hover:text-zinc-300">
+                      <input
+                        type="color"
+                        value={swatch.hex}
+                        onChange={(e) => updateSwatch(i, e.target.value)}
+                        className="w-9 h-9 rounded-md border border-white/10 flex-shrink-0 cursor-pointer bg-transparent"
+                        style={{ padding: 0 }}
+                        title="Open color picker"
+                      />
+                      <div className="flex-1 flex items-baseline justify-between min-w-0">
+                        <span className="text-xs text-zinc-400">{swatch.label}</span>
+                        {isEditing ? (
+                          <input
+                            type="text"
+                            value={editingHex}
+                            onChange={(e) => setEditingHex(e.target.value)}
+                            onBlur={commitEdit}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') commitEdit()
+                              if (e.key === 'Escape') {
+                                setEditingSwatch(null)
+                                setEditingHex('')
+                              }
+                            }}
+                            autoFocus
+                            className="text-xs font-mono bg-white/10 border border-white/20 rounded px-1.5 py-0.5 w-20 text-right text-zinc-200 tabular-nums focus:outline-none focus:border-amber-400/60"
+                            maxLength={7}
+                          />
+                        ) : (
+                          <button
+                            onClick={() => startEditing(i, swatch.hex)}
+                            className="text-xs font-mono text-zinc-500 tabular-nums hover:text-zinc-200 transition-colors"
+                            title="Click to edit hex"
+                          >
                             {swatch.hex}
-                          </span>
-                        </div>
-                      </button>
+                          </button>
+                        )}
+                      </div>
                       <button
                         onClick={() => toggleLock(i)}
                         className={`p-1.5 rounded-md transition-colors flex-shrink-0 ${
@@ -1360,11 +1576,37 @@ $font-body: '${fontPair.body}', sans-serif;`
               </div>
             </section>
 
-            {/* Typography */}
+            {/* Brand name */}
             <section>
               <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 mb-3 font-semibold">
-                Typography
+                Brand name
               </p>
+              <input
+                type="text"
+                value={brandName}
+                onChange={(e) => setBrandName(e.target.value || 'Your Brand')}
+                placeholder="Your Brand"
+                maxLength={32}
+                className="w-full bg-white/[0.02] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400/50"
+              />
+            </section>
+
+            {/* Typography */}
+            <section>
+              <div className="flex items-center justify-between mb-3">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 font-semibold">
+                  Typography
+                </p>
+                <button
+                  onClick={() => setLockedFont((v) => !v)}
+                  className={`p-1 rounded-md transition-colors ${
+                    lockedFont ? 'text-amber-400 hover:text-amber-300' : 'text-zinc-600 hover:text-zinc-300'
+                  }`}
+                  title={lockedFont ? 'Unlock font (F)' : 'Lock font while shuffling palette (F)'}
+                >
+                  {lockedFont ? <Lock size={13} /> : <Unlock size={13} />}
+                </button>
+              </div>
               <div className="space-y-3">
                 <div className="p-3 rounded-lg bg-white/[0.02] border border-white/5">
                   <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-1">Display</p>
