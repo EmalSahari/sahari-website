@@ -6,6 +6,16 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://sahari.io/work</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://sahari.io/pricing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://sahari.io/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -13,7 +23,7 @@
   <url>
     <loc>https://sahari.io/work-with-us</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://sahari.io/contact</loc>
