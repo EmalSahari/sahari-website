@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Check, X, ArrowRight, Plus, Minus, Sparkles } from 'lucide-react'
+import { Check, X, ArrowRight, Plus, Minus, Sparkles, Gauge } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -215,11 +215,35 @@ export default function Pricing() {
         </motion.div>
 
         {/* Tiers */}
-        <div className="grid md:grid-cols-3 gap-6 mb-20">
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
           {tiers.map((tier, i) => (
             <PricingCard key={tier.name} tier={tier} popular={i === 1} i={i + 1} />
           ))}
         </div>
+
+        {/* Site Check nudge */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-50px' }}
+          custom={0}
+          className="mb-20"
+        >
+          <Link
+            to="/tools/site-check"
+            className="group flex items-center gap-4 rounded-xl border border-amber-500/20 bg-amber-950/[0.08] hover:bg-amber-950/15 hover:border-amber-400/40 px-5 py-4 transition-all"
+          >
+            <div className="w-10 h-10 rounded-lg bg-amber-500/15 text-amber-400 flex items-center justify-center flex-shrink-0">
+              <Gauge size={20} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-white font-medium text-sm md:text-base">{t('pricing.siteCheck.title')}</p>
+              <p className="text-zinc-400 text-xs md:text-sm leading-snug mt-0.5">{t('pricing.siteCheck.body')}</p>
+            </div>
+            <ArrowRight size={16} className="text-amber-400 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
 
         {/* Custom callout */}
         <motion.div

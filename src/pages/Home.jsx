@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench } from 'lucide-react'
+import { ArrowRight, Youtube, Code2, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -278,6 +278,77 @@ export default function Home() {
             {t('services.openToCta')}
           </Link>
         </p>
+      </section>
+
+      {/* Free tools */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 max-w-2xl mx-auto"
+        >
+          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('tools.eyebrow')}</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            {t('tools.heading')}
+          </h2>
+          <p className="text-zinc-400 leading-relaxed">{t('tools.subtitle')}</p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-5">
+          <Reveal i={0}>
+            <Link
+              to="/tools/site-check"
+              className="group relative block h-full rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-950/30 to-[#0f0f0f] p-7 hover:border-amber-400/50 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <div className="flex items-start gap-4 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center flex-shrink-0">
+                  <Gauge size={22} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-amber-400 mb-1">
+                    {t('tools.siteCheck.tag')}
+                  </p>
+                  <h3 className="text-white font-bold text-xl leading-tight">{t('tools.siteCheck.title')}</h3>
+                </div>
+              </div>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                {t('tools.siteCheck.desc')}
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-300 group-hover:text-amber-200 transition-colors">
+                {t('tools.siteCheck.cta')}
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+          </Reveal>
+
+          <Reveal i={1}>
+            <Link
+              to="/tools/brand-kit"
+              className="group relative block h-full rounded-2xl border border-white/10 bg-[#0f0f0f] p-7 hover:border-white/30 hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <div className="flex items-start gap-4 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-white/5 text-zinc-300 flex items-center justify-center flex-shrink-0">
+                  <Palette size={22} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-zinc-500 mb-1">
+                    {t('tools.brandKit.tag')}
+                  </p>
+                  <h3 className="text-white font-bold text-xl leading-tight">{t('tools.brandKit.title')}</h3>
+                </div>
+              </div>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                {t('tools.brandKit.desc')}
+              </p>
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-200 group-hover:text-white transition-colors">
+                {t('tools.brandKit.cta')}
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+          </Reveal>
+        </div>
       </section>
 
       {/* Process - how I work */}

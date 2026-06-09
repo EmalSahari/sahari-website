@@ -43,6 +43,19 @@ export const translations = {
     'services.openTo': "Don't see what you need? I take on most projects: browser extensions, Discord bots, AI chat widgets, scrapers, anything.",
     'services.openToCta': "Let's talk",
 
+    // Free tools section
+    'tools.eyebrow': 'Free tools',
+    'tools.heading': 'Try before you book',
+    'tools.subtitle': 'Two tools I built that you can use right now, no signup required.',
+    'tools.siteCheck.tag': 'Site Check',
+    'tools.siteCheck.title': 'Is your site costing you visitors?',
+    'tools.siteCheck.desc': 'Paste your URL and get a free speed and SEO report powered by Google. See exactly what is slowing your site down.',
+    'tools.siteCheck.cta': 'Run a free scan',
+    'tools.brandKit.tag': 'Brand Kit',
+    'tools.brandKit.title': 'Brand Kit Generator',
+    'tools.brandKit.desc': 'Color palettes and Google Font pairings for your business. Shuffle, lock, export to CSS, Tailwind or PDF.',
+    'tools.brandKit.cta': 'Try it',
+
     // Process: how I work
     'process.eyebrow': 'How I work',
     'process.heading': 'From idea to live, and beyond',
@@ -248,6 +261,8 @@ export const translations = {
     'pricing.premium.inc.6': '30-day post-launch support',
     'pricing.premium.inc.7': 'Reasonable revisions included',
     'pricing.premium.cta': 'Discuss premium',
+    'pricing.siteCheck.title': 'Not sure if your current site needs replacing?',
+    'pricing.siteCheck.body': 'Run a free speed and SEO check first. Two minutes, no signup.',
     'pricing.custom.heading': 'Need an app, SaaS, or something else?',
     'pricing.custom.body': "Mobile apps, custom backends, AI features, scripts, internal tools. Those don't fit a tier. Send me what you're thinking and I'll quote it after one call.",
     'pricing.custom.cta': 'Get a custom quote',
@@ -421,6 +436,19 @@ export const translations = {
     'services.maintenance.desc': 'Bugfixes, performance-optimering og nye funktioner på sider jeg har bygget eller moderne stacks (React, Next.js, Vue). Hold tingene kørende efter launch.',
     'services.openTo': 'Ser du ikke det du har brug for? Jeg tager de fleste projekter: browser extensions, Discord-bots, AI chat-widgets, scrapers, hvad som helst.',
     'services.openToCta': 'Lad os snakke',
+
+    // Free tools section
+    'tools.eyebrow': 'Gratis værktøjer',
+    'tools.heading': 'Prøv før du booker',
+    'tools.subtitle': 'To værktøjer jeg har bygget, som du kan bruge med det samme uden at oprette konto.',
+    'tools.siteCheck.tag': 'Site tjek',
+    'tools.siteCheck.title': 'Koster din side dig besøgende?',
+    'tools.siteCheck.desc': 'Indsæt din URL og få en gratis hastigheds- og SEO-rapport drevet af Google. Se præcis hvad der sinker din side.',
+    'tools.siteCheck.cta': 'Kør et gratis tjek',
+    'tools.brandKit.tag': 'Brand Kit',
+    'tools.brandKit.title': 'Brand Kit Generator',
+    'tools.brandKit.desc': 'Farve-paletter og Google Font-par til din virksomhed. Shuffle, lås, eksportér til CSS, Tailwind eller PDF.',
+    'tools.brandKit.cta': 'Prøv det',
 
     // Process
     'process.eyebrow': 'Sådan arbejder jeg',
@@ -627,6 +655,8 @@ export const translations = {
     'pricing.premium.inc.6': '30-dages support efter launch',
     'pricing.premium.inc.7': 'Rimelige revisioner inkluderet',
     'pricing.premium.cta': 'Snak om Premium',
+    'pricing.siteCheck.title': 'Ikke sikker på om din nuværende side skal udskiftes?',
+    'pricing.siteCheck.body': 'Kør et gratis hastigheds- og SEO-tjek først. To minutter, ingen tilmelding.',
     'pricing.custom.heading': 'Brug for app, SaaS eller noget helt andet?',
     'pricing.custom.body': 'Mobilapps, custom backends, AI-features, scripts, interne værktøjer. Det passer ikke ind i en pakke. Send mig hvad du tænker, og jeg laver et tilbud efter én snak.',
     'pricing.custom.cta': 'Få et skræddersyet tilbud',
