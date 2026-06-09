@@ -129,7 +129,7 @@ export default function SiteCheck() {
   const navigate = useNavigate()
 
   const [url, setUrl] = useState('')
-  const [strategy, setStrategy] = useState('mobile')
+  const strategy = 'mobile'
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [result, setResult] = useState(null)
@@ -283,25 +283,6 @@ export default function SiteCheck() {
             </button>
           </div>
 
-          {/* Strategy toggle */}
-          <div className="flex items-center justify-center gap-2 mt-4">
-            {['mobile', 'desktop'].map((s) => (
-              <button
-                key={s}
-                type="button"
-                onClick={() => setStrategy(s)}
-                disabled={loading}
-                className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                  strategy === s
-                    ? 'bg-white/10 text-white'
-                    : 'text-zinc-500 hover:text-zinc-300'
-                }`}
-              >
-                {t(`siteCheck.${s}`)}
-              </button>
-            ))}
-          </div>
-
           {error && (
             <p className="text-center text-red-400 text-sm mt-4 flex items-center justify-center gap-2">
               <AlertTriangle size={14} />
@@ -332,7 +313,7 @@ export default function SiteCheck() {
               <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
                 <div className="min-w-0">
                   <p className="text-[10px] tracking-widest uppercase text-zinc-500 mb-1">
-                    {strategy === 'mobile' ? t('siteCheck.mobile') : t('siteCheck.desktop')}
+                    {t('siteCheck.mobile')}
                   </p>
                   <p className="text-white font-medium truncate">{result.finalUrl}</p>
                 </div>
