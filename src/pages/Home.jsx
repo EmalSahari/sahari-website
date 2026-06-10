@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Youtube, Code2, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
@@ -52,6 +53,45 @@ const makeHeroFadeUp = (isMobile) =>
           transition: { duration: 1.4, delay: 0.15 + i * 0.22, ease: [0.16, 1, 0.3, 1] },
         }),
       }
+
+/**
+ * Highlight word that cycles through a list. All words are stacked in one
+ * grid cell so the box stays the width of the widest word, which keeps the
+ * underline from redrawing or jumping. Only opacity crossfades.
+ */
+function CyclingWord({ words, reduce, className = '' }) {
+  const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    if (reduce || words.length <= 1) return
+    let interval
+    const start = setTimeout(() => {
+      interval = setInterval(() => {
+        setActive((v) => (v + 1) % words.length)
+      }, 3200)
+    }, 2600)
+    return () => {
+      clearTimeout(start)
+      if (interval) clearInterval(interval)
+    }
+  }, [reduce, words.length])
+
+  return (
+    <span className={`relative inline-grid align-bottom ${className}`}>
+      {words.map((w, k) => (
+        <motion.span
+          key={k}
+          aria-hidden={k !== active}
+          className="col-start-1 row-start-1 whitespace-nowrap"
+          animate={{ opacity: k === active ? 1 : 0, y: k === active ? 0 : '0.18em' }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {w}
+        </motion.span>
+      ))}
+    </span>
+  )
+}
 
 function ServiceCard({ service, i }) {
   return (
@@ -157,9 +197,10 @@ export default function Home() {
             </>
           ) : (
             (() => {
+              const cycleWords = t('hero.headline.cycle').split('|')
               const units = [
                 ...t('hero.headline.start').split(' ').map((w) => ({ word: w, highlight: false })),
-                { word: t('hero.headline.highlight'), highlight: true },
+                { word: cycleWords[0], highlight: true },
                 ...t('hero.headline.end').split(' ').map((w) => ({ word: w, highlight: false })),
               ]
               const baseDelay = 0.2
@@ -174,7 +215,7 @@ export default function Home() {
                   transition={{ duration, delay: baseDelay + i * stagger, ease: [0.16, 1, 0.3, 1] }}
                   className={`inline-block ${u.highlight ? 'gradient-text-animated' : ''}`}
                 >
-                  {u.word}
+                  {u.highlight ? <CyclingWord words={cycleWords} reduce={reduce} /> : u.word}
                 </motion.span>,
                 i < units.length - 1 ? <span key={`s-${i}`}>{' '}</span> : null,
               ])
