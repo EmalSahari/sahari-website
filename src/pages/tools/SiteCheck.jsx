@@ -216,8 +216,8 @@ export default function SiteCheck() {
       lang === 'da' ? 'Min site-rapport fra Sahari:' : 'My site report from Sahari:',
       '',
       `${lang === 'da' ? 'Side' : 'Site'}: ${result.finalUrl}`,
-      `${t('siteCheck.score.performance')}: ${Math.round(s.performance * 100)}/100`,
       `${t('siteCheck.score.seo')}: ${Math.round(s.seo * 100)}/100`,
+      `${t('siteCheck.score.performance')}: ${Math.round(s.performance * 100)}/100`,
       `${t('siteCheck.score.accessibility')}: ${Math.round(s.accessibility * 100)}/100`,
       `${t('siteCheck.score.bestPractices')}: ${Math.round(s.bestPractices * 100)}/100`,
       '',
@@ -231,7 +231,7 @@ export default function SiteCheck() {
     <div className="pt-28 pb-20 min-h-screen">
       <Seo
         title={t('siteCheck.heading')}
-        description="Free website speed and SEO test powered by Google PageSpeed Insights. Find out what is slowing your site down and how to fix it."
+        description="Free SEO and speed audit powered by Google PageSpeed Insights. Find out why your site is not ranking and what is costing you visitors."
       />
 
       <div className="max-w-4xl mx-auto px-6">
@@ -333,14 +333,14 @@ export default function SiteCheck() {
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <ScoreRing
-                    label={t('siteCheck.score.performance')}
-                    score={result.scores.performance}
-                    sublabel={t(scoreLabelKey(result.scores.performance))}
-                  />
-                  <ScoreRing
                     label={t('siteCheck.score.seo')}
                     score={result.scores.seo}
                     sublabel={t(scoreLabelKey(result.scores.seo))}
+                  />
+                  <ScoreRing
+                    label={t('siteCheck.score.performance')}
+                    score={result.scores.performance}
+                    sublabel={t(scoreLabelKey(result.scores.performance))}
                   />
                   <ScoreRing
                     label={t('siteCheck.score.accessibility')}
