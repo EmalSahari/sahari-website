@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee, Scissors, Palette } from 'lucide-react'
+import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee, Scissors, Palette, Puzzle } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -30,6 +30,17 @@ export default function Work() {
       color: 'from-amber-900/40 to-[#0f0f0f]',
       border: 'border-amber-500/20',
       iconBg: 'bg-amber-500/15 text-amber-400',
+    },
+    {
+      icon: <Puzzle size={20} />,
+      title: t('projects.wordo.title'),
+      desc: t('projects.wordo.desc'),
+      tag: t('projects.wordo.tag'),
+      href: 'https://wordo.sahari.io/',
+      image: '/wordo.png',
+      color: 'from-teal-900/40 to-[#0f0f0f]',
+      border: 'border-teal-500/20',
+      iconBg: 'bg-teal-500/15 text-teal-400',
     },
     {
       icon: <Hammer size={20} />,
