@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Search, Loader2, ArrowRight, Gauge, Zap, RefreshCw,
-  AlertTriangle, CheckCircle2, ExternalLink,
+  AlertTriangle, CheckCircle2, ExternalLink, XCircle, AlertCircle,
 } from 'lucide-react'
 import { useT } from '../../i18n/LanguageContext'
 import Seo from '../../components/Seo'
@@ -75,6 +75,261 @@ function cleanDescription(desc) {
     .trim()
 }
 
+const PROXY = 'https://api.allorigins.win/raw?url='
+
+async function fetchProxied(url, timeoutMs = 10000) {
+  const ctrl = new AbortController()
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs)
+  try {
+    const res = await fetch(`${PROXY}${encodeURIComponent(url)}`, { signal: ctrl.signal })
+    if (!res.ok) return null
+    return await res.text()
+  } catch {
+    return null
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+function pushCheck(list, status, label, detail) {
+  list.push({ status, label, detail })
+}
+
+function runHeadChecks(html, lang) {
+  const checks = []
+  if (!html) return checks
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(html, 'text/html')
+
+  const labels = lang === 'da' ? {
+    title: 'Title-tag',
+    titleMissing: 'Mangler title-tag. Google bruger den som overskrift i søgeresultatet.',
+    titleShort: (n) => `For kort (${n} tegn). Sigt efter 50-60.`,
+    titleLong: (n) => `For lang (${n} tegn). Google trunkerer typisk ved 60.`,
+    titleOk: (n) => `${n} tegn, indenfor det optimale interval.`,
+    desc: 'Meta description',
+    descMissing: 'Mangler meta description. Bruges af Google som teaser i søgeresultatet.',
+    descShort: (n) => `For kort (${n} tegn). Sigt efter 120-160.`,
+    descLong: (n) => `For lang (${n} tegn). Google trunkerer typisk ved 160.`,
+    descOk: (n) => `${n} tegn, indenfor det optimale interval.`,
+    h1: 'H1 overskrift',
+    h1Missing: 'Ingen H1 fundet. Hver side bør have præcis én.',
+    h1Multiple: (n) => `${n} H1-tags fundet. Brug kun én per side.`,
+    h1Ok: 'Præcis ét H1-tag.',
+    canonical: 'Canonical-tag',
+    canonicalMissing: 'Ingen canonical-tag. Hjælper Google med at undgå duplicate content.',
+    canonicalOk: 'Canonical-tag til stede.',
+    lang: 'Lang-attribut på <html>',
+    langMissing: 'Mangler lang-attribut. Fortæller browsere og søgemaskiner sproget.',
+    langOk: (l) => `Sat til "${l}".`,
+    viewport: 'Mobile viewport',
+    viewportMissing: 'Mangler viewport meta-tag. Siden vil ikke skalere korrekt på mobil.',
+    viewportOk: 'Viewport meta-tag til stede.',
+    og: 'Open Graph tags',
+    ogMissing: 'Mangler. Sider uden OG-tags viser et generisk preview når de deles på sociale medier.',
+    ogPartial: (m) => `Mangler: ${m.join(', ')}.`,
+    ogOk: 'og:title, og:description og og:image er til stede.',
+    twitter: 'Twitter/X kort',
+    twitterMissing: 'Mangler twitter:card meta-tag.',
+    twitterOk: 'Twitter card meta-tag til stede.',
+    structuredData: 'Structured data (JSON-LD)',
+    structuredMissing: 'Ingen JSON-LD fundet. Schema.org markup hjælper Google forstå indholdet og gør siden berettiget til rich results.',
+    structuredOk: (n) => `${n} JSON-LD blok${n === 1 ? '' : 'ke'} fundet.`,
+    altText: 'Alt-tekst på billeder',
+    altNone: 'Ingen billeder på siden.',
+    altLow: (p, t) => `${p} ud af ${t} billeder mangler alt-tekst.`,
+    altOk: (t) => `Alle ${t} billeder har alt-tekst.`,
+    words: 'Indholdsmængde',
+    wordsLow: (n) => `Kun ~${n} ord på siden. Tyndt indhold kan dårligere ranke.`,
+    wordsOk: (n) => `~${n} ord, godt grundlag for SEO.`,
+  } : {
+    title: 'Title tag',
+    titleMissing: 'Missing title tag. Google uses it as the search result heading.',
+    titleShort: (n) => `Too short (${n} chars). Aim for 50-60.`,
+    titleLong: (n) => `Too long (${n} chars). Google typically truncates around 60.`,
+    titleOk: (n) => `${n} chars, within the sweet spot.`,
+    desc: 'Meta description',
+    descMissing: 'Missing meta description. Google uses it as the snippet under your title.',
+    descShort: (n) => `Too short (${n} chars). Aim for 120-160.`,
+    descLong: (n) => `Too long (${n} chars). Google typically truncates around 160.`,
+    descOk: (n) => `${n} chars, within the sweet spot.`,
+    h1: 'H1 heading',
+    h1Missing: 'No H1 found. Every page should have exactly one.',
+    h1Multiple: (n) => `${n} H1 tags found. Use only one per page.`,
+    h1Ok: 'Exactly one H1 tag.',
+    canonical: 'Canonical tag',
+    canonicalMissing: 'No canonical link tag. Helps Google avoid duplicate content issues.',
+    canonicalOk: 'Canonical tag present.',
+    lang: 'Lang attribute on <html>',
+    langMissing: 'Missing lang attribute. Tells browsers and search engines the page language.',
+    langOk: (l) => `Set to "${l}".`,
+    viewport: 'Mobile viewport',
+    viewportMissing: 'Missing viewport meta tag. The page will not scale correctly on phones.',
+    viewportOk: 'Viewport meta tag present.',
+    og: 'Open Graph tags',
+    ogMissing: 'Missing. Pages without OG tags get a generic preview when shared on social.',
+    ogPartial: (m) => `Missing: ${m.join(', ')}.`,
+    ogOk: 'og:title, og:description and og:image all present.',
+    twitter: 'Twitter/X card',
+    twitterMissing: 'Missing twitter:card meta tag.',
+    twitterOk: 'Twitter card meta tag present.',
+    structuredData: 'Structured data (JSON-LD)',
+    structuredMissing: 'No JSON-LD found. Schema.org markup helps Google understand the content and makes the page eligible for rich results.',
+    structuredOk: (n) => `${n} JSON-LD block${n === 1 ? '' : 's'} found.`,
+    altText: 'Image alt text',
+    altNone: 'No images on the page.',
+    altLow: (p, t) => `${p} of ${t} images missing alt text.`,
+    altOk: (t) => `All ${t} images have alt text.`,
+    words: 'Content depth',
+    wordsLow: (n) => `Only ~${n} words on the page. Thin content can rank poorly.`,
+    wordsOk: (n) => `~${n} words, solid SEO foundation.`,
+  }
+
+  // Title
+  const title = doc.querySelector('title')?.textContent?.trim() || ''
+  if (!title) pushCheck(checks, 'fail', labels.title, labels.titleMissing)
+  else if (title.length < 30) pushCheck(checks, 'warn', labels.title, labels.titleShort(title.length))
+  else if (title.length > 65) pushCheck(checks, 'warn', labels.title, labels.titleLong(title.length))
+  else pushCheck(checks, 'pass', labels.title, labels.titleOk(title.length))
+
+  // Meta description
+  const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content')?.trim() || ''
+  if (!desc) pushCheck(checks, 'fail', labels.desc, labels.descMissing)
+  else if (desc.length < 80) pushCheck(checks, 'warn', labels.desc, labels.descShort(desc.length))
+  else if (desc.length > 170) pushCheck(checks, 'warn', labels.desc, labels.descLong(desc.length))
+  else pushCheck(checks, 'pass', labels.desc, labels.descOk(desc.length))
+
+  // H1
+  const h1s = doc.querySelectorAll('h1')
+  if (h1s.length === 0) pushCheck(checks, 'fail', labels.h1, labels.h1Missing)
+  else if (h1s.length > 1) pushCheck(checks, 'warn', labels.h1, labels.h1Multiple(h1s.length))
+  else pushCheck(checks, 'pass', labels.h1, labels.h1Ok)
+
+  // Canonical
+  const canonical = doc.querySelector('link[rel="canonical"]')
+  if (!canonical) pushCheck(checks, 'warn', labels.canonical, labels.canonicalMissing)
+  else pushCheck(checks, 'pass', labels.canonical, labels.canonicalOk)
+
+  // Lang
+  const htmlLang = doc.documentElement.getAttribute('lang')
+  if (!htmlLang) pushCheck(checks, 'warn', labels.lang, labels.langMissing)
+  else pushCheck(checks, 'pass', labels.lang, labels.langOk(htmlLang))
+
+  // Viewport
+  const viewport = doc.querySelector('meta[name="viewport"]')
+  if (!viewport) pushCheck(checks, 'fail', labels.viewport, labels.viewportMissing)
+  else pushCheck(checks, 'pass', labels.viewport, labels.viewportOk)
+
+  // Open Graph
+  const ogTitle = doc.querySelector('meta[property="og:title"]')
+  const ogDesc = doc.querySelector('meta[property="og:description"]')
+  const ogImage = doc.querySelector('meta[property="og:image"]')
+  const ogPresent = [ogTitle, ogDesc, ogImage].filter(Boolean).length
+  if (ogPresent === 0) pushCheck(checks, 'fail', labels.og, labels.ogMissing)
+  else if (ogPresent < 3) {
+    const missing = []
+    if (!ogTitle) missing.push('og:title')
+    if (!ogDesc) missing.push('og:description')
+    if (!ogImage) missing.push('og:image')
+    pushCheck(checks, 'warn', labels.og, labels.ogPartial(missing))
+  } else pushCheck(checks, 'pass', labels.og, labels.ogOk)
+
+  // Twitter card
+  const twCard = doc.querySelector('meta[name="twitter:card"]')
+  if (!twCard) pushCheck(checks, 'warn', labels.twitter, labels.twitterMissing)
+  else pushCheck(checks, 'pass', labels.twitter, labels.twitterOk)
+
+  // Structured data
+  const jsonLd = doc.querySelectorAll('script[type="application/ld+json"]')
+  if (jsonLd.length === 0) pushCheck(checks, 'warn', labels.structuredData, labels.structuredMissing)
+  else pushCheck(checks, 'pass', labels.structuredData, labels.structuredOk(jsonLd.length))
+
+  // Image alt coverage
+  const images = doc.querySelectorAll('img')
+  if (images.length === 0) {
+    pushCheck(checks, 'pass', labels.altText, labels.altNone)
+  } else {
+    const missing = Array.from(images).filter((img) => !img.getAttribute('alt')?.trim()).length
+    if (missing === 0) pushCheck(checks, 'pass', labels.altText, labels.altOk(images.length))
+    else pushCheck(checks, missing > images.length / 2 ? 'fail' : 'warn', labels.altText, labels.altLow(missing, images.length))
+  }
+
+  // Word count (approx)
+  const bodyText = doc.body?.textContent?.replace(/\s+/g, ' ').trim() || ''
+  const words = bodyText ? bodyText.split(' ').filter(Boolean).length : 0
+  if (words < 200) pushCheck(checks, 'warn', labels.words, labels.wordsLow(words))
+  else pushCheck(checks, 'pass', labels.words, labels.wordsOk(words))
+
+  return checks
+}
+
+async function runDiscoveryChecks(targetUrl, lang) {
+  const checks = []
+  let origin
+  try {
+    origin = new URL(targetUrl).origin
+  } catch {
+    return checks
+  }
+
+  const labels = lang === 'da' ? {
+    robots: 'robots.txt',
+    robotsMissing: 'Ingen robots.txt fundet. Anbefales for at vejlede crawlere.',
+    robotsOk: 'Findes på /robots.txt.',
+    sitemap: 'Sitemap.xml',
+    sitemapMissing: 'Ingen sitemap.xml fundet. Et sitemap hjælper Google opdage alle dine sider.',
+    sitemapOk: 'Findes på /sitemap.xml.',
+  } : {
+    robots: 'robots.txt',
+    robotsMissing: 'No robots.txt found. It is recommended to guide search engine crawlers.',
+    robotsOk: 'Present at /robots.txt.',
+    sitemap: 'Sitemap.xml',
+    sitemapMissing: 'No sitemap.xml found. A sitemap helps Google discover all your pages.',
+    sitemapOk: 'Present at /sitemap.xml.',
+  }
+
+  const [robots, sitemap] = await Promise.all([
+    fetchProxied(`${origin}/robots.txt`, 6000),
+    fetchProxied(`${origin}/sitemap.xml`, 6000),
+  ])
+
+  if (robots && /user-agent/i.test(robots)) {
+    pushCheck(checks, 'pass', labels.robots, labels.robotsOk)
+  } else {
+    pushCheck(checks, 'warn', labels.robots, labels.robotsMissing)
+  }
+
+  if (sitemap && (/<urlset|<sitemapindex/i.test(sitemap))) {
+    pushCheck(checks, 'pass', labels.sitemap, labels.sitemapOk)
+  } else {
+    pushCheck(checks, 'warn', labels.sitemap, labels.sitemapMissing)
+  }
+
+  return checks
+}
+
+function extractSeoFailures(lh) {
+  // SEO category audits that did not pass.
+  const seoCat = lh.categories?.seo
+  if (!seoCat?.auditRefs) return []
+  const audits = lh.audits
+  const failing = []
+  for (const ref of seoCat.auditRefs) {
+    const a = audits[ref.id]
+    if (!a) continue
+    if (a.scoreDisplayMode === 'notApplicable' || a.scoreDisplayMode === 'manual' || a.scoreDisplayMode === 'informative') continue
+    if (a.score === null || a.score === undefined) continue
+    if (a.score >= 1) continue
+    failing.push(a)
+  }
+  return failing
+}
+
+function sortChecks(checks) {
+  const order = { fail: 0, warn: 1, pass: 2 }
+  return [...checks].sort((a, b) => order[a.status] - order[b.status])
+}
+
 function ScoreRing({ label, score, sublabel }) {
   const pct = Math.round(score * 100)
   const color = scoreColor(score)
@@ -119,6 +374,23 @@ function VitalCard({ label, value, score }) {
     <div className="rounded-xl border border-white/10 bg-[#0f0f0f] p-4 text-center">
       <p className="text-[10px] tracking-widest uppercase text-zinc-500 mb-1.5">{label}</p>
       <p className="text-lg font-bold tracking-tight" style={{ color }}>{value || '-'}</p>
+    </div>
+  )
+}
+
+function SeoCheckRow({ check }) {
+  const tone = {
+    pass: { icon: <CheckCircle2 size={16} className="text-emerald-400" />, ring: 'border-transparent' },
+    warn: { icon: <AlertTriangle size={16} className="text-amber-400" />, ring: 'border-transparent' },
+    fail: { icon: <XCircle size={16} className="text-red-400" />, ring: 'border-transparent' },
+  }[check.status]
+  return (
+    <div className={`flex items-start gap-3 rounded-xl border ${tone.ring} p-3 hover:bg-white/[0.02] transition-colors`}>
+      <span className="flex-shrink-0 mt-0.5">{tone.icon}</span>
+      <div className="flex-1 min-w-0">
+        <p className="text-white text-sm font-medium leading-tight">{check.label}</p>
+        <p className="text-zinc-500 text-xs mt-1 leading-relaxed">{check.detail}</p>
+      </div>
     </div>
   )
 }
@@ -193,10 +465,21 @@ export default function SiteCheck() {
           fcp: audits['first-contentful-paint'],
         },
         issues: extractIssues(audits),
+        seoFailures: extractSeoFailures(lh),
+        seoChecks: null,
       }
       setResult(parsed)
       setLoading(false)
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
+
+      // Fetch HTML + robots + sitemap in parallel, run head checks, then patch result.
+      const [html, discovery] = await Promise.all([
+        fetchProxied(target, 10000),
+        runDiscoveryChecks(target, lang),
+      ])
+      const headChecks = runHeadChecks(html, lang)
+      const combined = sortChecks([...headChecks, ...discovery])
+      setResult((prev) => prev ? { ...prev, seoChecks: combined } : prev)
     } catch {
       setError(t('siteCheck.error.failed'))
       setLoading(false)
@@ -354,6 +637,54 @@ export default function SiteCheck() {
                   />
                 </div>
               </div>
+
+              {/* SEO checklist */}
+              <div className="mb-5">
+                <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
+                  {t('siteCheck.seoCheck')}
+                </h2>
+                {result.seoChecks === null ? (
+                  <div className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-5 flex items-center gap-3 text-zinc-400">
+                    <Loader2 size={16} className="animate-spin text-amber-400" />
+                    <p className="text-sm">{t('siteCheck.seoCheckLoading')}</p>
+                  </div>
+                ) : result.seoChecks.length === 0 ? (
+                  <div className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-5 flex items-center gap-3 text-zinc-500">
+                    <AlertCircle size={16} />
+                    <p className="text-sm">{t('siteCheck.seoCheckUnavailable')}</p>
+                  </div>
+                ) : (
+                  <div className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-2 grid sm:grid-cols-2 gap-1">
+                    {result.seoChecks.map((c, i) => (
+                      <SeoCheckRow key={i} check={c} />
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Failing SEO audits from PageSpeed */}
+              {result.seoFailures.length > 0 && (
+                <div className="mb-5">
+                  <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
+                    {t('siteCheck.seoFailuresHeading')}
+                  </h2>
+                  <div className="space-y-3">
+                    {result.seoFailures.map((a, i) => (
+                      <div key={a.id || i} className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-5">
+                        <div className="flex items-start gap-3">
+                          <XCircle size={18} className="text-red-400 flex-shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-white font-medium leading-snug">{a.title}</p>
+                            <p className="text-zinc-500 text-sm mt-1.5 leading-relaxed">
+                              {cleanDescription(a.description || '')}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Core Web Vitals */}
               <div className="mb-5">
