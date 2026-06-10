@@ -67,7 +67,7 @@ function CyclingWord({ words, reduce }) {
     if (reduce || words.length <= 1) return
     const interval = setInterval(() => {
       setActive((v) => (v + 1) % words.length)
-    }, 3500)
+    }, 2000)
     return () => clearInterval(interval)
   }, [reduce, words.length])
 
