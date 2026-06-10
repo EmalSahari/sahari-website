@@ -45,12 +45,11 @@ const makeHeroFadeUp = (isMobile) =>
         }),
       }
     : {
-        hidden: { opacity: 0, y: 40, filter: 'blur(18px)' },
+        hidden: { opacity: 0, y: 36 },
         show: (i = 0) => ({
           opacity: 1,
           y: 0,
-          filter: 'blur(0px)',
-          transition: { duration: 1.4, delay: 0.15 + i * 0.22, ease: [0.16, 1, 0.3, 1] },
+          transition: { duration: 1.0, delay: 0.15 + i * 0.18, ease: [0.16, 1, 0.3, 1] },
         }),
       }
 
@@ -215,8 +214,8 @@ export default function Home() {
               return units.flatMap((u, i) => [
                 <motion.span
                   key={`w-${i}`}
-                  initial={{ opacity: 0, y: yStart, filter: isMobile ? 'none' : 'blur(6px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  initial={{ opacity: 0, y: yStart }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration, delay: baseDelay + i * stagger, ease: [0.16, 1, 0.3, 1] }}
                   className={`inline-block ${u.highlight ? 'gradient-text-animated' : ''}`}
                 >
