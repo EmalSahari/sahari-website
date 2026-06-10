@@ -1,24 +1,27 @@
 import { useEffect, useRef } from 'react'
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
 /**
- * Dense grid of dots, alpha-modulated by a travelling diagonal wave.
- * Pure white - no color shift - to keep the background quiet.
+ * Layered wave grid: three interfering sin fields ride across a dense dot
+ * lattice, modulating each dot's brightness, size and warmth so the
+ * background reads like a slow shimmer instead of a static pattern.
  */
 export default function GradientDots({ className = '' }) {
   const canvasRef = useRef(null)
+  const reduce = usePrefersReducedMotion()
 
   useEffect(() => {
-    // Skip canvas entirely on mobile - competes with scroll and causes jank on iOS
+    if (reduce) return
     if (window.matchMedia('(max-width: 768px)').matches) return
 
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
 
-    const SPACING = 22       // px between dot centres
-    const RADIUS  = 1.4      // dot radius
-    const SPEED   = 0.0014   // how fast the wave travels
-    const WAVE_SCALE = 0.020 // spatial frequency of the wave
+    const SPACING = 22
+    const BASE_RADIUS = 1.3
+    const SPEED = 0.004
+    const WAVE_SCALE = 0.018
 
     let width = 0, height = 0, cols = 0, rows = 0
     let dots = []
@@ -50,18 +53,41 @@ export default function GradientDots({ className = '' }) {
 
     function draw(ts) {
       const t = ts * SPEED
+
+      // Lissajous-style orbit for the radial wave center so ripples don't
+      // feel mechanical.
+      const cx = width  * (0.5 + 0.35 * Math.cos(t * 0.25))
+      const cy = height * (0.5 + 0.35 * Math.sin(t * 0.37))
+
       ctx.clearRect(0, 0, width, height)
 
-      dots.forEach(d => {
-        // Travelling diagonal wave - phase depends on position + time
-        const phase = (d.x + d.y) * WAVE_SCALE + t
-        const alpha = 0.10 + Math.sin(phase * 0.7) * 0.07  // 0.03-0.17
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i]
+
+        const phase1 = (d.x + d.y) * WAVE_SCALE + t
+        const phase2 = (d.x - d.y) * WAVE_SCALE * 0.6 + t * 0.7
+        const dx = d.x - cx
+        const dy = d.y - cy
+        const phase3 = Math.sqrt(dx * dx + dy * dy) * 0.014 - t * 1.2
+
+        const wave =
+          Math.sin(phase1) * 0.4 +
+          Math.sin(phase2) * 0.3 +
+          Math.sin(phase3) * 0.3
+
+        const intensity = (wave + 1) * 0.5
+        const alpha = 0.05 + intensity * 0.22
+        const radius = BASE_RADIUS * (0.75 + intensity * 0.7)
+
+        // White → warm cream at peaks (subtle amber tint).
+        const g = 255 - ((intensity * 22) | 0)
+        const b = 255 - ((intensity * 80) | 0)
 
         ctx.beginPath()
-        ctx.arc(d.x, d.y, RADIUS, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`
+        ctx.arc(d.x, d.y, radius, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(255,${g},${b},${alpha})`
         ctx.fill()
-      })
+      }
 
       raf = requestAnimationFrame(draw)
     }
@@ -75,7 +101,7 @@ export default function GradientDots({ className = '' }) {
       cancelAnimationFrame(raf)
       ro.disconnect()
     }
-  }, [])
+  }, [reduce])
 
   return (
     <canvas
