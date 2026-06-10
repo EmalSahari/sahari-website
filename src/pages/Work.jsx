@@ -126,7 +126,7 @@ export default function Work() {
   ]
 
   const renderCard = (p, i) => (
-    <Reveal key={p.title} i={i} className="h-full">
+    <Reveal key={`${p.href}-${i}`} i={i} className="h-full">
       <TiltCard className="h-full">
         <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
           <a

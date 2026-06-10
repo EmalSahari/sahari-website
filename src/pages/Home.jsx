@@ -268,7 +268,7 @@ export default function Home() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s, i) => (
-            <ServiceCard key={s.title} service={s} i={i} />
+            <ServiceCard key={i} service={s} i={i} />
           ))}
         </div>
 
@@ -371,7 +371,7 @@ export default function Home() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {process.map((p, i) => (
-            <Reveal key={p.title} i={i} className="relative">
+            <Reveal key={i} i={i} className="relative">
               <SpotlightCard className="group border border-white/10 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500/20 transition-colors">
@@ -406,7 +406,7 @@ export default function Home() {
 
         <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
           {projects.map((p, i) => (
-            <Reveal key={p.title} i={i} className={p.colSpan}>
+            <Reveal key={i} i={i} className={p.colSpan}>
               <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
                 <a
                   href={p.href}
