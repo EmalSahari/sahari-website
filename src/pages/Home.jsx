@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Youtube, Code2, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette } from 'lucide-react'
@@ -55,11 +55,12 @@ const makeHeroFadeUp = (isMobile) =>
       }
 
 /**
- * Highlight word that cycles through a list. All words are stacked in one
- * grid cell so the box stays the width of the widest word, which keeps the
- * underline from redrawing or jumping. Only opacity crossfades.
+ * Highlight word that cycles through a list. The box hugs the current word
+ * so the spacing to the neighbouring words stays a single space. The
+ * exiting word is popped out of layout, so each switch is one small shift
+ * rather than a collapse, and the underline resizes without redrawing.
  */
-function CyclingWord({ words, reduce, className = '' }) {
+function CyclingWord({ words, reduce }) {
   const [active, setActive] = useState(0)
 
   useEffect(() => {
@@ -76,20 +77,21 @@ function CyclingWord({ words, reduce, className = '' }) {
     }
   }, [reduce, words.length])
 
+  if (reduce) return <>{words[0]}</>
+
   return (
-    <span className={`relative inline-grid align-bottom ${className}`}>
-      {words.map((w, k) => (
-        <motion.span
-          key={k}
-          aria-hidden={k !== active}
-          className="col-start-1 row-start-1 whitespace-nowrap"
-          animate={{ opacity: k === active ? 1 : 0, y: k === active ? 0 : '0.18em' }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {w}
-        </motion.span>
-      ))}
-    </span>
+    <AnimatePresence mode="popLayout" initial={false}>
+      <motion.span
+        key={active}
+        initial={{ opacity: 0, y: '0.35em' }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: '-0.35em' }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="inline-block whitespace-nowrap"
+      >
+        {words[active]}
+      </motion.span>
+    </AnimatePresence>
   )
 }
 
