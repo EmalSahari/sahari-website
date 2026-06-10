@@ -193,7 +193,7 @@ export default function Home() {
           <span>{t('hero.badge')}</span>
         </motion.div>
 
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
           {reduce ? (
             <>
               {t('hero.headline.start')}{' '}
