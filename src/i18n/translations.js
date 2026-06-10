@@ -414,7 +414,7 @@ export const translations = {
     'hero.badge': 'Softwareudvikler & content creator',
     'hero.headline.start': 'Software der virker',
     'hero.headline.highlight': 'lige så godt',
-    'hero.headline.cycle': 'lige så godt|lige så hurtigt|lige så skarpt|lige så smart',
+    'hero.headline.cycle': 'lige så godt|lige så smart|lige så skarp|lige så stærk',
     'hero.headline.end': 'som det ser ud.',
     'hero.subtitle': 'Jeg bygger software (hjemmesider, mobilapps, backends, skræddersyede værktøjer) til virksomheder og creators, der vil have en rigtig online tilstedeværelse. Også YouTuber og content creator.',
     'hero.cta.work': 'Samarbejd med mig',
