@@ -4,6 +4,7 @@ import { ArrowRight, Youtube, Code2, Globe, Smartphone, Server, Zap, Users, Eye,
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
+import HeroGlow from '../components/HeroGlow'
 import Reveal from '../components/Reveal'
 import useIsMobile from '../hooks/useIsMobile'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
@@ -137,18 +138,19 @@ export default function Home() {
       <Seo description="Software studio in Denmark building secure websites, mobile apps, backends and custom tools. End-to-end delivery, fast turnaround, fixed pricing from DKK 4,995. Founded by Emal Sahari." />
       {/* Hero */}
       <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        <HeroGlow />
         <motion.div
           variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={0}
-          className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
+          className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
         >
           <Code2 size={14} className="text-amber-400" />
           <span>{t('hero.badge')}</span>
         </motion.div>
 
-        <h1 className="font-display text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
+        <h1 className="relative z-10 font-display text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
           {reduce ? (
             <>
               {t('hero.headline.start')}{' '}
@@ -187,7 +189,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={5}
-          className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
+          className="relative z-10 mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
         >
           {t('hero.subtitle')}
         </motion.p>
@@ -197,7 +199,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={6}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
             to="/contact"
@@ -220,7 +222,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={7}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
+          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
         >
           <span className="inline-flex items-center gap-2">
             <Zap size={14} className="text-amber-400" />
