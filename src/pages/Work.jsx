@@ -3,6 +3,7 @@ import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee, S
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
+import TiltCard from '../components/TiltCard'
 import Reveal from '../components/Reveal'
 
 export default function Work() {
@@ -125,37 +126,39 @@ export default function Work() {
   ]
 
   const renderCard = (p, i) => (
-    <Reveal key={p.title} i={i}>
-      <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
-        <a
-          href={p.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
-        >
-          <div className="relative aspect-[16/9] overflow-hidden bg-black/40 border-b border-white/5">
-            <img
-              src={p.image}
-              alt={p.title}
-              loading="lazy"
-              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-          </div>
-          <div className="p-6 flex flex-col flex-1">
-            <div className={`w-9 h-9 rounded-lg ${p.iconBg} flex items-center justify-center mb-4`}>
-              {p.icon}
+    <Reveal key={p.title} i={i} className="h-full">
+      <TiltCard className="h-full">
+        <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
+          <a
+            href={p.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block h-full flex flex-col"
+          >
+            <div className="relative aspect-[16/9] overflow-hidden bg-black/40 border-b border-white/5">
+              <img
+                src={p.image}
+                alt={p.title}
+                loading="lazy"
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
             </div>
-            <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
-            <h3 className="text-white font-semibold text-lg mt-1 mb-2">{p.title}</h3>
-            <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
-            <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
-              {t('projects.viewLive')}
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </span>
-          </div>
-        </a>
-      </SpotlightCard>
+            <div className="p-6 flex flex-col flex-1">
+              <div className={`w-9 h-9 rounded-lg ${p.iconBg} flex items-center justify-center mb-4`}>
+                {p.icon}
+              </div>
+              <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
+              <h3 className="text-white font-semibold text-lg mt-1 mb-2">{p.title}</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
+              <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
+                {t('projects.viewLive')}
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </div>
+          </a>
+        </SpotlightCard>
+      </TiltCard>
     </Reveal>
   )
 
