@@ -64,10 +64,35 @@ function CyclingWord({ words, reduce }) {
 
   useEffect(() => {
     if (reduce || words.length <= 1) return
-    const interval = setInterval(() => {
-      setActive((v) => (v + 1) % words.length)
-    }, 2000)
-    return () => clearInterval(interval)
+
+    let interval = null
+
+    const start = () => {
+      if (interval) return
+      interval = setInterval(() => {
+        setActive((v) => (v + 1) % words.length)
+      }, 2000)
+    }
+
+    const stop = () => {
+      if (interval) {
+        clearInterval(interval)
+        interval = null
+      }
+    }
+
+    const onVisibility = () => {
+      if (document.hidden) stop()
+      else start()
+    }
+
+    if (!document.hidden) start()
+    document.addEventListener('visibilitychange', onVisibility)
+
+    return () => {
+      stop()
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
   }, [reduce, words.length])
 
   if (reduce) return <>{words[0]}</>
