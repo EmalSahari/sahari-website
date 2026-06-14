@@ -57,6 +57,10 @@ export const translations = {
     'tools.brandKit.desc': 'Color palettes and Google Font pairings for your business. Shuffle, lock, export to CSS, Tailwind or PDF.',
     'tools.brandKit.cta': 'Try it',
 
+    // Marquees
+    'marquee.services': 'Websites|Mobile apps|Backends|Custom tools|AI features|Automation|E-commerce|Booking|SEO',
+    'marquee.voice': 'Built in Aarhus|Solo studio|Fast turnaround|Fixed pricing|Security-first|End to end',
+
     // Process: how I work
     'process.eyebrow': 'How I work',
     'process.heading': 'From idea to live, and beyond',
@@ -451,6 +455,10 @@ export const translations = {
     'tools.brandKit.title': 'Brand Kit Generator',
     'tools.brandKit.desc': 'Farve-paletter og Google Font-par til din virksomhed. Shuffle, lås, eksportér til CSS, Tailwind eller PDF.',
     'tools.brandKit.cta': 'Prøv det',
+
+    // Marquees
+    'marquee.services': 'Hjemmesider|Mobilapps|Backends|Skræddersyede værktøjer|AI-funktioner|Automatisering|Webshops|Booking|SEO',
+    'marquee.voice': 'Bygget i Aarhus|Solo-studio|Hurtig levering|Fast pris|Sikkerheds-fokuseret|End-to-end',
 
     // Process
     'process.eyebrow': 'Sådan arbejder jeg',

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Youtube, Code2, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette } from 'lucide-react'
@@ -144,6 +144,14 @@ export default function Home() {
   const fadeUp = reduce ? STILL : makeFadeUp(isMobile)
   const heroFadeUp = reduce ? STILL : makeHeroFadeUp(isMobile)
 
+  // Scroll-linked hero parallax: headline scales up slightly while subtitle
+  // and feature row drift up faster, giving depth as the user scrolls past.
+  const { scrollY } = useScroll()
+  const heroScale = useTransform(scrollY, [0, 700], [1, 1.06])
+  const heroY = useTransform(scrollY, [0, 700], [0, -40])
+  const subtitleY = useTransform(scrollY, [0, 700], [0, -90])
+  const featureY = useTransform(scrollY, [0, 700], [0, -140])
+
   const services = [
     { icon: <Globe size={20} />, title: t('services.web.title'), desc: t('services.web.desc') },
     { icon: <Smartphone size={20} />, title: t('services.mobile.title'), desc: t('services.mobile.desc') },
@@ -212,13 +220,17 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={0}
+          style={reduce ? undefined : { y: heroY }}
           className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
         >
           <Code2 size={14} className="text-amber-400" />
           <span>{t('hero.badge')}</span>
         </motion.div>
 
-        <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white leading-[1.05] max-w-4xl">
+        <motion.h1
+          style={reduce ? undefined : { scale: heroScale, y: heroY }}
+          className="font-display text-[clamp(2.5rem,8.5vw,7.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.02] max-w-6xl"
+        >
           {reduce ? (
             <>
               {t('hero.headline.start')}{' '}
@@ -251,14 +263,15 @@ export default function Home() {
               ])
             })()
           )}
-        </h1>
+        </motion.h1>
 
         <motion.p
           variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={5}
-          className="mt-6 text-lg text-zinc-400 max-w-xl leading-relaxed"
+          style={reduce ? undefined : { y: subtitleY }}
+          className="mt-8 text-lg md:text-xl text-zinc-400 max-w-xl leading-relaxed"
         >
           {t('hero.subtitle')}
         </motion.p>
@@ -268,10 +281,12 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={6}
+          style={reduce ? undefined : { y: subtitleY }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
             to="/contact"
+            data-magnetic
             className="group inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
           >
             {t('hero.cta.work')}
@@ -279,6 +294,7 @@ export default function Home() {
           </Link>
           <Link
             to="/work"
+            data-magnetic
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
           >
             <Briefcase size={16} className="text-amber-400" />
@@ -291,6 +307,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={7}
+          style={reduce ? undefined : { y: featureY }}
           className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
         >
           <span className="inline-flex items-center gap-2">
@@ -353,7 +370,7 @@ export default function Home() {
 
       {/* Marquee 1 - services keywords */}
       <ScrollMarquee
-        words={['Websites', 'Mobile apps', 'Backends', 'Custom tools', 'AI features', 'Automation', 'E-commerce', 'Booking', 'SEO']}
+        words={t('marquee.services').split('|')}
         speed={0.6}
         className="my-12"
       />
@@ -532,7 +549,7 @@ export default function Home() {
 
       {/* Marquee 2 - studio voice */}
       <ScrollMarquee
-        words={['Built in Aarhus', 'Solo studio', 'Fast turnaround', 'Fixed pricing', 'Security-first', 'End to end']}
+        words={t('marquee.voice').split('|')}
         speed={0.4}
         className="my-12"
       />
