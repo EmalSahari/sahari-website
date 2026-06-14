@@ -336,31 +336,44 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Services */}
+      {/* Services - editorial numbered list */}
       <section className="max-w-6xl mx-auto px-6 py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-14 max-w-3xl"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05]">
             {t('services.heading')}
           </h2>
-          <p className="mt-4 text-zinc-400 max-w-lg mx-auto">
+          <div className="mt-5 h-[2px] w-12 bg-amber-400" />
+          <p className="mt-6 text-zinc-400 max-w-lg leading-relaxed">
             {t('services.subtitle')}
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="border-t border-white/10">
           {services.map((s, i) => (
-            <ServiceCard key={i} service={s} i={i} />
+            <Reveal key={i} i={i}>
+              <div className="group grid md:grid-cols-12 gap-2 md:gap-6 py-7 border-b border-white/10 items-baseline transition-colors hover:border-amber-500/30">
+                <span className="md:col-span-1 text-sm text-amber-400 font-medium tabular-nums">
+                  0{i + 1}
+                </span>
+                <h3 className="md:col-span-4 font-display text-xl md:text-2xl font-bold text-white tracking-tight transition-transform duration-300 group-hover:translate-x-1.5">
+                  {s.title}
+                </h3>
+                <p className="md:col-span-7 text-zinc-500 text-sm md:text-base leading-relaxed">
+                  {s.desc}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
 
-        <p className="mt-10 text-center text-sm text-zinc-500">
+        <p className="mt-10 text-sm text-zinc-500">
           {t('services.openTo')}{' '}
           <Link to="/contact" className="text-amber-400 hover:text-amber-300 transition-colors">
             {t('services.openToCta')}
@@ -446,17 +459,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process - how I work */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
+      {/* Process - connected timeline */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14 max-w-2xl mx-auto"
+          className="text-center mb-16 max-w-2xl mx-auto"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-4">
             {t('process.heading')}
           </h2>
           <p className="text-zinc-400 leading-relaxed">
@@ -464,82 +477,111 @@ export default function Home() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {process.map((p, i) => (
-            <Reveal key={i} i={i} className="relative">
-              <SpotlightCard className="group border border-white/10 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center flex-shrink-0 group-hover:bg-amber-500/20 transition-colors">
-                    {p.icon}
+        <div className="relative">
+          {/* Horizontal connecting line on desktop */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden md:block absolute top-3 left-[11%] right-[11%] h-px bg-gradient-to-r from-transparent via-amber-500/40 to-transparent origin-left"
+          />
+          {/* Vertical line on mobile */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden absolute top-3 bottom-3 left-3 w-px bg-gradient-to-b from-amber-500/40 via-amber-500/40 to-transparent origin-top"
+          />
+
+          <div className="grid md:grid-cols-4 gap-10 md:gap-6">
+            {process.map((p, i) => (
+              <Reveal key={i} i={i}>
+                <div className="relative pl-10 md:pl-0">
+                  {/* Dot on the line */}
+                  <div className="absolute left-0 md:left-1/2 top-0 md:-translate-x-1/2 w-6 h-6 rounded-full bg-amber-400 ring-[6px] ring-[#080808] shadow-[0_0_20px_rgba(251,191,36,0.4)]" />
+                  {/* Number under the dot, big and editorial */}
+                  <div className="md:text-center md:pt-12">
+                    <span className="block font-display text-xs font-semibold tracking-[0.25em] uppercase text-amber-400 mb-3">
+                      Step 0{i + 1}
+                    </span>
+                    <h3 className="text-white font-semibold text-lg md:text-xl mb-2 leading-snug">{p.title}</h3>
+                    <p className="text-zinc-500 text-sm leading-relaxed md:max-w-xs md:mx-auto">{p.desc}</p>
                   </div>
-                  <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
                 </div>
-                <h3 className="text-white font-semibold mb-2 leading-snug">{p.title}</h3>
-                <p className="text-zinc-500 text-sm leading-relaxed">{p.desc}</p>
-              </SpotlightCard>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Projects */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
+      {/* Projects - alternating editorial spreads */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-14 max-w-3xl"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05]">
             {t('projects.heading')}
           </h2>
+          <div className="mt-5 h-[2px] w-12 bg-amber-400" />
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5 auto-rows-fr">
-          {projects.map((p, i) => (
-            <Reveal key={i} i={i} className={p.colSpan}>
-              <SpotlightCard className={`group bg-gradient-to-br ${p.color} h-full`}>
+        <div className="space-y-20 md:space-y-28">
+          {projects.map((p, i) => {
+            const reversed = i % 2 === 1
+            return (
+              <Reveal key={i} i={i}>
                 <a
                   href={p.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block h-full flex flex-col transition-all duration-200 hover:-translate-y-0.5"
+                  data-magnetic
+                  className={`group grid md:grid-cols-12 gap-8 md:gap-12 items-center ${reversed ? 'md:[direction:rtl]' : ''}`}
                 >
-                  <div className={`relative ${p.imageAspect} overflow-hidden bg-black/40 border-b border-white/5`}>
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                  </div>
-                  <div className="p-8 flex flex-col flex-1">
-                    <div className={`w-10 h-10 rounded-lg ${p.iconBg} flex items-center justify-center mb-5`}>
-                      {p.icon}
+                  <div className={`md:col-span-7 relative overflow-hidden rounded-2xl bg-black/40 border border-white/5 ${reversed ? 'md:[direction:ltr]' : ''}`}>
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${p.color} opacity-30 mix-blend-multiply pointer-events-none`} />
                     </div>
-                    <span className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{p.tag}</span>
-                    <h3 className="text-white font-semibold text-xl mt-1 mb-2">{p.title}</h3>
-                    <p className="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">{p.desc}</p>
-                    <span className="inline-flex items-center gap-1.5 text-sm text-zinc-300 group-hover:text-white transition-colors">
+                  </div>
+                  <div className={`md:col-span-5 ${reversed ? 'md:[direction:ltr]' : ''}`}>
+                    <span className="block text-xs font-medium text-amber-400 uppercase tracking-[0.25em] mb-4">
+                      {p.tag}
+                    </span>
+                    <h3 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05] mb-5">
+                      {p.title}
+                    </h3>
+                    <p className="text-zinc-400 leading-relaxed mb-6 max-w-md">
+                      {p.desc}
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-zinc-200 group-hover:text-amber-300 transition-colors">
                       {t('projects.viewLive')}
                       <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
                 </a>
-              </SpotlightCard>
-            </Reveal>
-          ))}
+              </Reveal>
+            )
+          })}
         </div>
 
-        <Reveal i={2} className="mt-8 flex justify-center">
+        <Reveal i={2} className="mt-16">
           <Link
             to="/work"
-            className="group inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5 hover:bg-white/5"
+            data-magnetic
+            className="group inline-flex items-center gap-2 text-zinc-300 hover:text-white font-medium transition-colors"
           >
             {t('work.seeAll')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
