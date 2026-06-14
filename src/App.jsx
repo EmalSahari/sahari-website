@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter as Router, useLocation } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import { LanguageProvider } from './i18n/LanguageContext'
@@ -9,6 +11,8 @@ import ScrollToTop from './components/ScrollToTop'
 import GradientDots from './components/GradientDots'
 import GrainOverlay from './components/GrainOverlay'
 import CustomCursor from './components/CustomCursor'
+import LoadingSequence from './components/LoadingSequence'
+import PageTransition from './components/PageTransition'
 
 const STANDALONE_ROUTES = ['/black-stone', '/drift', '/mork', '/tools/brand-kit']
 
@@ -21,6 +25,7 @@ function Layout() {
       <>
         <GrainOverlay />
         <CustomCursor />
+        <PageTransition />
         <AnimatedRoutes />
       </>
     )
@@ -31,6 +36,7 @@ function Layout() {
       <GradientDots className="z-0" />
       <GrainOverlay />
       <CustomCursor />
+      <PageTransition />
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1">
@@ -44,10 +50,14 @@ function Layout() {
 }
 
 function App() {
+  const [loadingDone, setLoadingDone] = useState(false)
   return (
     <LanguageProvider>
       <Router>
         <ScrollToTop />
+        <AnimatePresence>
+          {!loadingDone && <LoadingSequence onDone={() => setLoadingDone(true)} />}
+        </AnimatePresence>
         <Layout />
         <Analytics />
       </Router>
