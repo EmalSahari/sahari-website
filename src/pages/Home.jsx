@@ -6,6 +6,7 @@ import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
 import Reveal from '../components/Reveal'
+import ScrollMarquee from '../components/ScrollMarquee'
 import useIsMobile from '../hooks/useIsMobile'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
@@ -350,6 +351,13 @@ export default function Home() {
         </p>
       </section>
 
+      {/* Marquee 1 - services keywords */}
+      <ScrollMarquee
+        words={['Websites', 'Mobile apps', 'Backends', 'Custom tools', 'AI features', 'Automation', 'E-commerce', 'Booking', 'SEO']}
+        speed={0.6}
+        className="my-12"
+      />
+
       {/* Free tools */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <motion.div
@@ -521,6 +529,13 @@ export default function Home() {
           </Link>
         </Reveal>
       </section>
+
+      {/* Marquee 2 - studio voice */}
+      <ScrollMarquee
+        words={['Built in Aarhus', 'Solo studio', 'Fast turnaround', 'Fixed pricing', 'Security-first', 'End to end']}
+        speed={0.4}
+        className="my-12"
+      />
 
       {/* Testimonial */}
       <section className="max-w-4xl mx-auto px-6 py-16">
