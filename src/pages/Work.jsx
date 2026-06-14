@@ -171,14 +171,15 @@ export default function Work() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-16 max-w-3xl"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
             {t('work.eyebrow')}
           </p>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+          <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02] mb-5">
             {t('work.heading')}
           </h1>
+          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
           <p className="text-zinc-400 max-w-lg leading-relaxed">
             {t('work.subtitle')}
           </p>
@@ -193,14 +194,15 @@ export default function Work() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="mt-24 mb-12 pt-16 border-t border-white/5"
+          className="mt-24 mb-12 pt-16 border-t border-white/5 max-w-3xl"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
             {t('work.concepts.eyebrow')}
           </p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">
             {t('work.concepts.heading')}
           </h2>
+          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
           <p className="text-zinc-400 max-w-lg leading-relaxed">
             {t('work.concepts.subtitle')}
           </p>

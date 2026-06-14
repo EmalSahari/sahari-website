@@ -45,13 +45,14 @@ export default function WorkWithUs() {
         {/* Header */}
         <motion.div
           variants={fadeUp} initial="hidden" animate="show" custom={0}
-          className="text-center mb-14 max-w-2xl mx-auto"
+          className="mb-14 max-w-3xl"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('workWithUs.eyebrow')}</p>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight mb-5">
+          <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02] mb-5">
             {t('workWithUs.heading.start')} <span className="gradient-text">{t('workWithUs.heading.highlight')}</span>
           </h1>
-          <p className="text-zinc-400 text-lg leading-relaxed">{t('workWithUs.subtitle')}</p>
+          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+          <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">{t('workWithUs.subtitle')}</p>
         </motion.div>
 
         {/* ── Featured: Voice Actor ──────────────────────────────── */}

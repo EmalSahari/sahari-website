@@ -89,13 +89,14 @@ export default function Contact() {
           initial="hidden"
           animate="show"
           custom={0}
-          className="text-center mb-14"
+          className="mb-14 max-w-3xl"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('contact.eyebrow')}</p>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+          <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02] mb-5">
             {t('contact.heading')}
           </h1>
-          <p className="text-zinc-400 text-lg max-w-lg mx-auto">
+          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+          <p className="text-zinc-400 text-lg max-w-lg">
             {t('contact.subtitle')}
           </p>
         </motion.div>

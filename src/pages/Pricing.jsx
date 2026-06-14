@@ -203,13 +203,14 @@ export default function Pricing() {
           initial="hidden"
           animate="show"
           custom={0}
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="mb-16 max-w-3xl"
         >
           <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.eyebrow')}</p>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight mb-5 leading-tight">
+          <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02] mb-5">
             {t('pricing.heading')}
           </h1>
-          <p className="text-zinc-400 text-lg leading-relaxed">
+          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+          <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
             {t('pricing.subtitle')}
           </p>
         </motion.div>
@@ -274,9 +275,10 @@ export default function Pricing() {
           custom={0}
           className="mb-20"
         >
-          <div className="mb-10">
+          <div className="mb-10 max-w-3xl">
             <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.addons.eyebrow')}</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">{t('pricing.addons.heading')}</h2>
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">{t('pricing.addons.heading')}</h2>
+            <div className="h-[2px] w-12 bg-amber-400 mb-6" />
             <p className="text-zinc-400 max-w-lg leading-relaxed">{t('pricing.addons.subtitle')}</p>
           </div>
 
@@ -319,9 +321,10 @@ export default function Pricing() {
           custom={0}
           className="mb-16"
         >
-          <div className="mb-10">
+          <div className="mb-10 max-w-3xl">
             <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.faq.eyebrow')}</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight">{t('pricing.faq.heading')}</h2>
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">{t('pricing.faq.heading')}</h2>
+            <div className="h-[2px] w-12 bg-amber-400" />
           </div>
 
           <div className="border-t border-white/10 max-w-3xl">
@@ -338,12 +341,14 @@ export default function Pricing() {
           whileInView="show"
           viewport={{ once: true, margin: '-50px' }}
           custom={0}
-          className="text-center"
+          className="max-w-3xl"
         >
-          <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">{t('pricing.final.heading')}</h2>
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">{t('pricing.final.heading')}</h2>
+          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
           <p className="text-zinc-400 mb-6">{t('pricing.final.subtitle')}</p>
           <Link
             to="/contact"
+            data-magnetic
             className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
           >
             {t('pricing.final.cta')}

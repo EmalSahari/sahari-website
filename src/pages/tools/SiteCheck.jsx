@@ -531,6 +531,7 @@ export default function SiteCheck() {
           <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight mb-5 leading-[1.05]">
             {t('siteCheck.heading')}
           </h1>
+          <div className="h-[2px] w-12 bg-amber-400 mx-auto mb-6" />
           <p className="text-zinc-400 text-lg leading-relaxed">
             {t('siteCheck.subtitle')}
           </p>
