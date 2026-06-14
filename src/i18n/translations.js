@@ -59,7 +59,7 @@ export const translations = {
 
     // Marquees
     'marquee.services': 'Websites|Mobile apps|Backends|Custom tools|AI features|Automation|E-commerce|Booking|SEO',
-    'marquee.voice': 'Built in Aarhus|Solo studio|Fast turnaround|Fixed pricing|Security-first|End to end',
+    'marquee.voice': 'Built in Aarhus|Solo studio|Fast turnaround|Security-first|End to end',
 
     // Process: how I work
     'process.eyebrow': 'How I work',
@@ -458,7 +458,7 @@ export const translations = {
 
     // Marquees
     'marquee.services': 'Hjemmesider|Mobilapps|Backends|Skræddersyede værktøjer|AI-funktioner|Automatisering|Webshops|Booking|SEO',
-    'marquee.voice': 'Bygget i Aarhus|Solo-studio|Hurtig levering|Fast pris|Sikkerheds-fokuseret|End-to-end',
+    'marquee.voice': 'Bygget i Aarhus|Solo-studio|Hurtig levering|Sikkerheds-fokuseret|End-to-end',
 
     // Process
     'process.eyebrow': 'Sådan arbejder jeg',

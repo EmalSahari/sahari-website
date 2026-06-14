@@ -51,8 +51,21 @@ export default function CustomCursor() {
         const rect = magnetic.getBoundingClientRect()
         const cx = rect.left + rect.width / 2
         const cy = rect.top + rect.height / 2
-        ringTarget.current = { x: cx, y: cy }
-        ringTargetRadius.current = Math.max(rect.width, rect.height) / 2 + 8
+        // On small targets (chips, icons, buttons) the ring wraps the target.
+        // On large targets (cards, hero blocks) wrapping looks goofy, so we
+        // just nudge toward the cursor and grow modestly.
+        const longestEdge = Math.max(rect.width, rect.height)
+        if (longestEdge < 160) {
+          ringTarget.current = { x: cx, y: cy }
+          ringTargetRadius.current = longestEdge / 2 + 8
+        } else {
+          // Pull the ring 25% toward the target centre, capped radius.
+          ringTarget.current = {
+            x: e.clientX + (cx - e.clientX) * 0.25,
+            y: e.clientY + (cy - e.clientY) * 0.25,
+          }
+          ringTargetRadius.current = 28
+        }
       } else {
         ringTarget.current = { x: e.clientX, y: e.clientY }
         ringTargetRadius.current = 18

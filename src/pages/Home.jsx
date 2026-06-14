@@ -229,7 +229,7 @@ export default function Home() {
 
         <motion.h1
           style={reduce ? undefined : { scale: heroScale, y: heroY }}
-          className="font-display text-[clamp(2.5rem,8.5vw,7.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.02] max-w-6xl"
+          className="font-display text-[clamp(2.25rem,6.5vw,5.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.03] max-w-5xl"
         >
           {reduce ? (
             <>
