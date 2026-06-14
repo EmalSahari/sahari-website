@@ -176,11 +176,11 @@ export default function Pricing() {
   ]
 
   const addOns = [
-    { name: t('pricing.addons.stripe.name'), price: t('pricing.addons.stripe.price'), desc: t('pricing.addons.stripe.desc') },
-    { name: t('pricing.addons.mobilepay.name'), price: t('pricing.addons.mobilepay.price'), desc: t('pricing.addons.mobilepay.desc') },
-    { name: t('pricing.addons.fix.name'), price: t('pricing.addons.fix.price'), desc: t('pricing.addons.fix.desc') },
-    { name: t('pricing.addons.care.name'), price: t('pricing.addons.care.price'), desc: t('pricing.addons.care.desc') },
-    { name: t('pricing.addons.extra.name'), price: t('pricing.addons.extra.price'), desc: t('pricing.addons.extra.desc') },
+    { name: t('pricing.addons.stripe.name'), desc: t('pricing.addons.stripe.desc') },
+    { name: t('pricing.addons.mobilepay.name'), desc: t('pricing.addons.mobilepay.desc') },
+    { name: t('pricing.addons.fix.name'), desc: t('pricing.addons.fix.desc') },
+    { name: t('pricing.addons.care.name'), desc: t('pricing.addons.care.desc') },
+    { name: t('pricing.addons.extra.name'), desc: t('pricing.addons.extra.desc') },
   ]
 
   const faqs = [
@@ -285,10 +285,7 @@ export default function Pricing() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4">
             {addOns.map((a) => (
               <div key={a.name} className="border border-white/10 bg-[#0f0f0f] rounded-xl p-5 hover:bg-[#131313] transition-colors">
-                <div className="flex items-baseline justify-between gap-3 mb-2">
-                  <h3 className="text-white font-semibold text-sm md:text-base">{a.name}</h3>
-                  <span className="text-amber-400 text-sm font-semibold whitespace-nowrap">{a.price}</span>
-                </div>
+                <h3 className="text-white font-semibold text-sm md:text-base mb-2">{a.name}</h3>
                 <p className="text-zinc-500 text-xs md:text-sm leading-relaxed">{a.desc}</p>
               </div>
             ))}
