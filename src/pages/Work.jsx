@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Trophy, Music, Calendar, Hammer, Flame, Coffee, Scissors, Palette, Puzzle } from 'lucide-react'
+import { ArrowRight, Dumbbell, Calendar, Hammer, Flame, Coffee, Scissors, Palette, Puzzle } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -65,17 +65,6 @@ export default function Work() {
       border: 'border-teal-500/20',
       iconBg: 'bg-teal-500/15 text-teal-400',
     },
-    {
-      icon: <Trophy size={20} />,
-      title: t('projects.chess.title'),
-      desc: t('projects.chess.desc'),
-      tag: t('projects.chess.tag'),
-      href: 'https://skak.onrender.com/',
-      image: '/chess-board.webp',
-      color: 'from-amber-900/40 to-[#0f0f0f]',
-      border: 'border-amber-500/20',
-      iconBg: 'bg-amber-500/15 text-amber-400',
-    },
   ]
 
   const concepts = [
@@ -111,17 +100,6 @@ export default function Work() {
       color: 'from-amber-900/40 to-[#0f0f0f]',
       border: 'border-amber-500/20',
       iconBg: 'bg-amber-500/15 text-amber-400',
-    },
-    {
-      icon: <Music size={20} />,
-      title: t('projects.somuchfun.title'),
-      desc: t('projects.somuchfun.desc'),
-      tag: t('projects.somuchfun.tag'),
-      href: 'https://somuchfun.vercel.app/',
-      image: '/somuchfun.webp',
-      color: 'from-lime-900/40 to-[#0f0f0f]',
-      border: 'border-lime-500/20',
-      iconBg: 'bg-lime-500/15 text-lime-400',
     },
   ]
 

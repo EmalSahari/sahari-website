@@ -101,12 +101,6 @@ export const translations = {
     'projects.fitness.title': 'FitTrack: Fitness Tracker',
     'projects.fitness.desc': 'A full workout and nutrition tracking web app with user accounts, an AI coach, and a paid Pro subscription. Includes AI photo logging that identifies meals from a picture using GPT-4o Vision. Log meals, track water and calories, and monitor progress with weekly summaries.',
     'projects.fitness.tag': 'Web App',
-    'projects.chess.title': 'Online Chess App',
-    'projects.chess.desc': 'A real-time multiplayer chess app for the web. Play against other players online, with a clean interface and smooth moves.',
-    'projects.chess.tag': 'Web App',
-    'projects.somuchfun.title': 'So Much Fun: Album Landing',
-    'projects.somuchfun.desc': 'A concept landing page for Young Thug\'s "So Much Fun" album. Bold display typography, slime green palette, layered animations, and a maximalist visual identity that channels the album\'s energy.',
-    'projects.somuchfun.tag': 'Concept · Design Demo',
     'projects.viewLive': 'View live',
 
     // Security section
@@ -500,12 +494,6 @@ export const translations = {
     'projects.fitness.title': 'FitTrack: Fitness Tracker',
     'projects.fitness.desc': 'En komplet webapp til træning og kost med brugerkonti, en AI-træner og et betalt Pro-abonnement. Inkluderer AI foto-logging der genkender måltider fra et billede via GPT-4o Vision. Log måltider, tæl kalorier og vand, og følg fremskridt med ugentlige opsummeringer.',
     'projects.fitness.tag': 'Webapp',
-    'projects.chess.title': 'Online Skak-app',
-    'projects.chess.desc': 'En realtids multiplayer skak-app til web. Spil mod andre spillere online, med et rent interface og flydende spil.',
-    'projects.chess.tag': 'Webapp',
-    'projects.somuchfun.title': 'So Much Fun: Album-landing',
-    'projects.somuchfun.desc': 'En koncept-landingside for Young Thugs album "So Much Fun". Markant typografi, slime-grøn palette, lag på lag af animationer og en maksimalistisk visuel identitet, der fanger albummets energi.',
-    'projects.somuchfun.tag': 'Koncept · Designdemo',
     'projects.viewLive': 'Se live',
 
     // Security section
