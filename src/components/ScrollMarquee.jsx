@@ -6,6 +6,11 @@ import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
  * translates based on page scroll position so it picks up speed as the
  * user scrolls. The text is duplicated so the strip never runs out of
  * content even at extreme scroll positions.
+ *
+ * Uses requestAnimationFrame to coalesce scroll events to one transform
+ * per frame max, and IntersectionObserver to pause work entirely while
+ * the strip is offscreen. Both replaces a per-event getBoundingClientRect
+ * which was forcing layout reflow on every wheel tick.
  */
 export default function ScrollMarquee({ words, speed = 0.5, className = '' }) {
   const wrapRef = useRef(null)
@@ -14,21 +19,41 @@ export default function ScrollMarquee({ words, speed = 0.5, className = '' }) {
 
   useEffect(() => {
     if (reduce) return
-    const onScroll = () => {
+    const wrap = wrapRef.current
+    if (!wrap) return
+
+    let visible = true
+    let ticking = false
+
+    const update = () => {
       const el = inner.current
-      if (!el) return
-      const wrap = wrapRef.current
-      if (!wrap) return
-      const rect = wrap.getBoundingClientRect()
-      // Only animate when the strip is in view-ish so we do not burn cycles.
-      if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return
-      // Use cumulative scroll so the marquee progresses across the page.
-      const offset = -(window.scrollY * speed)
-      el.style.transform = `translate3d(${offset}px, 0, 0)`
+      if (el && visible) {
+        const offset = -(window.scrollY * speed)
+        el.style.transform = `translate3d(${offset}px, 0, 0)`
+      }
+      ticking = false
     }
-    onScroll()
+
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(update)
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+      },
+      { rootMargin: '200px 0px' },
+    )
+    io.observe(wrap)
+
+    update()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      io.disconnect()
+    }
   }, [speed, reduce])
 
   // Duplicate the list enough times that even fast scrollers cannot see the end.

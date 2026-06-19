@@ -18,14 +18,15 @@ export default function GradientDots({ className = '' }) {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
 
-    const SPACING = 22       // px between dot centres
+    const SPACING = 28       // px between dot centres (was 22, ~36% fewer dots)
     const RADIUS  = 1.4      // dot radius
     const SPEED   = 0.0014   // how fast the wave travels
     const WAVE_SCALE = 0.020 // spatial frequency of the wave
 
-    let width = 0, height = 0, cols = 0, rows = 0
+    let width = 0, height = 0
     let dots = []
     let raf = null
+    let running = !document.hidden
 
     function resize() {
       const dpr = window.devicePixelRatio || 1
@@ -37,8 +38,8 @@ export default function GradientDots({ className = '' }) {
 
       const offX = (width  % SPACING) / 2
       const offY = (height % SPACING) / 2
-      cols = Math.ceil(width  / SPACING) + 1
-      rows = Math.ceil(height / SPACING) + 1
+      const cols = Math.ceil(width  / SPACING) + 1
+      const rows = Math.ceil(height / SPACING) + 1
 
       dots = []
       for (let r = 0; r < rows; r++) {
@@ -55,27 +56,45 @@ export default function GradientDots({ className = '' }) {
       const t = ts * SPEED
       ctx.clearRect(0, 0, width, height)
 
-      dots.forEach(d => {
+      // For loop over forEach is measurably faster on large arrays.
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i]
         const phase = (d.x + d.y) * WAVE_SCALE + t
         const alpha = 0.10 + Math.sin(phase * 0.7) * 0.07
-
         ctx.beginPath()
         ctx.arc(d.x, d.y, RADIUS, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`
         ctx.fill()
-      })
+      }
 
       raf = requestAnimationFrame(draw)
     }
 
+    function start() {
+      if (raf) return
+      raf = requestAnimationFrame(draw)
+    }
+    function stop() {
+      if (!raf) return
+      cancelAnimationFrame(raf)
+      raf = null
+    }
+    function onVisibility() {
+      running = !document.hidden
+      if (running) start()
+      else stop()
+    }
+
     const ro = new ResizeObserver(resize)
     ro.observe(canvas)
+    document.addEventListener('visibilitychange', onVisibility)
     resize()
-    raf = requestAnimationFrame(draw)
+    if (running) start()
 
     return () => {
-      cancelAnimationFrame(raf)
+      stop()
       ro.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
     }
   }, [reduce])
 
