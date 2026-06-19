@@ -79,9 +79,10 @@ function plainText(html) {
 }
 
 function makeDescription(article) {
+  if (article.seoDescription) return article.seoDescription
   if (article.excerpt) return article.excerpt
   if (article.description) return article.description
-  const txt = plainText(article.html || article.content || '')
+  const txt = plainText(article.html || article.content || article.body || '')
   return txt.length > 160 ? txt.slice(0, 157) + '...' : txt
 }
 
@@ -113,11 +114,12 @@ function patchListHtml(html, articleCount) {
 }
 
 function patchArticleHtml(html, article) {
-  const title = `${article.title || article.slug} · Sahari`
+  const displayTitle = article.seoTitle || article.title || article.slug
+  const title = `${displayTitle} · Sahari`
   const desc = makeDescription(article)
   const slug = article.slug
   const url = `${SITE}/blog/${slug}`
-  const image = article.image || article.coverImage || `${SITE}/og-image.png`
+  const image = article.image || article.coverImage || article.ogImage || `${SITE}/og-image.png`
 
   let out = html
   out = out.replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
@@ -144,7 +146,7 @@ function patchArticleHtml(html, article) {
 
   // Bake article content into the root div so crawlers without JS see it.
   // React clears the root on mount and re-renders from blog-data.json.
-  const body = article.html || article.content || ''
+  const body = article.html || article.content || article.body || ''
   const seoFallback = `<article style="max-width:42rem;margin:5rem auto;padding:0 1.5rem;color:#e5e5e5;font-family:system-ui,sans-serif">
 <h1>${escape(article.title || '')}</h1>
 ${body}

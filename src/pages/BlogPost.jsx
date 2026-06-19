@@ -116,7 +116,7 @@ export default function BlogPost() {
             <div
               className="prose-blog text-zinc-300"
               dangerouslySetInnerHTML={{
-                __html: article.html || article.content || '',
+                __html: article.html || article.content || article.body || '',
               }}
             />
           </motion.article>
