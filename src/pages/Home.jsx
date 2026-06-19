@@ -154,6 +154,7 @@ export default function Home() {
 
   const services = [
     { icon: <Globe size={20} />, title: t('services.web.title'), desc: t('services.web.desc') },
+    { icon: <Gauge size={20} />, title: t('services.seo.title'), desc: t('services.seo.desc') },
     { icon: <Smartphone size={20} />, title: t('services.mobile.title'), desc: t('services.mobile.desc') },
     { icon: <Server size={20} />, title: t('services.backend.title'), desc: t('services.backend.desc') },
     { icon: <Zap size={20} />, title: t('services.automation.title'), desc: t('services.automation.desc') },
@@ -335,6 +336,37 @@ export default function Home() {
           {t('hero.scroll')}
         </motion.div>
       </section>
+
+      {/* Trusted by - small wordmark strip */}
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.6 }}
+        className="max-w-6xl mx-auto px-6 py-12 border-y border-white/[0.06]"
+      >
+        <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+          <div className="flex flex-col gap-1.5">
+            <p className="text-[10px] font-semibold tracking-[0.4em] uppercase text-amber-400">
+              {t('trustedBy.label')}
+            </p>
+            <p className="text-sm text-zinc-500">
+              {t('trustedBy.tagline')}
+            </p>
+          </div>
+          <div className="flex items-center gap-10 md:ml-auto">
+            <a
+              href="https://www.nexbyg.dk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-magnetic
+              className="font-display text-2xl md:text-3xl font-bold tracking-[0.06em] text-zinc-300 hover:text-white transition-colors"
+            >
+              NEXBYG
+            </a>
+          </div>
+        </div>
+      </motion.section>
 
       {/* Services - editorial numbered list */}
       <section className="max-w-6xl mx-auto px-6 py-24">

@@ -41,6 +41,8 @@ export const translations = {
     'services.automation.desc': 'Scripts, bots, integrations, internal tools. If you can describe what you need, I can build it.',
     'services.maintenance.title': 'Maintenance & Updates',
     'services.maintenance.desc': 'Bug fixes, performance tuning, and new features for sites I built or modern stacks (React, Next.js, Vue). Keep things running smoothly after launch.',
+    'services.seo.title': 'Built to rank on Google',
+    'services.seo.desc': 'Every site ships with the technical SEO foundation that gets you found: 90+ Lighthouse scores, proper meta and structured data, fast Core Web Vitals. The same standard my Site Check tool measures other sites against.',
     'services.openTo': "Don't see what you need? I take on most projects: browser extensions, Discord bots, AI chat widgets, scrapers, anything.",
     'services.openToCta': "Let's talk",
 
@@ -112,6 +114,10 @@ export const translations = {
     'testimonial.quote': '"We went from no website to a finished, professional site in under a week. Sahari handled everything so we could focus on our actual work. We now get qualified leads through the site."',
     'testimonial.name': 'Frederik Sørensen',
     'testimonial.role': 'NexByg ApS',
+
+    // Trusted by
+    'trustedBy.label': 'Selected clients',
+    'trustedBy.tagline': 'Currently building for a small number of Danish businesses.',
 
     // YouTube section (Home)
     'youtube.heading': 'Also a YouTuber',
@@ -434,6 +440,8 @@ export const translations = {
     'services.automation.desc': 'Scripts, bots, integrationer, interne værktøjer. Hvis du kan beskrive, hvad du har brug for, kan jeg bygge det.',
     'services.maintenance.title': 'Vedligeholdelse & Opdateringer',
     'services.maintenance.desc': 'Bugfixes, performance-optimering og nye funktioner på sider jeg har bygget eller moderne stacks (React, Next.js, Vue). Hold tingene kørende efter launch.',
+    'services.seo.title': 'Bygget til at ranke på Google',
+    'services.seo.desc': 'Hver side leveres med det tekniske SEO-fundament der gør at du bliver fundet: 90+ Lighthouse-scores, ordentlige meta-tags, structured data og hurtige Core Web Vitals. Samme standard som mit Site Check-værktøj måler andre sider efter.',
     'services.openTo': 'Ser du ikke det du har brug for? Jeg tager de fleste projekter: browser extensions, Discord-bots, AI chat-widgets, scrapers, hvad som helst.',
     'services.openToCta': 'Lad os snakke',
 
@@ -505,6 +513,10 @@ export const translations = {
     'testimonial.quote': '"Vi gik fra ingen hjemmeside til en færdig, professionel side på under en uge. Sahari håndterede alt så vi kunne fokusere på vores arbejde. Vi får nu kvalificerede leads gennem siden."',
     'testimonial.name': 'Frederik Sørensen',
     'testimonial.role': 'NexByg ApS',
+
+    // Trusted by
+    'trustedBy.label': 'Udvalgte kunder',
+    'trustedBy.tagline': 'Bygger lige nu for en lille håndfuld danske virksomheder.',
 
     // YouTube section (Home)
     'youtube.heading': 'Også YouTuber',
