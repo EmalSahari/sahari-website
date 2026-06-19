@@ -11,6 +11,8 @@ import DriftCoffee from '../pages/DriftCoffee'
 import MorkBarber from '../pages/MorkBarber'
 import BrandKit from '../pages/tools/BrandKit'
 import SiteCheck from '../pages/tools/SiteCheck'
+import Blog from '../pages/Blog'
+import BlogPost from '../pages/BlogPost'
 import NotFound from '../pages/NotFound'
 
 export default function AnimatedRoutes() {
@@ -29,6 +31,8 @@ export default function AnimatedRoutes() {
       { path: '/mork', element: <MorkBarber /> },
       { path: '/tools/brand-kit', element: <BrandKit /> },
       { path: '/tools/site-check', element: <SiteCheck /> },
+      { path: '/blog', element: <Blog /> },
+      { path: '/blog/:slug', element: <BlogPost /> },
       { path: '*', element: <NotFound /> },
     ],
     location,
