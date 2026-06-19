@@ -115,10 +115,6 @@ export const translations = {
     'testimonial.name': 'Frederik Sørensen',
     'testimonial.role': 'NexByg ApS',
 
-    // Trusted by
-    'trustedBy.label': 'Selected clients',
-    'trustedBy.tagline': 'Currently building for a small number of Danish businesses.',
-
     // YouTube section (Home)
     'youtube.heading': 'Also a YouTuber',
     'youtube.subtitle': 'I create content across multiple YouTube channels in different niches. Come check out the content.',
@@ -513,10 +509,6 @@ export const translations = {
     'testimonial.quote': '"Vi gik fra ingen hjemmeside til en færdig, professionel side på under en uge. Sahari håndterede alt så vi kunne fokusere på vores arbejde. Vi får nu kvalificerede leads gennem siden."',
     'testimonial.name': 'Frederik Sørensen',
     'testimonial.role': 'NexByg ApS',
-
-    // Trusted by
-    'trustedBy.label': 'Udvalgte kunder',
-    'trustedBy.tagline': 'Bygger lige nu for en lille håndfuld danske virksomheder.',
 
     // YouTube section (Home)
     'youtube.heading': 'Også YouTuber',

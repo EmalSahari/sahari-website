@@ -10,7 +10,6 @@ import CookieNotice from './components/CookieNotice'
 import ScrollToTop from './components/ScrollToTop'
 import GradientDots from './components/GradientDots'
 import GrainOverlay from './components/GrainOverlay'
-import CustomCursor from './components/CustomCursor'
 import LoadingSequence from './components/LoadingSequence'
 import PageTransition from './components/PageTransition'
 
@@ -24,7 +23,6 @@ function Layout() {
     return (
       <>
         <GrainOverlay />
-        <CustomCursor />
         <PageTransition />
         <AnimatedRoutes />
       </>
@@ -35,7 +33,6 @@ function Layout() {
     <div className="relative flex flex-col min-h-screen bg-[#080808]">
       <GradientDots className="z-0" />
       <GrainOverlay />
-      <CustomCursor />
       <PageTransition />
       <div className="relative z-10 flex flex-col min-h-screen">
         <Navbar />
