@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Youtube, Github, Instagram } from 'lucide-react'
+import { Youtube, Github, Instagram, Linkedin } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 
 export default function Footer() {
@@ -29,13 +29,22 @@ export default function Footer() {
             <Instagram size={18} />
           </a>
           <a
-            href="https://youtube.com/@SahariYT"
+            href="https://youtube.com/@UnclassifiedYTT"
             target="_blank"
             rel="noopener noreferrer"
             className="text-zinc-500 hover:text-red-400 transition-colors"
             aria-label="YouTube"
           >
             <Youtube size={18} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/emal-sahari-0912431ba/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-zinc-500 hover:text-sky-400 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={18} />
           </a>
           <a
             href="https://github.com/EmalSahari"

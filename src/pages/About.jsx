@@ -127,7 +127,10 @@ export default function About() {
           viewport={{ once: true, margin: '-50px' }}
           className="mb-20"
         >
-          <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-[0.3em] mb-6">{t('about.stats.heading')}</p>
+          <div className="flex items-center gap-2.5 mb-6">
+            <Youtube size={16} className="text-red-500" />
+            <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-[0.3em]">{t('about.stats.heading')}</p>
+          </div>
           <div className="grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
             {stats.map((s) => (
               <div key={s.label}>

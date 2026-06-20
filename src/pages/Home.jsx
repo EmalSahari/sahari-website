@@ -229,8 +229,8 @@ export default function Home() {
         </motion.div>
 
         <motion.h1
-          style={reduce ? undefined : { scale: heroScale, y: heroY }}
-          className="font-display text-[clamp(2.25rem,6.5vw,5.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.03] max-w-5xl"
+          style={reduce || isMobile ? undefined : { scale: heroScale, y: heroY }}
+          className="font-display text-[clamp(1.875rem,7vw,5.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.05] max-w-5xl"
         >
           {reduce ? (
             <>
@@ -271,8 +271,8 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={5}
-          style={reduce ? undefined : { y: subtitleY }}
-          className="mt-8 text-lg md:text-xl text-zinc-400 max-w-xl leading-relaxed"
+          style={reduce || isMobile ? undefined : { y: subtitleY }}
+          className="mt-8 text-base md:text-xl text-zinc-400 max-w-xl leading-relaxed"
         >
           {t('hero.subtitle')}
         </motion.p>
@@ -282,7 +282,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={6}
-          style={reduce ? undefined : { y: subtitleY }}
+          style={reduce || isMobile ? undefined : { y: subtitleY }}
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
@@ -308,7 +308,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={7}
-          style={reduce ? undefined : { y: featureY }}
+          style={reduce || isMobile ? undefined : { y: featureY }}
           className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
         >
           <span className="inline-flex items-center gap-2">
