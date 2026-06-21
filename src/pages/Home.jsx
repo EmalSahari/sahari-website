@@ -294,28 +294,6 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          variants={heroFadeUp}
-          initial="hidden"
-          animate="show"
-          custom={7}
-          style={reduce || isMobile ? undefined : { y: featureY }}
-          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
-        >
-          <span className="inline-flex items-center gap-2">
-            <Zap size={14} className="text-amber-400" />
-            {t('hero.feature.speed')}
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Shield size={14} className="text-amber-400" />
-            {t('hero.feature.security')}
-          </span>
-          <span className="inline-flex items-center gap-2">
-            <Workflow size={14} className="text-amber-400" />
-            {t('hero.feature.endToEnd')}
-          </span>
-        </motion.div>
-
-        <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
