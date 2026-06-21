@@ -1,7 +1,7 @@
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Youtube, Code2, Globe, Smartphone, Server, Zap, Users, Eye, Clock, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette } from 'lucide-react'
+import { ArrowRight, Code2, Globe, Smartphone, Server, Zap, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -198,18 +198,6 @@ export default function Home() {
       colSpan: 'md:col-span-3',
       imageAspect: 'aspect-[21/9]',
     },
-  ]
-
-  const channels = [
-    { handle: '@SahariYT', desc: t('youtube.channel1.desc'), href: 'https://youtube.com/@SahariYT' },
-    { handle: '@UnclassifiedYTT', desc: t('youtube.channel2.desc'), href: 'https://youtube.com/@UnclassifiedYTT' },
-    { handle: '@SupernovaYTT', desc: t('youtube.channel3.desc'), href: 'https://youtube.com/@SupernovaYTT' },
-  ]
-
-  const stats = [
-    { icon: <Users size={16} />, value: '84K+', label: t('youtube.stats.subs') },
-    { icon: <Eye size={16} />, value: '11M+', label: t('youtube.stats.views') },
-    { icon: <Clock size={16} />, value: '700K+', label: t('youtube.stats.hours') },
   ]
 
   return (
@@ -646,59 +634,6 @@ export default function Home() {
           <p className="text-zinc-400 leading-relaxed text-lg">
             {t('security.subtitle')}
           </p>
-        </motion.div>
-      </section>
-
-      {/* YouTube */}
-      <section id="youtube" className="max-w-6xl mx-auto px-6 py-12 scroll-mt-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-2xl border border-red-500/20 bg-gradient-to-br from-red-950/30 to-[#0f0f0f] p-10 md:p-14"
-        >
-          <div className="flex flex-col md:flex-row gap-10 items-start">
-            <div className="flex-1">
-              <Youtube size={36} className="text-red-400 mb-5" />
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-white mb-3">
-                {t('youtube.heading')}
-              </h2>
-              <p className="text-zinc-400 leading-relaxed max-w-md">
-                {t('youtube.subtitle')}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 min-w-[220px]">
-              {channels.map((c) => (
-                <a
-                  key={c.handle}
-                  href={c.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-red-500/30 hover:bg-white/8 transition-all group"
-                >
-                  <Youtube size={16} className="text-red-400 flex-shrink-0" />
-                  <div>
-                    <p className="text-white text-sm font-medium">{c.handle}</p>
-                    <p className="text-zinc-500 text-xs">{c.desc}</p>
-                  </div>
-                  <ArrowRight size={14} className="text-zinc-600 ml-auto group-hover:text-zinc-400 transition-colors" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4 md:gap-8 mt-10 pt-8 border-t border-white/10">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-red-500/15 text-red-400 mb-2">
-                  {stat.icon}
-                </div>
-                <p className="text-2xl md:text-3xl font-bold text-white tracking-tight">{stat.value}</p>
-                <p className="text-zinc-500 text-xs md:text-sm mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </div>
         </motion.div>
       </section>
 

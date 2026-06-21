@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Youtube, Code2, ArrowRight, CheckCircle2, Rocket, Briefcase } from 'lucide-react'
+import { Youtube, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import EditorialHeading from '../components/EditorialHeading'
@@ -39,19 +39,6 @@ export default function About() {
     t('about.capabilities.cyber'),
     t('about.capabilities.fullstack'),
     t('about.capabilities.responsive'),
-  ]
-
-  const timeline = [
-    { icon: <Youtube size={16} />, title: t('about.timeline.youtube.title'), desc: t('about.timeline.youtube.desc') },
-    { icon: <Code2 size={16} />, title: t('about.timeline.dev.title'), desc: t('about.timeline.dev.desc') },
-    { icon: <Briefcase size={16} />, title: t('about.timeline.sahari.title'), desc: t('about.timeline.sahari.desc') },
-    { icon: <Rocket size={16} />, title: t('about.timeline.services.title'), desc: t('about.timeline.services.desc') },
-  ]
-
-  const channels = [
-    { handle: '@SahariYT', desc: t('about.channels.channel1.desc'), href: 'https://youtube.com/@SahariYT' },
-    { handle: '@UnclassifiedYTT', desc: t('about.channels.channel2.desc'), href: 'https://youtube.com/@UnclassifiedYTT' },
-    { handle: '@SupernovaYTT', desc: t('about.channels.channel3.desc'), href: 'https://youtube.com/@SupernovaYTT' },
   ]
 
   return (
@@ -141,53 +128,6 @@ export default function About() {
           </div>
         </motion.section>
 
-        {/* Story */}
-        <motion.section
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-          className="mb-20 max-w-3xl"
-        >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05] mb-4">{t('about.story.heading')}</h2>
-          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
-          <div className="space-y-5 text-zinc-400 leading-relaxed text-base md:text-lg">
-            <p>{t('about.story.p1')}</p>
-            <p>{t('about.story.p2')}</p>
-            <p>{t('about.story.p3')}</p>
-          </div>
-        </motion.section>
-
-        {/* Timeline */}
-        <motion.section
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-          className="mb-20"
-        >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05] mb-4">{t('about.timeline.heading')}</h2>
-          <div className="h-[2px] w-12 bg-amber-400 mb-10" />
-          <div className="relative space-y-7 pl-6 border-l border-white/10">
-            {timeline.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative"
-              >
-                <div className="absolute -left-[1.85rem] w-7 h-7 rounded-full bg-[#080808] border border-amber-500/40 flex items-center justify-center text-amber-400">
-                  {item.icon}
-                </div>
-                <h3 className="text-white font-medium mb-1">{item.title}</h3>
-                <p className="text-zinc-500 text-sm leading-relaxed">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
-
         {/* Skills */}
         <motion.section
           variants={fadeUp}
@@ -207,37 +147,6 @@ export default function About() {
                 <CheckCircle2 size={12} className="text-amber-400" />
                 {skill}
               </span>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* YouTube channels */}
-        <motion.section
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-          className="mb-20"
-        >
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05] mb-4">{t('about.channels.heading')}</h2>
-          <div className="h-[2px] w-12 bg-amber-400 mb-8" />
-          <div className="flex flex-col gap-3">
-            {channels.map((c) => (
-              <a
-                key={c.handle}
-                href={c.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-magnetic
-                className="flex items-center gap-4 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-red-500/30 hover:bg-white/[0.08] transition-all group"
-              >
-                <Youtube size={16} className="text-red-400 flex-shrink-0" />
-                <div>
-                  <p className="text-white text-sm font-medium">{c.handle}</p>
-                  <p className="text-zinc-500 text-xs">{c.desc}</p>
-                </div>
-                <ArrowRight size={14} className="text-zinc-600 ml-auto group-hover:text-zinc-400 transition-colors" />
-              </a>
             ))}
           </div>
         </motion.section>
