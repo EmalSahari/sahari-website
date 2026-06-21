@@ -71,6 +71,115 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   }
 
+  .gradient-mesh {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .gradient-mesh::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, #080808 85%);
+  }
+
+  .gradient-mesh__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.45;
+    will-change: transform;
+    mix-blend-mode: screen;
+  }
+
+  .gradient-mesh__blob--amber {
+    width: 46vw;
+    height: 46vw;
+    max-width: 720px;
+    max-height: 720px;
+    background: radial-gradient(circle, #fbbf24 0%, rgba(251, 191, 36, 0) 62%);
+    top: -8%;
+    left: -6%;
+    animation: mesh-drift-1 26s ease-in-out infinite alternate;
+  }
+
+  .gradient-mesh__blob--violet {
+    width: 42vw;
+    height: 42vw;
+    max-width: 680px;
+    max-height: 680px;
+    background: radial-gradient(circle, #8b5cf6 0%, rgba(139, 92, 246, 0) 62%);
+    top: 10%;
+    right: -10%;
+    animation: mesh-drift-2 32s ease-in-out infinite alternate;
+  }
+
+  .gradient-mesh__blob--cyan {
+    width: 38vw;
+    height: 38vw;
+    max-width: 620px;
+    max-height: 620px;
+    background: radial-gradient(circle, #06b6d4 0%, rgba(6, 182, 212, 0) 62%);
+    bottom: -12%;
+    left: 18%;
+    opacity: 0.32;
+    animation: mesh-drift-3 28s ease-in-out infinite alternate;
+  }
+
+  .gradient-mesh__blob--rose {
+    width: 32vw;
+    height: 32vw;
+    max-width: 520px;
+    max-height: 520px;
+    background: radial-gradient(circle, #f43f5e 0%, rgba(244, 63, 94, 0) 62%);
+    bottom: 0%;
+    right: 12%;
+    opacity: 0.28;
+    animation: mesh-drift-4 34s ease-in-out infinite alternate;
+  }
+
+  .gradient-mesh__grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+  }
+
+  @keyframes mesh-drift-1 {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(8vw, 6vh, 0) scale(1.12); }
+  }
+
+  @keyframes mesh-drift-2 {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(-6vw, 8vh, 0) scale(1.08); }
+  }
+
+  @keyframes mesh-drift-3 {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(-5vw, -7vh, 0) scale(1.15); }
+  }
+
+  @keyframes mesh-drift-4 {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(7vw, -5vh, 0) scale(1.1); }
+  }
+
+  .gradient-mesh[data-reduce='true'] .gradient-mesh__blob {
+    animation: none;
+  }
+
+  @media (max-width: 640px) {
+    .gradient-mesh__blob {
+      filter: blur(70px);
+      opacity: 0.32;
+    }
+  }
+
   /* Blog article typography (used by BlogPost via dangerouslySetInnerHTML). */
   .prose-blog {
     font-size: 1.0625rem;

@@ -7,6 +7,7 @@ import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
 import Reveal from '../components/Reveal'
 import ScrollMarquee from '../components/ScrollMarquee'
+import GradientMesh from '../components/GradientMesh'
 import useIsMobile from '../hooks/useIsMobile'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
@@ -216,13 +217,14 @@ export default function Home() {
       <Seo description="Software studio in Denmark building secure websites, mobile apps, backends and custom tools. End-to-end delivery, fast turnaround, fixed pricing from DKK 4,995. Founded by Emal Sahari." />
       {/* Hero */}
       <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        <GradientMesh />
         <motion.div
           variants={heroFadeUp}
           initial="hidden"
           animate="show"
           custom={0}
           style={reduce ? undefined : { y: heroY }}
-          className="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
+          className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm backdrop-blur-sm"
         >
           <Code2 size={14} className="text-amber-400" />
           <span>{t('hero.badge')}</span>
@@ -230,7 +232,7 @@ export default function Home() {
 
         <motion.h1
           style={reduce || isMobile ? undefined : { scale: heroScale, y: heroY }}
-          className="font-display text-[clamp(1.875rem,7vw,5.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.05] max-w-5xl"
+          className="relative z-10 font-display text-[clamp(1.875rem,7vw,5.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.05] max-w-5xl"
         >
           {reduce ? (
             <>
@@ -272,7 +274,7 @@ export default function Home() {
           animate="show"
           custom={5}
           style={reduce || isMobile ? undefined : { y: subtitleY }}
-          className="mt-8 text-base md:text-xl text-zinc-400 max-w-xl leading-relaxed"
+          className="relative z-10 mt-8 text-base md:text-xl text-zinc-400 max-w-xl leading-relaxed"
         >
           {t('hero.subtitle')}
         </motion.p>
@@ -283,7 +285,7 @@ export default function Home() {
           animate="show"
           custom={6}
           style={reduce || isMobile ? undefined : { y: subtitleY }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
             to="/contact"
@@ -309,7 +311,7 @@ export default function Home() {
           animate="show"
           custom={7}
           style={reduce || isMobile ? undefined : { y: featureY }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
+          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-zinc-400"
         >
           <span className="inline-flex items-center gap-2">
             <Zap size={14} className="text-amber-400" />
@@ -330,7 +332,7 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={9}
-          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-zinc-600 text-xs"
+          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2 text-zinc-600 text-xs"
         >
           <div className="w-px h-10 bg-gradient-to-b from-transparent to-zinc-600" />
           {t('hero.scroll')}
