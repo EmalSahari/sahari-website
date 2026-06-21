@@ -92,7 +92,6 @@ body {
     border-radius: 50%;
     filter: blur(60px);
     opacity: 0.35;
-    will-change: transform;
   }
 
   .gradient-mesh__blob--amber {
@@ -103,7 +102,6 @@ body {
     background: radial-gradient(circle, rgba(251, 191, 36, 0.55) 0%, rgba(251, 191, 36, 0) 65%);
     top: -10%;
     left: -8%;
-    animation: mesh-drift-1 38s ease-in-out infinite alternate;
   }
 
   .gradient-mesh__blob--violet {
@@ -115,7 +113,6 @@ body {
     top: 12%;
     right: -12%;
     opacity: 0.3;
-    animation: mesh-drift-2 44s ease-in-out infinite alternate;
   }
 
   .gradient-mesh__blob--cyan {
@@ -127,7 +124,6 @@ body {
     bottom: -10%;
     left: 22%;
     opacity: 0.22;
-    animation: mesh-drift-3 40s ease-in-out infinite alternate;
   }
 
   .gradient-mesh__blob--rose {

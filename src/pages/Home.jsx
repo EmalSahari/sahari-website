@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Code2, Globe, Smartphone, Server, Zap, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette } from 'lucide-react'
@@ -145,14 +145,6 @@ export default function Home() {
   const fadeUp = reduce ? STILL : makeFadeUp(isMobile)
   const heroFadeUp = reduce ? STILL : makeHeroFadeUp(isMobile)
 
-  // Scroll-linked hero parallax: headline scales up slightly while subtitle
-  // and feature row drift up faster, giving depth as the user scrolls past.
-  const { scrollY } = useScroll()
-  const heroScale = useTransform(scrollY, [0, 700], [1, 1.06])
-  const heroY = useTransform(scrollY, [0, 700], [0, -40])
-  const subtitleY = useTransform(scrollY, [0, 700], [0, -90])
-  const featureY = useTransform(scrollY, [0, 700], [0, -140])
-
   const services = [
     { icon: <Globe size={20} />, title: t('services.web.title'), desc: t('services.web.desc') },
     { icon: <Gauge size={20} />, title: t('services.seo.title'), desc: t('services.seo.desc') },
@@ -211,7 +203,6 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={0}
-          style={reduce ? undefined : { y: heroY }}
           className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm backdrop-blur-sm"
         >
           <Code2 size={14} className="text-amber-400" />
@@ -219,7 +210,6 @@ export default function Home() {
         </motion.div>
 
         <motion.h1
-          style={reduce || isMobile ? undefined : { scale: heroScale, y: heroY }}
           className="relative z-10 font-display text-[clamp(1.875rem,7vw,5.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.05] max-w-5xl"
         >
           {reduce ? (
@@ -261,7 +251,6 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={5}
-          style={reduce || isMobile ? undefined : { y: subtitleY }}
           className="relative z-10 mt-8 text-base md:text-xl text-zinc-400 max-w-xl leading-relaxed"
         >
           {t('hero.subtitle')}
@@ -272,7 +261,6 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={6}
-          style={reduce || isMobile ? undefined : { y: subtitleY }}
           className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Link
