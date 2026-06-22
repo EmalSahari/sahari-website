@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Check, X, ArrowRight, Plus, Minus, Sparkles, Gauge } from 'lucide-react'
+import { Check, X, ArrowRight, Plus, Minus, Sparkles, Gauge, Server, Cloud } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -179,8 +179,39 @@ export default function Pricing() {
     { name: t('pricing.addons.stripe.name'), desc: t('pricing.addons.stripe.desc') },
     { name: t('pricing.addons.mobilepay.name'), desc: t('pricing.addons.mobilepay.desc') },
     { name: t('pricing.addons.fix.name'), desc: t('pricing.addons.fix.desc') },
-    { name: t('pricing.addons.care.name'), desc: t('pricing.addons.care.desc') },
     { name: t('pricing.addons.extra.name'), desc: t('pricing.addons.extra.desc') },
+  ]
+
+  const careTracks = [
+    {
+      icon: <Server size={18} />,
+      featured: true,
+      name: t('pricing.care.hosted.name'),
+      price: t('pricing.care.hosted.price'),
+      tagline: t('pricing.care.hosted.tagline'),
+      includes: [
+        t('pricing.care.hosted.inc.1'),
+        t('pricing.care.hosted.inc.2'),
+        t('pricing.care.hosted.inc.3'),
+        t('pricing.care.hosted.inc.4'),
+        t('pricing.care.hosted.inc.5'),
+        t('pricing.care.hosted.inc.6'),
+      ],
+    },
+    {
+      icon: <Cloud size={18} />,
+      featured: false,
+      name: t('pricing.care.selfhost.name'),
+      price: t('pricing.care.selfhost.price'),
+      tagline: t('pricing.care.selfhost.tagline'),
+      includes: [
+        t('pricing.care.selfhost.inc.1'),
+        t('pricing.care.selfhost.inc.2'),
+        t('pricing.care.selfhost.inc.3'),
+        t('pricing.care.selfhost.inc.4'),
+        t('pricing.care.selfhost.inc.5'),
+      ],
+    },
   ]
 
   const faqs = [
@@ -216,11 +247,68 @@ export default function Pricing() {
         </motion.div>
 
         {/* Tiers */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
           {tiers.map((tier, i) => (
             <PricingCard key={tier.name} tier={tier} popular={i === 1} i={i + 1} />
           ))}
         </div>
+
+        {/* Care & hosting (recurring) */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-50px' }}
+          custom={0}
+          className="mb-20"
+        >
+          <div className="mb-8 max-w-3xl">
+            <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.care.eyebrow')}</p>
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">{t('pricing.care.heading')}</h2>
+            <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+            <p className="text-zinc-400 max-w-lg leading-relaxed">{t('pricing.care.subtitle')}</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {careTracks.map((track) => (
+              <div
+                key={track.name}
+                className={`rounded-2xl p-7 ${
+                  track.featured
+                    ? 'border border-amber-500/30 bg-gradient-to-b from-amber-950/15 to-[#0f0f0f]'
+                    : 'border border-white/10 bg-[#0f0f0f]'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-4 mb-4">
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${
+                    track.featured ? 'bg-amber-500/15 text-amber-400' : 'bg-white/5 text-zinc-300'
+                  }`}>
+                    {track.icon}
+                  </div>
+                  <span className={`text-base md:text-lg font-bold whitespace-nowrap ${
+                    track.featured ? 'text-amber-300' : 'text-white'
+                  }`}>
+                    {track.price}
+                  </span>
+                </div>
+                <h3 className="text-white font-semibold text-lg mb-1.5">{track.name}</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed mb-5">{track.tagline}</p>
+                <ul className="space-y-2.5">
+                  {track.includes.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-zinc-300 leading-snug">
+                      <Check size={15} className={`mt-0.5 flex-shrink-0 ${track.featured ? 'text-amber-400' : 'text-zinc-500'}`} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-5 text-xs md:text-sm text-zinc-500 max-w-2xl leading-relaxed">
+            {t('pricing.care.note')}
+          </p>
+        </motion.div>
 
         {/* Site Check nudge */}
         <motion.div
