@@ -297,7 +297,7 @@ export const translations = {
     'pricing.addons.extra.price': 'from 995 DKK / each',
     'pricing.addons.extra.desc': 'Need more than the tier covers? Pages can be added before or after launch.',
     'pricing.mokio.name': 'Mokio booking integration',
-    'pricing.mokio.price': 'Free with Mokio subscription',
+    'pricing.mokio.price': 'No setup fee with Mokio',
     'pricing.mokio.desc': 'Got a business that takes bookings? With a Mokio subscription I set it up on your site at no extra cost. Subscriptions start at 200 DKK/month per chair.',
     'pricing.mokio.link': 'Read more at mokio.io',
 
@@ -730,7 +730,7 @@ export const translations = {
     'pricing.addons.extra.price': 'fra 995 kr / stk',
     'pricing.addons.extra.desc': 'Brug for mere end pakken dækker? Sider kan tilføjes før eller efter launch.',
     'pricing.mokio.name': 'Mokio booking-integration',
-    'pricing.mokio.price': 'Gratis med Mokio-abonnement',
+    'pricing.mokio.price': 'Ingen opsætningspris med Mokio',
     'pricing.mokio.desc': 'Tager du imod bookinger? Med et Mokio-abonnement sætter jeg det op på din side uden ekstra kost. Abonnementer starter ved 200 kr/md per stol.',
     'pricing.mokio.link': 'Læs mere på mokio.io',
 
