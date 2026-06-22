@@ -298,7 +298,7 @@ export const translations = {
     'pricing.addons.extra.desc': 'Need more than the tier covers? Pages can be added before or after launch.',
     'pricing.mokio.name': 'Mokio booking integration',
     'pricing.mokio.price': 'No setup fee with Mokio',
-    'pricing.mokio.desc': 'Got a business that takes bookings? With a Mokio subscription I set it up on your site at no extra cost. Subscriptions start at 200 DKK/month per chair.',
+    'pricing.mokio.desc': 'Got a business that takes bookings? With a Mokio subscription I wire it into your site at no extra setup cost. Mokio Pro is 199 DKK/mo including one staff member, +99/mo per extra.',
     'pricing.mokio.link': 'Read more at mokio.io',
 
     // Care & hosting (recurring after launch)
@@ -731,7 +731,7 @@ export const translations = {
     'pricing.addons.extra.desc': 'Brug for mere end pakken dækker? Sider kan tilføjes før eller efter launch.',
     'pricing.mokio.name': 'Mokio booking-integration',
     'pricing.mokio.price': 'Ingen opsætningspris med Mokio',
-    'pricing.mokio.desc': 'Tager du imod bookinger? Med et Mokio-abonnement sætter jeg det op på din side uden ekstra kost. Abonnementer starter ved 200 kr/md per stol.',
+    'pricing.mokio.desc': 'Tager du imod bookinger? Med et Mokio-abonnement bygger jeg det ind i din side uden ekstra opsætningspris. Mokio Pro er 199 kr/md inkl. én medarbejder, +99 kr/md per ekstra.',
     'pricing.mokio.link': 'Læs mere på mokio.io',
 
     // Care & hosting (efter launch)
