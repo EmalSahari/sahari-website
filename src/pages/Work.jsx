@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Calendar, Hammer, Flame, Coffee, Scissors, Palette, Puzzle } from 'lucide-react'
+import { ArrowRight, Dumbbell, Calendar, Hammer, Flame, Coffee, Scissors, Palette, Puzzle, Sparkles } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -10,6 +10,17 @@ export default function Work() {
   const t = useT()
 
   const projects = [
+    {
+      icon: <Sparkles size={20} />,
+      title: t('projects.virko.title'),
+      desc: t('projects.virko.desc'),
+      tag: t('projects.virko.tag'),
+      href: 'https://www.virko.io/',
+      image: '/virko.png',
+      color: 'from-green-900/40 to-[#0f0f0f]',
+      border: 'border-green-500/20',
+      iconBg: 'bg-green-500/15 text-green-400',
+    },
     {
       icon: <Calendar size={20} />,
       title: t('projects.mokio.title'),

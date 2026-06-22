@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Code2, Globe, Smartphone, Server, Zap, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette } from 'lucide-react'
+import { ArrowRight, Code2, Globe, Smartphone, Server, Zap, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette, Sparkles } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -162,6 +162,20 @@ export default function Home() {
   ]
 
   const projects = [
+    {
+      icon: <Sparkles size={20} />,
+      title: t('projects.virko.title'),
+      desc: t('projects.virko.desc'),
+      tag: t('projects.virko.tag'),
+      href: 'https://www.virko.io/',
+      image: '/virko.png',
+      color: 'from-green-900/40 to-[#0f0f0f]',
+      border: 'border-green-500/20',
+      hoverBorder: 'hover:border-green-400/50',
+      iconBg: 'bg-green-500/15 text-green-400',
+      colSpan: 'md:col-span-3',
+      imageAspect: 'aspect-[21/9]',
+    },
     {
       icon: <Calendar size={20} />,
       title: t('projects.mokio.title'),
