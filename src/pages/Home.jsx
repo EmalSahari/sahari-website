@@ -27,12 +27,11 @@ const makeFadeUp = (isMobile) =>
         }),
       }
     : {
-        hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
+        hidden: { opacity: 0, y: 24 },
         show: (i = 0) => ({
           opacity: 1,
           y: 0,
-          filter: 'blur(0px)',
-          transition: { duration: 0.7, delay: i * 0.08, ease: [0.21, 0.47, 0.32, 0.98] },
+          transition: { duration: 0.55, delay: i * 0.06, ease: [0.21, 0.47, 0.32, 0.98] },
         }),
       }
 
@@ -217,47 +216,24 @@ export default function Home() {
           initial="hidden"
           animate="show"
           custom={0}
-          className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm backdrop-blur-sm"
+          className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
         >
           <Code2 size={14} className="text-amber-400" />
           <span>{t('hero.badge')}</span>
         </motion.div>
 
         <motion.h1
+          variants={heroFadeUp}
+          initial="hidden"
+          animate="show"
+          custom={1}
           className="relative z-10 font-display text-[clamp(1.875rem,7vw,5.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.05] max-w-5xl"
         >
-          {reduce ? (
-            <>
-              {t('hero.headline.start')}{' '}
-              <span className="gradient-text-animated">{t('hero.headline.highlight')}</span>{' '}
-              {t('hero.headline.end')}
-            </>
-          ) : (
-            (() => {
-              const cycleWords = t('hero.headline.cycle').split('|')
-              const units = [
-                ...t('hero.headline.start').split(' ').map((w) => ({ word: w, highlight: false })),
-                { word: cycleWords[0], highlight: true },
-                ...t('hero.headline.end').split(' ').map((w) => ({ word: w, highlight: false })),
-              ]
-              const baseDelay = 0.2
-              const stagger = isMobile ? 0.05 : 0.07
-              const duration = isMobile ? 0.55 : 0.8
-              const yStart = isMobile ? 16 : 28
-              return units.flatMap((u, i) => [
-                <motion.span
-                  key={`w-${i}`}
-                  initial={{ opacity: 0, y: yStart }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration, delay: baseDelay + i * stagger, ease: [0.16, 1, 0.3, 1] }}
-                  className={`inline-block ${u.highlight ? 'gradient-text-animated' : ''}`}
-                >
-                  {u.highlight ? <CyclingWord words={cycleWords} reduce={reduce} /> : u.word}
-                </motion.span>,
-                i < units.length - 1 ? <span key={`s-${i}`}>{' '}</span> : null,
-              ])
-            })()
-          )}
+          {t('hero.headline.start')}{' '}
+          <span className="gradient-text-animated">
+            <CyclingWord words={t('hero.headline.cycle').split('|')} reduce={reduce} />
+          </span>{' '}
+          {t('hero.headline.end')}
         </motion.h1>
 
         <motion.p
