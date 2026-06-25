@@ -162,16 +162,16 @@ export default function Home() {
 
   const projects = [
     {
-      icon: <Sparkles size={20} />,
-      title: t('projects.virko.title'),
-      desc: t('projects.virko.desc'),
-      tag: t('projects.virko.tag'),
-      href: 'https://www.virko.io/',
-      image: '/virko.png',
-      color: 'from-green-900/40 to-[#0f0f0f]',
-      border: 'border-green-500/20',
-      hoverBorder: 'hover:border-green-400/50',
-      iconBg: 'bg-green-500/15 text-green-400',
+      icon: <Hammer size={20} />,
+      title: t('projects.nexbyg.title'),
+      desc: t('projects.nexbyg.desc'),
+      tag: t('projects.nexbyg.tag'),
+      href: 'https://www.nexbyg.dk/',
+      image: '/nexbyg.webp',
+      color: 'from-orange-900/40 to-[#0f0f0f]',
+      border: 'border-orange-500/20',
+      hoverBorder: 'hover:border-orange-400/50',
+      iconBg: 'bg-orange-500/15 text-orange-400',
       colSpan: 'md:col-span-3',
       imageAspect: 'aspect-[21/9]',
     },
@@ -190,16 +190,16 @@ export default function Home() {
       imageAspect: 'aspect-[21/9]',
     },
     {
-      icon: <Hammer size={20} />,
-      title: t('projects.nexbyg.title'),
-      desc: t('projects.nexbyg.desc'),
-      tag: t('projects.nexbyg.tag'),
-      href: 'https://www.nexbyg.dk/',
-      image: '/nexbyg.webp',
-      color: 'from-orange-900/40 to-[#0f0f0f]',
-      border: 'border-orange-500/20',
-      hoverBorder: 'hover:border-orange-400/50',
-      iconBg: 'bg-orange-500/15 text-orange-400',
+      icon: <Sparkles size={20} />,
+      title: t('projects.virko.title'),
+      desc: t('projects.virko.desc'),
+      tag: t('projects.virko.tag'),
+      href: 'https://www.virko.io/',
+      image: '/virko.png',
+      color: 'from-green-900/40 to-[#0f0f0f]',
+      border: 'border-green-500/20',
+      hoverBorder: 'hover:border-green-400/50',
+      iconBg: 'bg-green-500/15 text-green-400',
       colSpan: 'md:col-span-3',
       imageAspect: 'aspect-[21/9]',
     },
@@ -283,6 +283,33 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Trust bar - 4 facts directly under the hero answering the SMB owner's first questions */}
+      <section className="border-y border-white/[0.06] bg-white/[0.015]">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="max-w-6xl mx-auto px-6 py-5 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-zinc-400"
+        >
+          <span className="inline-flex items-center gap-2">
+            <span className="text-amber-400">·</span>
+            <span className="text-zinc-200">{t('trust.price')}</span>
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <span className="text-amber-400">·</span>
+            {t('trust.location')}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <span className="text-amber-400">·</span>
+            {t('trust.response')}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <span className="text-amber-400">·</span>
+            {t('trust.delivery')}
+          </span>
+        </motion.div>
+      </section>
+
       {/* Services - editorial numbered list */}
       <section className="max-w-6xl mx-auto px-6 py-24">
         <motion.div
@@ -326,6 +353,34 @@ export default function Home() {
             {t('services.openToCta')}
           </Link>
         </p>
+      </section>
+
+      {/* Testimonial - promoted to position 4: client voice validates the services list above */}
+      <section className="max-w-4xl mx-auto px-6 py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative border-l-2 border-amber-500/40 pl-8 md:pl-12 py-4"
+        >
+          <Quote size={28} className="text-amber-400 mb-5" />
+          <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6 max-w-3xl">
+            {t('testimonial.quote')}
+          </blockquote>
+          <footer className="text-sm text-zinc-400">
+            <span className="text-white font-medium">{t('testimonial.name')}</span>
+            <span className="mx-2 text-zinc-600">·</span>
+            <a
+              href="https://www.nexbyg.dk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-400 hover:text-zinc-200 transition-colors underline decoration-zinc-700 hover:decoration-white underline-offset-4"
+            >
+              {t('testimonial.role')}
+            </a>
+          </footer>
+        </motion.div>
       </section>
 
       {/* Marquee 1 - services keywords */}
@@ -543,34 +598,6 @@ export default function Home() {
         className="my-12"
       />
 
-      {/* Testimonial */}
-      <section className="max-w-4xl mx-auto px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative border-l-2 border-amber-500/40 pl-8 md:pl-12 py-4"
-        >
-          <Quote size={28} className="text-amber-400 mb-5" />
-          <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6 max-w-3xl">
-            {t('testimonial.quote')}
-          </blockquote>
-          <footer className="text-sm text-zinc-400">
-            <span className="text-white font-medium">{t('testimonial.name')}</span>
-            <span className="mx-2 text-zinc-600">·</span>
-            <a
-              href="https://www.nexbyg.dk/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-zinc-400 hover:text-zinc-200 transition-colors underline decoration-zinc-700 hover:decoration-white underline-offset-4"
-            >
-              {t('testimonial.role')}
-            </a>
-          </footer>
-        </motion.div>
-      </section>
-
       {/* Security */}
       <section className="max-w-6xl mx-auto px-6 py-12">
         <motion.div
@@ -618,6 +645,15 @@ export default function Home() {
             {t('cta.button')}
             <ArrowRight size={16} />
           </Link>
+          <p className="mt-6 text-sm text-zinc-500">
+            {t('trust.directContact')}{' '}
+            <a
+              href="mailto:contact@sahari.io"
+              className="text-zinc-300 hover:text-white underline decoration-zinc-700 hover:decoration-white underline-offset-4 transition-colors"
+            >
+              contact@sahari.io
+            </a>
+          </p>
         </motion.div>
       </section>
     </div>

@@ -25,12 +25,19 @@ export const translations = {
     'nav.toggleMenu': 'Toggle menu',
 
     // Hero
-    'hero.badge': 'Software developer & content creator',
+    'hero.badge': 'Software developer · Aarhus',
     'hero.headline.start': 'Software that works',
     'hero.headline.highlight': 'as good',
     'hero.headline.cycle': 'as good|as fast|as sharp|as smart',
     'hero.headline.end': 'as it looks.',
-    'hero.subtitle': 'I build software (websites, mobile apps, backends, custom tools) for businesses and creators who want a real online presence. Also a YouTuber and content creator.',
+    'hero.subtitle': 'Websites, web shops and booking systems for Danish businesses. Solo studio in Aarhus. Fixed pricing. Delivery in days, not months.',
+
+    // Trust bar (under hero)
+    'trust.price': 'From 4,995 DKK · Fixed price',
+    'trust.location': 'Based in Aarhus',
+    'trust.response': 'Reply within 24 hours',
+    'trust.delivery': 'Delivered in 3 days to 4 weeks',
+    'trust.directContact': 'Or write directly:',
     'hero.cta.work': 'Work with me',
     'hero.cta.watch': 'Watch my content',
     'hero.cta.viewWork': 'See my work',
@@ -96,7 +103,7 @@ export const translations = {
     'projects.nexbyg.tag': 'Client · Website',
     'projects.virko.title': 'Virko',
     'projects.virko.desc': 'A SaaS I built. Automates SEO and lead-gen for small Danish service businesses: AI analyzes the customer site, writes weekly SEO content, posts to their Google Business profile, and runs Facebook and Instagram ads. End-to-end build — dashboard, AI pipeline, Stripe payments, multi-tenant infrastructure.',
-    'projects.virko.tag': 'SaaS · SEO & Leads',
+    'projects.virko.tag': 'My own product · SaaS',
     'projects.blackstone.title': 'Black Stone Tattoo',
     'projects.blackstone.desc': 'A concept site for a fictional tattoo studio in Copenhagen. Editorial layout, heavy typography, photo-driven.',
     'projects.blackstone.tag': 'Concept · Demo',
@@ -458,12 +465,19 @@ export const translations = {
     'nav.toggleMenu': 'Skift menu',
 
     // Hero
-    'hero.badge': 'Softwareudvikler & content creator',
+    'hero.badge': 'Softwareudvikler · Aarhus',
     'hero.headline.start': 'Software der virker',
     'hero.headline.highlight': 'lige så godt',
     'hero.headline.cycle': 'lige så godt|lige så smart|lige så nemt',
     'hero.headline.end': 'som det ser ud.',
-    'hero.subtitle': 'Jeg bygger software (hjemmesider, mobilapps, backends, skræddersyede værktøjer) til virksomheder og creators, der vil have en rigtig online tilstedeværelse. Også YouTuber og content creator.',
+    'hero.subtitle': 'Hjemmesider, webshops og bookingsystemer til danske virksomheder. Solo studio i Aarhus. Fast pris. Levering på dage, ikke måneder.',
+
+    // Trust bar (under hero)
+    'trust.price': 'Fra 4.995 kr · Fast pris',
+    'trust.location': 'Baseret i Aarhus',
+    'trust.response': 'Svar inden for 24 timer',
+    'trust.delivery': 'Levering på 3 dage til 4 uger',
+    'trust.directContact': 'Eller skriv direkte til:',
     'hero.cta.work': 'Samarbejd med mig',
     'hero.cta.watch': 'Se mit indhold',
     'hero.cta.viewWork': 'Se mit arbejde',
@@ -529,7 +543,7 @@ export const translations = {
     'projects.nexbyg.tag': 'Kunde · Hjemmeside',
     'projects.virko.title': 'Virko',
     'projects.virko.desc': 'En SaaS jeg har bygget. Automatiserer SEO og leads for små danske servicevirksomheder: AI analyserer kundens hjemmeside, skriver SEO-indhold ugentligt, poster på deres Google-profil og kører Facebook- og Instagram-annoncer. Bygget fra bunden – dashboard, AI-pipeline, Stripe-betalinger og multi-tenant infrastruktur.',
-    'projects.virko.tag': 'SaaS · SEO & Leads',
+    'projects.virko.tag': 'Mit eget produkt · SaaS',
     'projects.blackstone.title': 'Black Stone Tattoo',
     'projects.blackstone.desc': 'En konceptside for en fiktiv tatovørsalon i København. Editorial layout, kraftig typografi, fokus på fotos.',
     'projects.blackstone.tag': 'Koncept · Demo',
