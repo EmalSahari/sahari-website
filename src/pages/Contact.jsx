@@ -91,11 +91,11 @@ export default function Contact() {
           custom={0}
           className="mb-14 max-w-3xl"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('contact.eyebrow')}</p>
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('contact.eyebrow')}</p>
           <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02] mb-5">
             {t('contact.heading')}
           </h1>
-          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+          <div className="h-[2px] w-12 bg-red-400 mb-6" />
           <p className="text-zinc-400 text-lg max-w-lg">
             {t('contact.subtitle')}
           </p>
@@ -170,13 +170,13 @@ export default function Contact() {
                 />
 
                 {form.tier && (
-                  <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-medium">
+                  <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-medium">
                     <Tag size={13} />
                     <span>{t('contact.form.tierPrefix')}: <strong className="font-semibold">{form.tier}</strong></span>
                     <button
                       type="button"
                       onClick={clearTier}
-                      className="ml-1 text-amber-400 hover:text-amber-200 transition-colors"
+                      className="ml-1 text-red-400 hover:text-red-200 transition-colors"
                       aria-label="Remove tier"
                     >
                       <X size={13} />

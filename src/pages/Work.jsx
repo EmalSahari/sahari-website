@@ -39,9 +39,9 @@ export default function Work() {
       tag: t('projects.brandKit.tag'),
       href: '/tools/brand-kit',
       image: '/brand.png',
-      color: 'from-amber-900/40 to-[#0f0f0f]',
-      border: 'border-amber-500/20',
-      iconBg: 'bg-amber-500/15 text-amber-400',
+      color: 'from-violet-900/40 to-[#0f0f0f]',
+      border: 'border-violet-500/20',
+      iconBg: 'bg-violet-500/15 text-violet-400',
     },
     {
       icon: <Hammer size={20} />,
@@ -97,9 +97,9 @@ export default function Work() {
       tag: t('projects.mork.tag'),
       href: '/mork',
       image: '/mork.webp',
-      color: 'from-amber-900/40 to-[#0f0f0f]',
-      border: 'border-amber-600/20',
-      iconBg: 'bg-amber-600/15 text-amber-500',
+      color: 'from-yellow-900/40 to-[#0f0f0f]',
+      border: 'border-yellow-600/20',
+      iconBg: 'bg-yellow-600/15 text-yellow-500',
     },
     {
       icon: <Coffee size={20} />,
@@ -108,9 +108,9 @@ export default function Work() {
       tag: t('projects.drift.tag'),
       href: '/drift',
       image: '/drift.webp',
-      color: 'from-amber-900/40 to-[#0f0f0f]',
-      border: 'border-amber-500/20',
-      iconBg: 'bg-amber-500/15 text-amber-400',
+      color: 'from-stone-700/40 to-[#0f0f0f]',
+      border: 'border-stone-500/20',
+      iconBg: 'bg-stone-500/15 text-stone-300',
     },
   ]
 
@@ -162,13 +162,13 @@ export default function Work() {
           transition={{ duration: 0.6 }}
           className="mb-16 max-w-3xl"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">
             {t('work.eyebrow')}
           </p>
           <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02] mb-5">
             {t('work.heading')}
           </h1>
-          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+          <div className="h-[2px] w-12 bg-red-400 mb-6" />
           <p className="text-zinc-400 max-w-lg leading-relaxed">
             {t('work.subtitle')}
           </p>
@@ -185,13 +185,13 @@ export default function Work() {
           transition={{ duration: 0.6 }}
           className="mt-24 mb-12 pt-16 border-t border-white/5 max-w-3xl"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">
             {t('work.concepts.eyebrow')}
           </p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">
             {t('work.concepts.heading')}
           </h2>
-          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+          <div className="h-[2px] w-12 bg-red-400 mb-6" />
           <p className="text-zinc-400 max-w-lg leading-relaxed">
             {t('work.concepts.subtitle')}
           </p>

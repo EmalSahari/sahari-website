@@ -66,11 +66,11 @@ export default function About() {
             </div>
           </div>
           <div className="md:col-span-8">
-            <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
+            <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02]">
               {t('about.heading.start')} <span className="gradient-text">{t('about.heading.highlight')}</span>
             </h1>
-            <div className="mt-5 h-[2px] w-12 bg-amber-400" />
+            <div className="mt-5 h-[2px] w-12 bg-red-400" />
             <p className="mt-6 text-zinc-400 text-lg leading-relaxed max-w-2xl">
               {t('about.subtitle')}
             </p>
@@ -92,9 +92,9 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group grid md:grid-cols-12 gap-2 md:gap-6 py-7 border-b border-white/10 items-baseline transition-colors hover:border-amber-500/30"
+                className="group grid md:grid-cols-12 gap-2 md:gap-6 py-7 border-b border-white/10 items-baseline transition-colors hover:border-red-500/30"
               >
-                <span className="md:col-span-1 text-sm text-amber-400 font-medium tabular-nums">0{i + 1}</span>
+                <span className="md:col-span-1 text-sm text-red-400 font-medium tabular-nums">0{i + 1}</span>
                 <h3 className="md:col-span-4 font-display text-xl md:text-2xl font-bold text-white tracking-tight transition-transform duration-300 group-hover:translate-x-1.5">
                   {v.title}
                 </h3>
@@ -137,14 +137,14 @@ export default function About() {
           className="mb-20"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05] mb-4">{t('about.capabilities.heading')}</h2>
-          <div className="h-[2px] w-12 bg-amber-400 mb-8" />
+          <div className="h-[2px] w-12 bg-red-400 mb-8" />
           <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
               <span
                 key={skill}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-sm hover:border-amber-500/40 hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-zinc-300 text-sm hover:border-red-500/40 hover:text-white transition-colors"
               >
-                <CheckCircle2 size={12} className="text-amber-400" />
+                <CheckCircle2 size={12} className="text-red-400" />
                 {skill}
               </span>
             ))}

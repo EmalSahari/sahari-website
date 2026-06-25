@@ -127,7 +127,7 @@ function ServiceCard({ service, i }) {
   return (
     <Reveal i={i}>
       <SpotlightCard className="group border border-white/10 rounded-xl bg-[#0f0f0f] p-6 h-full hover:bg-[#131313] transition-colors duration-200">
-        <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center mb-5 group-hover:bg-amber-500/20 transition-colors">
+        <div className="w-10 h-10 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center mb-5 group-hover:bg-red-500/20 transition-colors">
           {service.icon}
         </div>
         <h3 className="text-white font-semibold mb-2 leading-snug">{service.title}</h3>
@@ -218,7 +218,7 @@ export default function Home() {
           custom={0}
           className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
         >
-          <Code2 size={14} className="text-amber-400" />
+          <Code2 size={14} className="text-red-400" />
           <span>{t('hero.badge')}</span>
         </motion.div>
 
@@ -266,7 +266,7 @@ export default function Home() {
             data-magnetic
             className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
           >
-            <Briefcase size={16} className="text-amber-400" />
+            <Briefcase size={16} className="text-red-400" />
             {t('hero.cta.viewWork')}
           </Link>
         </motion.div>
@@ -292,19 +292,19 @@ export default function Home() {
           className="max-w-6xl mx-auto px-6 py-5 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-zinc-400"
         >
           <span className="inline-flex items-center gap-2">
-            <span className="text-amber-400">·</span>
+            <span className="text-red-400">·</span>
             <span className="text-zinc-200">{t('trust.price')}</span>
           </span>
           <span className="inline-flex items-center gap-2">
-            <span className="text-amber-400">·</span>
+            <span className="text-red-400">·</span>
             {t('trust.location')}
           </span>
           <span className="inline-flex items-center gap-2">
-            <span className="text-amber-400">·</span>
+            <span className="text-red-400">·</span>
             {t('trust.response')}
           </span>
           <span className="inline-flex items-center gap-2">
-            <span className="text-amber-400">·</span>
+            <span className="text-red-400">·</span>
             {t('trust.delivery')}
           </span>
         </motion.div>
@@ -319,11 +319,11 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="mb-14 max-w-3xl"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('services.eyebrow')}</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05]">
             {t('services.heading')}
           </h2>
-          <div className="mt-5 h-[2px] w-12 bg-amber-400" />
+          <div className="mt-5 h-[2px] w-12 bg-red-400" />
           <p className="mt-6 text-zinc-400 max-w-lg leading-relaxed">
             {t('services.subtitle')}
           </p>
@@ -332,8 +332,8 @@ export default function Home() {
         <div className="border-t border-white/10">
           {services.map((s, i) => (
             <Reveal key={i} i={i}>
-              <div className="group grid md:grid-cols-12 gap-2 md:gap-6 py-7 border-b border-white/10 items-baseline transition-colors hover:border-amber-500/30">
-                <span className="md:col-span-1 text-sm text-amber-400 font-medium tabular-nums">
+              <div className="group grid md:grid-cols-12 gap-2 md:gap-6 py-7 border-b border-white/10 items-baseline transition-colors hover:border-red-500/30">
+                <span className="md:col-span-1 text-sm text-red-400 font-medium tabular-nums">
                   0{i + 1}
                 </span>
                 <h3 className="md:col-span-4 font-display text-xl md:text-2xl font-bold text-white tracking-tight transition-transform duration-300 group-hover:translate-x-1.5">
@@ -349,7 +349,7 @@ export default function Home() {
 
         <p className="mt-10 text-sm text-zinc-500">
           {t('services.openTo')}{' '}
-          <Link to="/contact" className="text-amber-400 hover:text-amber-300 transition-colors">
+          <Link to="/contact" className="text-red-400 hover:text-red-300 transition-colors">
             {t('services.openToCta')}
           </Link>
         </p>
@@ -362,9 +362,9 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative border-l-2 border-amber-500/40 pl-8 md:pl-12 py-4"
+          className="relative border-l-2 border-red-500/40 pl-8 md:pl-12 py-4"
         >
-          <Quote size={28} className="text-amber-400 mb-5" />
+          <Quote size={28} className="text-red-400 mb-5" />
           <blockquote className="text-xl md:text-2xl text-white font-medium leading-snug mb-6 max-w-3xl">
             {t('testimonial.quote')}
           </blockquote>
@@ -399,7 +399,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 max-w-2xl mx-auto"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('tools.eyebrow')}</p>
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('tools.eyebrow')}</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
             {t('tools.heading')}
           </h2>
@@ -410,14 +410,14 @@ export default function Home() {
           <Reveal i={0}>
             <Link
               to="/tools/site-check"
-              className="group relative block h-full rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-950/30 to-[#0f0f0f] p-7 hover:border-amber-400/50 hover:-translate-y-0.5 transition-all duration-200"
+              className="group relative block h-full rounded-2xl border border-red-500/20 bg-gradient-to-br from-red-950/30 to-[#0f0f0f] p-7 hover:border-red-400/50 hover:-translate-y-0.5 transition-all duration-200"
             >
               <div className="flex items-start gap-4 mb-5">
-                <div className="w-11 h-11 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-11 h-11 rounded-xl bg-red-500/15 text-red-400 flex items-center justify-center flex-shrink-0">
                   <Gauge size={22} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-amber-400 mb-1">
+                  <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-red-400 mb-1">
                     {t('tools.siteCheck.tag')}
                   </p>
                   <h3 className="text-white font-bold text-xl leading-tight">{t('tools.siteCheck.title')}</h3>
@@ -426,7 +426,7 @@ export default function Home() {
               <p className="text-zinc-400 text-sm leading-relaxed mb-6">
                 {t('tools.siteCheck.desc')}
               </p>
-              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-amber-300 group-hover:text-amber-200 transition-colors">
+              <span className="inline-flex items-center gap-1.5 text-sm font-medium text-red-300 group-hover:text-red-200 transition-colors">
                 {t('tools.siteCheck.cta')}
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </span>
@@ -470,7 +470,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 max-w-2xl mx-auto"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('process.eyebrow')}</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-4">
             {t('process.heading')}
           </h2>
@@ -486,7 +486,7 @@ export default function Home() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden md:block absolute top-3 left-[11%] right-[11%] h-px bg-gradient-to-r from-transparent via-amber-500/40 to-transparent origin-left"
+            className="hidden md:block absolute top-3 left-[11%] right-[11%] h-px bg-gradient-to-r from-transparent via-red-500/40 to-transparent origin-left"
           />
           {/* Vertical line on mobile */}
           <motion.div
@@ -494,7 +494,7 @@ export default function Home() {
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden absolute top-3 bottom-3 left-3 w-px bg-gradient-to-b from-amber-500/40 via-amber-500/40 to-transparent origin-top"
+            className="md:hidden absolute top-3 bottom-3 left-3 w-px bg-gradient-to-b from-red-500/40 via-red-500/40 to-transparent origin-top"
           />
 
           <div className="grid md:grid-cols-4 gap-10 md:gap-6">
@@ -502,10 +502,10 @@ export default function Home() {
               <Reveal key={i} i={i}>
                 <div className="relative pl-10 md:pl-0">
                   {/* Dot on the line */}
-                  <div className="absolute left-0 md:left-1/2 top-0 md:-translate-x-1/2 w-6 h-6 rounded-full bg-amber-400 ring-[6px] ring-[#080808] shadow-[0_0_20px_rgba(251,191,36,0.4)]" />
+                  <div className="absolute left-0 md:left-1/2 top-0 md:-translate-x-1/2 w-6 h-6 rounded-full bg-red-400 ring-[6px] ring-[#080808] shadow-[0_0_20px_rgba(251,191,36,0.4)]" />
                   {/* Number under the dot, big and editorial */}
                   <div className="md:text-center md:pt-12">
-                    <span className="block font-display text-xs font-semibold tracking-[0.25em] uppercase text-amber-400 mb-3">
+                    <span className="block font-display text-xs font-semibold tracking-[0.25em] uppercase text-red-400 mb-3">
                       Step 0{i + 1}
                     </span>
                     <h3 className="text-white font-semibold text-lg md:text-xl mb-2 leading-snug">{p.title}</h3>
@@ -527,11 +527,11 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="mb-14 max-w-3xl"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('projects.eyebrow')}</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05]">
             {t('projects.heading')}
           </h2>
-          <div className="mt-5 h-[2px] w-12 bg-amber-400" />
+          <div className="mt-5 h-[2px] w-12 bg-red-400" />
         </motion.div>
 
         <div className="space-y-20 md:space-y-28">
@@ -559,7 +559,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className={`md:col-span-5 ${reversed ? 'md:[direction:ltr]' : ''}`}>
-                    <span className="block text-xs font-medium text-amber-400 uppercase tracking-[0.25em] mb-4">
+                    <span className="block text-xs font-medium text-red-400 uppercase tracking-[0.25em] mb-4">
                       {p.tag}
                     </span>
                     <h3 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05] mb-5">
@@ -568,7 +568,7 @@ export default function Home() {
                     <p className="text-zinc-400 leading-relaxed mb-6 max-w-md">
                       {p.desc}
                     </p>
-                    <span className="inline-flex items-center gap-2 text-sm font-medium text-zinc-200 group-hover:text-amber-300 transition-colors">
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-zinc-200 group-hover:text-red-300 transition-colors">
                       {t('projects.viewLive')}
                       <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </span>

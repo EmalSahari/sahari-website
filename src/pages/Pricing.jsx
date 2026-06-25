@@ -23,7 +23,7 @@ function PricingCard({ tier, popular, i }) {
     <motion.div variants={fadeUp} initial="hidden" animate="show" custom={i} className="relative">
       {popular && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 text-black text-[10px] font-bold tracking-[0.2em] uppercase">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-400 text-black text-[10px] font-bold tracking-[0.2em] uppercase">
             <Sparkles size={11} />
             {t('pricing.popular')}
           </span>
@@ -31,7 +31,7 @@ function PricingCard({ tier, popular, i }) {
       )}
       <SpotlightCard
         glowColor={popular ? '251,191,36' : '255,255,255'}
-        className={`h-full p-8 ${popular ? 'border border-amber-500/40 bg-gradient-to-b from-amber-950/20 to-[#0f0f0f]' : 'border border-white/10 bg-[#0f0f0f]'}`}
+        className={`h-full p-8 ${popular ? 'border border-red-500/40 bg-gradient-to-b from-red-950/20 to-[#0f0f0f]' : 'border border-white/10 bg-[#0f0f0f]'}`}
       >
         <div className="flex flex-col h-full">
           <p className="text-xs font-semibold tracking-[0.25em] uppercase mb-3" style={{ color: popular ? '#fbbf24' : '#a1a1aa' }}>
@@ -51,7 +51,7 @@ function PricingCard({ tier, popular, i }) {
           <ul className="space-y-3 mb-6 flex-1">
             {tier.includes.map((item) => (
               <li key={item} className="flex items-start gap-2.5 text-sm text-zinc-300 leading-snug">
-                <Check size={16} className="text-amber-400 mt-0.5 flex-shrink-0" />
+                <Check size={16} className="text-red-400 mt-0.5 flex-shrink-0" />
                 <span>{item}</span>
               </li>
             ))}
@@ -67,7 +67,7 @@ function PricingCard({ tier, popular, i }) {
             to={`/contact?tier=${tier.slug}`}
             className={`mt-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-medium text-sm transition-all duration-200 ${
               popular
-                ? 'bg-amber-400 hover:bg-amber-300 text-black shadow-lg shadow-amber-900/40'
+                ? 'bg-red-400 hover:bg-red-300 text-black shadow-lg shadow-red-900/40'
                 : 'bg-white hover:bg-zinc-200 text-black'
             }`}
           >
@@ -89,7 +89,7 @@ function FaqItem({ q, a }) {
         className="w-full py-5 flex items-start justify-between gap-6 text-left group"
       >
         <span className="text-white font-medium text-base md:text-lg leading-snug">{q}</span>
-        <span className="text-amber-400 flex-shrink-0 mt-1">
+        <span className="text-red-400 flex-shrink-0 mt-1">
           {open ? <Minus size={20} strokeWidth={1.5} /> : <Plus size={20} strokeWidth={1.5} />}
         </span>
       </button>
@@ -236,11 +236,11 @@ export default function Pricing() {
           custom={0}
           className="mb-16 max-w-3xl"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.eyebrow')}</p>
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.eyebrow')}</p>
           <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02] mb-5">
             {t('pricing.heading')}
           </h1>
-          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+          <div className="h-[2px] w-12 bg-red-400 mb-6" />
           <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">
             {t('pricing.subtitle')}
           </p>
@@ -263,9 +263,9 @@ export default function Pricing() {
           className="mb-20"
         >
           <div className="mb-8 max-w-3xl">
-            <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.care.eyebrow')}</p>
+            <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.care.eyebrow')}</p>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">{t('pricing.care.heading')}</h2>
-            <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+            <div className="h-[2px] w-12 bg-red-400 mb-6" />
             <p className="text-zinc-400 max-w-lg leading-relaxed">{t('pricing.care.subtitle')}</p>
           </div>
 
@@ -275,18 +275,18 @@ export default function Pricing() {
                 key={track.name}
                 className={`rounded-2xl p-7 ${
                   track.featured
-                    ? 'border border-amber-500/30 bg-gradient-to-b from-amber-950/15 to-[#0f0f0f]'
+                    ? 'border border-red-500/30 bg-gradient-to-b from-red-950/15 to-[#0f0f0f]'
                     : 'border border-white/10 bg-[#0f0f0f]'
                 }`}
               >
                 <div className="flex items-center justify-between gap-4 mb-4">
                   <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${
-                    track.featured ? 'bg-amber-500/15 text-amber-400' : 'bg-white/5 text-zinc-300'
+                    track.featured ? 'bg-red-500/15 text-red-400' : 'bg-white/5 text-zinc-300'
                   }`}>
                     {track.icon}
                   </div>
                   <span className={`text-base md:text-lg font-bold whitespace-nowrap ${
-                    track.featured ? 'text-amber-300' : 'text-white'
+                    track.featured ? 'text-red-300' : 'text-white'
                   }`}>
                     {track.price}
                   </span>
@@ -296,7 +296,7 @@ export default function Pricing() {
                 <ul className="space-y-2.5">
                   {track.includes.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-zinc-300 leading-snug">
-                      <Check size={15} className={`mt-0.5 flex-shrink-0 ${track.featured ? 'text-amber-400' : 'text-zinc-500'}`} />
+                      <Check size={15} className={`mt-0.5 flex-shrink-0 ${track.featured ? 'text-red-400' : 'text-zinc-500'}`} />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -321,16 +321,16 @@ export default function Pricing() {
         >
           <Link
             to="/tools/site-check"
-            className="group flex items-center gap-4 rounded-xl border border-amber-500/20 bg-amber-950/[0.08] hover:bg-amber-950/15 hover:border-amber-400/40 px-5 py-4 transition-all"
+            className="group flex items-center gap-4 rounded-xl border border-red-500/20 bg-red-950/[0.08] hover:bg-red-950/15 hover:border-red-400/40 px-5 py-4 transition-all"
           >
-            <div className="w-10 h-10 rounded-lg bg-amber-500/15 text-amber-400 flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-red-500/15 text-red-400 flex items-center justify-center flex-shrink-0">
               <Gauge size={20} />
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-white font-medium text-sm md:text-base">{t('pricing.siteCheck.title')}</p>
               <p className="text-zinc-400 text-xs md:text-sm leading-snug mt-0.5">{t('pricing.siteCheck.body')}</p>
             </div>
-            <ArrowRight size={16} className="text-amber-400 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={16} className="text-red-400 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>
 
@@ -364,9 +364,9 @@ export default function Pricing() {
           className="mb-20"
         >
           <div className="mb-10 max-w-3xl">
-            <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.addons.eyebrow')}</p>
+            <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.addons.eyebrow')}</p>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">{t('pricing.addons.heading')}</h2>
-            <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+            <div className="h-[2px] w-12 bg-red-400 mb-6" />
             <p className="text-zinc-400 max-w-lg leading-relaxed">{t('pricing.addons.subtitle')}</p>
           </div>
 
@@ -379,17 +379,17 @@ export default function Pricing() {
             ))}
           </div>
 
-          <div className="mt-6 border border-amber-500/20 bg-amber-950/10 rounded-xl p-5">
+          <div className="mt-6 border border-red-500/20 bg-red-950/10 rounded-xl p-5">
             <div className="flex items-baseline justify-between gap-3 mb-2">
               <h3 className="text-white font-semibold text-sm md:text-base">{t('pricing.mokio.name')}</h3>
-              <span className="text-amber-400 text-sm font-semibold whitespace-nowrap">{t('pricing.mokio.price')}</span>
+              <span className="text-red-400 text-sm font-semibold whitespace-nowrap">{t('pricing.mokio.price')}</span>
             </div>
             <p className="text-zinc-400 text-xs md:text-sm leading-relaxed mb-3">{t('pricing.mokio.desc')}</p>
             <a
               href="https://www.mokio.io/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 text-xs md:text-sm font-medium transition-colors"
+              className="inline-flex items-center gap-1 text-red-400 hover:text-red-300 text-xs md:text-sm font-medium transition-colors"
             >
               {t('pricing.mokio.link')}
               <ArrowRight size={12} />
@@ -407,9 +407,9 @@ export default function Pricing() {
           className="mb-16"
         >
           <div className="mb-10 max-w-3xl">
-            <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.faq.eyebrow')}</p>
+            <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('pricing.faq.eyebrow')}</p>
             <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">{t('pricing.faq.heading')}</h2>
-            <div className="h-[2px] w-12 bg-amber-400" />
+            <div className="h-[2px] w-12 bg-red-400" />
           </div>
 
           <div className="border-t border-white/10 max-w-3xl">
@@ -429,7 +429,7 @@ export default function Pricing() {
           className="max-w-3xl"
         >
           <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">{t('pricing.final.heading')}</h2>
-          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
+          <div className="h-[2px] w-12 bg-red-400 mb-6" />
           <p className="text-zinc-400 mb-6">{t('pricing.final.subtitle')}</p>
           <Link
             to="/contact"

@@ -381,7 +381,7 @@ function VitalCard({ label, value, score }) {
 function SeoCheckRow({ check }) {
   const tone = {
     pass: { icon: <CheckCircle2 size={16} className="text-emerald-400" />, ring: 'border-transparent' },
-    warn: { icon: <AlertTriangle size={16} className="text-amber-400" />, ring: 'border-transparent' },
+    warn: { icon: <AlertTriangle size={16} className="text-red-400" />, ring: 'border-transparent' },
     fail: { icon: <XCircle size={16} className="text-red-400" />, ring: 'border-transparent' },
   }[check.status]
   return (
@@ -525,13 +525,13 @@ export default function SiteCheck() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 max-w-2xl mx-auto"
         >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">
             {t('siteCheck.eyebrow')}
           </p>
           <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight mb-5 leading-[1.05]">
             {t('siteCheck.heading')}
           </h1>
-          <div className="h-[2px] w-12 bg-amber-400 mx-auto mb-6" />
+          <div className="h-[2px] w-12 bg-red-400 mx-auto mb-6" />
           <p className="text-zinc-400 text-lg leading-relaxed">
             {t('siteCheck.subtitle')}
           </p>
@@ -554,13 +554,13 @@ export default function SiteCheck() {
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder={t('siteCheck.placeholder')}
                 disabled={loading}
-                className="w-full bg-[#0f0f0f] border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400/50 transition-colors disabled:opacity-60"
+                className="w-full bg-[#0f0f0f] border border-white/10 rounded-xl pl-11 pr-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-red-400/50 transition-colors disabled:opacity-60"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-amber-400 hover:bg-amber-300 disabled:opacity-60 disabled:cursor-not-allowed text-black font-semibold rounded-xl transition-colors whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-red-400 hover:bg-red-300 disabled:opacity-60 disabled:cursor-not-allowed text-black font-semibold rounded-xl transition-colors whitespace-nowrap"
             >
               {loading ? <Loader2 size={16} className="animate-spin" /> : <Gauge size={16} />}
               {loading ? t('siteCheck.scanning') : t('siteCheck.scan')}
@@ -578,7 +578,7 @@ export default function SiteCheck() {
         {/* Loading skeleton */}
         {loading && (
           <div className="mt-12 flex flex-col items-center gap-4 text-zinc-500">
-            <Loader2 size={28} className="animate-spin text-amber-400" />
+            <Loader2 size={28} className="animate-spin text-red-400" />
             <p className="text-sm">{t('siteCheck.scanning')}</p>
           </div>
         )}
@@ -612,7 +612,7 @@ export default function SiteCheck() {
 
               {/* Scores */}
               <div className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-6 md:p-8 mb-5">
-                <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-6">
+                <h2 className="text-[11px] tracking-[0.3em] uppercase text-red-400 font-semibold mb-6">
                   {t('siteCheck.scores')}
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -641,12 +641,12 @@ export default function SiteCheck() {
 
               {/* SEO checklist */}
               <div className="mb-5">
-                <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
+                <h2 className="text-[11px] tracking-[0.3em] uppercase text-red-400 font-semibold mb-4">
                   {t('siteCheck.seoCheck')}
                 </h2>
                 {result.seoChecks === null ? (
                   <div className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-5 flex items-center gap-3 text-zinc-400">
-                    <Loader2 size={16} className="animate-spin text-amber-400" />
+                    <Loader2 size={16} className="animate-spin text-red-400" />
                     <p className="text-sm">{t('siteCheck.seoCheckLoading')}</p>
                   </div>
                 ) : result.seoChecks.length === 0 ? (
@@ -666,7 +666,7 @@ export default function SiteCheck() {
               {/* Failing SEO audits from PageSpeed */}
               {result.seoFailures.length > 0 && (
                 <div className="mb-5">
-                  <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
+                  <h2 className="text-[11px] tracking-[0.3em] uppercase text-red-400 font-semibold mb-4">
                     {t('siteCheck.seoFailuresHeading')}
                   </h2>
                   <div className="space-y-3">
@@ -689,7 +689,7 @@ export default function SiteCheck() {
 
               {/* Core Web Vitals */}
               <div className="mb-5">
-                <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
+                <h2 className="text-[11px] tracking-[0.3em] uppercase text-red-400 font-semibold mb-4">
                   {t('siteCheck.vitals')}
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -702,7 +702,7 @@ export default function SiteCheck() {
 
               {/* Top issues */}
               <div className="mb-8">
-                <h2 className="text-[11px] tracking-[0.3em] uppercase text-amber-400 font-semibold mb-4">
+                <h2 className="text-[11px] tracking-[0.3em] uppercase text-red-400 font-semibold mb-4">
                   {t('siteCheck.issues')}
                 </h2>
                 {result.issues.length === 0 ? (
@@ -717,14 +717,14 @@ export default function SiteCheck() {
                       return (
                         <div key={issue.id || i} className="rounded-2xl border border-white/10 bg-[#0f0f0f] p-5">
                           <div className="flex items-start gap-4">
-                            <div className="w-7 h-7 rounded-lg bg-amber-500/15 text-amber-400 flex items-center justify-center flex-shrink-0 text-sm font-bold">
+                            <div className="w-7 h-7 rounded-lg bg-red-500/15 text-red-400 flex items-center justify-center flex-shrink-0 text-sm font-bold">
                               {i + 1}
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-start justify-between gap-3 flex-wrap">
                                 <p className="text-white font-medium leading-snug">{issue.title}</p>
                                 {savings > 0 && (
-                                  <span className="text-xs font-semibold text-amber-300 whitespace-nowrap flex items-center gap-1">
+                                  <span className="text-xs font-semibold text-red-300 whitespace-nowrap flex items-center gap-1">
                                     <Zap size={11} />
                                     {t('siteCheck.estSavings')} {(savings / 1000).toFixed(1)}s
                                   </span>
@@ -743,7 +743,7 @@ export default function SiteCheck() {
               </div>
 
               {/* CTA */}
-              <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-b from-amber-950/20 to-[#0f0f0f] p-6 md:p-8">
+              <div className="rounded-2xl border border-red-500/30 bg-gradient-to-b from-red-950/20 to-[#0f0f0f] p-6 md:p-8">
                 <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
                   {t('siteCheck.cta.heading')}
                 </h3>
@@ -752,7 +752,7 @@ export default function SiteCheck() {
                 </p>
                 <button
                   onClick={goToContact}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-amber-400 hover:bg-amber-300 text-black font-semibold rounded-xl text-sm transition-colors shadow-lg shadow-amber-900/40"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-red-400 hover:bg-red-300 text-black font-semibold rounded-xl text-sm transition-colors shadow-lg shadow-red-900/40"
                 >
                   {t('siteCheck.cta.button')}
                   <ArrowRight size={14} />

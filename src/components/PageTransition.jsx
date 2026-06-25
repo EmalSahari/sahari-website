@@ -47,7 +47,7 @@ export default function PageTransition() {
     >
       <div className="absolute inset-0 bg-[#080808]" />
       {/* Amber strip riding the panel's top edge */}
-      <div className="absolute -top-[2px] left-0 right-0 h-[3px] bg-amber-400" />
+      <div className="absolute -top-[2px] left-0 right-0 h-[3px] bg-red-400" />
     </motion.div>
   )
 }
