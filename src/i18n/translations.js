@@ -242,7 +242,7 @@ export const translations = {
     // Pricing page
     'pricing.eyebrow': 'Pricing',
     'pricing.heading': 'Three starting points. Honest scope.',
-    'pricing.subtitle': "Fixed prices for clear scopes. We talk first, agree on what's needed, then commit to a number. No surprises at the end.",
+    'pricing.subtitle': "The numbers below are starting points, not fixed packages. Every project gets its own quote after we talk through what you actually need. Once we agree, the price is fixed — no surprises at the end.",
     'pricing.popular': 'Most popular',
     'pricing.from': 'from',
     'pricing.currency': 'DKK',
@@ -682,7 +682,7 @@ export const translations = {
     // Pricing page
     'pricing.eyebrow': 'Priser',
     'pricing.heading': 'Tre udgangspunkter. Ærligt scope.',
-    'pricing.subtitle': 'Fast pris for klart scope. Vi snakker først, bliver enige om hvad du har brug for, så committer jeg til et tal. Ingen overraskelser til sidst.',
+    'pricing.subtitle': 'Tallene herunder er udgangspunkter, ikke faste pakker. Hvert projekt får sit eget tilbud efter vi har snakket om hvad du faktisk har brug for. Når vi er enige, ligger prisen fast – ingen overraskelser til sidst.',
     'pricing.popular': 'Mest populær',
     'pricing.from': 'fra',
     'pricing.currency': 'kr',
