@@ -45,36 +45,22 @@ export default function About() {
     <div className="pt-28 pb-20">
       <Seo title="About" description="Software builder behind Sahari. Building secure, well-functioning software for businesses and creators. Also a YouTuber with 84K+ subscribers." />
       <div className="max-w-5xl mx-auto px-6">
-        {/* Hero - asymmetric: photo left, heading right */}
+        {/* Hero */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
           custom={0}
-          className="mb-20 grid md:grid-cols-12 gap-8 md:gap-12 items-end"
+          className="mb-20"
         >
-          <div className="md:col-span-4">
-            <div className="w-32 h-32 md:w-full md:h-auto md:aspect-square rounded-2xl overflow-hidden border border-white/15 shadow-lg shadow-black/40 bg-zinc-900">
-              <img
-                src="/emal.webp"
-                alt="Emal Sahari"
-                fetchpriority="high"
-                decoding="async"
-                className="w-full h-full object-cover"
-                style={{ objectPosition: '50% 25%' }}
-              />
-            </div>
-          </div>
-          <div className="md:col-span-8">
-            <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
-            <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02]">
-              {t('about.heading.start')} <span className="gradient-text">{t('about.heading.highlight')}</span>
-            </h1>
-            <div className="mt-5 h-[2px] w-12 bg-red-400" />
-            <p className="mt-6 text-zinc-400 text-lg leading-relaxed max-w-2xl">
-              {t('about.subtitle')}
-            </p>
-          </div>
+          <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">{t('about.eyebrow')}</p>
+          <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02]">
+            {t('about.heading.start')} <span className="gradient-text">{t('about.heading.highlight')}</span>
+          </h1>
+          <div className="mt-5 h-[2px] w-12 bg-red-400" />
+          <p className="mt-6 text-zinc-400 text-lg leading-relaxed max-w-2xl">
+            {t('about.subtitle')}
+          </p>
         </motion.div>
 
         {/* Values - editorial numbered list */}
