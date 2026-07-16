@@ -25,9 +25,9 @@ const svg = `
   <!-- Soft amber glow top-right corner -->
   <defs>
     <radialGradient id="glow" cx="1" cy="0" r="1">
-      <stop offset="0" stop-color="#f87171" stop-opacity="0.18"/>
-      <stop offset="0.5" stop-color="#f87171" stop-opacity="0.05"/>
-      <stop offset="1" stop-color="#f87171" stop-opacity="0"/>
+      <stop offset="0" stop-color="#fbbf24" stop-opacity="0.18"/>
+      <stop offset="0.5" stop-color="#fbbf24" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
     </radialGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#glow)"/>
@@ -46,7 +46,7 @@ const svg = `
         font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="90" fill="#ffffff" letter-spacing="-0.04em">Software that</text>
   <text x="80" y="470"
         font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="90" letter-spacing="-0.04em">
-    <tspan fill="#ffffff">works</tspan><tspan fill="#f87171" font-style="italic"> as good</tspan><tspan fill="#ffffff">.</tspan>
+    <tspan fill="#ffffff">works</tspan><tspan fill="#fbbf24" font-style="italic"> as good</tspan><tspan fill="#ffffff">.</tspan>
   </text>
 
   <!-- Bottom row -->
@@ -54,7 +54,7 @@ const svg = `
         font-family="Helvetica, Arial, sans-serif" font-weight="500" font-size="24" fill="#a1a1aa">Software studio · Aarhus, Denmark</text>
 
   <text x="1120" y="570" text-anchor="end"
-        font-family="Helvetica, Arial, sans-serif" font-weight="600" font-size="24" fill="#f87171">sahari.io</text>
+        font-family="Helvetica, Arial, sans-serif" font-weight="600" font-size="24" fill="#fbbf24">sahari.io</text>
 </svg>
 `
 

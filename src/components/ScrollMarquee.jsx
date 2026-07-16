@@ -72,7 +72,7 @@ export default function ScrollMarquee({ words, speed = 0.5, className = '' }) {
         {repeated.map((word, i) => (
           <span key={i} className="inline-flex items-center gap-10 md:gap-16">
             <span>{word}</span>
-            <span className="text-red-400 text-2xl md:text-4xl font-light leading-none">✦</span>
+            <span className="text-amber-400 text-2xl md:text-4xl font-light leading-none">✦</span>
           </span>
         ))}
       </div>

@@ -1839,7 +1839,7 @@ $font-body: '${fontPair.body}', sans-serif;`
             <ArrowLeft size={14} />
             <span>Sahari</span>
           </Link>
-          <span className="text-[10px] md:text-xs tracking-[0.25em] uppercase text-red-400 font-semibold">
+          <span className="text-[10px] md:text-xs tracking-[0.25em] uppercase text-amber-400 font-semibold">
             Brand Kit Generator
           </span>
           <span className="hidden md:block text-xs text-zinc-500">
@@ -1854,7 +1854,7 @@ $font-body: '${fontPair.body}', sans-serif;`
           <div className="relative">
             <button
               onClick={() => setVibeDropdownOpen((v) => !v)}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-400 text-black rounded-full text-xs md:text-sm font-medium hover:bg-red-300 transition-all"
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-400 text-black rounded-full text-xs md:text-sm font-medium hover:bg-amber-300 transition-all"
             >
               <span className="text-[10px] tracking-[0.2em] uppercase opacity-70">Vibe</span>
               <span className="font-semibold">{VIBES.find((v) => v.id === vibe)?.label || 'Any'}</span>
@@ -1875,14 +1875,14 @@ $font-body: '${fontPair.body}', sans-serif;`
                         setVibeDropdownOpen(false)
                       }}
                       className={`w-full text-left px-3 py-2 transition-colors ${
-                        vibe === v.id ? 'bg-red-400/15' : 'hover:bg-white/5'
+                        vibe === v.id ? 'bg-amber-400/15' : 'hover:bg-white/5'
                       }`}
                     >
                       <div className="flex items-center justify-between gap-2 mb-0.5">
-                        <span className={`text-sm font-medium ${vibe === v.id ? 'text-red-300' : 'text-white'}`}>
+                        <span className={`text-sm font-medium ${vibe === v.id ? 'text-amber-300' : 'text-white'}`}>
                           {v.label}
                         </span>
-                        {vibe === v.id && <Check size={13} className="text-red-400" />}
+                        {vibe === v.id && <Check size={13} className="text-amber-400" />}
                       </div>
                       <p className="text-[11px] leading-snug text-zinc-500">{v.desc}</p>
                     </button>
@@ -1983,7 +1983,7 @@ $font-body: '${fontPair.body}', sans-serif;`
               onClick={toggleSave}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all border ${
                 isCurrentSaved
-                  ? 'bg-red-400/10 border-red-400/40 text-red-300 hover:bg-red-400/20'
+                  ? 'bg-amber-400/10 border-amber-400/40 text-amber-300 hover:bg-amber-400/20'
                   : 'bg-white/5 border-white/10 text-zinc-200 hover:bg-white/10'
               }`}
               title={isCurrentSaved ? 'Remove from saved' : 'Save this kit'}
@@ -2502,7 +2502,7 @@ $font-body: '${fontPair.body}', sans-serif;`
             {/* Palette */}
             <section>
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-red-400 font-semibold">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 font-semibold">
                   Palette
                 </p>
                 {(() => {
@@ -2510,7 +2510,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   const badge = contrastBadge(ratio)
                   const colorMap = {
                     good: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
-                    warn: 'bg-red-500/15 text-red-300 border-red-500/30',
+                    warn: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
                     bad: 'bg-rose-500/15 text-rose-300 border-rose-500/30',
                   }
                   return (
@@ -2531,7 +2531,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   return (
                     <div
                       key={swatch.label}
-                      className={`rounded-lg transition-colors ${isLocked ? 'bg-red-400/5' : 'hover:bg-white/5'} ${isEditing ? 'bg-white/[0.04]' : ''}`}
+                      className={`rounded-lg transition-colors ${isLocked ? 'bg-amber-400/5' : 'hover:bg-white/5'} ${isEditing ? 'bg-white/[0.04]' : ''}`}
                     >
                       <div className="flex items-center gap-2 p-2">
                         <input
@@ -2557,7 +2557,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                                 }
                               }}
                               autoFocus
-                              className="text-xs font-mono bg-white/10 border border-white/20 rounded px-1.5 py-0.5 w-20 text-right text-zinc-200 tabular-nums focus:outline-none focus:border-red-400/60"
+                              className="text-xs font-mono bg-white/10 border border-white/20 rounded px-1.5 py-0.5 w-20 text-right text-zinc-200 tabular-nums focus:outline-none focus:border-amber-400/60"
                               maxLength={7}
                             />
                           ) : (
@@ -2574,7 +2574,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                           onClick={() => toggleLock(i)}
                           className={`p-1.5 rounded-md transition-colors flex-shrink-0 ${
                             isLocked
-                              ? 'text-red-400 hover:text-red-300'
+                              ? 'text-amber-400 hover:text-amber-300'
                               : 'text-zinc-600 hover:text-zinc-300'
                           }`}
                           title={isLocked ? 'Unlock this color' : 'Lock this color while shuffling'}
@@ -2598,7 +2598,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                                 step={1}
                                 value={Math.round(value)}
                                 onChange={(e) => adjustSwatchHsl(i, ch, parseFloat(e.target.value))}
-                                className="flex-1 h-1 accent-red-400"
+                                className="flex-1 h-1 accent-amber-400"
                               />
                               <span className="text-[10px] font-mono text-zinc-500 w-8 text-right tabular-nums">
                                 {Math.round(value)}
@@ -2623,7 +2623,7 @@ $font-body: '${fontPair.body}', sans-serif;`
 
             {/* Brand name */}
             <section>
-              <p className="text-[10px] tracking-[0.3em] uppercase text-red-400 mb-3 font-semibold">
+              <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 mb-3 font-semibold">
                 Brand name
               </p>
               <input
@@ -2632,20 +2632,20 @@ $font-body: '${fontPair.body}', sans-serif;`
                 onChange={(e) => setBrandName(e.target.value)}
                 placeholder="Your Brand"
                 maxLength={32}
-                className="w-full bg-white/[0.02] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-red-400/50"
+                className="w-full bg-white/[0.02] border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400/50"
               />
             </section>
 
             {/* Typography */}
             <section>
               <div className="flex items-center justify-between mb-3">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-red-400 font-semibold">
+                <p className="text-[10px] tracking-[0.3em] uppercase text-amber-400 font-semibold">
                   Typography
                 </p>
                 <div className="flex items-center gap-1">
                   <button
                     onClick={rollRandomFont}
-                    className="p-1 rounded-md text-zinc-500 hover:text-red-400 transition-colors"
+                    className="p-1 rounded-md text-zinc-500 hover:text-amber-400 transition-colors"
                     title="Roll a completely random Google Font outside the curated set"
                   >
                     <ShuffleIcon size={13} />
@@ -2653,7 +2653,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   <button
                     onClick={() => setLockedFont((v) => !v)}
                     className={`p-1 rounded-md transition-colors ${
-                      lockedFont ? 'text-red-400 hover:text-red-300' : 'text-zinc-600 hover:text-zinc-300'
+                      lockedFont ? 'text-amber-400 hover:text-amber-300' : 'text-zinc-600 hover:text-zinc-300'
                     }`}
                     title={lockedFont ? 'Unlock font (F)' : 'Lock font while shuffling palette (F)'}
                   >
@@ -2684,7 +2684,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                   href={`https://fonts.google.com/?query=${encodeURIComponent(fontPair.display)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-red-400 hover:text-red-300 text-xs transition-colors"
+                  className="inline-flex items-center gap-1 text-amber-400 hover:text-amber-300 text-xs transition-colors"
                 >
                   Find on Google Fonts
                   <ArrowRight size={11} />
@@ -2693,7 +2693,7 @@ $font-body: '${fontPair.body}', sans-serif;`
             </section>
 
             {/* Sahari CTA */}
-            <section className="rounded-xl border border-red-500/20 bg-red-950/10 p-4">
+            <section className="rounded-xl border border-amber-500/20 bg-amber-950/10 p-4">
               <p
                 className="text-sm font-semibold text-white mb-2 leading-snug"
                 style={{ fontFamily: '"Inter", sans-serif' }}
@@ -2797,7 +2797,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 onKeyDown={(e) => { if (e.key === 'Enter') scrapeFromUrl() }}
                 placeholder="https://stripe.com"
                 disabled={scrapeLoading}
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-red-400/50 disabled:opacity-50 mb-3"
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-amber-400/50 disabled:opacity-50 mb-3"
                 autoFocus
               />
               {scrapeError && (
@@ -2814,7 +2814,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 <button
                   onClick={scrapeFromUrl}
                   disabled={scrapeLoading || !scrapeUrl}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-red-400 hover:bg-red-300 text-black rounded-lg text-xs font-medium disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-amber-400 hover:bg-amber-300 text-black rounded-lg text-xs font-medium disabled:opacity-50"
                 >
                   {scrapeLoading ? 'Loading...' : 'Extract'}
                 </button>
@@ -2847,7 +2847,7 @@ $font-body: '${fontPair.body}', sans-serif;`
             >
               <header className="flex items-center justify-between px-5 py-4 border-b border-white/10">
                 <div>
-                  <p className="text-[10px] tracking-[0.25em] uppercase text-red-400 font-semibold">Saved kits</p>
+                  <p className="text-[10px] tracking-[0.25em] uppercase text-amber-400 font-semibold">Saved kits</p>
                   <p className="text-sm text-zinc-400 mt-0.5">{saved.length} stored locally</p>
                 </div>
                 <button
@@ -2887,7 +2887,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                       <div className="px-4 py-3 flex items-center justify-between gap-3">
                         <div className="min-w-0 flex-1">
                           {item.name && (
-                            <p className="text-xs text-red-400 font-medium truncate">{item.name}</p>
+                            <p className="text-xs text-amber-400 font-medium truncate">{item.name}</p>
                           )}
                           <p
                             className="text-sm text-white truncate"

@@ -73,7 +73,7 @@ export default function LoadingSequence({ onDone }) {
             delay: 0.08 + letters.length * 0.06,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className="font-display text-5xl md:text-7xl font-bold text-red-400 tracking-tight leading-none"
+          className="font-display text-5xl md:text-7xl font-bold text-amber-400 tracking-tight leading-none"
         >
           .
         </motion.span>
@@ -87,7 +87,7 @@ export default function LoadingSequence({ onDone }) {
             delay: 0.5,
             ease: [0.65, 0, 0.35, 1],
           }}
-          className="absolute -bottom-3 left-0 right-0 h-[3px] bg-red-400 origin-left"
+          className="absolute -bottom-3 left-0 right-0 h-[3px] bg-amber-400 origin-left"
         />
       </div>
     </motion.div>

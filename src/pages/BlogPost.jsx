@@ -100,7 +100,7 @@ export default function BlogPost() {
           >
             <header className="mb-10">
               {(article.publishedAt || article.date || article.createdAt) && (
-                <p className="text-xs text-red-400 font-medium tracking-widest uppercase mb-4">
+                <p className="text-xs text-amber-400 font-medium tracking-widest uppercase mb-4">
                   {fmtDate(
                     article.publishedAt || article.date || article.createdAt,
                     lang,
@@ -110,7 +110,7 @@ export default function BlogPost() {
               <h1 className="font-display text-4xl md:text-6xl font-bold text-white tracking-tight leading-[1.02] mb-5">
                 {article.title}
               </h1>
-              <div className="h-[2px] w-12 bg-red-400" />
+              <div className="h-[2px] w-12 bg-amber-400" />
             </header>
 
             <div

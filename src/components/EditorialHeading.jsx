@@ -15,7 +15,7 @@ export default function EditorialHeading({
   subtitle,
   align = 'left',
   size = 'lg',
-  ruleColor = 'bg-red-400',
+  ruleColor = 'bg-amber-400',
   className = '',
 }) {
   const isCenter = align === 'center'
@@ -37,7 +37,7 @@ export default function EditorialHeading({
       className={`${containerClass} ${className}`}
     >
       {eyebrow && (
-        <p className="text-red-400 text-sm font-medium tracking-widest uppercase mb-3">
+        <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
           {eyebrow}
         </p>
       )}
