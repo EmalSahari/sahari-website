@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Code2, Globe, Smartphone, Server, Zap, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette, Sparkles } from 'lucide-react'
+import { ArrowRight, Code2, Globe, Smartphone, Server, Zap, Lightbulb, Rocket, RefreshCw, Calendar, Hammer, Shield, Quote, Workflow, Briefcase, Wrench, Gauge, Palette, Sparkles, Youtube } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -306,6 +306,10 @@ export default function Home() {
           <span className="inline-flex items-center gap-2">
             <span className="text-amber-400">·</span>
             {t('trust.delivery')}
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Youtube size={14} className="text-red-500" />
+            <span className="text-zinc-200">{t('trust.youtube')}</span>
           </span>
         </motion.div>
       </section>

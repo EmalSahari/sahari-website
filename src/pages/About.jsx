@@ -24,8 +24,8 @@ export default function About() {
   ]
 
   const stats = [
-    { value: '85K+', label: t('about.stats.subs') },
-    { value: '11M+', label: t('about.stats.views') },
+    { value: '91K+', label: t('about.stats.subs') },
+    { value: '12M+', label: t('about.stats.views') },
     { value: '3', label: t('about.stats.channels') },
   ]
 
@@ -43,7 +43,7 @@ export default function About() {
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="About" description="Software builder behind Sahari. Building secure, well-functioning software for businesses and creators. Also a YouTuber with 85K+ subscribers." />
+      <Seo title="About" description="Software builder behind Sahari. Building secure, well-functioning software for businesses and creators. Also a YouTuber with 91K+ subscribers." />
       <div className="max-w-5xl mx-auto px-6">
         {/* Hero */}
         <motion.div
