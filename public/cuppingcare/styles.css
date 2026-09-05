@@ -180,7 +180,7 @@ h1 em, h2 em, .lede em { font-style: italic; font-weight: 400; }
 .treat__list p { margin: 6px 0 0; color: var(--ink-soft); max-width: 28em; font-size: 16px; grid-column: 2; }
 .treat__aside { position: sticky; top: 96px; }
 .treat__aside figure { margin: 0; }
-.treat__aside img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 40%; }
+.treat__aside img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; }
 .treat__aside figcaption { font-size: 12px; letter-spacing: .06em; color: var(--ink-mute); margin-top: 10px; }
 
 /* ---------- to former ---------- */
