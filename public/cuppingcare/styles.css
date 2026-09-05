@@ -251,6 +251,9 @@ h1 em, h2 em, .lede em { font-style: italic; font-weight: 400; }
 .site-foot .tag { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ink); }
 .site-foot .right { text-align: right; }
 .site-foot a { text-decoration: none; border-bottom: 1px solid var(--line); }
+.site-foot .credit { margin-top: 18px; font-size: 12px; letter-spacing: .04em; }
+.site-foot .credit a { color: var(--ink-soft); border-color: var(--gold); }
+.site-foot .credit a:hover { color: var(--ink); }
 
 /* ---------- blid indtoning ved scroll ---------- */
 .js .reveal > * { opacity: 0; transform: translateY(14px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.6,.2,1); }
