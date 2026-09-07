@@ -252,7 +252,7 @@ h1 em, h2 em, .lede em { font-style: italic; font-weight: 400; }
   body { font-size: 16px; }
   .hero { display: block; min-height: 0; }
   .hero__bg { position: relative; height: 52vw; min-height: 220px; }
-  .hero__bg::before { background: linear-gradient(180deg, rgba(243,238,228,0) 55%, var(--paper) 100%); }
+  .hero__bg::before { background: linear-gradient(180deg, rgba(243,238,228,0) 30%, rgba(243,238,228,.6) 70%, var(--paper) 96%); }
   .hero__bg::after { display: none; }
   .hero__bg img { object-position: 60% 55%; }
   .hero__text { padding-top: 8px; padding-bottom: 48px; }
