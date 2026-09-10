@@ -33,7 +33,7 @@ export const translations = {
     'hero.subtitle': 'Websites, web shops and booking systems for Danish businesses. Solo studio in Aarhus. Fixed pricing. Delivery in days, not months.',
 
     // Trust bar (under hero)
-    'trust.price': 'From 4,995 DKK · Fixed price',
+    'trust.price': 'From 1,999 DKK · Fixed price',
     'trust.location': 'Based in Aarhus',
     'trust.response': 'Reply within 24 hours',
     'trust.delivery': 'Delivered in 3 days to 4 weeks',
@@ -151,7 +151,7 @@ export const translations = {
     // CTA section (Home)
     'cta.heading': 'Ready to build something?',
     'cta.subtitle': "Whether you need a website, an app, or just want to talk through an idea, I'm open to new projects.",
-    'cta.pricing': 'Fixed pricing from DKK 4,995. Single-page sites can be priced lower. Custom quotes for larger scope.',
+    'cta.pricing': 'Fixed pricing from DKK 1,999. Single-page sites can be priced lower. Custom quotes for larger scope.',
     'cta.button': "Let's talk",
 
     // About page
@@ -474,7 +474,7 @@ export const translations = {
     'hero.subtitle': 'Hjemmesider, webshops og bookingsystemer til danske virksomheder. Solo studio i Aarhus. Fast pris. Levering på dage, ikke måneder.',
 
     // Trust bar (under hero)
-    'trust.price': 'Fra 4.995 kr · Fast pris',
+    'trust.price': 'Fra 1.999 kr · Fast pris',
     'trust.location': 'Baseret i Aarhus',
     'trust.response': 'Svar inden for 24 timer',
     'trust.delivery': 'Levering på 3 dage til 4 uger',
@@ -592,7 +592,7 @@ export const translations = {
     // CTA section (Home)
     'cta.heading': 'Klar til at bygge noget?',
     'cta.subtitle': 'Uanset om du har brug for en hjemmeside, en app, eller bare vil snakke en idé igennem, er jeg åben for nye projekter.',
-    'cta.pricing': 'Fast pris fra 4.995 kr. Single-page kan gøres billigere. Skræddersyede tilbud baseret på scope.',
+    'cta.pricing': 'Fast pris fra 1.999 kr. Single-page kan gøres billigere. Skræddersyede tilbud baseret på scope.',
     'cta.button': 'Lad os snakke',
 
     // About page

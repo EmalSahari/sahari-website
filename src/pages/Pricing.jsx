@@ -119,7 +119,7 @@ export default function Pricing() {
       name: t('pricing.single.name'),
       tagline: t('pricing.single.tagline'),
       prefix: t('pricing.from'),
-      price: 4995,
+      price: 1999,
       delivery: t('pricing.single.delivery'),
       includes: [
         t('pricing.single.inc.1'),
@@ -139,7 +139,7 @@ export default function Pricing() {
       name: t('pricing.standard.name'),
       tagline: t('pricing.standard.tagline'),
       prefix: t('pricing.from'),
-      price: 9995,
+      price: 3499,
       delivery: t('pricing.standard.delivery'),
       includes: [
         t('pricing.standard.inc.1'),
@@ -160,7 +160,7 @@ export default function Pricing() {
       name: t('pricing.premium.name'),
       tagline: t('pricing.premium.tagline'),
       prefix: t('pricing.from'),
-      price: 19995,
+      price: 7499,
       delivery: t('pricing.premium.delivery'),
       includes: [
         t('pricing.premium.inc.1'),
@@ -226,7 +226,7 @@ export default function Pricing() {
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="Pricing" description="Three starting points for websites and software. From DKK 4,995 for a single page to custom premium projects." />
+      <Seo title="Pricing" description="Three starting points for websites and software. From DKK 1,999 for a single page to custom premium projects." />
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div

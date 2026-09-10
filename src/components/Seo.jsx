@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 
 const SITE_URL = 'https://sahari.io'
 const DEFAULT_DESC =
-  'Software studio in Denmark. Secure websites, mobile apps, backends and custom tools. Fixed pricing from DKK 4,995.'
+  'Software studio in Denmark. Secure websites, mobile apps, backends and custom tools. Fixed pricing from DKK 1,999.'
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`
 
 function setMeta(selector, attr, value) {

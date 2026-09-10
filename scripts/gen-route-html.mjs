@@ -37,7 +37,7 @@ const ROUTES = [
   {
     path: '/pricing',
     title: 'Pricing · Sahari',
-    description: 'Fixed-price websites and software from DKK 4,995. Three transparent tiers plus add-ons for payments, booking and ongoing care.',
+    description: 'Fixed-price websites and software from DKK 1,999. Three transparent tiers plus add-ons for payments, booking and ongoing care.',
   },
   {
     path: '/contact',
