@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/cuppingcare", "destination": "https://cuppingcare.dk/", "permanent": true },
+    { "source": "/cuppingcare/(.*)", "destination": "https://cuppingcare.dk/$1", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
