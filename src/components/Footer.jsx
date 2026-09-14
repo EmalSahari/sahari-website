@@ -14,7 +14,7 @@ export default function Footer() {
           <span className="text-zinc-400 text-sm">
             © {new Date().getFullYear()} Emal Sahari / Sahari. {t('footer.copyright')}
             <span className="hidden sm:inline text-zinc-600 mx-2">·</span>
-            <span className="block sm:inline text-zinc-500 text-xs sm:text-sm">CVR 45468054</span>
+            <span className="block sm:inline whitespace-nowrap text-zinc-500 text-xs sm:text-sm">CVR 45468054</span>
           </span>
         </div>
 
