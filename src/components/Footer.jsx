@@ -12,7 +12,7 @@ export default function Footer() {
             S
           </div>
           <span className="text-zinc-400 text-sm">
-            © {new Date().getFullYear()} Emal Sahari / Sahari. {t('footer.copyright')}
+            © {new Date().getFullYear()} Sahari. {t('footer.copyright')}
             <span className="hidden sm:inline text-zinc-600 mx-2">·</span>
             <span className="block sm:inline whitespace-nowrap text-zinc-500 text-xs sm:text-sm">CVR 45468054</span>
           </span>
@@ -57,11 +57,13 @@ export default function Footer() {
           </a>
         </div>
 
-        <nav className="flex items-center gap-5 text-sm text-zinc-500">
+        <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-zinc-500">
           <Link to="/" className="hover:text-white transition-colors">{t('nav.home')}</Link>
+          <Link to="/youtube" className="hover:text-white transition-colors">{t('nav.youtube')}</Link>
+          <Link to="/work" className="hover:text-white transition-colors">{t('nav.work')}</Link>
           <Link to="/about" className="hover:text-white transition-colors">{t('nav.about')}</Link>
-          <Link to="/work-with-us" className="hover:text-white transition-colors">{t('nav.workWithUs')}</Link>
           <Link to="/contact" className="hover:text-white transition-colors">{t('nav.contact')}</Link>
+          <Link to="/work-with-us" className="hover:text-white transition-colors">{t('nav.workWithUs')}</Link>
           <Link to="/tools/brand-kit" className="hover:text-white transition-colors">{t('nav.brandKit')}</Link>
           <Link to="/tools/site-check" className="hover:text-white transition-colors">{t('nav.siteCheck')}</Link>
           <Link to="/blog" className="hover:text-white transition-colors">{t('nav.blog')}</Link>

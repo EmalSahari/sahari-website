@@ -12,6 +12,8 @@ const TIER_LABELS = {
   premium: { en: 'Premium (from 7,499 DKK)', da: 'Premium (fra 7.499 kr)' },
 }
 
+const INQUIRY_TYPES = ['sponsorship', 'project', 'other']
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   show: (i = 0) => ({
@@ -27,16 +29,30 @@ export default function Contact() {
   const [searchParams, setSearchParams] = useSearchParams()
   const tierSlug = searchParams.get('tier')
   const messageParam = searchParams.get('message')
+  const typeParam = searchParams.get('type')
   const tierLabel = tierSlug && TIER_LABELS[tierSlug]?.[lang]
-  const [form, setForm] = useState({ name: '', email: '', message: '', tier: '', _gotcha: '' })
+  const [form, setForm] = useState({
+    type: INQUIRY_TYPES.includes(typeParam) ? typeParam : '',
+    name: '',
+    email: '',
+    message: '',
+    tier: '',
+    _gotcha: '',
+  })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (tierLabel) {
-      setForm((f) => ({ ...f, tier: tierLabel }))
+      setForm((f) => ({ ...f, tier: tierLabel, type: f.type || 'project' }))
     }
   }, [tierLabel])
+
+  useEffect(() => {
+    if (INQUIRY_TYPES.includes(typeParam)) {
+      setForm((f) => ({ ...f, type: typeParam }))
+    }
+  }, [typeParam])
 
   useEffect(() => {
     if (messageParam) {
@@ -76,12 +92,12 @@ export default function Contact() {
 
   const socials = [
     { icon: <Mail size={18} />, label: t('contact.socials.email'), value: 'contact@sahari.io', href: 'mailto:contact@sahari.io' },
-    { icon: <Instagram size={18} />, label: t('contact.socials.instagram'), value: '@emal.sahari', href: 'https://instagram.com/emal.sahari' },
+    { icon: <Instagram size={18} />, label: t('contact.socials.instagram'), value: t('contact.socials.instagramValue'), href: 'https://instagram.com/emal.sahari' },
   ]
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="Contact" description="Have a project in mind? Get in touch. I typically reply within 24 hours." />
+      <Seo title="Contact" description={t('contact.seo')} />
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -146,7 +162,7 @@ export default function Contact() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
-                  onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '', tier: '', _gotcha: '' }); setSearchParams({}, { replace: true }) }}
+                  onClick={() => { setSubmitted(false); setForm({ type: '', name: '', email: '', message: '', tier: '', _gotcha: '' }); setSearchParams({}, { replace: true }) }}
                   className="mt-2 text-zinc-400 hover:text-zinc-200 text-sm transition-colors"
                 >
                   {t('contact.form.success.again')}
@@ -183,6 +199,31 @@ export default function Contact() {
                     </button>
                   </div>
                 )}
+                <fieldset>
+                  <legend className="block text-zinc-400 text-sm mb-2">{t('contact.form.type')}</legend>
+                  <div className="flex flex-wrap gap-2">
+                    {INQUIRY_TYPES.map((type) => (
+                      <label
+                        key={type}
+                        className={`cursor-pointer select-none px-4 py-2 rounded-xl border text-sm transition-all ${
+                          form.type === type
+                            ? 'border-amber-400/60 bg-amber-400/10 text-amber-200'
+                            : 'border-white/10 bg-white/5 text-zinc-400 hover:border-white/25 hover:text-zinc-200'
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="type"
+                          value={type}
+                          checked={form.type === type}
+                          onChange={handleChange}
+                          className="sr-only"
+                        />
+                        {t(`contact.type.${type}`)}
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
                 <div>
                   <label className="block text-zinc-400 text-sm mb-2" htmlFor="name">
                     {t('contact.form.name')}

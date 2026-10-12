@@ -25,14 +25,19 @@ const baseHtml = readFileSync(join(dist, 'index.html'), 'utf8')
 // Per-route copy. Same default OG image for all unless overridden.
 const ROUTES = [
   {
+    path: '/youtube',
+    title: 'YouTube · Sahari',
+    description: 'Unclassified, Sahari and Supernova: three explainer YouTube channels with 100K+ subscribers and 16M+ views. Every video explains a whole category, one item at a time. Sponsorship inquiries welcome.',
+  },
+  {
     path: '/about',
     title: 'About · Sahari',
-    description: 'Solo software studio in Aarhus. Emal Sahari builds secure websites, apps, backends and tools end to end. Also a content creator with 84K+ YouTube subscribers.',
+    description: 'The story behind Sahari: three explainer YouTube channels with 100K+ subscribers and 16M+ views, plus software, websites and tools.',
   },
   {
     path: '/work',
-    title: 'Work · Sahari',
-    description: 'Selected projects by Sahari: Mokio booking platform, the Brand Kit Generator, Wordo, client websites and design demos.',
+    title: 'Projects · Sahari',
+    description: 'Projects built by Sahari: Virko, the Mokio booking platform, NexByg, the Brand Kit Generator, client websites and design demos.',
   },
   {
     path: '/pricing',
@@ -42,7 +47,7 @@ const ROUTES = [
   {
     path: '/contact',
     title: 'Contact · Sahari',
-    description: 'Got a project in mind? Send Emal Sahari a message and get a reply within a day.',
+    description: 'Sponsorships, collaborations or a project: send Sahari a message and get a reply within a day.',
   },
   {
     path: '/work-with-us',

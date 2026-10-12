@@ -12,8 +12,8 @@ function getInitialLang() {
   } catch {
     // ignore - localStorage may be unavailable
   }
-  const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase()
-  if (browserLang.startsWith('da')) return 'da'
+  // English first: the audience and sponsors are international. Danish only
+  // when a visitor has picked it with the toggle.
   return 'en'
 }
 

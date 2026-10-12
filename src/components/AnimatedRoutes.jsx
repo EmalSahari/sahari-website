@@ -14,6 +14,7 @@ import SiteCheck from '../pages/tools/SiteCheck'
 import Blog from '../pages/Blog'
 import BlogPost from '../pages/BlogPost'
 import NotFound from '../pages/NotFound'
+import YouTube from '../pages/YouTube'
 
 export default function AnimatedRoutes() {
   const location = useLocation()
@@ -22,6 +23,7 @@ export default function AnimatedRoutes() {
     [
       { path: '/', element: <Home /> },
       { path: '/about', element: <About /> },
+      { path: '/youtube', element: <YouTube /> },
       { path: '/work-with-us', element: <WorkWithUs /> },
       { path: '/contact', element: <Contact /> },
       { path: '/work', element: <Work /> },

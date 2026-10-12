@@ -13,10 +13,9 @@ export default function Navbar() {
 
   const links = [
     { label: t('nav.home'), href: '/' },
-    { label: t('nav.about'), href: '/about' },
+    { label: t('nav.youtube'), href: '/youtube' },
     { label: t('nav.work'), href: '/work' },
-    { label: t('nav.pricing'), href: '/pricing' },
-    { label: t('nav.workWithUs'), href: '/work-with-us' },
+    { label: t('nav.about'), href: '/about' },
     { label: t('nav.contact'), href: '/contact' },
   ]
 
@@ -81,7 +80,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <LanguageToggle />
             <Link
-              to="/contact"
+              to="/contact?type=sponsorship"
               className="px-4 py-2 text-sm font-medium bg-white hover:bg-zinc-200 text-black rounded-lg transition-all duration-200 shadow-lg shadow-black/30"
             >
               {t('nav.workWithMe')}
@@ -124,7 +123,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                to="/contact"
+                to="/contact?type=sponsorship"
                 className="mt-2 px-4 py-3 text-sm font-medium bg-white text-black rounded-lg text-center"
               >
                 {t('nav.workWithMe')}

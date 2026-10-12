@@ -4,6 +4,7 @@ import { Youtube, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import EditorialHeading from '../components/EditorialHeading'
+import { YT_STATS, fillStats } from '../data/youtube'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -24,9 +25,9 @@ export default function About() {
   ]
 
   const stats = [
-    { value: '100K+', label: t('about.stats.subs') },
-    { value: '16M+', label: t('about.stats.views') },
-    { value: '3', label: t('about.stats.channels') },
+    { value: YT_STATS.subs, label: t('about.stats.subs') },
+    { value: YT_STATS.views, label: t('about.stats.views') },
+    { value: YT_STATS.channels, label: t('about.stats.channels') },
   ]
 
   const skills = [
@@ -43,7 +44,7 @@ export default function About() {
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="About" description="Software builder behind Sahari. Building secure, well-functioning software for businesses and creators. Also a YouTuber with 100K+ subscribers." />
+      <Seo title="About" description={fillStats(t('about.seo'))} />
       <div className="max-w-5xl mx-auto px-6">
         {/* Hero */}
         <motion.div
@@ -59,7 +60,7 @@ export default function About() {
           </h1>
           <div className="mt-5 h-[2px] w-12 bg-amber-400" />
           <p className="mt-6 text-zinc-400 text-lg leading-relaxed max-w-2xl">
-            {t('about.subtitle')}
+            {fillStats(t('about.subtitle'))}
           </p>
         </motion.div>
 
