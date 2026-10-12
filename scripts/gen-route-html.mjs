@@ -52,7 +52,7 @@ const ROUTES = [
   {
     path: '/work-with-us',
     title: 'Careers · Sahari',
-    description: 'Open roles and collaborations at Sahari: voice actor, video editor, animator, thumbnail designer and more.',
+    description: 'Open roles at Sahari: currently hiring a motion graphics editor for explainer videos. Open applications for editing, thumbnails, scriptwriting and more.',
   },
   {
     path: '/tools/brand-kit',

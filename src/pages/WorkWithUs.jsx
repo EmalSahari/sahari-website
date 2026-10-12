@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mic, Sparkles, ArrowRight, CheckCircle2, Mail } from 'lucide-react'
+import { Layers, Sparkles, ArrowRight, CheckCircle2, Mail } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -34,12 +34,12 @@ function Section({ title, items, accent }) {
 
 export default function WorkWithUs() {
   const t = useT()
-  const voiceMailto = `mailto:${EMAIL}?subject=${encodeURIComponent('Voice Actor Application')}`
+  const roleMailto = `mailto:${EMAIL}?subject=${encodeURIComponent('Motion Graphics Editor Application')}`
   const openMailto  = `mailto:${EMAIL}?subject=${encodeURIComponent('Open Application')}`
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="Work with us" description="Open roles at Sahari. Currently hiring voice actors, and open applications welcome." />
+      <Seo title="Work with us" description="Open roles at Sahari. Currently hiring a motion graphics editor, and open applications welcome." />
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Header */}
@@ -55,17 +55,17 @@ export default function WorkWithUs() {
           <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">{t('workWithUs.subtitle')}</p>
         </motion.div>
 
-        {/* ── Featured: Voice Actor ──────────────────────────────── */}
+        {/* ── Featured role ─────────────────────────────────────── */}
         <motion.div variants={fadeUp} initial="hidden" animate="show" custom={1} className="mb-6">
           <SpotlightCard className="border border-white/10 bg-[#0f0f0f] p-8 md:p-10">
             {/* Header row */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <div className="w-11 h-11 rounded-xl bg-white/5 text-zinc-400 flex items-center justify-center flex-shrink-0">
-                <Mic size={22} />
+                <Layers size={22} />
               </div>
               <div>
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">{t('workWithUs.voice.tag')}</span>
+                  <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">{t('workWithUs.role.tag')}</span>
                   <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/10 border border-white/15 text-zinc-200 text-[11px] font-semibold uppercase tracking-wide">
                     {t('workWithUs.hiring')}
                   </span>
@@ -73,28 +73,28 @@ export default function WorkWithUs() {
               </div>
             </div>
 
-            <h2 className="font-display text-white font-bold text-3xl mb-3 tracking-tight">{t('workWithUs.voice.title')}</h2>
-            <p className="text-zinc-400 leading-relaxed mb-8 max-w-2xl">{t('workWithUs.voice.about')}</p>
+            <h2 className="font-display text-white font-bold text-3xl mb-3 tracking-tight">{t('workWithUs.role.title')}</h2>
+            <p className="text-zinc-400 leading-relaxed mb-8 max-w-2xl">{t('workWithUs.role.about')}</p>
 
             {/* Two-column details */}
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <Section
-                title={t('workWithUs.voice.need.heading')}
+                title={t('workWithUs.role.need.heading')}
                 accent="text-zinc-400"
                 items={[
-                  t('workWithUs.voice.need.1'),
-                  t('workWithUs.voice.need.2'),
-                  t('workWithUs.voice.need.3'),
-                  t('workWithUs.voice.need.4'),
+                  t('workWithUs.role.need.1'),
+                  t('workWithUs.role.need.2'),
+                  t('workWithUs.role.need.3'),
+                  t('workWithUs.role.need.4'),
                 ]}
               />
               <Section
-                title={t('workWithUs.voice.offer.heading')}
+                title={t('workWithUs.role.offer.heading')}
                 accent="text-zinc-400"
                 items={[
-                  t('workWithUs.voice.offer.1'),
-                  t('workWithUs.voice.offer.2'),
-                  t('workWithUs.voice.offer.3'),
+                  t('workWithUs.role.offer.1'),
+                  t('workWithUs.role.offer.2'),
+                  t('workWithUs.role.offer.3'),
                 ]}
               />
             </div>
@@ -102,14 +102,14 @@ export default function WorkWithUs() {
             {/* Apply */}
             <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row sm:items-center gap-4">
               <div className="flex-1">
-                <p className="text-zinc-500 text-sm">{t('workWithUs.voice.apply.body')}</p>
+                <p className="text-zinc-500 text-sm">{t('workWithUs.role.apply.body')}</p>
               </div>
               <a
-                href={voiceMailto}
+                href={roleMailto}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl text-sm transition-all duration-200 shadow-lg shadow-black/40 flex-shrink-0"
               >
                 <Mail size={14} />
-                {t('workWithUs.voice.apply.cta')}
+                {t('workWithUs.role.apply.cta')}
                 <ArrowRight size={14} />
               </a>
             </div>
