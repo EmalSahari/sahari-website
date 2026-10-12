@@ -25,7 +25,7 @@ export default function About() {
 
   const stats = [
     { value: '100K+', label: t('about.stats.subs') },
-    { value: '14M+', label: t('about.stats.views') },
+    { value: '16M+', label: t('about.stats.views') },
     { value: '3', label: t('about.stats.channels') },
   ]
 
