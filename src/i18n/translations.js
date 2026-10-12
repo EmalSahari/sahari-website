@@ -1,7 +1,7 @@
 export const translations = {
   en: {
     'workWithUs.role.apply.cta': "Apply via email",
-    'workWithUs.role.apply.body': "Send your portfolio or showreel to contact@sahari.io with a short intro and your typical rate per video.",
+    'workWithUs.role.apply.body': "Send your portfolio to contact@sahari.io with a short intro and your typical rate per video.",
     'workWithUs.role.apply.heading': "How to apply",
     'workWithUs.role.offer.3': "Fully remote, flexible hours",
     'workWithUs.role.offer.2': "Steady, long-term work on growing channels",
@@ -9,8 +9,8 @@ export const translations = {
     'workWithUs.role.offer.heading': "What we offer",
     'workWithUs.role.need.4': "Reliable turnaround and clear communication",
     'workWithUs.role.need.3': "An eye for clean, readable visuals that keep viewers watching",
-    'workWithUs.role.need.2': "A portfolio of explainer, infographic or YouTube-style work",
-    'workWithUs.role.need.1': "Strong motion graphics skills in After Effects or similar",
+    'workWithUs.role.need.2': "A portfolio of your work",
+    'workWithUs.role.need.1': "Strong motion graphics skills",
     'workWithUs.role.need.heading': "What we need",
     'workWithUs.role.about': "We're looking for a motion graphics editor to bring our explainer videos to life: animated maps, icons, text and transitions that make complex topics easy to follow. You'd work from scripts and voiceovers on one or more of our channels.",
     'workWithUs.role.title': "Motion Graphics Editor",
@@ -488,7 +488,7 @@ export const translations = {
 
   da: {
     'workWithUs.role.apply.cta': "Ansøg via email",
-    'workWithUs.role.apply.body': "Send din portfolio eller et showreel til contact@sahari.io med en kort intro og din typiske pris per video.",
+    'workWithUs.role.apply.body': "Send din portfolio til contact@sahari.io med en kort intro og din typiske pris per video.",
     'workWithUs.role.apply.heading': "Sådan ansøger du",
     'workWithUs.role.offer.3': "Fuldt remote, fleksible timer",
     'workWithUs.role.offer.2': "Stabilt, langsigtet arbejde på kanaler i vækst",
@@ -496,8 +496,8 @@ export const translations = {
     'workWithUs.role.offer.heading': "Hvad vi tilbyder",
     'workWithUs.role.need.4': "Pålidelig leveringstid og klar kommunikation",
     'workWithUs.role.need.3': "Sans for rene, letlæselige visuals der holder seerne fast",
-    'workWithUs.role.need.2': "En portfolio med explainer-, infografik- eller YouTube-agtigt arbejde",
-    'workWithUs.role.need.1': "Stærke motion graphics-evner i After Effects eller lignende",
+    'workWithUs.role.need.2': "En portfolio med dit arbejde",
+    'workWithUs.role.need.1': "Stærke motion graphics-evner",
     'workWithUs.role.need.heading': "Hvad vi søger",
     'workWithUs.role.about': "Vi søger en motion graphics editor til at give vores forklaringsvideoer liv: animerede kort, ikoner, tekst og overgange der gør komplekse emner lette at følge. Du arbejder ud fra manuskripter og speak på en eller flere af vores kanaler.",
     'workWithUs.role.title': "Motion Graphics Editor",
