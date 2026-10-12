@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Check, Handshake, ListOrdered } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
+import PastSponsors from '../components/PastSponsors'
 import Reveal from '../components/Reveal'
 import ChannelCard from '../components/ChannelCard'
 import VideoCard from '../components/VideoCard'
@@ -131,6 +132,7 @@ export default function YouTube() {
                   <p className="mt-5 text-zinc-400 text-lg leading-relaxed max-w-xl">
                     {fillStats(t('yt.sponsor.subtitle'))}
                   </p>
+                  <PastSponsors className="mt-6" />
                   <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
                     <Link
                       to="/contact?type=sponsorship"

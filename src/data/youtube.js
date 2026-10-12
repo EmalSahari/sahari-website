@@ -87,3 +87,6 @@ export const YT_AUDIENCE = [
   { key: 'adults', value: '92%' },
   { key: 'tv', value: '50%' },
 ]
+
+// Brands that have run a sponsored integration in one of the videos.
+export const PAST_SPONSORS = ['Supremacy: World War 3']

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowUpRight, Handshake, Youtube, Hammer, Calendar, Sparkles } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
+import PastSponsors from '../components/PastSponsors'
 import Reveal from '../components/Reveal'
 import GradientMesh from '../components/GradientMesh'
 import ChannelCard from '../components/ChannelCard'
@@ -346,6 +347,7 @@ export default function Home() {
           <p className="mt-5 text-zinc-400 text-lg leading-relaxed max-w-xl">
             {fillStats(t('home.sponsor.subtitle'))}
           </p>
+          <PastSponsors className="mt-6" />
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
             <Link
               to="/contact?type=sponsorship"

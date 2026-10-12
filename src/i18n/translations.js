@@ -1,5 +1,6 @@
 export const translations = {
   en: {
+    'yt.sponsor.past': "Previously worked with",
     'yt.audience.heading': "The audience",
     'yt.audience.note': "Unclassified, last 28 days. Full breakdown on request.",
     'yt.audience.us': "of views come from the US",
@@ -490,6 +491,7 @@ export const translations = {
   },
 
   da: {
+    'yt.sponsor.past': "Tidligere samarbejdet med",
     'yt.audience.heading': "Publikum",
     'yt.audience.note': "Unclassified, seneste 28 dage. Fuld opdeling på forespørgsel.",
     'yt.audience.us': "af visningerne kommer fra USA",
