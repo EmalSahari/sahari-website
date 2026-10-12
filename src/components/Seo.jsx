@@ -31,7 +31,7 @@ export default function Seo({ title, description = DEFAULT_DESC, image = DEFAULT
   const location = useLocation()
 
   useEffect(() => {
-    const fullTitle = title ? `${title} · Sahari` : 'Sahari: Websites, apps & custom software'
+    const fullTitle = title ? `${title} · Sahari` : 'Sahari: Every topic, explained'
     const url = `${SITE_URL}${location.pathname}`
 
     document.title = fullTitle

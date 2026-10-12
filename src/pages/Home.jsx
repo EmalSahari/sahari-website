@@ -1,5 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowUpRight, Handshake, Youtube, Hammer, Calendar, Sparkles } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
@@ -7,6 +6,7 @@ import Seo from '../components/Seo'
 import PastSponsors from '../components/PastSponsors'
 import Reveal from '../components/Reveal'
 import GradientMesh from '../components/GradientMesh'
+import FormatGrid from '../components/FormatGrid'
 import NicheCard from '../components/NicheCard'
 import { NICHES, fillStats } from '../data/youtube'
 import useYtStats from '../hooks/useYtStats'
@@ -36,75 +36,6 @@ const makeHeroFadeUp = (isMobile) =>
           transition: { duration: 1.0, delay: 0.15 + i * 0.18, ease: [0.16, 1, 0.3, 1] },
         }),
       }
-
-/**
- * Highlight word that cycles through a list. Invisible sizers hold the box
- * at the width of the widest word so the surrounding line never reflows and
- * the underline never resizes. The active word is centered in that fixed
- * box and crossfades on each switch.
- */
-function CyclingWord({ words, reduce }) {
-  const [active, setActive] = useState(0)
-
-  useEffect(() => {
-    if (reduce || words.length <= 1) return
-
-    let interval = null
-
-    const start = () => {
-      if (interval) return
-      interval = setInterval(() => {
-        setActive((v) => (v + 1) % words.length)
-      }, 2000)
-    }
-
-    const stop = () => {
-      if (interval) {
-        clearInterval(interval)
-        interval = null
-      }
-    }
-
-    const onVisibility = () => {
-      if (document.hidden) stop()
-      else start()
-    }
-
-    if (!document.hidden) start()
-    document.addEventListener('visibilitychange', onVisibility)
-
-    return () => {
-      stop()
-      document.removeEventListener('visibilitychange', onVisibility)
-    }
-  }, [reduce, words.length])
-
-  if (reduce) return <>{words[0]}</>
-
-  return (
-    <span className="relative inline-grid align-bottom">
-      {words.map((w, k) => (
-        <span key={k} aria-hidden className="invisible col-start-1 row-start-1 whitespace-nowrap">
-          {w}
-        </span>
-      ))}
-      <span className="col-start-1 row-start-1 relative">
-        <AnimatePresence initial={false}>
-          <motion.span
-            key={active}
-            className="absolute left-1/2 top-0 whitespace-nowrap"
-            initial={{ opacity: 0, y: '0.35em', x: '-50%' }}
-            animate={{ opacity: 1, y: 0, x: '-50%' }}
-            exit={{ opacity: 0, y: '-0.35em', x: '-50%' }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {words[active]}
-          </motion.span>
-        </AnimatePresence>
-      </span>
-    </span>
-  )
-}
 
 function SectionHeading({ eyebrow, heading, subtitle }) {
   return (
@@ -170,79 +101,93 @@ export default function Home() {
     <div className="pt-16">
       <Seo description={fill(t('home.seo'))} />
 
-      {/* Hero - leads with the signature "Every X explained" video format */}
-      <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      {/* Hero: headline and stats on the left, the format as a live grid on the right */}
+      <section className="relative overflow-hidden">
         <GradientMesh />
-        <motion.div
-          variants={heroFadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0}
-          className="relative z-10 mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
-        >
-          <Youtube size={14} className="text-red-500" />
-          <span>{t('hero.badge')}</span>
-        </motion.div>
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24 min-h-[calc(100vh-4rem)] grid md:grid-cols-12 gap-14 md:gap-10 items-center">
+          <div className="md:col-span-7 text-center md:text-left">
+            <motion.div
+              variants={heroFadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0}
+              className="mb-7 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-zinc-200 text-sm"
+            >
+              <Youtube size={14} className="text-red-500" />
+              <span>{t('hero.badge')}</span>
+            </motion.div>
 
-        <motion.h1
-          variants={heroFadeUp}
-          initial="hidden"
-          animate="show"
-          custom={1}
-          className="relative z-10 font-display text-[clamp(1.875rem,7vw,5.5rem)] font-bold tracking-[-0.025em] text-white leading-[1.05] max-w-5xl"
-        >
-          {t('hero.headline.start')}{' '}
-          <span className="gradient-text-animated">
-            <CyclingWord words={t('hero.headline.cycle').split('|')} reduce={reduce} />
-          </span>{' '}
-          {t('hero.headline.end')}
-        </motion.h1>
+            <motion.h1
+              variants={heroFadeUp}
+              initial="hidden"
+              animate="show"
+              custom={1}
+              className="font-display text-[clamp(2.6rem,6.4vw,5rem)] font-bold tracking-[-0.03em] text-white leading-[1.02]"
+            >
+              <span className="block">{t('hero.title.top')}</span>
+              <span className="gradient-text-animated">{t('hero.title.bottom')}</span>
+            </motion.h1>
 
-        <motion.p
-          variants={heroFadeUp}
-          initial="hidden"
-          animate="show"
-          custom={3}
-          className="relative z-10 mt-8 text-base md:text-xl text-zinc-400 max-w-xl leading-relaxed"
-        >
-          {fill(t('hero.subtitle'))}
-        </motion.p>
+            <motion.p
+              variants={heroFadeUp}
+              initial="hidden"
+              animate="show"
+              custom={2}
+              className="mt-7 text-base md:text-lg text-zinc-400 max-w-lg mx-auto md:mx-0 leading-relaxed"
+            >
+              {fill(t('hero.subtitle'))}
+            </motion.p>
 
-        <motion.div
-          variants={heroFadeUp}
-          initial="hidden"
-          animate="show"
-          custom={4}
-          className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-4"
-        >
-          <Link
-            to="/youtube"
-            data-magnetic
-            className="group inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
+            <motion.div
+              variants={heroFadeUp}
+              initial="hidden"
+              animate="show"
+              custom={3}
+              className="mt-9 flex flex-wrap items-center justify-center md:justify-start gap-3"
+            >
+              <Link
+                to="/youtube"
+                data-magnetic
+                className="group inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl transition-all duration-200 shadow-lg shadow-black/40"
+              >
+                {t('hero.cta.channels')}
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/contact?type=sponsorship"
+                data-magnetic
+                className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
+              >
+                <Handshake size={16} className="text-amber-400" />
+                {t('hero.cta.sponsor')}
+              </Link>
+            </motion.div>
+
+            <motion.dl
+              variants={heroFadeUp}
+              initial="hidden"
+              animate="show"
+              custom={4}
+              className="mt-12 flex justify-center md:justify-start divide-x divide-white/10"
+            >
+              {stats.map((s) => (
+                <div key={s.label} className="px-5 sm:px-7 first:pl-0 last:pr-0">
+                  <dd className="font-display text-2xl md:text-3xl font-bold text-white tracking-tight leading-none">{s.value}</dd>
+                  <dt className="mt-2 text-xs text-zinc-500">{s.label}</dt>
+                </div>
+              ))}
+            </motion.dl>
+          </div>
+
+          <motion.div
+            variants={heroFadeUp}
+            initial="hidden"
+            animate="show"
+            custom={2}
+            className="md:col-span-5"
           >
-            {t('hero.cta.channels')}
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-          <Link
-            to="/contact?type=sponsorship"
-            data-magnetic
-            className="inline-flex items-center gap-2 px-6 py-3 border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white font-medium rounded-xl transition-all duration-200 bg-white/5"
-          >
-            <Handshake size={16} className="text-amber-400" />
-            {t('hero.cta.sponsor')}
-          </Link>
-        </motion.div>
-      </section>
-
-      {/* Stats strip */}
-      <section className="border-y border-white/[0.06] bg-white/[0.015]">
-        <div className="max-w-4xl mx-auto px-6 py-10 grid grid-cols-3 gap-6 text-center">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} i={i}>
-              <p className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-none">{s.value}</p>
-              <p className="text-zinc-500 text-xs md:text-sm mt-2">{s.label}</p>
-            </Reveal>
-          ))}
+            <FormatGrid />
+          </motion.div>
         </div>
       </section>
 

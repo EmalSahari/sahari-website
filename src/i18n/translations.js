@@ -1,5 +1,9 @@
 export const translations = {
   en: {
+    'hero.title.top': "Every topic,",
+    'hero.title.bottom': "explained.",
+    'hero.grid.label': "Now explaining",
+    'hero.grid.caption': "One category. Every item. In order.",
     'workWithUs.role.apply.cta': "Apply via email",
     'workWithUs.role.apply.body': "Send your portfolio to contact@sahari.io with a short intro and your typical rate per video.",
     'workWithUs.role.apply.heading': "How to apply",
@@ -91,10 +95,6 @@ export const translations = {
 
     // Hero
     'hero.badge': "YouTuber · Builder",
-    'hero.headline.start': "Every",
-    'hero.headline.highlight': "topic",
-    'hero.headline.cycle': "topic|system|category|detail",
-    'hero.headline.end': "explained.",
     'hero.subtitle': "I run three explainer channels on YouTube with {subs} subscribers and {views} views. I also design and build software.",
 
     // Trust bar (under hero)
@@ -487,6 +487,10 @@ export const translations = {
   },
 
   da: {
+    'hero.title.top': "Alle emner,",
+    'hero.title.bottom': "forklaret.",
+    'hero.grid.label': "Forklarer nu",
+    'hero.grid.caption': "Én kategori. Hver ting. I rækkefølge.",
     'workWithUs.role.apply.cta': "Ansøg via email",
     'workWithUs.role.apply.body': "Send din portfolio til contact@sahari.io med en kort intro og din typiske pris per video.",
     'workWithUs.role.apply.heading': "Sådan ansøger du",
@@ -578,10 +582,6 @@ export const translations = {
 
     // Hero
     'hero.badge': "YouTuber · Udvikler",
-    'hero.headline.start': "Alle",
-    'hero.headline.highlight': "emner",
-    'hero.headline.cycle': "emner|systemer|kategorier|detaljer",
-    'hero.headline.end': "forklaret.",
     'hero.subtitle': "Jeg driver tre forklaringskanaler på YouTube med {subs} abonnenter og {views} visninger. Jeg designer og bygger også software.",
 
     // Trust bar (under hero)
