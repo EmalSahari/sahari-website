@@ -5,9 +5,9 @@ import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import PastSponsors from '../components/PastSponsors'
 import Reveal from '../components/Reveal'
-import ChannelCard from '../components/ChannelCard'
-import VideoCard from '../components/VideoCard'
-import { YT_STATS, YT_AUDIENCE, CHANNELS, POPULAR_VIDEOS, fillStats } from '../data/youtube'
+import NicheCard from '../components/NicheCard'
+import { YT_AUDIENCE, NICHES, fillStats } from '../data/youtube'
+import useYtStats from '../hooks/useYtStats'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -21,18 +21,21 @@ const fadeUp = {
 export default function YouTube() {
   const t = useT()
 
+  const yt = useYtStats()
+  const fill = (text) => fillStats(text, yt)
+
   const stats = [
-    { value: YT_STATS.subs, label: t('about.stats.subs') },
-    { value: YT_STATS.views, label: t('about.stats.views') },
-    { value: YT_STATS.views28d, label: t('yt.stats.views28d') },
-    { value: YT_STATS.channels, label: t('about.stats.channels') },
-  ]
+    { value: yt.subs, label: t('about.stats.subs') },
+    { value: yt.views, label: t('about.stats.views') },
+    yt.videos && { value: yt.videos, label: t('yt.stats.videos') },
+    { value: yt.channels, label: t('about.stats.channels') },
+  ].filter(Boolean)
 
   const offers = [t('yt.sponsor.offer.1'), t('yt.sponsor.offer.2'), t('yt.sponsor.offer.3')]
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="YouTube" description={fillStats(t('yt.seo'))} />
+      <Seo title="YouTube" description={fill(t('yt.seo'))} />
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0} className="mb-16 max-w-3xl">
@@ -41,7 +44,7 @@ export default function YouTube() {
             {t('yt.heading')}
           </h1>
           <div className="mt-5 h-[2px] w-12 bg-amber-400" />
-          <p className="mt-6 text-zinc-400 text-lg leading-relaxed max-w-2xl">{fillStats(t('yt.subtitle'))}</p>
+          <p className="mt-6 text-zinc-400 text-lg leading-relaxed max-w-2xl">{fill(t('yt.subtitle'))}</p>
         </motion.div>
 
         {/* Stats */}
@@ -50,7 +53,7 @@ export default function YouTube() {
           initial="hidden"
           animate="show"
           custom={1}
-          className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 border-t border-white/10 pt-8 mb-20"
+          className={`grid grid-cols-2 ${stats.length === 4 ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-x-6 gap-y-10 border-t border-white/10 pt-8 mb-20`}
         >
           {stats.map((s) => (
             <div key={s.label}>
@@ -62,28 +65,12 @@ export default function YouTube() {
 
         {/* Channels */}
         <div className="grid md:grid-cols-3 gap-5 mb-24">
-          {CHANNELS.map((c, i) => (
-            <Reveal key={c.key} i={i} className="h-full">
-              <ChannelCard channel={c} />
+          {NICHES.map((n, i) => (
+            <Reveal key={n.key} i={i} className="h-full">
+              <NicheCard niche={n} />
             </Reveal>
           ))}
         </div>
-
-        {/* Popular videos */}
-        <section className="mb-24">
-          <Reveal className="mb-10">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05]">
-              {t('yt.videos.heading')}
-            </h2>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
-            {POPULAR_VIDEOS.map((v, i) => (
-              <Reveal key={v.id} i={i}>
-                <VideoCard video={v} />
-              </Reveal>
-            ))}
-          </div>
-        </section>
 
         {/* The format */}
         <section className="grid md:grid-cols-12 gap-8 md:gap-12 mb-24">
@@ -130,7 +117,7 @@ export default function YouTube() {
                     {t('yt.sponsor.heading')}
                   </h2>
                   <p className="mt-5 text-zinc-400 text-lg leading-relaxed max-w-xl">
-                    {fillStats(t('yt.sponsor.subtitle'))}
+                    {fill(t('yt.sponsor.subtitle'))}
                   </p>
                   <PastSponsors className="mt-6" />
                   <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">

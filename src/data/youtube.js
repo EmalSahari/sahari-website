@@ -1,86 +1,69 @@
 import { Shield, Landmark, Orbit } from 'lucide-react'
 
-// Single source of truth for YouTube numbers. Update these when the stats move;
-// every page and translated sentence that uses {subs}, {views}, {channels} or {views28d} follows.
-export const YT_STATS = {
+// Fallback numbers, shown until /api/yt-stats answers (and on local dev, where
+// the function does not run). Keep them as true lower bounds: the live totals
+// replace them as soon as they load.
+export const YT_FALLBACK = {
   subs: '100K+',
   views: '16M+',
+  videos: null,
   channels: '3',
-  // Rolling 28-day views, from YouTube Studio. Unclassified alone, so a floor for all three.
-  views28d: '2.4M+',
 }
 
-export const fillStats = (text) =>
-  text
-    .replaceAll('{subs}', YT_STATS.subs)
-    .replaceAll('{views}', YT_STATS.views)
-    .replaceAll('{channels}', YT_STATS.channels)
-    .replaceAll('{views28d}', YT_STATS.views28d)
+// Round down so the figure stays true until the next refresh: 100,880 -> "100K+".
+export function formatCount(n) {
+  if (n >= 1e6) return `${Math.floor(n / 1e6)}M+`
+  if (n >= 1e3) return `${Math.floor(n / 1e3)}K+`
+  return `${Math.floor(n / 10) * 10}+`
+}
 
-// Ordered by size. `key` maps to the yt.channel.<key>.* translation keys.
-export const CHANNELS = [
+export const fillStats = (text, stats) =>
+  text
+    .replaceAll('{subs}', stats.subs)
+    .replaceAll('{views}', stats.views)
+    .replaceAll('{channels}', stats.channels)
+
+// The channels are described by topic only. Names, handles and links stay off
+// the site on purpose, so the channels are not tied together in public.
+// `key` maps to the yt.niche.<key>.* translation keys.
+export const NICHES = [
   {
-    key: 'unclassified',
-    name: 'Unclassified',
-    handle: '@UnclassifiedYTT',
-    href: 'https://youtube.com/@UnclassifiedYTT',
-    subs: '59K+',
-    views: '10M+',
+    key: 'military',
     Icon: Shield,
     accent: {
       text: 'text-red-400',
       iconBg: 'bg-red-500/15 text-red-400',
-      border: 'border-red-500/20 hover:border-red-400/50',
+      border: 'border-red-500/20',
       glow: 'from-red-950/40',
       glowRgb: '248,113,113',
     },
   },
   {
-    key: 'sahari',
-    name: 'Sahari',
-    handle: '@SahariYT',
-    href: 'https://youtube.com/@SahariYT',
-    subs: '31K+',
-    views: '4M+',
+    key: 'history',
     Icon: Landmark,
     accent: {
       text: 'text-amber-400',
       iconBg: 'bg-amber-500/15 text-amber-400',
-      border: 'border-amber-500/20 hover:border-amber-400/50',
+      border: 'border-amber-500/20',
       glow: 'from-amber-950/40',
       glowRgb: '251,191,36',
     },
   },
   {
-    key: 'supernova',
-    name: 'Supernova',
-    handle: '@SupernovaYTT',
-    href: 'https://youtube.com/@SupernovaYTT',
-    subs: '9.9K+',
-    views: '1.9M+',
+    key: 'space',
     Icon: Orbit,
     accent: {
       text: 'text-indigo-400',
       iconBg: 'bg-indigo-500/15 text-indigo-400',
-      border: 'border-indigo-500/20 hover:border-indigo-400/50',
+      border: 'border-indigo-500/20',
       glow: 'from-indigo-950/40',
       glowRgb: '129,140,248',
     },
   },
 ]
 
-// Most-watched videos. View counts are rounded down from a 28-day Studio export,
-// so they are a floor for lifetime views and never go stale in the wrong direction.
-export const POPULAR_VIDEOS = [
-  { id: 'K41m75_OapU', title: 'Every US Army Rank Explained', channel: 'Unclassified', views: '496K+' },
-  { id: 'S8la96LpApQ', title: 'Every Prison Uniform Color Explained', channel: 'Unclassified', views: '204K+' },
-  { id: 'QlPLtq7c77A', title: 'Every Hospital Wristband Color Explained', channel: 'Unclassified', views: '198K+' },
-  { id: 'orpJeKtIUPs', title: 'Every US Army Badge Explained', channel: 'Unclassified', views: '174K+' },
-  { id: 'nnxruXJv_Pk', title: 'Every US Combat Decoration Explained', channel: 'Unclassified', views: '142K+' },
-  { id: 'Bx8FLAzqf1s', title: 'Every Hospital Emergency Code Explained', channel: 'Unclassified', views: '138K+' },
-]
-
-// Unclassified audience, last 28 days (YouTube Studio). `key` maps to yt.audience.<key>.
+// Audience of the largest channel, last 28 days (YouTube Studio).
+// `key` maps to yt.audience.<key>.
 export const YT_AUDIENCE = [
   { key: 'us', value: '55%' },
   { key: 'male', value: '87%' },

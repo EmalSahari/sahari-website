@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Calendar, Hammer, Flame, Coffee, Scissors, Palette, Puzzle, Sparkles } from 'lucide-react'
+import { ArrowRight, Dumbbell, Calendar, Hammer, Palette, Puzzle, Sparkles } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -78,42 +78,6 @@ export default function Work() {
     },
   ]
 
-  const concepts = [
-    {
-      icon: <Flame size={20} />,
-      title: t('projects.blackstone.title'),
-      desc: t('projects.blackstone.desc'),
-      tag: t('projects.blackstone.tag'),
-      href: '/black-stone',
-      image: '/blackstone.webp',
-      color: 'from-red-900/40 to-[#0f0f0f]',
-      border: 'border-red-500/20',
-      iconBg: 'bg-red-500/15 text-red-400',
-    },
-    {
-      icon: <Scissors size={20} />,
-      title: t('projects.mork.title'),
-      desc: t('projects.mork.desc'),
-      tag: t('projects.mork.tag'),
-      href: '/mork',
-      image: '/mork.webp',
-      color: 'from-amber-900/40 to-[#0f0f0f]',
-      border: 'border-amber-600/20',
-      iconBg: 'bg-amber-600/15 text-amber-500',
-    },
-    {
-      icon: <Coffee size={20} />,
-      title: t('projects.drift.title'),
-      desc: t('projects.drift.desc'),
-      tag: t('projects.drift.tag'),
-      href: '/drift',
-      image: '/drift.webp',
-      color: 'from-amber-900/40 to-[#0f0f0f]',
-      border: 'border-amber-500/20',
-      iconBg: 'bg-amber-500/15 text-amber-400',
-    },
-  ]
-
   const renderCard = (p, i) => (
     <Reveal key={`${p.href}-${i}`} i={i} className="h-full">
       <TiltCard className="h-full">
@@ -153,7 +117,7 @@ export default function Work() {
 
   return (
     <div className="pt-16">
-      <Seo description="Portfolio of projects built by Sahari: client websites, SaaS products, web apps, and design demos." />
+      <Seo description="Portfolio of projects built by Sahari: client websites, SaaS products and web apps." />
 
       <section className="max-w-6xl mx-auto px-6 py-20">
         <motion.div
@@ -176,29 +140,6 @@ export default function Work() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
           {projects.map(renderCard)}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="mt-24 mb-12 pt-16 border-t border-white/5 max-w-3xl"
-        >
-          <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">
-            {t('work.concepts.eyebrow')}
-          </p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05] mb-5">
-            {t('work.concepts.heading')}
-          </h2>
-          <div className="h-[2px] w-12 bg-amber-400 mb-6" />
-          <p className="text-zinc-400 max-w-lg leading-relaxed">
-            {t('work.concepts.subtitle')}
-          </p>
-        </motion.div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
-          {concepts.map(renderCard)}
         </div>
       </section>
     </div>

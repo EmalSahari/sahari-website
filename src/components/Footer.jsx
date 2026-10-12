@@ -28,15 +28,13 @@ export default function Footer() {
           >
             <Instagram size={18} />
           </a>
-          <a
-            href="https://youtube.com/@UnclassifiedYTT"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/youtube"
             className="text-zinc-500 hover:text-red-400 transition-colors"
             aria-label="YouTube"
           >
             <Youtube size={18} />
-          </a>
+          </Link>
           <a
             href="https://www.linkedin.com/in/emal-sahari-0912431ba/"
             target="_blank"

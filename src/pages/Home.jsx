@@ -7,9 +7,9 @@ import Seo from '../components/Seo'
 import PastSponsors from '../components/PastSponsors'
 import Reveal from '../components/Reveal'
 import GradientMesh from '../components/GradientMesh'
-import ChannelCard from '../components/ChannelCard'
-import VideoCard from '../components/VideoCard'
-import { YT_STATS, CHANNELS, POPULAR_VIDEOS, fillStats } from '../data/youtube'
+import NicheCard from '../components/NicheCard'
+import { NICHES, fillStats } from '../data/youtube'
+import useYtStats from '../hooks/useYtStats'
 import useIsMobile from '../hooks/useIsMobile'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
@@ -130,11 +130,13 @@ export default function Home() {
   const isMobile = useIsMobile()
   const reduce = usePrefersReducedMotion()
   const heroFadeUp = reduce ? STILL : makeHeroFadeUp(isMobile)
+  const yt = useYtStats()
+  const fill = (text) => fillStats(text, yt)
 
   const stats = [
-    { value: YT_STATS.subs, label: t('about.stats.subs') },
-    { value: YT_STATS.views, label: t('about.stats.views') },
-    { value: YT_STATS.channels, label: t('about.stats.channels') },
+    { value: yt.subs, label: t('about.stats.subs') },
+    { value: yt.views, label: t('about.stats.views') },
+    { value: yt.channels, label: t('about.stats.channels') },
   ]
 
   const projects = [
@@ -166,7 +168,7 @@ export default function Home() {
 
   return (
     <div className="pt-16">
-      <Seo description={fillStats(t('home.seo'))} />
+      <Seo description={fill(t('home.seo'))} />
 
       {/* Hero - leads with the signature "Every X explained" video format */}
       <section className="relative min-h-[88vh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
@@ -203,7 +205,7 @@ export default function Home() {
           custom={3}
           className="relative z-10 mt-8 text-base md:text-xl text-zinc-400 max-w-xl leading-relaxed"
         >
-          {fillStats(t('hero.subtitle'))}
+          {fill(t('hero.subtitle'))}
         </motion.p>
 
         <motion.div
@@ -252,9 +254,9 @@ export default function Home() {
           subtitle={t('home.channels.subtitle')}
         />
         <div className="grid md:grid-cols-3 gap-5">
-          {CHANNELS.map((c, i) => (
-            <Reveal key={c.key} i={i} className="h-full">
-              <ChannelCard channel={c} />
+          {NICHES.map((n, i) => (
+            <Reveal key={n.key} i={i} className="h-full">
+              <NicheCard niche={n} />
             </Reveal>
           ))}
         </div>
@@ -267,18 +269,6 @@ export default function Home() {
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </Reveal>
-      </section>
-
-      {/* Popular videos */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <SectionHeading eyebrow={t('yt.videos.eyebrow')} heading={t('yt.videos.heading')} />
-        <div className="grid md:grid-cols-3 gap-6">
-          {POPULAR_VIDEOS.slice(0, 3).map((v, i) => (
-            <Reveal key={v.id} i={i}>
-              <VideoCard video={v} />
-            </Reveal>
-          ))}
-        </div>
       </section>
 
       {/* Also building - compact portfolio */}
@@ -345,7 +335,7 @@ export default function Home() {
             {t('home.sponsor.heading')}
           </h2>
           <p className="mt-5 text-zinc-400 text-lg leading-relaxed max-w-xl">
-            {fillStats(t('home.sponsor.subtitle'))}
+            {fill(t('home.sponsor.subtitle'))}
           </p>
           <PastSponsors className="mt-6" />
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">

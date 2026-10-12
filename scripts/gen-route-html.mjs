@@ -27,7 +27,7 @@ const ROUTES = [
   {
     path: '/youtube',
     title: 'YouTube · Sahari',
-    description: 'Unclassified, Sahari and Supernova: three explainer YouTube channels with 100K+ subscribers and 16M+ views. Every video explains a whole category, one item at a time. Sponsorship inquiries welcome.',
+    description: 'Three explainer YouTube channels with 100K+ subscribers and 16M+ views: military and public systems, architecture and history, and space. Every video explains a whole category, one item at a time. Sponsorship inquiries welcome.',
   },
   {
     path: '/about',
@@ -37,7 +37,7 @@ const ROUTES = [
   {
     path: '/work',
     title: 'Projects · Sahari',
-    description: 'Projects built by Sahari: Virko, the Mokio booking platform, NexByg, the Brand Kit Generator, client websites and design demos.',
+    description: 'Projects built by Sahari: Virko, the Mokio booking platform, NexByg, the Brand Kit Generator and client websites.',
   },
   {
     path: '/pricing',

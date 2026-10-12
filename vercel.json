@@ -4,6 +4,6 @@
     { "source": "/cuppingcare/(.*)", "destination": "https://cuppingcare.dk/$1", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
