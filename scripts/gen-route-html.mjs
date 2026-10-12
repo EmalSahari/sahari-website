@@ -27,7 +27,7 @@ const ROUTES = [
   {
     path: '/youtube',
     title: 'YouTube · Sahari',
-    description: 'Three explainer YouTube channels with 100K+ subscribers and 16M+ views: military and public systems, architecture and history, and space. Every video explains a whole category, one item at a time. Sponsorship inquiries welcome.',
+    description: 'Three explainer YouTube channels with 100K+ subscribers and 16M+ views: military and public systems, architecture and history, and space. Sponsorship inquiries welcome.',
   },
   {
     path: '/about',
@@ -51,8 +51,8 @@ const ROUTES = [
   },
   {
     path: '/work-with-us',
-    title: 'Careers · Sahari',
-    description: 'Open roles at Sahari: currently hiring a motion graphics editor for explainer videos. Open applications for editing, thumbnails, scriptwriting and more.',
+    title: 'Work with us · Sahari',
+    description: 'Work with Sahari: sponsor the videos, or join the content team. Currently hiring a motion graphics editor.',
   },
   {
     path: '/tools/brand-kit',

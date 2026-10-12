@@ -62,7 +62,8 @@ export const NICHES = [
   },
 ]
 
-// Audience of the largest channel, last 28 days (YouTube Studio).
+// Audience of the largest channel, 28 days to 10 Oct 2026 (YouTube Studio).
+// Not live: YouTube only exposes demographics to the channel owner. Refresh yearly.
 // `key` maps to yt.audience.<key>.
 export const YT_AUDIENCE = [
   { key: 'us', value: '55%' },

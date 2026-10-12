@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion'
-import { Layers, Sparkles, ArrowRight, CheckCircle2, Mail } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Layers, Sparkles, ArrowRight, CheckCircle2, Mail, Handshake } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
+import PastSponsors from '../components/PastSponsors'
+import { fillStats } from '../data/youtube'
+import useYtStats from '../hooks/useYtStats'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
@@ -34,12 +38,13 @@ function Section({ title, items, accent }) {
 
 export default function WorkWithUs() {
   const t = useT()
+  const yt = useYtStats()
   const roleMailto = `mailto:${EMAIL}?subject=${encodeURIComponent('Motion Graphics Editor Application')}`
   const openMailto  = `mailto:${EMAIL}?subject=${encodeURIComponent('Open Application')}`
 
   return (
     <div className="pt-28 pb-20">
-      <Seo title="Work with us" description="Open roles at Sahari. Currently hiring a motion graphics editor, and open applications welcome." />
+      <Seo title="Work with us" description={t('workWithUs.seo')} />
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Header */}
@@ -55,8 +60,52 @@ export default function WorkWithUs() {
           <p className="text-zinc-400 text-lg leading-relaxed max-w-xl">{t('workWithUs.subtitle')}</p>
         </motion.div>
 
+        {/* ── For brands: sponsorships ──────────────────────────── */}
+        <motion.h2
+          variants={fadeUp} initial="hidden" animate="show" custom={1}
+          className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500 mb-4"
+        >
+          {t('workWithUs.brands.label')}
+        </motion.h2>
+        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={1} className="mb-16">
+          <SpotlightCard
+            glowColor="251,191,36"
+            className="border border-amber-500/20 bg-gradient-to-br from-amber-950/30 via-[#0f0f0f] to-[#0f0f0f] p-8 md:p-10"
+          >
+            <div className="w-11 h-11 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mb-6">
+              <Handshake size={22} />
+            </div>
+            <h3 className="font-display text-white font-bold text-3xl mb-3 tracking-tight">{t('workWithUs.brands.title')}</h3>
+            <p className="text-zinc-400 leading-relaxed max-w-2xl">{fillStats(t('workWithUs.brands.about'), yt)}</p>
+            <PastSponsors className="mt-6" />
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                to="/contact?type=sponsorship"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl text-sm transition-all duration-200"
+              >
+                {t('home.sponsor.cta')}
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/youtube"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium rounded-xl text-sm transition-all duration-200"
+              >
+                {t('workWithUs.brands.audience')}
+              </Link>
+            </div>
+          </SpotlightCard>
+        </motion.div>
+
+        {/* ── Open roles ────────────────────────────────────────── */}
+        <motion.h2
+          variants={fadeUp} initial="hidden" animate="show" custom={2}
+          className="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500 mb-4"
+        >
+          {t('workWithUs.roles.label')}
+        </motion.h2>
+
         {/* ── Featured role ─────────────────────────────────────── */}
-        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={1} className="mb-6">
+        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={2} className="mb-6">
           <SpotlightCard className="border border-white/10 bg-[#0f0f0f] p-8 md:p-10">
             {/* Header row */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -117,7 +166,7 @@ export default function WorkWithUs() {
         </motion.div>
 
         {/* ── Secondary: Open application ───────────────────────── */}
-        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={2}>
+        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={3}>
           <SpotlightCard className="border border-white/8 bg-[#0c0c0c] p-6" glowColor="134,239,172">
             <div className="flex flex-col sm:flex-row sm:items-center gap-5">
               <div className="w-10 h-10 rounded-lg bg-emerald-500/12 text-emerald-400 flex items-center justify-center flex-shrink-0">

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check, Handshake, ListOrdered } from 'lucide-react'
+import { ArrowRight, Check, Handshake } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import PastSponsors from '../components/PastSponsors'
@@ -71,22 +71,6 @@ export default function YouTube() {
             </Reveal>
           ))}
         </div>
-
-        {/* The format */}
-        <section className="grid md:grid-cols-12 gap-8 md:gap-12 mb-24">
-          <Reveal className="md:col-span-5">
-            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-zinc-200 flex items-center justify-center mb-6">
-              <ListOrdered size={22} />
-            </div>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05]">
-              {t('yt.format.heading')}
-            </h2>
-          </Reveal>
-          <Reveal i={1} className="md:col-span-7 space-y-5 text-zinc-400 text-lg leading-relaxed">
-            <p>{t('yt.format.p1')}</p>
-            <p>{t('yt.format.p2')}</p>
-          </Reveal>
-        </section>
 
         {/* Audience */}
         <section className="mb-24">

@@ -101,7 +101,7 @@ export default function Home() {
     <div className="pt-16">
       <Seo description={fill(t('home.seo'))} />
 
-      {/* Hero: headline and stats on the left, the format as a live grid on the right */}
+      {/* Hero: headline and stats on the left, animated icon grid on the right */}
       <section className="relative overflow-hidden">
         <GradientMesh />
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24 min-h-[calc(100vh-4rem)] grid md:grid-cols-12 gap-14 md:gap-10 items-center">

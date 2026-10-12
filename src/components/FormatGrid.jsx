@@ -6,8 +6,8 @@ import {
 import { useT } from '../i18n/LanguageContext'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 
-// Generic icons from all three niches, interleaved. They hint at the
-// "whole category, item by item" format without pointing at any video.
+// Generic icons from all three niches, interleaved. Decorative only, they
+// do not point at any channel or video.
 const ICONS = [
   Shield, Crown, Rocket, Medal, Castle, Orbit, Anchor, Landmark,
   Satellite, Flag, Building2, Telescope, Siren, Scale, Star, Plane,
@@ -18,7 +18,7 @@ const HOLD_MS = 1600
 
 /**
  * Hero visual: a grid that lights up one tile at a time with a running
- * counter, the way a video walks through every item in a category.
+ * counter and progress bar.
  */
 export default function FormatGrid() {
   const t = useT()
@@ -97,7 +97,6 @@ export default function FormatGrid() {
           style={{ width: `${progress}%` }}
         />
       </div>
-      <p className="mt-3 text-xs text-zinc-500">{t('hero.grid.caption')}</p>
     </div>
   )
 }
