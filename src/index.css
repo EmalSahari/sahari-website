@@ -65,6 +65,27 @@ body {
     opacity: 0.25;
     animation: orbit-twinkle 3s ease-in-out infinite;
   }
+  /* Icons scale with the orbit box so they always fit between the rings */
+  .orbit-box {
+    container-type: inline-size;
+  }
+  .orbit-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  @supports (width: 1cqw) {
+    .orbit-icon {
+      width: 9cqw;
+      height: 9cqw;
+    }
+  }
+  .globe-pulse {
+    animation: globe-pulse 6s ease-in-out infinite;
+  }
+  @keyframes globe-pulse {
+    0%, 100% { box-shadow: 0 0 60px rgba(251, 191, 36, 0.14); }
+    50% { box-shadow: 0 0 95px rgba(251, 191, 36, 0.3); }
+  }
   @keyframes orbit-spin {
     to { transform: rotate(360deg); }
   }
@@ -79,7 +100,8 @@ body {
   @media (prefers-reduced-motion: reduce) {
     .orbit-spin,
     .orbit-spin-reverse,
-    .orbit-twinkle {
+    .orbit-twinkle,
+    .globe-pulse {
       animation: none;
     }
     .gradient-text-animated::after {
