@@ -6,7 +6,7 @@ import Seo from '../components/Seo'
 import PastSponsors from '../components/PastSponsors'
 import Reveal from '../components/Reveal'
 import GradientMesh from '../components/GradientMesh'
-import FormatGrid from '../components/FormatGrid'
+import OrbitVisual from '../components/OrbitVisual'
 import NicheCard from '../components/NicheCard'
 import { NICHES, fillStats } from '../data/youtube'
 import useYtStats from '../hooks/useYtStats'
@@ -101,11 +101,11 @@ export default function Home() {
     <div className="pt-16">
       <Seo description={fill(t('home.seo'))} />
 
-      {/* Hero: headline and stats on the left, animated icon grid on the right */}
+      {/* Hero: headline and stats on the left, orbit illustration on the right */}
       <section className="relative overflow-hidden">
         <GradientMesh />
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24 min-h-[calc(100vh-4rem)] grid md:grid-cols-12 gap-14 md:gap-10 items-center">
-          <div className="md:col-span-7 text-center md:text-left">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24 min-h-[calc(100vh-4rem)] grid lg:grid-cols-12 gap-14 lg:gap-10 items-center">
+          <div className="lg:col-span-7 text-center lg:text-left">
             <motion.div
               variants={heroFadeUp}
               initial="hidden"
@@ -122,10 +122,10 @@ export default function Home() {
               initial="hidden"
               animate="show"
               custom={1}
-              className="font-display text-[clamp(2.6rem,6.4vw,5rem)] font-bold tracking-[-0.03em] text-white leading-[1.02]"
+              className="font-display text-[clamp(2.2rem,5.4vw,4.25rem)] font-bold tracking-[-0.03em] text-white leading-[1.05]"
             >
               <span className="block">{t('hero.title.top')}</span>
-              <span className="gradient-text-animated">{t('hero.title.bottom')}</span>
+              <span className="gradient-text-animated whitespace-nowrap">{t('hero.title.bottom')}</span>
             </motion.h1>
 
             <motion.p
@@ -133,7 +133,7 @@ export default function Home() {
               initial="hidden"
               animate="show"
               custom={2}
-              className="mt-7 text-base md:text-lg text-zinc-400 max-w-lg mx-auto md:mx-0 leading-relaxed"
+              className="mt-7 text-base md:text-lg text-zinc-400 max-w-lg mx-auto lg:mx-0 leading-relaxed"
             >
               {fill(t('hero.subtitle'))}
             </motion.p>
@@ -143,7 +143,7 @@ export default function Home() {
               initial="hidden"
               animate="show"
               custom={3}
-              className="mt-9 flex flex-wrap items-center justify-center md:justify-start gap-3"
+              className="mt-9 flex flex-wrap items-center justify-center lg:justify-start gap-3"
             >
               <Link
                 to="/youtube"
@@ -168,7 +168,7 @@ export default function Home() {
               initial="hidden"
               animate="show"
               custom={4}
-              className="mt-12 flex justify-center md:justify-start divide-x divide-white/10"
+              className="mt-12 flex justify-center lg:justify-start divide-x divide-white/10"
             >
               {stats.map((s) => (
                 <div key={s.label} className="px-5 sm:px-7 first:pl-0 last:pr-0">
@@ -184,9 +184,9 @@ export default function Home() {
             initial="hidden"
             animate="show"
             custom={2}
-            className="md:col-span-5"
+            className="lg:col-span-5"
           >
-            <FormatGrid />
+            <OrbitVisual />
           </motion.div>
         </div>
       </section>

@@ -54,7 +54,34 @@ body {
     }
   }
 
+  /* Hero orbit: rings spin, icons counter-spin to stay upright */
+  .orbit-spin {
+    animation: orbit-spin linear infinite;
+  }
+  .orbit-spin-reverse {
+    animation: orbit-spin-reverse linear infinite;
+  }
+  .orbit-twinkle {
+    opacity: 0.25;
+    animation: orbit-twinkle 3s ease-in-out infinite;
+  }
+  @keyframes orbit-spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes orbit-spin-reverse {
+    to { transform: rotate(-360deg); }
+  }
+  @keyframes orbit-twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.9; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
+    .orbit-spin,
+    .orbit-spin-reverse,
+    .orbit-twinkle {
+      animation: none;
+    }
     .gradient-text-animated::after {
       animation: none;
       transform: scaleX(1);
