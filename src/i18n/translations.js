@@ -189,9 +189,6 @@ export const translations = {
     'projects.wordo.title': 'Wordo',
     'projects.wordo.desc': 'Word game where meaning beats spelling. Each guess gets a semantic closeness rank, so synonyms and associations sneak you toward the answer. New shared puzzle every day, solo mode anytime.',
     'projects.wordo.tag': 'Game · Web',
-    'projects.fitness.title': 'FitTrack: Fitness Tracker',
-    'projects.fitness.desc': 'A full workout and nutrition tracking web app with user accounts, an AI coach, and a paid Pro subscription. Includes AI photo logging that identifies meals from a picture using GPT-4o Vision. Log meals, track water and calories, and monitor progress with weekly summaries.',
-    'projects.fitness.tag': 'Web App',
     'projects.viewLive': 'View live',
 
     // Security section
@@ -677,9 +674,6 @@ export const translations = {
     'projects.wordo.title': 'Wordo',
     'projects.wordo.desc': 'Ordspil hvor betydning slår stavning. Hvert gæt får at vide hvor tæt det er på svaret semantisk, så synonymer og associationer leder dig ind. Ny fælles puzzle hver dag, solo-mode når som helst.',
     'projects.wordo.tag': 'Spil · Web',
-    'projects.fitness.title': 'FitTrack: Fitness Tracker',
-    'projects.fitness.desc': 'En komplet webapp til træning og kost med brugerkonti, en AI-træner og et betalt Pro-abonnement. Inkluderer AI foto-logging der genkender måltider fra et billede via GPT-4o Vision. Log måltider, tæl kalorier og vand, og følg fremskridt med ugentlige opsummeringer.',
-    'projects.fitness.tag': 'Webapp',
     'projects.viewLive': 'Se live',
 
     // Security section

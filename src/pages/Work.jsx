@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Dumbbell, Calendar, Hammer, Palette, Puzzle, Sparkles } from 'lucide-react'
+import { ArrowRight, Calendar, Hammer, Palette, Puzzle, Sparkles } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -53,17 +53,6 @@ export default function Work() {
       color: 'from-orange-900/40 to-[#0f0f0f]',
       border: 'border-orange-500/20',
       iconBg: 'bg-orange-500/15 text-orange-400',
-    },
-    {
-      icon: <Dumbbell size={20} />,
-      title: t('projects.fitness.title'),
-      desc: t('projects.fitness.desc'),
-      tag: t('projects.fitness.tag'),
-      href: 'https://fittrack.sahari.io/',
-      image: '/fitness-progress.webp',
-      color: 'from-emerald-900/40 to-[#0f0f0f]',
-      border: 'border-emerald-500/20',
-      iconBg: 'bg-emerald-500/15 text-emerald-400',
     },
     {
       icon: <Puzzle size={20} />,
