@@ -27,7 +27,7 @@ const ROUTES = [
   {
     path: '/youtube',
     title: 'YouTube · Sahari',
-    description: 'Three explainer YouTube channels with 100K+ subscribers and 16M+ views: military and public systems, architecture and history, and space. Sponsorship inquiries welcome.',
+    description: 'Three explainer YouTube channels with 100K+ subscribers and 16M+ views: institutions and everyday systems, architecture and history, and space. Sponsorship inquiries welcome.',
   },
   {
     path: '/about',

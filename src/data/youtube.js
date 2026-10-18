@@ -28,7 +28,7 @@ export const fillStats = (text, stats) =>
 // `key` maps to the yt.niche.<key>.* translation keys.
 export const NICHES = [
   {
-    key: 'military',
+    key: 'systems',
     Icon: Shield,
     accent: {
       text: 'text-red-400',

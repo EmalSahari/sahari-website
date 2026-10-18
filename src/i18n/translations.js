@@ -1,5 +1,8 @@
 export const translations = {
   en: {
+    'yt.niche.systems.title': "Systems & institutions",
+    'yt.niche.systems.desc': "How hospitals, prisons, armed forces and emergency services are organized, and the rules they run on.",
+    'yt.niche.systems.topics': "Armed forces|Healthcare|Public safety",
     'workWithUs.roles.label': "Open roles",
     'workWithUs.brands.audience': "See the audience",
     'workWithUs.brands.about': "Put your product in front of {subs} subscribers who watch to learn. Integrated sponsor segments on one channel or all three, with audience data on request.",
@@ -29,9 +32,6 @@ export const translations = {
     'yt.niche.history.topics': "Monarchy|Landmarks|Culture",
     'yt.niche.history.desc': "Buildings, monarchies and the traditions behind them, from everyday streets to the royal courts of the past.",
     'yt.niche.history.title': "Architecture & history",
-    'yt.niche.military.topics': "Armed forces|Police|Intelligence",
-    'yt.niche.military.desc': "How armed forces, governments and public institutions are organized, and the systems that keep them running.",
-    'yt.niche.military.title': "Military & public systems",
     'yt.stats.videos': "Videos",
     'yt.sponsor.past': "Previously worked with",
     'yt.audience.heading': "The audience",
@@ -482,6 +482,9 @@ export const translations = {
   },
 
   da: {
+    'yt.niche.systems.title': "Systemer & institutioner",
+    'yt.niche.systems.desc': "Hvordan hospitaler, fængsler, militær og beredskab er organiseret, og de regler de kører efter.",
+    'yt.niche.systems.topics': "Militær|Sundhed|Offentlig sikkerhed",
     'workWithUs.roles.label': "Ledige stillinger",
     'workWithUs.brands.audience': "Se publikum",
     'workWithUs.brands.about': "Vis dit produkt for {subs} abonnenter der ser for at lære noget. Integrerede sponsorsegmenter på én kanal eller alle tre, med publikumsdata på forespørgsel.",
@@ -511,9 +514,6 @@ export const translations = {
     'yt.niche.history.topics': "Monarki|Vartegn|Kultur",
     'yt.niche.history.desc': "Bygninger, monarkier og traditionerne bag dem, fra hverdagens gader til fortidens kongelige hoffer.",
     'yt.niche.history.title': "Arkitektur & historie",
-    'yt.niche.military.topics': "Væbnede styrker|Politi|Efterretning",
-    'yt.niche.military.desc': "Hvordan militær, myndigheder og offentlige institutioner er organiseret, og de systemer der holder dem kørende.",
-    'yt.niche.military.title': "Militær & offentlige systemer",
     'yt.stats.videos': "Videoer",
     'yt.sponsor.past': "Tidligere samarbejdet med",
     'yt.audience.heading': "Publikum",
