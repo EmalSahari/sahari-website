@@ -6,7 +6,7 @@ import Seo from '../components/Seo'
 import PastSponsors from '../components/PastSponsors'
 import Reveal from '../components/Reveal'
 import NicheCard from '../components/NicheCard'
-import { YT_AUDIENCE, NICHES, fillStats } from '../data/youtube'
+import { NICHES, fillStats } from '../data/youtube'
 import useYtStats from '../hooks/useYtStats'
 
 const fadeUp = {
@@ -71,24 +71,6 @@ export default function YouTube() {
             </Reveal>
           ))}
         </div>
-
-        {/* Audience */}
-        <section className="mb-24">
-          <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.05]">
-              {t('yt.audience.heading')}
-            </h2>
-            <p className="text-zinc-500 text-sm">{t('yt.audience.note')}</p>
-          </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10">
-            {YT_AUDIENCE.map((a, i) => (
-              <Reveal key={a.key} i={i} className="bg-[#0b0b0b] p-6 md:p-8">
-                <p className="font-display text-4xl md:text-5xl font-bold text-amber-400 tracking-tight leading-none">{a.value}</p>
-                <p className="text-zinc-400 text-sm mt-3 leading-snug">{t(`yt.audience.${a.key}`)}</p>
-              </Reveal>
-            ))}
-          </div>
-        </section>
 
         {/* Sponsorships */}
         <section id="sponsorships" className="scroll-mt-28">

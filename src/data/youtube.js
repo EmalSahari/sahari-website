@@ -62,15 +62,5 @@ export const NICHES = [
   },
 ]
 
-// Audience of the largest channel, 28 days to 10 Oct 2026 (YouTube Studio).
-// Not live: YouTube only exposes demographics to the channel owner. Refresh yearly.
-// `key` maps to yt.audience.<key>.
-export const YT_AUDIENCE = [
-  { key: 'us', value: '55%' },
-  { key: 'male', value: '87%' },
-  { key: 'adults', value: '92%' },
-  { key: 'tv', value: '50%' },
-]
-
 // Brands that have run a sponsored integration in one of the videos, newest first.
 export const PAST_SPONSORS = ['World of Warships', 'Supremacy: World War 3']
