@@ -67,7 +67,7 @@ export default function YouTube() {
         <div className="grid md:grid-cols-3 gap-5 mb-24">
           {NICHES.map((n, i) => (
             <Reveal key={n.key} i={i} className="h-full">
-              <NicheCard niche={n} />
+              <NicheCard niche={n} index={i} />
             </Reveal>
           ))}
         </div>

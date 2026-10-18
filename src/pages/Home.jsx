@@ -201,7 +201,7 @@ export default function Home() {
         <div className="grid md:grid-cols-3 gap-5">
           {NICHES.map((n, i) => (
             <Reveal key={n.key} i={i} className="h-full">
-              <NicheCard niche={n} />
+              <NicheCard niche={n} index={i} to="/youtube" />
             </Reveal>
           ))}
         </div>
