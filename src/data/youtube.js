@@ -72,5 +72,5 @@ export const YT_AUDIENCE = [
   { key: 'tv', value: '50%' },
 ]
 
-// Brands that have run a sponsored integration in one of the videos.
-export const PAST_SPONSORS = ['Supremacy: World War 3']
+// Brands that have run a sponsored integration in one of the videos, newest first.
+export const PAST_SPONSORS = ['World of Warships', 'Supremacy: World War 3']
