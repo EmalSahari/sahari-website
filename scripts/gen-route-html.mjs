@@ -27,12 +27,12 @@ const ROUTES = [
   {
     path: '/youtube',
     title: 'YouTube · Sahari',
-    description: 'Three explainer YouTube channels with 100K+ subscribers and 16M+ views: institutions and everyday systems, architecture and history, and space. Sponsorship inquiries welcome.',
+    description: 'Three explainer YouTube channels with 100K+ subscribers and 18M+ views: institutions and everyday systems, architecture and history, and space. Sponsorship inquiries welcome.',
   },
   {
     path: '/about',
     title: 'About · Sahari',
-    description: 'The story behind Sahari: three explainer YouTube channels with 100K+ subscribers and 16M+ views, plus software, websites and tools.',
+    description: 'The story behind Sahari: three explainer YouTube channels with 100K+ subscribers and 18M+ views, plus software, websites and tools.',
   },
   {
     path: '/work',
