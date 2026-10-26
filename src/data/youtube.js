@@ -6,7 +6,6 @@ import { Shield, Landmark, Orbit } from 'lucide-react'
 export const YT_FALLBACK = {
   subs: '100K+',
   views: '18M+',
-  videos: null,
   channels: '3',
 }
 

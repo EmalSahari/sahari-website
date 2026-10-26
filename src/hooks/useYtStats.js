@@ -13,7 +13,6 @@ function loadStats() {
         return {
           subs: formatCount(data.subs),
           views: formatCount(data.views),
-          videos: data.videos ? formatCount(data.videos) : null,
           channels: String(data.channels),
         }
       })

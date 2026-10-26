@@ -27,9 +27,8 @@ export default function YouTube() {
   const stats = [
     { value: yt.subs, label: t('about.stats.subs') },
     { value: yt.views, label: t('about.stats.views') },
-    yt.videos && { value: yt.videos, label: t('yt.stats.videos') },
     { value: yt.channels, label: t('about.stats.channels') },
-  ].filter(Boolean)
+  ]
 
   const offers = [t('yt.sponsor.offer.1'), t('yt.sponsor.offer.2'), t('yt.sponsor.offer.3')]
 
@@ -53,7 +52,7 @@ export default function YouTube() {
           initial="hidden"
           animate="show"
           custom={1}
-          className={`grid grid-cols-2 ${stats.length === 4 ? 'md:grid-cols-4' : 'md:grid-cols-3'} gap-x-6 gap-y-10 border-t border-white/10 pt-8 mb-20`}
+          className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 border-t border-white/10 pt-8 mb-20"
         >
           {stats.map((s) => (
             <div key={s.label}>

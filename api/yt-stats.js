@@ -45,7 +45,6 @@ export default async function handler(req, res) {
     return res.status(200).json({
       subs: sum('subscriberCount'),
       views: sum('viewCount'),
-      videos: sum('videoCount'),
       channels: all.length,
     })
   } catch {
