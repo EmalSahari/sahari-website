@@ -2698,7 +2698,7 @@ $font-body: '${fontPair.body}', sans-serif;`
                 className="text-sm font-semibold text-white mb-2 leading-snug"
                 style={{ fontFamily: '"Inter", sans-serif' }}
               >
-                Like the vibe? I can build a real site with it.
+                Like the vibe? We can build a real site with it.
               </p>
               <p className="text-xs text-zinc-400 mb-3 leading-relaxed">
                 Sahari builds custom websites for solo creators and small businesses.
