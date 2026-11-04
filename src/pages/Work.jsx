@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, Calendar, Hammer, Palette, Puzzle, Sparkles } from 'lucide-react'
+import { ArrowRight, Calendar, Hammer, Palette, Sparkles } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -53,17 +53,6 @@ export default function Work() {
       color: 'from-orange-900/40 to-[#0f0f0f]',
       border: 'border-orange-500/20',
       iconBg: 'bg-orange-500/15 text-orange-400',
-    },
-    {
-      icon: <Puzzle size={20} />,
-      title: t('projects.wordo.title'),
-      desc: t('projects.wordo.desc'),
-      tag: t('projects.wordo.tag'),
-      href: 'https://wordo.sahari.io/',
-      image: '/wordo.png',
-      color: 'from-teal-900/40 to-[#0f0f0f]',
-      border: 'border-teal-500/20',
-      iconBg: 'bg-teal-500/15 text-teal-400',
     },
   ]
 
@@ -127,7 +116,7 @@ export default function Work() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
+        <div className="grid sm:grid-cols-2 gap-5 auto-rows-fr">
           {projects.map(renderCard)}
         </div>
       </section>

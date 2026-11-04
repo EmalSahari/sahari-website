@@ -176,9 +176,6 @@ export const translations = {
     'projects.brandKit.title': 'Brand Kit Generator',
     'projects.brandKit.desc': 'A free in-browser tool that generates brand color palettes and Google Font pairings in seconds. Lock colors, edit hex, check WCAG contrast, preview on hero, card and device mockups, then export to CSS, Tailwind, SCSS, JSON or PDF.',
     'projects.brandKit.tag': 'Tool',
-    'projects.wordo.title': 'Wordo',
-    'projects.wordo.desc': 'Word game where meaning beats spelling. Each guess gets a semantic closeness rank, so synonyms and associations sneak you toward the answer. New shared puzzle every day, solo mode anytime.',
-    'projects.wordo.tag': 'Game · Web',
     'projects.viewLive': 'View live',
 
     // Security section
@@ -639,9 +636,6 @@ export const translations = {
     'projects.brandKit.title': 'Brand Kit Generator',
     'projects.brandKit.desc': 'Et gratis browser-værktøj der genererer brand-paletter og Google Font-par på sekunder. Lås farver, rediger hex, tjek WCAG-kontrast, preview i hero, card og device-mockups og eksportér til CSS, Tailwind, SCSS, JSON eller PDF.',
     'projects.brandKit.tag': 'Værktøj',
-    'projects.wordo.title': 'Wordo',
-    'projects.wordo.desc': 'Ordspil hvor betydning slår stavning. Hvert gæt får at vide hvor tæt det er på svaret semantisk, så synonymer og associationer leder dig ind. Ny fælles puzzle hver dag, solo-mode når som helst.',
-    'projects.wordo.tag': 'Spil · Web',
     'projects.viewLive': 'Se live',
 
     // Security section
