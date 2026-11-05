@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Layers, Sparkles, ArrowRight, CheckCircle2, Mail, Handshake } from 'lucide-react'
+import { Box, Layers, Sparkles, ArrowRight, CheckCircle2, Mail, Handshake } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
@@ -19,6 +19,14 @@ const fadeUp = {
 }
 
 const EMAIL = 'contact@sahari.io'
+
+// Open roles, most wanted first: only the first card gets the "Now Hiring" badge.
+// `copy` is the translation prefix for the role's own title, intro and needs;
+// tag, offer and how-to-apply are shared and live under workWithUs.role.*.
+const ROLES = [
+  { copy: 'workWithUs.role3d', Icon: Box, subject: '3D Animator Application' },
+  { copy: 'workWithUs.role', Icon: Layers, subject: 'Motion Graphics Editor Application' },
+]
 
 function Section({ title, items, accent }) {
   return (
@@ -39,7 +47,6 @@ function Section({ title, items, accent }) {
 export default function WorkWithUs() {
   const t = useT()
   const yt = useYtStats()
-  const roleMailto = `mailto:${EMAIL}?subject=${encodeURIComponent('Motion Graphics Editor Application')}`
   const openMailto  = `mailto:${EMAIL}?subject=${encodeURIComponent('Open Application')}`
 
   return (
@@ -104,66 +111,69 @@ export default function WorkWithUs() {
           {t('workWithUs.roles.label')}
         </motion.h2>
 
-        {/* ── Featured role ─────────────────────────────────────── */}
-        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={2} className="mb-6">
-          <SpotlightCard className="border border-white/10 bg-[#0f0f0f] p-8 md:p-10">
-            {/* Header row */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="w-11 h-11 rounded-xl bg-white/5 text-zinc-400 flex items-center justify-center flex-shrink-0">
-                <Layers size={22} />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">{t('workWithUs.role.tag')}</span>
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/10 border border-white/15 text-zinc-200 text-[11px] font-semibold uppercase tracking-wide">
-                    {t('workWithUs.hiring')}
-                  </span>
+        {ROLES.map(({ copy, Icon, subject }, i) => (
+          <motion.div key={copy} variants={fadeUp} initial="hidden" animate="show" custom={2 + i} className="mb-6">
+            <SpotlightCard className="border border-white/10 bg-[#0f0f0f] p-8 md:p-10">
+              {/* Header row */}
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <div className="w-11 h-11 rounded-xl bg-white/5 text-zinc-400 flex items-center justify-center flex-shrink-0">
+                  <Icon size={22} />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">{t('workWithUs.role.tag')}</span>
+                    {i === 0 && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/10 border border-white/15 text-zinc-200 text-[11px] font-semibold uppercase tracking-wide">
+                        {t('workWithUs.hiring')}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <h2 className="font-display text-white font-bold text-3xl mb-3 tracking-tight">{t('workWithUs.role.title')}</h2>
-            <p className="text-zinc-400 leading-relaxed mb-8 max-w-2xl">{t('workWithUs.role.about')}</p>
+              <h2 className="font-display text-white font-bold text-3xl mb-3 tracking-tight">{t(`${copy}.title`)}</h2>
+              <p className="text-zinc-400 leading-relaxed mb-8 max-w-2xl">{t(`${copy}.about`)}</p>
 
-            {/* Two-column details */}
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
-              <Section
-                title={t('workWithUs.role.need.heading')}
-                accent="text-zinc-400"
-                items={[
-                  t('workWithUs.role.need.1'),
-                  t('workWithUs.role.need.2'),
-                  t('workWithUs.role.need.3'),
-                  t('workWithUs.role.need.4'),
-                ]}
-              />
-              <Section
-                title={t('workWithUs.role.offer.heading')}
-                accent="text-zinc-400"
-                items={[
-                  t('workWithUs.role.offer.1'),
-                  t('workWithUs.role.offer.2'),
-                  t('workWithUs.role.offer.3'),
-                ]}
-              />
-            </div>
-
-            {/* Apply */}
-            <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="flex-1">
-                <p className="text-zinc-500 text-sm">{t('workWithUs.role.apply.body')}</p>
+              {/* Two-column details */}
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <Section
+                  title={t('workWithUs.role.need.heading')}
+                  accent="text-zinc-400"
+                  items={[
+                    t(`${copy}.need.1`),
+                    t(`${copy}.need.2`),
+                    t(`${copy}.need.3`),
+                    t(`${copy}.need.4`),
+                  ]}
+                />
+                <Section
+                  title={t('workWithUs.role.offer.heading')}
+                  accent="text-zinc-400"
+                  items={[
+                    t('workWithUs.role.offer.1'),
+                    t('workWithUs.role.offer.2'),
+                    t('workWithUs.role.offer.3'),
+                  ]}
+                />
               </div>
-              <a
-                href={roleMailto}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl text-sm transition-all duration-200 shadow-lg shadow-black/40 flex-shrink-0"
-              >
-                <Mail size={14} />
-                {t('workWithUs.role.apply.cta')}
-                <ArrowRight size={14} />
-              </a>
-            </div>
-          </SpotlightCard>
-        </motion.div>
+
+              {/* Apply */}
+              <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="flex-1">
+                  <p className="text-zinc-500 text-sm">{t('workWithUs.role.apply.body')}</p>
+                </div>
+                <a
+                  href={`mailto:${EMAIL}?subject=${encodeURIComponent(subject)}`}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-zinc-200 text-black font-medium rounded-xl text-sm transition-all duration-200 shadow-lg shadow-black/40 flex-shrink-0"
+                >
+                  <Mail size={14} />
+                  {t('workWithUs.role.apply.cta')}
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+            </SpotlightCard>
+          </motion.div>
+        ))}
 
         {/* ── Secondary: Open application ───────────────────────── */}
         <motion.div variants={fadeUp} initial="hidden" animate="show" custom={3}>

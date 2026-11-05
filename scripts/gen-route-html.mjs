@@ -52,7 +52,7 @@ const ROUTES = [
   {
     path: '/work-with-us',
     title: 'Work with us · Sahari',
-    description: 'Work with Sahari: sponsor the videos, or join the content team. Currently hiring a motion graphics editor.',
+    description: 'Work with Sahari: sponsor the videos, or join the content team. Currently hiring a 3D animator and a motion graphics editor.',
   },
   {
     path: '/tools/brand-kit',
