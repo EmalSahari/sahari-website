@@ -45,7 +45,7 @@ export const translations = {
     'contact.type.sponsorship': "Sponsorship",
     'contact.form.type': "What is it about?",
     'contact.seo': "Sponsorships, collaborations or a project: send Sahari a message and get a reply within a day.",
-    'about.seo': "The story behind Sahari: three explainer YouTube channels with {subs} subscribers and {views} views, plus software, websites and tools.",
+    'about.seo': "The story behind Sahari: three YouTube channels with {subs} subscribers and {views} views, plus software, websites and tools.",
     'yt.sponsor.offer.3': "Channel list, audience data and example integrations on request",
     'yt.sponsor.offer.2': "In new videos on the largest channel",
     'yt.sponsor.offer.1': "Integrated sponsor segments inside a video",
@@ -54,7 +54,7 @@ export const translations = {
     'yt.subtitle': "Three channels with {subs} subscribers and {views} views, and one audience: curious adults who watch to learn.",
     'yt.heading': "Explaining how the world works.",
     'yt.eyebrow': "YouTube",
-    'yt.seo': "Three explainer YouTube channels with {subs} subscribers and {views} views. Sponsorship inquiries welcome.",
+    'yt.seo': "Three YouTube channels with {subs} subscribers and {views} views. Sponsorship inquiries welcome.",
     'home.sponsor.cta': "Get in touch",
     'home.sponsor.subtitle': "{subs} people subscribe to learn how things work. If your brand fits that, let's talk about a sponsorship.",
     'home.sponsor.heading': "Reach a curious audience",
@@ -65,7 +65,7 @@ export const translations = {
     'home.channels.subtitle': "Three different worlds, one audience: curious adults who watch to learn.",
     'home.channels.heading': "Three channels",
     'home.channels.eyebrow': "YouTube",
-    'home.seo': "Sahari runs three explainer YouTube channels with {subs} subscribers and {views} views, and builds software on the side. Sponsorships and collaborations welcome.",
+    'home.seo': "Sahari runs three YouTube channels with {subs} subscribers and {views} views, and builds software on the side. Sponsorships and collaborations welcome.",
     'hero.cta.sponsor': "Sponsorships",
     'hero.cta.channels': "About the channels",
     'nav.youtube': "YouTube",
@@ -95,7 +95,7 @@ export const translations = {
 
     // Hero
     'hero.badge': "YouTube · Software",
-    'hero.subtitle': "We run three explainer channels on YouTube with {subs} subscribers and {views} views. We also design and build software.",
+    'hero.subtitle': "We run three channels on YouTube with {subs} subscribers and {views} views. We also design and build software.",
 
     // Trust bar (under hero)
     'trust.price': 'From 1,999 DKK · Fixed price',
@@ -206,7 +206,7 @@ export const translations = {
     'about.eyebrow': 'About',
     'about.heading.start': "The story behind",
     'about.heading.highlight': "Sahari",
-    'about.subtitle': "Sahari is three explainer channels on YouTube with {subs} subscribers and {views} views. Alongside the videos we design and build software: products, websites and tools.",
+    'about.subtitle': "Sahari is three channels on YouTube with {subs} subscribers and {views} views. Alongside the videos we design and build software: products, websites and tools.",
     'about.currentFocus': 'Currently focused on',
     'about.currentFocusValue': 'Sahari. Taking on client projects, building Mokio',
     'about.values.heading': "What we care about",
@@ -511,7 +511,7 @@ export const translations = {
     'contact.type.sponsorship': "Sponsorat",
     'contact.form.type': "Hvad drejer det sig om?",
     'contact.seo': "Sponsorater, samarbejder eller et projekt: send Sahari en besked og få svar inden for et døgn.",
-    'about.seo': "Historien bag Sahari: tre forklaringskanaler på YouTube med {subs} abonnenter og {views} visninger, plus software, hjemmesider og værktøjer.",
+    'about.seo': "Historien bag Sahari: tre kanaler på YouTube med {subs} abonnenter og {views} visninger, plus software, hjemmesider og værktøjer.",
     'yt.sponsor.offer.3': "Kanalliste, publikumsdata og eksempler på integrationer på forespørgsel",
     'yt.sponsor.offer.2': "I nye videoer på den største kanal",
     'yt.sponsor.offer.1': "Integrerede sponsorsegmenter i en video",
@@ -520,7 +520,7 @@ export const translations = {
     'yt.subtitle': "Tre kanaler med {subs} abonnenter og {views} visninger, og ét publikum: nysgerrige voksne der ser for at lære noget.",
     'yt.heading': "Vi forklarer hvordan verden hænger sammen.",
     'yt.eyebrow': "YouTube",
-    'yt.seo': "Tre forklaringskanaler på YouTube med {subs} abonnenter og {views} visninger. Henvendelser om sponsorater er velkomne.",
+    'yt.seo': "Tre kanaler på YouTube med {subs} abonnenter og {views} visninger. Henvendelser om sponsorater er velkomne.",
     'home.sponsor.cta': "Kontakt os",
     'home.sponsor.subtitle': "{subs} abonnerer for at lære hvordan ting hænger sammen. Hvis dit brand passer til det, så lad os tale om et sponsorat.",
     'home.sponsor.heading': "Nå et nysgerrigt publikum",
@@ -531,7 +531,7 @@ export const translations = {
     'home.channels.subtitle': "Tre forskellige verdener, ét publikum: nysgerrige voksne der ser for at lære noget.",
     'home.channels.heading': "Tre kanaler",
     'home.channels.eyebrow': "YouTube",
-    'home.seo': "Sahari driver tre forklaringskanaler på YouTube med {subs} abonnenter og {views} visninger, og bygger software ved siden af. Sponsorater og samarbejder er velkomne.",
+    'home.seo': "Sahari driver tre kanaler på YouTube med {subs} abonnenter og {views} visninger, og bygger software ved siden af. Sponsorater og samarbejder er velkomne.",
     'hero.cta.sponsor': "Sponsorater",
     'hero.cta.channels': "Om kanalerne",
     'nav.youtube': "YouTube",
@@ -561,7 +561,7 @@ export const translations = {
 
     // Hero
     'hero.badge': "YouTube · Software",
-    'hero.subtitle': "Vi driver tre forklaringskanaler på YouTube med {subs} abonnenter og {views} visninger. Vi designer og bygger også software.",
+    'hero.subtitle': "Vi driver tre kanaler på YouTube med {subs} abonnenter og {views} visninger. Vi designer og bygger også software.",
 
     // Trust bar (under hero)
     'trust.price': 'Fra 1.999 kr · Fast pris',
@@ -672,7 +672,7 @@ export const translations = {
     'about.eyebrow': 'Om',
     'about.heading.start': "Historien bag",
     'about.heading.highlight': "Sahari",
-    'about.subtitle': "Sahari er tre forklaringskanaler på YouTube med {subs} abonnenter og {views} visninger. Ved siden af videoerne designer og bygger vi software: produkter, hjemmesider og værktøjer.",
+    'about.subtitle': "Sahari er tre kanaler på YouTube med {subs} abonnenter og {views} visninger. Ved siden af videoerne designer og bygger vi software: produkter, hjemmesider og værktøjer.",
     'about.currentFocus': 'Primært fokus lige nu',
     'about.currentFocusValue': 'Sahari. Tager kundeprojekter, bygger Mokio',
     'about.values.heading': "Det vi går op i",
