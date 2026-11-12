@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Mail, Instagram, Send, CheckCircle2, Tag, X } from 'lucide-react'
+import { Mail, Instagram, Send, CheckCircle2 } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import SpotlightCard from '../components/SpotlightCard'
-
-const TIER_LABELS = {
-  single: { en: 'Single page (1,999 DKK)', da: 'Single page (1.999 kr)' },
-  standard: { en: 'Standard (3,499 DKK)', da: 'Standard (3.499 kr)' },
-  premium: { en: 'Premium (from 7,499 DKK)', da: 'Premium (fra 7.499 kr)' },
-}
 
 const INQUIRY_TYPES = ['sponsorship', 'project', 'other']
 
@@ -25,45 +19,23 @@ const fadeUp = {
 
 export default function Contact() {
   const t = useT()
-  const lang = t('nav.home') === 'Hjem' ? 'da' : 'en'
   const [searchParams, setSearchParams] = useSearchParams()
-  const tierSlug = searchParams.get('tier')
-  const messageParam = searchParams.get('message')
   const typeParam = searchParams.get('type')
-  const tierLabel = tierSlug && TIER_LABELS[tierSlug]?.[lang]
   const [form, setForm] = useState({
     type: INQUIRY_TYPES.includes(typeParam) ? typeParam : '',
     name: '',
     email: '',
     message: '',
-    tier: '',
     _gotcha: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (tierLabel) {
-      setForm((f) => ({ ...f, tier: tierLabel, type: f.type || 'project' }))
-    }
-  }, [tierLabel])
-
-  useEffect(() => {
     if (INQUIRY_TYPES.includes(typeParam)) {
       setForm((f) => ({ ...f, type: typeParam }))
     }
   }, [typeParam])
-
-  useEffect(() => {
-    if (messageParam) {
-      setForm((f) => ({ ...f, message: messageParam }))
-    }
-  }, [messageParam])
-
-  const clearTier = () => {
-    setForm((f) => ({ ...f, tier: '' }))
-    setSearchParams({}, { replace: true })
-  }
 
   const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
@@ -162,7 +134,7 @@ export default function Contact() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.4 }}
-                  onClick={() => { setSubmitted(false); setForm({ type: '', name: '', email: '', message: '', tier: '', _gotcha: '' }); setSearchParams({}, { replace: true }) }}
+                  onClick={() => { setSubmitted(false); setForm({ type: '', name: '', email: '', message: '', _gotcha: '' }); setSearchParams({}, { replace: true }) }}
                   className="mt-2 text-zinc-400 hover:text-zinc-200 text-sm transition-colors"
                 >
                   {t('contact.form.success.again')}
@@ -185,20 +157,6 @@ export default function Contact() {
                   style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
                 />
 
-                {form.tier && (
-                  <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-medium">
-                    <Tag size={13} />
-                    <span>{t('contact.form.tierPrefix')}: <strong className="font-semibold">{form.tier}</strong></span>
-                    <button
-                      type="button"
-                      onClick={clearTier}
-                      className="ml-1 text-amber-400 hover:text-amber-200 transition-colors"
-                      aria-label="Remove tier"
-                    >
-                      <X size={13} />
-                    </button>
-                  </div>
-                )}
                 <fieldset>
                   <legend className="block text-zinc-400 text-sm mb-2">{t('contact.form.type')}</legend>
                   <div className="flex flex-wrap gap-2">

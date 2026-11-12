@@ -1,7 +1,11 @@
 {
   "redirects": [
     { "source": "/cuppingcare", "destination": "https://cuppingcare.dk/", "permanent": true },
-    { "source": "/cuppingcare/(.*)", "destination": "https://cuppingcare.dk/$1", "permanent": true }
+    { "source": "/cuppingcare/(.*)", "destination": "https://cuppingcare.dk/$1", "permanent": true },
+    { "source": "/about", "destination": "/youtube", "permanent": true },
+    { "source": "/pricing", "destination": "/contact", "permanent": true },
+    { "source": "/tools/brand-kit", "destination": "/", "permanent": true },
+    { "source": "/tools/site-check", "destination": "/", "permanent": true }
   ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }

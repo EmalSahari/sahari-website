@@ -13,7 +13,7 @@ import GrainOverlay from './components/GrainOverlay'
 import LoadingSequence from './components/LoadingSequence'
 import PageTransition from './components/PageTransition'
 
-const STANDALONE_ROUTES = ['/black-stone', '/drift', '/mork', '/tools/brand-kit']
+const STANDALONE_ROUTES = ['/black-stone', '/drift', '/mork']
 
 function Layout() {
   const location = useLocation()

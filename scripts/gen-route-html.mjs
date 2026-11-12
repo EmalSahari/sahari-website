@@ -30,19 +30,9 @@ const ROUTES = [
     description: 'Three YouTube channels with 100K+ subscribers and 18M+ views: institutions and everyday systems, architecture and history, and space. Sponsorship inquiries welcome.',
   },
   {
-    path: '/about',
-    title: 'About · Sahari',
-    description: 'The story behind Sahari: three YouTube channels with 100K+ subscribers and 18M+ views, plus software, websites and tools.',
-  },
-  {
     path: '/work',
     title: 'Projects · Sahari',
-    description: 'Projects built by Sahari: Virko, the Mokio booking platform, NexByg, the Brand Kit Generator and client websites.',
-  },
-  {
-    path: '/pricing',
-    title: 'Pricing · Sahari',
-    description: 'Fixed-price websites and software from DKK 1,999. Three transparent tiers plus add-ons for payments, booking and ongoing care.',
+    description: 'Projects built by Sahari: Virko, the Mokio booking platform and the NexByg website.',
   },
   {
     path: '/contact',
@@ -53,16 +43,6 @@ const ROUTES = [
     path: '/work-with-us',
     title: 'Work with us · Sahari',
     description: 'Work with Sahari: sponsor the videos, or join the content team. Currently hiring a 3D animator and a motion graphics editor.',
-  },
-  {
-    path: '/tools/brand-kit',
-    title: 'Brand Kit Generator: free color palette and font pairing tool | Sahari',
-    description: 'Generate brand color palettes and Google Font pairings in seconds. Lock colors, edit hex, check WCAG contrast, preview on hero, card and device mockups, export to CSS, Tailwind, SCSS, JSON or PDF. Free, no signup.',
-  },
-  {
-    path: '/tools/site-check',
-    title: 'Will Google find your site? · Sahari',
-    description: 'Free SEO and speed audit powered by Google PageSpeed Insights. Find out why your site is not ranking and what is costing you visitors.',
   },
   {
     path: '/black-stone',

@@ -25,9 +25,9 @@ export default function YouTube() {
   const fill = (text) => fillStats(text, yt)
 
   const stats = [
-    { value: yt.subs, label: t('about.stats.subs') },
-    { value: yt.views, label: t('about.stats.views') },
-    { value: yt.channels, label: t('about.stats.channels') },
+    { value: yt.subs, label: t('stats.subs') },
+    { value: yt.views, label: t('stats.views') },
+    { value: yt.channels, label: t('stats.channels') },
   ]
 
   const offers = [t('yt.sponsor.offer.1'), t('yt.sponsor.offer.2'), t('yt.sponsor.offer.3')]

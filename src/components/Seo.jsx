@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 
 const SITE_URL = 'https://sahari.io'
 const DEFAULT_DESC =
-  'Three YouTube channels with 100K+ subscribers and 18M+ views. Plus software, websites and tools. Sponsorships welcome.'
+  'Three YouTube channels with 100K+ subscribers and 18M+ views. Plus software and websites. Sponsorships welcome.'
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`
 
 function setMeta(selector, attr, value) {
@@ -31,7 +31,7 @@ export default function Seo({ title, description = DEFAULT_DESC, image = DEFAULT
   const location = useLocation()
 
   useEffect(() => {
-    const fullTitle = title ? `${title} · Sahari` : 'Sahari: Made for curious minds'
+    const fullTitle = title ? `${title} · Sahari` : 'Sahari'
     const url = `${SITE_URL}${location.pathname}`
 
     document.title = fullTitle

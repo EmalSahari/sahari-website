@@ -59,11 +59,8 @@ export default function Footer() {
           <Link to="/" className="hover:text-white transition-colors">{t('nav.home')}</Link>
           <Link to="/youtube" className="hover:text-white transition-colors">{t('nav.youtube')}</Link>
           <Link to="/work" className="hover:text-white transition-colors">{t('nav.work')}</Link>
-          <Link to="/about" className="hover:text-white transition-colors">{t('nav.about')}</Link>
           <Link to="/contact" className="hover:text-white transition-colors">{t('nav.contact')}</Link>
           <Link to="/work-with-us" className="hover:text-white transition-colors">{t('nav.workWithUs')}</Link>
-          <Link to="/tools/brand-kit" className="hover:text-white transition-colors">{t('nav.brandKit')}</Link>
-          <Link to="/tools/site-check" className="hover:text-white transition-colors">{t('nav.siteCheck')}</Link>
           <Link to="/blog" className="hover:text-white transition-colors">{t('nav.blog')}</Link>
         </nav>
       </div>
