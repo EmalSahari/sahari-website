@@ -57,14 +57,7 @@ export const translations = {
     'home.sponsor.cta': "Get in touch",
     'home.sponsor.subtitle': "{subs} people subscribe to learn how things work. If your brand fits that, let's talk about a sponsorship.",
     'home.sponsor.heading': "Reach a curious audience",
-    'home.build.subtitle': "Products and websites we have designed and built from scratch.",
-    'home.build.heading': "We build software too",
-    'home.build.eyebrow': "Also building",
-    'home.channels.more': "More about the channels",
-    'home.channels.subtitle': "Three different worlds, one audience: curious adults who watch to learn.",
-    'home.channels.heading': "Three channels",
-    'home.channels.eyebrow': "YouTube",
-    'home.seo': "Sahari runs three YouTube channels with {subs} subscribers and {views} views, and builds software on the side. Sponsorships and collaborations welcome.",
+    'home.seo': "Sahari runs three YouTube channels with {subs} subscribers and {views} views. Sponsorships and collaborations welcome.",
     'hero.cta.sponsor': "Sponsorships",
     'hero.cta.channels': "About the channels",
     'nav.youtube': "YouTube",
@@ -89,7 +82,7 @@ export const translations = {
     'nav.toggleMenu': 'Toggle menu',
 
     // Hero
-    'hero.badge': "YouTube · Software",
+    'hero.badge': "YouTube",
     'hero.subtitle': "We run three channels on YouTube with {subs} subscribers and {views} views.",
 
     // Trust bar (under hero)
@@ -173,7 +166,6 @@ export const translations = {
     'work.eyebrow': 'Portfolio',
     'work.heading': "Things we've built",
     'work.subtitle': "Products, client sites and side projects we have designed and built.",
-    'work.seeAll': "See all projects",
 
     // Work With Us
     'workWithUs.eyebrow': "Work with us",
@@ -249,14 +241,7 @@ export const translations = {
     'home.sponsor.cta': "Kontakt os",
     'home.sponsor.subtitle': "{subs} abonnerer for at lære hvordan ting hænger sammen. Hvis dit brand passer til det, så lad os tale om et sponsorat.",
     'home.sponsor.heading': "Nå et nysgerrigt publikum",
-    'home.build.subtitle': "Produkter og hjemmesider vi har designet og bygget fra bunden.",
-    'home.build.heading': "Vi bygger også software",
-    'home.build.eyebrow': "Bygger også",
-    'home.channels.more': "Mere om kanalerne",
-    'home.channels.subtitle': "Tre forskellige verdener, ét publikum: nysgerrige voksne der ser for at lære noget.",
-    'home.channels.heading': "Tre kanaler",
-    'home.channels.eyebrow': "YouTube",
-    'home.seo': "Sahari driver tre kanaler på YouTube med {subs} abonnenter og {views} visninger, og bygger software ved siden af. Sponsorater og samarbejder er velkomne.",
+    'home.seo': "Sahari driver tre kanaler på YouTube med {subs} abonnenter og {views} visninger. Sponsorater og samarbejder er velkomne.",
     'hero.cta.sponsor': "Sponsorater",
     'hero.cta.channels': "Om kanalerne",
     'nav.youtube': "YouTube",
@@ -281,7 +266,7 @@ export const translations = {
     'nav.toggleMenu': 'Skift menu',
 
     // Hero
-    'hero.badge': "YouTube · Software",
+    'hero.badge': "YouTube",
     'hero.subtitle': "Vi driver tre kanaler på YouTube med {subs} abonnenter og {views} visninger.",
 
     // Trust bar (under hero)
@@ -365,7 +350,6 @@ export const translations = {
     'work.eyebrow': 'Portfolio',
     'work.heading': "Ting vi har bygget",
     'work.subtitle': "Produkter, kundesider og egne projekter vi har designet og bygget.",
-    'work.seeAll': "Se alle projekter",
 
     // Work With Us
     'workWithUs.eyebrow': "Arbejd med os",

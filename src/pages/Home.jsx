@@ -1,14 +1,12 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight, Handshake, Youtube, Hammer, Calendar, Sparkles } from 'lucide-react'
+import { ArrowRight, Handshake, Youtube } from 'lucide-react'
 import { useT } from '../i18n/LanguageContext'
 import Seo from '../components/Seo'
 import PastSponsors from '../components/PastSponsors'
-import Reveal from '../components/Reveal'
 import GradientMesh from '../components/GradientMesh'
 import OrbitVisual from '../components/OrbitVisual'
-import NicheCard from '../components/NicheCard'
-import { NICHES, fillStats } from '../data/youtube'
+import { fillStats } from '../data/youtube'
 import useYtStats from '../hooks/useYtStats'
 import useIsMobile from '../hooks/useIsMobile'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
@@ -37,25 +35,6 @@ const makeHeroFadeUp = (isMobile) =>
         }),
       }
 
-function SectionHeading({ eyebrow, heading, subtitle }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="mb-12 max-w-3xl"
-    >
-      <p className="text-amber-400 text-sm font-medium tracking-widest uppercase mb-3">{eyebrow}</p>
-      <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.05]">
-        {heading}
-      </h2>
-      <div className="mt-5 h-[2px] w-12 bg-amber-400" />
-      {subtitle && <p className="mt-6 text-zinc-400 max-w-xl leading-relaxed">{subtitle}</p>}
-    </motion.div>
-  )
-}
-
 export default function Home() {
   const t = useT()
   const isMobile = useIsMobile()
@@ -68,33 +47,6 @@ export default function Home() {
     { value: yt.subs, label: t('stats.subs') },
     { value: yt.views, label: t('stats.views') },
     { value: yt.channels, label: t('stats.channels') },
-  ]
-
-  const projects = [
-    {
-      icon: <Sparkles size={16} />,
-      title: t('projects.virko.title'),
-      desc: t('projects.virko.desc'),
-      tag: t('projects.virko.tag'),
-      href: 'https://www.virko.io/',
-      image: '/virko.png',
-    },
-    {
-      icon: <Calendar size={16} />,
-      title: t('projects.mokio.title'),
-      desc: t('projects.mokio.desc'),
-      tag: t('projects.mokio.tag'),
-      href: 'https://www.mokio.io/',
-      image: '/mokio.webp',
-    },
-    {
-      icon: <Hammer size={16} />,
-      title: t('projects.nexbyg.title'),
-      desc: t('projects.nexbyg.desc'),
-      tag: t('projects.nexbyg.tag'),
-      href: 'https://www.nexbyg.dk/',
-      image: '/nexbyg.webp',
-    },
   ]
 
   return (
@@ -189,81 +141,6 @@ export default function Home() {
             <OrbitVisual />
           </motion.div>
         </div>
-      </section>
-
-      {/* Channels */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <SectionHeading
-          eyebrow={t('home.channels.eyebrow')}
-          heading={t('home.channels.heading')}
-          subtitle={t('home.channels.subtitle')}
-        />
-        <div className="grid md:grid-cols-3 gap-5">
-          {NICHES.map((n, i) => (
-            <Reveal key={n.key} i={i} className="h-full">
-              <NicheCard niche={n} index={i} to="/youtube" />
-            </Reveal>
-          ))}
-        </div>
-        <Reveal i={3} className="mt-10">
-          <Link
-            to="/youtube"
-            className="group inline-flex items-center gap-2 text-zinc-300 hover:text-white font-medium transition-colors"
-          >
-            {t('home.channels.more')}
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </Reveal>
-      </section>
-
-      {/* Also building - compact portfolio */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
-        <SectionHeading
-          eyebrow={t('home.build.eyebrow')}
-          heading={t('home.build.heading')}
-          subtitle={t('home.build.subtitle')}
-        />
-        <div className="grid md:grid-cols-3 gap-5">
-          {projects.map((p, i) => (
-            <Reveal key={p.href} i={i} className="h-full">
-              <a
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f0f0f] hover:border-white/25 transition-colors"
-              >
-                <div className="aspect-[16/10] overflow-hidden bg-black/40">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-500 mb-3">
-                    {p.icon}
-                    {p.tag}
-                  </span>
-                  <h3 className="text-white font-bold text-xl mb-2 flex items-center gap-1.5">
-                    {p.title}
-                    <ArrowUpRight size={16} className="text-zinc-600 group-hover:text-white transition-colors" />
-                  </h3>
-                  <p className="text-zinc-500 text-sm leading-relaxed">{p.desc}</p>
-                </div>
-              </a>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal i={3} className="mt-10">
-          <Link
-            to="/work"
-            className="group inline-flex items-center gap-2 text-zinc-300 hover:text-white font-medium transition-colors"
-          >
-            {t('work.seeAll')}
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </Reveal>
       </section>
 
       {/* Sponsorship CTA */}

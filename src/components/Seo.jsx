@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 
 const SITE_URL = 'https://sahari.io'
 const DEFAULT_DESC =
-  'Three YouTube channels with 100K+ subscribers and 18M+ views. Plus software and websites. Sponsorships welcome.'
+  'Three YouTube channels with 100K+ subscribers and 18M+ views. Sponsorships welcome.'
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`
 
 function setMeta(selector, attr, value) {
