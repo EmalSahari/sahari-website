@@ -16,6 +16,7 @@ export default function Navbar() {
     { label: t('nav.youtube'), href: '/youtube' },
     { label: t('nav.work'), href: '/work' },
     { label: t('nav.about'), href: '/about' },
+    { label: t('nav.workWithUs'), href: '/work-with-us' },
     { label: t('nav.contact'), href: '/contact' },
   ]
 
@@ -50,7 +51,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {links.map((link) => {
               const isActive = location.pathname === link.href
               return (
@@ -77,7 +78,7 @@ export default function Navbar() {
           </nav>
 
           {/* CTA + Language toggle */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <LanguageToggle />
             <Link
               to="/contact?type=sponsorship"
@@ -90,7 +91,7 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className="md:hidden text-zinc-400 hover:text-white transition-colors p-1"
+            className="lg:hidden text-zinc-400 hover:text-white transition-colors p-1"
             aria-label={t('nav.toggleMenu')}
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -106,7 +107,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-[#0d0d0d]/95 backdrop-blur-xl border-b border-white/5 md:hidden"
+            className="fixed top-16 left-0 right-0 z-40 bg-[#0d0d0d]/95 backdrop-blur-xl border-b border-white/5 lg:hidden"
           >
             <nav className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
               {links.map((link) => (
